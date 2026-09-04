@@ -1,23 +1,27 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<title>🐷 Peppa Pig English</title>
-
 <style>
+/* =========================================================
+   Peppa Pig English
+   Responsive Mobile / Tablet / Desktop
+   ========================================================= */
+
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 }
 
-html,
+html {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
 body {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
     margin: 0;
     padding: 0;
-    min-height: 100%;
+
     font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -26,109 +30,205 @@ body {
         "PingFang SC",
         "Microsoft YaHei",
         sans-serif;
-    background: linear-gradient(135deg, #f7f7f7, #e9e9e9);
-    color: #222;
-}
 
-body {
-    min-height: 100vh;
+    background:
+        linear-gradient(
+            135deg,
+            #f7f7f7,
+            #e9e9e9
+        );
+
+    color: #222;
+
+    overflow-x: hidden;
+
+    /* 防止微信浏览器出现奇怪的文字缩放 */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 button {
     font-family: inherit;
-    border: none;
+    border: 0;
     outline: none;
     cursor: pointer;
+
     -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
-
-.app {
-    width: min(94vw, 720px);
-    margin: 0 auto;
-    padding:
-        max(20px, env(safe-area-inset-top))
-        0
-        max(30px, env(safe-area-inset-bottom));
-}
-
-/* =========================
-   通用
-========================= */
 
 .hidden {
     display: none !important;
 }
 
+
+/* =========================================================
+   APP 主容器
+   ========================================================= */
+
+.app {
+    width: min(
+        calc(100% - 32px),
+        720px
+    );
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    margin: 0 auto;
+
+    padding-top:
+        max(
+            16px,
+            env(safe-area-inset-top)
+        );
+
+    padding-bottom:
+        max(
+            30px,
+            env(safe-area-inset-bottom)
+        );
+}
+
+
+/* =========================================================
+   通用 Page
+   ========================================================= */
+
 .page {
     width: 100%;
+    min-width: 0;
 }
 
-.header {
-    text-align: center;
-    margin-bottom: 24px;
-}
 
-.header h1 {
-    margin: 0;
-    font-size: 30px;
-    font-weight: 800;
-}
-
-.header .subtitle {
-    margin-top: 8px;
-    color: #777;
-    font-size: 14px;
-}
-
-/* =========================
+/* =========================================================
    首页
-========================= */
+   ========================================================= */
 
 .home-header {
-    padding-top: 20px;
-    padding-bottom: 12px;
+    text-align: center;
+
+    padding-top:
+        clamp(
+            8px,
+            3vh,
+            30px
+        );
+
+    padding-bottom: 8px;
 }
 
 .logo {
-    font-size: 52px;
-    margin-bottom: 6px;
+    font-size:
+        clamp(
+            40px,
+            12vw,
+            58px
+        );
+
+    line-height: 1;
+
+    margin-bottom: 8px;
 }
 
 .home-title {
-    font-size: 30px;
-    font-weight: 800;
     margin: 0;
+
+    font-size:
+        clamp(
+            24px,
+            7vw,
+            32px
+        );
+
+    line-height: 1.2;
+
+    font-weight: 800;
 }
 
 .home-subtitle {
-    color: #777;
     margin-top: 8px;
-    font-size: 14px;
+
+    color: #777;
+
+    font-size:
+        clamp(
+            13px,
+            3.5vw,
+            15px
+        );
 }
 
+
+/* =========================================================
+   Section
+   ========================================================= */
+
 .section-title {
-    font-size: 20px;
+    font-size:
+        clamp(
+            18px,
+            5vw,
+            21px
+        );
+
     font-weight: 750;
-    margin: 26px 0 12px;
+
+    margin:
+        clamp(20px, 5vh, 30px)
+        0
+        12px;
+
     text-align: left;
 }
+
+
+/* =========================================================
+   首页菜单
+   ========================================================= */
 
 .menu-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+
+    gap:
+        clamp(
+            8px,
+            2vw,
+            13px
+        );
 }
 
 .menu-item {
     width: 100%;
+
     background: white;
-    border-radius: 18px;
-    padding: 17px 18px;
+
+    border-radius:
+        clamp(
+            14px,
+            4vw,
+            19px
+        );
+
+    padding:
+        clamp(
+            13px,
+            4vw,
+            18px
+        );
+
     display: flex;
     align-items: center;
+
     text-align: left;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, .07);
-    transition: transform .15s ease;
+
+    box-shadow:
+        0 6px 20px
+        rgba(0,0,0,.07);
+
+    transition:
+        transform .15s ease;
 }
 
 .menu-item:active {
@@ -136,16 +236,48 @@ button {
 }
 
 .menu-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
+    width:
+        clamp(
+            42px,
+            12vw,
+            50px
+        );
+
+    height:
+        clamp(
+            42px,
+            12vw,
+            50px
+        );
+
+    border-radius:
+        clamp(
+            12px,
+            3vw,
+            15px
+        );
+
     background: #f3f3f3;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 25px;
+
+    font-size:
+        clamp(
+            21px,
+            6vw,
+            26px
+        );
+
     flex-shrink: 0;
-    margin-right: 14px;
+
+    margin-right:
+        clamp(
+            10px,
+            3vw,
+            14px
+        );
 }
 
 .menu-content {
@@ -154,94 +286,269 @@ button {
 }
 
 .menu-title {
-    font-size: 17px;
+    font-size:
+        clamp(
+            15px,
+            4.2vw,
+            18px
+        );
+
     font-weight: 700;
+
     margin-bottom: 4px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .menu-desc {
     color: #888;
-    font-size: 13px;
+
+    font-size:
+        clamp(
+            12px,
+            3.3vw,
+            14px
+        );
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .menu-arrow {
     color: #aaa;
-    font-size: 22px;
+
+    font-size:
+        clamp(
+            20px,
+            6vw,
+            24px
+        );
+
     margin-left: 8px;
 }
 
+
+/* =========================================================
+   首页统计
+   ========================================================= */
+
 .stats {
-    margin-top: 20px;
+    margin-top:
+        clamp(
+            14px,
+            4vw,
+            21px
+        );
+
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap:
+        clamp(
+            6px,
+            2vw,
+            10px
+        );
 }
 
 .stat {
     background: white;
-    border-radius: 16px;
-    padding: 15px 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .06);
+
+    border-radius:
+        clamp(
+            12px,
+            3vw,
+            17px
+        );
+
+    padding:
+        clamp(
+            11px,
+            3vw,
+            16px
+        )
+        5px;
+
+    text-align: center;
+
+    box-shadow:
+        0 5px 15px
+        rgba(0,0,0,.06);
 }
 
 .stat-number {
-    font-size: 23px;
+    font-size:
+        clamp(
+            19px,
+            6vw,
+            25px
+        );
+
     font-weight: 800;
 }
 
 .stat-label {
     color: #888;
-    font-size: 12px;
+
+    font-size:
+        clamp(
+            10px,
+            3vw,
+            13px
+        );
+
     margin-top: 3px;
 }
 
-/* =========================
-   页面顶部
-========================= */
+
+/* =========================================================
+   顶部导航
+   ========================================================= */
 
 .topbar {
+    width: 100%;
+
+    min-height:
+        clamp(
+            38px,
+            10vw,
+            44px
+        );
+
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
-    min-height: 42px;
+
+    margin-bottom:
+        clamp(
+            10px,
+            3vw,
+            16px
+        );
 }
 
 .back-btn {
+    flex-shrink: 0;
+
     background: white;
-    border-radius: 12px;
-    padding: 10px 14px;
-    box-shadow: 0 4px 12px rgba(0,0,0,.06);
-    font-size: 14px;
+
+    border-radius:
+        clamp(
+            9px,
+            3vw,
+            13px
+        );
+
+    padding:
+        clamp(
+            8px,
+            2.5vw,
+            11px
+        )
+        clamp(
+            10px,
+            3vw,
+            15px
+        );
+
+    font-size:
+        clamp(
+            13px,
+            3.5vw,
+            15px
+        );
+
+    box-shadow:
+        0 4px 12px
+        rgba(0,0,0,.06);
 }
 
 .topbar-title {
     flex: 1;
+
+    min-width: 0;
+
     text-align: center;
+
     font-weight: 750;
-    font-size: 17px;
-    margin: 0 10px;
+
+    font-size:
+        clamp(
+            15px,
+            4.5vw,
+            18px
+        );
+
+    margin:
+        0
+        clamp(6px, 2vw, 10px);
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
 }
 
 .topbar-placeholder {
-    width: 70px;
+    width:
+        clamp(
+            60px,
+            18vw,
+            75px
+        );
+
+    flex-shrink: 0;
 }
 
-/* =========================
-   Episode 页面
-========================= */
+
+/* =========================================================
+   Episode
+   ========================================================= */
 
 .episode-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+
+    gap:
+        clamp(
+            8px,
+            2.5vw,
+            13px
+        );
 }
 
 .episode-card {
+    width: 100%;
+
     background: white;
-    border-radius: 18px;
-    padding: 18px;
-    box-shadow: 0 6px 20px rgba(0,0,0,.07);
+
+    border-radius:
+        clamp(
+            14px,
+            4vw,
+            19px
+        );
+
+    padding:
+        clamp(
+            14px,
+            4vw,
+            19px
+        );
+
+    box-shadow:
+        0 6px 20px
+        rgba(0,0,0,.07);
+
     text-align: left;
+
+    transition:
+        transform .15s ease;
 }
 
 .episode-card:active {
@@ -251,1672 +558,135 @@ button {
 .episode-row {
     display: flex;
     align-items: center;
+    min-width: 0;
 }
 
 .episode-icon {
-    width: 50px;
-    height: 50px;
+    width:
+        clamp(
+            42px,
+            13vw,
+            52px
+        );
+
+    height:
+        clamp(
+            42px,
+            13vw,
+            52px
+        );
+
+    flex-shrink: 0;
+
     background: #f3f3f3;
-    border-radius: 15px;
+
+    border-radius:
+        clamp(
+            12px,
+            3.5vw,
+            16px
+        );
+
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 25px;
-    margin-right: 14px;
+
+    font-size:
+        clamp(
+            21px,
+            6vw,
+            27px
+        );
+
+    margin-right:
+        clamp(
+            10px,
+            3vw,
+            15px
+        );
 }
 
 .episode-info {
     flex: 1;
+    min-width: 0;
 }
 
 .episode-title {
-    font-size: 17px;
+    font-size:
+        clamp(
+            15px,
+            4.2vw,
+            18px
+        );
+
     font-weight: 750;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .episode-cn {
     color: #888;
-    font-size: 13px;
+
+    font-size:
+        clamp(
+            12px,
+            3.3vw,
+            14px
+        );
+
     margin-top: 5px;
 }
 
 .episode-count {
+    flex-shrink: 0;
+
     color: #999;
-    font-size: 13px;
+
+    font-size:
+        clamp(
+            11px,
+            3vw,
+            14px
+        );
+
+    margin-left: 8px;
 }
 
 .episode-progress {
-    height: 5px;
+    width: 100%;
+
+    height:
+        clamp(
+            4px,
+            1.3vw,
+            6px
+        );
+
     background: #eee;
-    border-radius: 99px;
-    margin-top: 14px;
+
+    border-radius: 999px;
+
+    margin-top:
+        clamp(
+            10px,
+            3vw,
+            15px
+        );
+
     overflow: hidden;
 }
 
 .episode-progress-bar {
     height: 100%;
+
     background: #222;
-    border-radius: 99px;
-}
 
-/* =========================
-   单词学习页面
-========================= */
-
-.learning-header {
-    text-align: center;
-}
-
-.learning-title {
-    font-size: 19px;
-    font-weight: 750;
-}
-
-.learning-subtitle {
-    color: #888;
-    font-size: 13px;
-    margin-top: 4px;
-}
-
-.progress {
-    font-size: 14px;
-    color: #666;
-    margin: 13px 0 10px;
-    text-align: center;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 5px;
-    background: #ddd;
     border-radius: 999px;
-    overflow: hidden;
-    margin-bottom: 14px;
-}
 
-.progress-fill {
-    height: 100%;
-    background: #222;
-    border-radius: 999px;
-    transition: width .25s ease;
-}
-
-/* =========================
-   Flash Card
-========================= */
-
-.card-wrap {
-    perspective: 1200px;
-    height: 410px;
-    cursor: pointer;
-    user-select: none;
-    touch-action: pan-y;
-}
-
-.card {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform .45s ease;
-}
-
-.card.flipped {
-    transform: rotateY(180deg);
-}
-
-.face {
-    position: absolute;
-    inset: 0;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-
-    border-radius: 24px;
-    background: white;
-
-    box-shadow:
-        0 14px 40px rgba(0,0,0,.12);
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    padding: 32px;
-}
-
-.front {
-    text-align: center;
-}
-
-.back {
-    transform: rotateY(180deg);
-    text-align: left;
-    align-items: stretch;
-}
-
-.word {
-    font-size: clamp(42px, 9vw, 76px);
-    font-weight: 800;
-    margin-bottom: 12px;
-    word-break: break-word;
-}
-
-.ipa {
-    color: #777;
-    font-size: 20px;
-    margin-bottom: 25px;
-}
-
-.hint {
-    color: #aaa;
-    font-size: 14px;
-}
-
-.meaning {
-    font-size: 34px;
-    font-weight: 750;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.example {
-    font-size: 22px;
-    line-height: 1.5;
-    margin: 12px 0;
-}
-
-.translation {
-    color: #666;
-    font-size: 18px;
-    line-height: 1.5;
-}
-
-.tag {
-    display: inline-block;
-    align-self: center;
-    padding: 6px 12px;
-    border-radius: 999px;
-    background: #eee;
-    color: #666;
-    font-size: 13px;
-    margin-bottom: 14px;
-}
-
-/* =========================
-   学习按钮
-========================= */
-
-.controls {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
-    margin-top: 18px;
-}
-
-.controls button {
-    background: white;
-    border-radius: 14px;
-    padding: 14px 8px;
-    font-size: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.08);
-}
-
-.primary {
-    font-weight: 750;
-}
-
-.learning-tools {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.learning-tools button {
-    background: white;
-    border-radius: 14px;
-    padding: 12px 6px;
-    font-size: 14px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.06);
-}
-
-.favorite.active {
-    background: #f1f1f1;
-    font-weight: 700;
-}
-
-.mastered.active {
-    background: #222;
-    color: white;
-    font-weight: 700;
-}
-
-.tip {
-    margin-top: 15px;
-    color: #999;
-    font-size: 12px;
-    text-align: center;
-}
-
-/* =========================
-   单词列表
-========================= */
-
-.word-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.word-item {
-    background: white;
-    border-radius: 16px;
-    padding: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.06);
-    display: flex;
-    align-items: center;
-}
-
-.word-main {
-    flex: 1;
-    min-width: 0;
-}
-
-.word-title {
-    font-size: 20px;
-    font-weight: 750;
-}
-
-.word-meaning {
-    color: #666;
-    margin-top: 4px;
-    font-size: 14px;
-}
-
-.word-episode {
-    color: #999;
-    font-size: 12px;
-    margin-top: 4px;
-}
-
-.word-actions {
-    display: flex;
-    gap: 6px;
-    margin-left: 10px;
-}
-
-.small-btn {
-    background: #f3f3f3;
-    border-radius: 10px;
-    padding: 9px;
-    font-size: 15px;
-}
-
-.empty {
-    background: white;
-    border-radius: 18px;
-    padding: 45px 20px;
-    text-align: center;
-    color: #888;
-    box-shadow: 0 6px 20px rgba(0,0,0,.06);
-}
-
-.empty-icon {
-    font-size: 45px;
-    margin-bottom: 12px;
-}
-
-.empty-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #555;
-    margin-bottom: 8px;
-}
-
-.empty-desc {
-    font-size: 13px;
-    line-height: 1.6;
-}
-
-/* =========================
-   Toast
-========================= */
-
-.toast {
-    position: fixed;
-    left: 50%;
-    bottom: 35px;
-    transform: translateX(-50%);
-    background: rgba(0,0,0,.82);
-    color: white;
-    padding: 10px 17px;
-    border-radius: 999px;
-    font-size: 14px;
-    z-index: 9999;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .2s ease;
-    white-space: nowrap;
-}
-
-.toast.show {
-    opacity: 1;
-}
-
-/* =========================
-   手机适配
-========================= */
-
-@media (max-width: 600px) {
-
-    .app {
-        width: 92vw;
-        padding-top: max(14px, env(safe-area-inset-top));
-    }
-
-    .home-header {
-        padding-top: 15px;
-    }
-
-    .logo {
-        font-size: 45px;
-    }
-
-    .home-title {
-        font-size: 25px;
-    }
-
-    .section-title {
-        font-size: 18px;
-        margin-top: 22px;
-    }
-
-    .menu-item {
-        padding: 15px;
-    }
-
-    .menu-title {
-        font-size: 16px;
-    }
-
-    .stats {
-        gap: 8px;
-    }
-
-    .stat {
-        padding: 13px 5px;
-    }
-
-    .stat-number {
-        font-size: 20px;
-    }
-
-    .card-wrap {
-        height: 390px;
-    }
-
-    .face {
-        padding: 24px;
-    }
-
-    .meaning {
-        font-size: 28px;
-    }
-
-    .example {
-        font-size: 19px;
-    }
-
-    .translation {
-        font-size: 16px;
-    }
-
-    .controls button {
-        padding: 13px 5px;
-    }
-
-    .learning-tools button {
-        padding: 11px 4px;
-        font-size: 13px;
-    }
-}
-
-@media (max-width: 380px) {
-
-    .card-wrap {
-        height: 365px;
-    }
-
-    .word {
-        font-size: 42px;
-    }
-
-    .meaning {
-        font-size: 25px;
-    }
-
-    .example {
-        font-size: 17px;
-    }
-
-    .translation {
-        font-size: 15px;
-    }
-}
-</style>
-</head>
-
-<body>
-
-<div class="app">
-
-    <!-- =========================
-         首页
-    ========================== -->
-
-    <section id="homePage" class="page">
-
-        <div class="home-header">
-            <div class="logo">🐷</div>
-            <h1 class="home-title">Peppa Pig English</h1>
-            <div class="home-subtitle">
-                小猪佩奇英语词汇学习
-            </div>
-        </div>
-
-        <div class="stats">
-            <div class="stat">
-                <div class="stat-number" id="totalCount">15</div>
-                <div class="stat-label">全部单词</div>
-            </div>
-
-            <div class="stat">
-                <div class="stat-number" id="favoriteCount">0</div>
-                <div class="stat-label">我的生词</div>
-            </div>
-
-            <div class="stat">
-                <div class="stat-number" id="masteredCount">0</div>
-                <div class="stat-label">已掌握</div>
-            </div>
-        </div>
-
-        <div class="section-title">
-            📚 第一季
-        </div>
-
-        <div class="menu-list">
-
-            <button class="menu-item" onclick="openEpisodeList()">
-                <div class="menu-icon">📺</div>
-
-                <div class="menu-content">
-                    <div class="menu-title">
-                        第一季 · Episodes
-                    </div>
-
-                    <div class="menu-desc">
-                        S1E01 ～ S1E05
-                    </div>
-                </div>
-
-                <div class="menu-arrow">
-                    ›
-                </div>
-            </button>
-
-            <button class="menu-item" onclick="openFavorites()">
-                <div class="menu-icon">⭐</div>
-
-                <div class="menu-content">
-                    <div class="menu-title">
-                        我的生词
-                    </div>
-
-                    <div class="menu-desc">
-                        收藏起来，反复复习
-                    </div>
-                </div>
-
-                <div class="menu-arrow">
-                    ›
-                </div>
-            </button>
-
-            <button class="menu-item" onclick="openMastered()">
-                <div class="menu-icon">✅</div>
-
-                <div class="menu-content">
-                    <div class="menu-title">
-                        已掌握
-                    </div>
-
-                    <div class="menu-desc">
-                        看看自己已经学会了哪些词
-                    </div>
-                </div>
-
-                <div class="menu-arrow">
-                    ›
-                </div>
-            </button>
-
-            <button class="menu-item" onclick="startRandomReview()">
-                <div class="menu-icon">🔀</div>
-
-                <div class="menu-content">
-                    <div class="menu-title">
-                        随机复习
-                    </div>
-
-                    <div class="menu-desc">
-                        随机抽取单词进行复习
-                    </div>
-                </div>
-
-                <div class="menu-arrow">
-                    ›
-                </div>
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         第一季 Episode 列表
-    ========================== -->
-
-    <section id="episodePage" class="page hidden">
-
-        <div class="topbar">
-
-            <button class="back-btn" onclick="goHome()">
-                ← 首页
-            </button>
-
-            <div class="topbar-title">
-                📚 第一季
-            </div>
-
-            <div class="topbar-placeholder"></div>
-
-        </div>
-
-        <div class="episode-list" id="episodeList"></div>
-
-    </section>
-
-
-    <!-- =========================
-         单词列表页面
-    ========================== -->
-
-    <section id="wordListPage" class="page hidden">
-
-        <div class="topbar">
-
-            <button class="back-btn" onclick="goHome()">
-                ← 首页
-            </button>
-
-            <div class="topbar-title" id="wordListTitle">
-                ⭐ 我的生词
-            </div>
-
-            <div class="topbar-placeholder"></div>
-
-        </div>
-
-        <div class="word-list" id="wordList"></div>
-
-    </section>
-
-
-    <!-- =========================
-         Flash Card 页面
-    ========================== -->
-
-    <section id="learningPage" class="page hidden">
-
-        <div class="topbar">
-
-            <button class="back-btn" onclick="goHome()">
-                ← 首页
-            </button>
-
-            <div class="topbar-title" id="learningTopTitle">
-                Peppa Pig
-            </div>
-
-            <div class="topbar-placeholder"></div>
-
-        </div>
-
-        <div class="learning-header">
-
-            <div class="learning-title" id="learningTitle">
-                S1E01 Muddy Puddles
-            </div>
-
-            <div class="learning-subtitle" id="learningSubtitle">
-                泥坑
-            </div>
-
-        </div>
-
-        <div class="progress" id="progress">
-            1 / 15
-        </div>
-
-        <div class="progress-bar">
-            <div
-                class="progress-fill"
-                id="progressFill"
-                style="width: 6.67%">
-            </div>
-        </div>
-
-
-        <div
-            class="card-wrap"
-            id="cardWrap"
-            title="点击卡片翻面">
-
-            <div class="card" id="card">
-
-                <!-- 正面 -->
-
-                <div class="face front">
-
-                    <div
-                        class="word"
-                        id="word">
-                        favourite
-                    </div>
-
-                    <div
-                        class="ipa"
-                        id="ipa">
-                        /ˈfeɪvərɪt/
-                    </div>
-
-                    <div class="hint">
-                        点击卡片查看中文、例句
-                    </div>
-
-                </div>
-
-
-                <!-- 背面 -->
-
-                <div class="face back">
-
-                    <div
-                        class="tag"
-                        id="part">
-                        形容词
-                    </div>
-
-                    <div
-                        class="meaning"
-                        id="meaning">
-                        最喜欢的
-                    </div>
-
-                    <div
-                        class="example"
-                        id="example">
-                        Peppa is my favourite character.
-                    </div>
-
-                    <div
-                        class="translation"
-                        id="translation">
-                        佩奇是我最喜欢的角色。
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 上一个 / 发音 / 下一个 -->
-
-        <div class="controls">
-
-            <button id="prev">
-                ← 上一个
-            </button>
-
-            <button id="speak">
-                🔊 发音
-            </button>
-
-            <button
-                id="next"
-                class="primary">
-                下一个 →
-            </button>
-
-        </div>
-
-
-        <!-- 翻面 / 生词 / 已掌握 -->
-
-        <div class="learning-tools">
-
-            <button id="flip">
-                🔄 翻面
-            </button>
-
-            <button
-                id="favoriteBtn"
-                class="favorite">
-                ☆ 生词
-            </button>
-
-            <button
-                id="masteredBtn"
-                class="mastered">
-                ✓ 掌握
-            </button>
-
-        </div>
-
-
-        <div class="tip">
-            ← / → 切换 · 空格翻面 · 左右滑动切换
-        </div>
-
-    </section>
-
-</div>
-
-
-<div
-    id="toast"
-    class="toast">
-</div>
-
-
-<script>
-
-/* =========================================================
-   🐷 Peppa Pig English
-   单词数据
-   =========================================================
-
-   ⭐⭐⭐⭐⭐
-   以后增加单词，只需要修改这里。
-
-   格式：
-
-   {
-       id: "唯一ID",
-       word: "单词",
-       ipa: "/音标/",
-       meaning: "中文意思",
-       part: "词性",
-       example: "英文例句",
-       translation: "中文翻译"
-   }
-
-   ========================================================= */
-
-
-const episodes = [
-
-    {
-        id: "s1e01",
-        title: "S1E01 Muddy Puddles",
-        cn: "泥坑",
-        icon: "🐷",
-
-        words: [
-
-            {
-                id: "s1e01-favourite",
-                word: "favourite",
-                ipa: "/ˈfeɪvərɪt/",
-                meaning: "最喜欢的",
-                part: "形容词",
-                example: "Peppa is my favourite character.",
-                translation: "佩奇是我最喜欢的角色。"
-            },
-
-            {
-                id: "s1e01-scare",
-                word: "scare",
-                ipa: "/skeə(r)/",
-                meaning: "吓唬；使害怕",
-                part: "动词",
-                example: "Don't scare George!",
-                translation: "不要吓乔治！"
-            },
-
-            {
-                id: "s1e01-suppertime",
-                word: "suppertime",
-                ipa: "/ˈsʌpətaɪm/",
-                meaning: "晚餐时间",
-                part: "名词",
-                example: "It's suppertime.",
-                translation: "到晚餐时间了。"
-            },
-
-            {
-                id: "s1e01-pardon",
-                word: "pardon",
-                ipa: "/ˈpɑːdn/",
-                meaning: "请再说一遍；原谅",
-                part: "表达 / 动词",
-                example: "Pardon? I didn't hear you.",
-                translation: "什么？我没听见你说的话。"
-            },
-
-            {
-                id: "s1e01-bath",
-                word: "bath",
-                ipa: "/bɑːθ/",
-                meaning: "洗澡；浴缸",
-                part: "名词",
-                example: "George is having a bath.",
-                translation: "乔治正在洗澡。"
-            },
-
-            {
-                id: "s1e01-shares",
-                word: "shares",
-                ipa: "/ʃeəz/",
-                meaning: "分享；分担",
-                part: "动词",
-                example: "Peppa shares her toy with George.",
-                translation: "佩奇和乔治分享她的玩具。"
-            },
-
-            {
-                id: "s1e01-throwing",
-                word: "throwing",
-                ipa: "/ˈθrəʊɪŋ/",
-                meaning: "扔；投掷",
-                part: "动词 -ing",
-                example: "They are throwing a ball.",
-                translation: "他们正在扔球。"
-            },
-
-            {
-                id: "s1e01-catching",
-                word: "catching",
-                ipa: "/ˈkætʃɪŋ/",
-                meaning: "接住；抓住",
-                part: "动词 -ing",
-                example: "George is catching the ball.",
-                translation: "乔治正在接球。"
-            },
-
-            {
-                id: "s1e01-draughts",
-                word: "draughts",
-                ipa: "/drɑːfts/",
-                meaning: "国际跳棋",
-                part: "名词",
-                example: "Grandpa Pig likes playing draughts.",
-                translation: "猪爷爷喜欢下国际跳棋。"
-            },
-
-            {
-                id: "s1e01-matter",
-                word: "matter",
-                ipa: "/ˈmætə(r)/",
-                meaning: "事情；问题",
-                part: "名词 / 动词",
-                example: "What's the matter?",
-                translation: "怎么了？"
-            },
-
-            {
-                id: "s1e01-detective",
-                word: "detective",
-                ipa: "/dɪˈtektɪv/",
-                meaning: "侦探",
-                part: "名词",
-                example: "Peppa is a little detective.",
-                translation: "佩奇是一名小侦探。"
-            },
-
-            {
-                id: "s1e01-important",
-                word: "important",
-                ipa: "/ɪmˈpɔːtənt/",
-                meaning: "重要的",
-                part: "形容词",
-                example: "This is very important.",
-                translation: "这非常重要。"
-            },
-
-            {
-                id: "s1e01-person",
-                word: "person",
-                ipa: "/ˈpɜːsn/",
-                meaning: "人；个人",
-                part: "名词",
-                example: "Who is that person?",
-                translation: "那个人是谁？"
-            },
-
-            {
-                id: "s1e01-might",
-                word: "might",
-                ipa: "/maɪt/",
-                meaning: "可能；也许",
-                part: "情态动词",
-                example: "It might rain today.",
-                translation: "今天可能会下雨。"
-            },
-
-            {
-                id: "s1e01-wonder",
-                word: "wonder",
-                ipa: "/ˈwʌndə(r)/",
-                meaning: "想知道；感到疑惑",
-                part: "动词",
-                example: "I wonder where George is.",
-                translation: "我想知道乔治在哪里。"
-            }
-
-        ]
-    },
-
-
-    /* =====================================================
-       S1E02
-       ===================================================== */
-
-    {
-        id: "s1e02",
-        title: "S1E02 Mr Dinosaur Is Lost",
-        cn: "恐龙先生走丢了",
-        icon: "🦖",
-        words: []
-    },
-
-
-    /* =====================================================
-       S1E03
-       ===================================================== */
-
-    {
-        id: "s1e03",
-        title: "S1E03 Best Friend",
-        cn: "最好的朋友",
-        icon: "👭",
-        words: []
-    },
-
-
-    /* =====================================================
-       S1E04
-       ===================================================== */
-
-    {
-        id: "s1e04",
-        title: "S1E04 Polly Parrot",
-        cn: "鹦鹉波莉",
-        icon: "🦜",
-        words: []
-    },
-
-
-    /* =====================================================
-       S1E05
-       ===================================================== */
-
-    {
-        id: "s1e05",
-        title: "S1E05 Hide and Seek",
-        cn: "捉迷藏",
-        icon: "🙈",
-        words: []
-    }
-
-];
-
-
-/* =========================================================
-   学习状态
-   ========================================================= */
-
-const STORAGE_FAVORITES =
-    "peppa_pig_favorites_v2";
-
-const STORAGE_MASTERED =
-    "peppa_pig_mastered_v2";
-
-
-let favorites =
-    JSON.parse(
-        localStorage.getItem(STORAGE_FAVORITES) || "[]"
-    );
-
-let mastered =
-    JSON.parse(
-        localStorage.getItem(STORAGE_MASTERED) || "[]"
-    );
-
-
-/* =========================================================
-   当前学习状态
-   ========================================================= */
-
-let currentWords = [];
-
-let current = 0;
-
-let flipped = false;
-
-let currentMode = "episode";
-
-let currentEpisodeId = null;
-
-
-/* =========================================================
-   工具函数
-   ========================================================= */
-
-const $ = id =>
-    document.getElementById(id);
-
-
-function saveState() {
-
-    localStorage.setItem(
-        STORAGE_FAVORITES,
-        JSON.stringify(favorites)
-    );
-
-    localStorage.setItem(
-        STORAGE_MASTERED,
-        JSON.stringify(mastered)
-    );
-
-}
-
-
-function showToast(message) {
-
-    const toast = $("toast");
-
-    toast.textContent = message;
-
-    toast.classList.add("show");
-
-    clearTimeout(window.toastTimer);
-
-    window.toastTimer =
-        setTimeout(() => {
-            toast.classList.remove("show");
-        }, 1600);
-
-}
-
-
-/* =========================================================
-   获取所有单词
-   ========================================================= */
-
-function getAllWords() {
-
-    const result = [];
-
-    episodes.forEach(episode => {
-
-        episode.words.forEach(word => {
-
-            result.push({
-                ...word,
-                episodeId: episode.id,
-                episodeTitle: episode.title
-            });
-
-        });
-
-    });
-
-    return result;
-
-}
-
-
-/* =========================================================
-   根据 ID 找单词
-   ========================================================= */
-
-function getWordById(id) {
-
-    return getAllWords()
-        .find(word => word.id === id);
-
-}
-
-
-/* =========================================================
-   首页统计
-   ========================================================= */
-
-function updateHomeStats() {
-
-    const allWords = getAllWords();
-
-    $("totalCount").textContent =
-        allWords.length;
-
-    $("favoriteCount").textContent =
-        favorites.length;
-
-    $("masteredCount").textContent =
-        mastered.length;
-
-}
-
-
-/* =========================================================
-   页面切换
-   ========================================================= */
-
-function hideAllPages() {
-
-    document
-        .querySelectorAll(".page")
-        .forEach(page => {
-            page.classList.add("hidden");
-        });
-
-}
-
-
-function goHome() {
-
-    hideAllPages();
-
-    $("homePage")
-        .classList.remove("hidden");
-
-    updateHomeStats();
-
-}
-
-
-function openEpisodeList() {
-
-    hideAllPages();
-
-    $("episodePage")
-        .classList.remove("hidden");
-
-    renderEpisodeList();
-
-}
-
-
-/* =========================================================
-   Episode 列表
-   ========================================================= */
-
-function renderEpisodeList() {
-
-    const container =
-        $("episodeList");
-
-    container.innerHTML = "";
-
-    episodes.forEach(episode => {
-
-        const total =
-            episode.words.length;
-
-        const masteredCount =
-            episode.words.filter(
-                word =>
-                    mastered.includes(word.id)
-            ).length;
-
-        const percent =
-            total > 0
-                ? Math.round(
-                    masteredCount / total * 100
-                )
-                : 0;
-
-
-        const item =
-            document.createElement("button");
-
-        item.className =
-            "episode-card";
-
-        item.onclick =
-            () => {
-
-                if (total === 0) {
-
-                    showToast(
-                        "这一集暂时还没有单词"
-                    );
-
-                    return;
-                }
-
-                startEpisode(episode.id);
-
-            };
-
-
-        item.innerHTML = `
-
-            <div class="episode-row">
-
-                <div class="episode-icon">
-                    ${episode.icon}
-                </div>
-
-                <div class="episode-info">
-
-                    <div class="episode-title">
-                        ${episode.title}
-                    </div>
-
-                    <div class="episode-cn">
-                        ${episode.cn}
-                    </div>
-
-                </div>
-
-                <div class="episode-count">
-                    ${total} 词
-                </div>
-
-            </div>
-
-            <div class="episode-progress">
-
-                <div
-                    class="episode-progress-bar"
-                    style="width:${percent}%">
-                </div>
-
-            </div>
-
-        `;
-
-        container.appendChild(item);
-
-    });
-
-}
-
-
-/* =========================================================
-   开始 Episode 学习
-   ========================================================= */
-
-function startEpisode(episodeId) {
-
-    const episode =
-        episodes.find(
-            e => e.id === episodeId
-        );
-
-    if (!episode || !episode.words.length) {
-
-        showToast(
-            "这一集暂时没有单词"
-        );
-
-        return;
-
-    }
-
-    currentEpisodeId =
-        episodeId;
-
-    currentWords =
-        episode.words.map(
-            word => ({
-                ...word,
-                episodeId: episode.id,
-                episodeTitle: episode.title
-            })
-        );
-
-    currentMode =
-        "episode";
-
-    current = 0;
-
-    flipped = false;
-
-    openLearningPage();
-
-}
-
-
-/* =========================================================
-   随机复习
-   ========================================================= */
-
-function startRandomReview() {
-
-    let words =
-        getAllWords()
-            .filter(
-                word =>
-                    !mastered.includes(word.id)
-            );
-
-
-    /*
-       如果所有单词都已经掌握，
-       就随机复习全部单词
-    */
-
-    if (words.length === 0) {
-
-        words =
-            getAllWords();
-
-        if (words.length === 0) {
-
-            showToast(
-                "目前还没有单词"
-            );
-
-            return;
-        }
-
-        showToast(
-            "所有单词都掌握了！开始全部复习"
-        );
-
-    }
-
-
-    /*
-       打乱数组
-    */
-
-    words =
-        shuffleArray(words);
-
-
-    currentWords =
-        words;
-
-    currentMode =
-        "random";
-
-    currentEpisodeId =
-        null;
-
-    current = 0;
-
-    flipped = false;
-
-    openLearningPage();
-
-}
-
-
-/* =========================================================
-   打乱数组
-   ========================================================= */
-
-function shuffleArray(array) {
-
-    const result =
-        [...array];
-
-    for (
-        let i = result.length - 1;
-        i > 0;
-        i--
-    ) {
-
-        const j =
-            Math.floor(
-                Math.random() * (i + 1)
-            );
-
-        [
-            result[i],
-            result[j]
-        ] =
-        [
-            result[j],
-            result[i]
-        ];
-
-    }
-
-    return result;
-
-}
-
-
-/* =========================================================
-   我的生词
-   ========================================================= */
-
-function openFavorites() {
-
-    currentMode =
-        "favorites";
-
-    renderWordList(
-        "⭐ 我的生词",
-        favorites
-    );
-
-}
-
-
-function openMastered() {
-
-    currentMode =
-        "mastered";
-
-    renderWordList(
-        "✅ 已掌握",
-        mastered
-    );
-
-}
-
-
-/* =========================================================
-   单词列表
-   ========================================================= */
-
-function renderWordList(title, ids) {
-
-    hideAllPages();
-
-    $("wordListPage")
-        .classList.remove("hidden");
-
-    $("wordListTitle")
-        .textContent = title;
-
-    const container =
-        $("wordList");
-
-    container.innerHTML = "";
-
-
-    const words =
-        ids
-            .map(id => getWordById(id))
-            .filter(Boolean);
-
-
-    if (words.length === 0) {
-
-        let icon =
-            currentMode === "favorites"
-                ? "⭐"
-                : "✅";
-
-        let titleText =
-            currentMode === "favorites"
-                ? "还没有生词"
-                : "还没有掌握的单词";
-
-        let desc =
-            currentMode === "favorites"
-                ? "学习时点击「☆ 生词」，单词就会出现在这里。"
-                : "学习时点击「✓ 掌握」，单词就会出现在这里。";
-
-
-        container.innerHTML = `
-
-            <div class="empty">
-
-                <div class="empty-icon">
-                    ${icon}
-                </div>
-
-                <div class="empty-title">
-                    ${titleText}
-                </div>
-
-                <div class="empty-desc">
-                    ${desc}
-                </div>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    words.forEach(word => {
-
-        const item =
-            document.createElement("div");
-
-        item.className =
-            "word-item";
-
-
-        item.innerHTML = `
-
-            <div class="word-main">
-
-                <div class="word-title">
-                    ${word.word}
-                </div>
-
-                <div class="word-meaning">
-                    ${word.meaning}
-                </div>
-
-                <div class="word-episode">
-                    ${word.episodeTitle}
-                </div>
-
-            </div>
-
-            <div class="word-actions">
-
-                <button
-                    class="small-btn"
-                    onclick="speakWord('${word.id}')">
-                    🔊
-                </button>
-
-                <button
-                    class="small-btn"
-                    onclick="openSingleWord('${word.id}')">
-                    📖
-                </button>
-
-            </div>
-
-        `;
-
-        container.appendChild(item);
-
-    });
-
-}
-
-
-/* =========================================================
-   从单词列表打开单词
-   ========================================================= */
-
-function openSingleWord(id) {
-
-    const word =
-        getWordById(id);
-
-    if (!word) return;
-
-
-    /*
-       如果是生词/已掌握列表，
-       直接打开当前列表
-    */
-
-    if (currentMode === "favorites") {
-
-        currentWords =
-            favorites
-                .map(wordId =>
-                    getWordById(wordId)
-                )
-                .filter(Boolean);
-
-    }
-    else if (currentMode === "mastered") {
-
-        currentWords =
-            mastered
-                .map(wordId =>
-                    getWordById(wordId)
-                )
-                .filter(Boolean);
-
-    }
-    else {
-
-        currentWords =
-            [word];
-
-    }
-
-
-    const index =
-        currentWords.findIndex(
-            w => w.id === id
-        );
-
-    current =
-        index >= 0
-            ? index
-            : 0;
-
-    flipped = false;
-
-    openLearningPage();
-
+    transition:
+        width .25s ease;
 }
 
 
@@ -1924,656 +694,982 @@ function openSingleWord(id) {
    学习页面
    ========================================================= */
 
-function openLearningPage() {
+.learning-header {
+    text-align: center;
 
-    hideAllPages();
+    width: 100%;
+}
 
-    $("learningPage")
-        .classList.remove("hidden");
+.learning-title {
+    font-size:
+        clamp(
+            17px,
+            5vw,
+            20px
+        );
 
-    renderCard();
+    font-weight: 750;
 
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.learning-subtitle {
+    color: #888;
+
+    font-size:
+        clamp(
+            12px,
+            3.3vw,
+            14px
+        );
+
+    margin-top: 4px;
+}
+
+.progress {
+    font-size:
+        clamp(
+            12px,
+            3.5vw,
+            15px
+        );
+
+    color: #666;
+
+    margin:
+        clamp(
+            9px,
+            2.5vw,
+            14px
+        )
+        0
+        9px;
+
+    text-align: center;
+}
+
+.progress-bar {
+    width: 100%;
+
+    height:
+        clamp(
+            4px,
+            1.2vw,
+            6px
+        );
+
+    background: #ddd;
+
+    border-radius: 999px;
+
+    overflow: hidden;
+
+    margin-bottom:
+        clamp(
+            10px,
+            3vw,
+            16px
+        );
+}
+
+.progress-fill {
+    height: 100%;
+
+    background: #222;
+
+    border-radius: 999px;
+
+    transition:
+        width .25s ease;
 }
 
 
 /* =========================================================
-   渲染当前卡片
+   ⭐ 核心：Flash Card 自适应高度
    ========================================================= */
 
-function renderCard() {
-
-    if (!currentWords.length) {
-
-        goHome();
-
-        return;
-
-    }
-
-
-    const word =
-        currentWords[current];
-
-
-    $("word").textContent =
-        word.word;
-
-    $("ipa").textContent =
-        word.ipa;
-
-    $("meaning").textContent =
-        word.meaning;
-
-    $("part").textContent =
-        word.part;
-
-    $("example").textContent =
-        word.example;
-
-    $("translation").textContent =
-        word.translation;
-
+.card-wrap {
+    width: 100%;
 
     /*
-       标题
+       根据屏幕高度自动计算。
+
+       手机：
+       约 45~52vh
+
+       大屏：
+       最大 410px
+
+       最小：
+       300px
     */
 
-    if (currentMode === "random") {
+    height:
+        clamp(
+            300px,
+            50dvh,
+            410px
+        );
 
-        $("learningTopTitle")
-            .textContent =
-            "🔀 随机复习";
+    min-height: 300px;
+    max-height: 410px;
 
-        $("learningTitle")
-            .textContent =
-            "随机复习";
+    perspective: 1200px;
 
-        $("learningSubtitle")
-            .textContent =
-            "复习你还没有掌握的单词";
+    cursor: pointer;
 
+    user-select: none;
+
+    touch-action: pan-y;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform .45s ease;
+}
+
+.card.flipped {
+    transform:
+        rotateY(180deg);
+}
+
+.face {
+    position: absolute;
+
+    inset: 0;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    border-radius:
+        clamp(
+            18px,
+            5vw,
+            25px
+        );
+
+    background: white;
+
+    box-shadow:
+        0 14px 40px
+        rgba(0,0,0,.12);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding:
+        clamp(
+            18px,
+            6vw,
+            34px
+        );
+
+    overflow: hidden;
+}
+
+.front {
+    text-align: center;
+}
+
+.back {
+    transform:
+        rotateY(180deg);
+
+    text-align: left;
+
+    align-items: stretch;
+
+    overflow-y: auto;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+
+/* =========================================================
+   单词
+   ========================================================= */
+
+.word {
+    font-size:
+        clamp(
+            38px,
+            10vw,
+            76px
+        );
+
+    line-height: 1.05;
+
+    font-weight: 800;
+
+    margin-bottom:
+        clamp(
+            8px,
+            2.5vw,
+            13px
+        );
+
+    max-width: 100%;
+
+    overflow-wrap: break-word;
+
+    word-break: break-word;
+}
+
+.ipa {
+    color: #777;
+
+    font-size:
+        clamp(
+            16px,
+            5vw,
+            21px
+        );
+
+    line-height: 1.2;
+
+    margin-bottom:
+        clamp(
+            16px,
+            5vw,
+            26px
+        );
+}
+
+.hint {
+    color: #aaa;
+
+    font-size:
+        clamp(
+            12px,
+            3.5vw,
+            15px
+        );
+
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   卡片背面
+   ========================================================= */
+
+.tag {
+    display: inline-block;
+
+    align-self: center;
+
+    padding:
+        5px
+        11px;
+
+    border-radius: 999px;
+
+    background: #eee;
+
+    color: #666;
+
+    font-size:
+        clamp(
+            11px,
+            3vw,
+            14px
+        );
+
+    margin-bottom:
+        clamp(
+            9px,
+            3vw,
+            15px
+        );
+}
+
+.meaning {
+    font-size:
+        clamp(
+            25px,
+            8vw,
+            35px
+        );
+
+    line-height: 1.2;
+
+    font-weight: 750;
+
+    margin-bottom:
+        clamp(
+            10px,
+            3vw,
+            20px
+        );
+
+    text-align: center;
+}
+
+.example {
+    font-size:
+        clamp(
+            17px,
+            5vw,
+            23px
+        );
+
+    line-height: 1.45;
+
+    margin:
+        8px 0;
+
+    overflow-wrap: break-word;
+}
+
+.translation {
+    color: #666;
+
+    font-size:
+        clamp(
+            14px,
+            4vw,
+            19px
+        );
+
+    line-height: 1.5;
+
+    overflow-wrap: break-word;
+}
+
+
+/* =========================================================
+   学习按钮
+   ========================================================= */
+
+.controls {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap:
+        clamp(
+            6px,
+            2vw,
+            11px
+        );
+
+    margin-top:
+        clamp(
+            10px,
+            3vw,
+            18px
+        );
+}
+
+.controls button {
+    min-width: 0;
+
+    background: white;
+
+    border-radius:
+        clamp(
+            11px,
+            3.5vw,
+            15px
+        );
+
+    padding:
+        clamp(
+            11px,
+            3.5vw,
+            15px
+        )
+        5px;
+
+    font-size:
+        clamp(
+            13px,
+            3.8vw,
+            16px
+        );
+
+    white-space: nowrap;
+
+    box-shadow:
+        0 5px 15px
+        rgba(0,0,0,.08);
+}
+
+.controls button:active {
+    transform: scale(.97);
+}
+
+
+/* =========================================================
+   学习工具
+   ========================================================= */
+
+.learning-tools {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap:
+        clamp(
+            6px,
+            2vw,
+            11px
+        );
+
+    margin-top:
+        clamp(
+            7px,
+            2vw,
+            11px
+        );
+}
+
+.learning-tools button {
+    min-width: 0;
+
+    background: white;
+
+    border-radius:
+        clamp(
+            11px,
+            3.5vw,
+            15px
+        );
+
+    padding:
+        clamp(
+            10px,
+            3vw,
+            13px
+        )
+        4px;
+
+    font-size:
+        clamp(
+            12px,
+            3.5vw,
+            15px
+        );
+
+    white-space: nowrap;
+
+    box-shadow:
+        0 5px 15px
+        rgba(0,0,0,.06);
+}
+
+.learning-tools button:active {
+    transform: scale(.97);
+}
+
+.favorite.active {
+    background: #f1f1f1;
+
+    font-weight: 700;
+}
+
+.mastered.active {
+    background: #222;
+
+    color: white;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   提示
+   ========================================================= */
+
+.tip {
+    margin-top:
+        clamp(
+            9px,
+            2.5vw,
+            16px
+        );
+
+    color: #999;
+
+    font-size:
+        clamp(
+            10px,
+            3vw,
+            13px
+        );
+
+    text-align: center;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   单词列表
+   ========================================================= */
+
+.word-list {
+    display: flex;
+    flex-direction: column;
+
+    gap:
+        clamp(
+            7px,
+            2vw,
+            11px
+        );
+}
+
+.word-item {
+    width: 100%;
+
+    background: white;
+
+    border-radius:
+        clamp(
+            13px,
+            4vw,
+            17px
+        );
+
+    padding:
+        clamp(
+            12px,
+            3.5vw,
+            16px
+        );
+
+    box-shadow:
+        0 5px 15px
+        rgba(0,0,0,.06);
+
+    display: flex;
+    align-items: center;
+
+    min-width: 0;
+}
+
+.word-main {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.word-title {
+    font-size:
+        clamp(
+            18px,
+            5vw,
+            21px
+        );
+
+    font-weight: 750;
+
+    overflow-wrap: break-word;
+}
+
+.word-meaning {
+    color: #666;
+
+    margin-top: 4px;
+
+    font-size:
+        clamp(
+            13px,
+            3.5vw,
+            15px
+        );
+}
+
+.word-episode {
+    color: #999;
+
+    font-size:
+        clamp(
+            10px,
+            3vw,
+            13px
+        );
+
+    margin-top: 4px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.word-actions {
+    display: flex;
+
+    gap:
+        clamp(
+            4px,
+            1.5vw,
+            7px
+        );
+
+    margin-left: 8px;
+
+    flex-shrink: 0;
+}
+
+.small-btn {
+    background: #f3f3f3;
+
+    border-radius:
+        clamp(
+            8px,
+            2.5vw,
+            11px
+        );
+
+    padding:
+        clamp(
+            7px,
+            2.5vw,
+            10px
+        );
+
+    font-size:
+        clamp(
+            13px,
+            4vw,
+            16px
+        );
+}
+
+
+/* =========================================================
+   Empty
+   ========================================================= */
+
+.empty {
+    background: white;
+
+    border-radius:
+        clamp(
+            15px,
+            4vw,
+            19px
+        );
+
+    padding:
+        clamp(
+            35px,
+            12vw,
+            48px
+        )
+        20px;
+
+    text-align: center;
+
+    color: #888;
+
+    box-shadow:
+        0 6px 20px
+        rgba(0,0,0,.06);
+}
+
+.empty-icon {
+    font-size:
+        clamp(
+            38px,
+            12vw,
+            48px
+        );
+
+    margin-bottom: 12px;
+}
+
+.empty-title {
+    font-size:
+        clamp(
+            16px,
+            5vw,
+            19px
+        );
+
+    font-weight: 700;
+
+    color: #555;
+
+    margin-bottom: 8px;
+}
+
+.empty-desc {
+    font-size:
+        clamp(
+            12px,
+            3.5vw,
+            14px
+        );
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   Toast
+   ========================================================= */
+
+.toast {
+    position: fixed;
+
+    left: 50%;
+
+    bottom:
+        max(
+            25px,
+            env(safe-area-inset-bottom)
+        );
+
+    transform:
+        translateX(-50%);
+
+    background:
+        rgba(0,0,0,.82);
+
+    color: white;
+
+    padding:
+        9px
+        16px;
+
+    border-radius: 999px;
+
+    font-size:
+        clamp(
+            12px,
+            3.5vw,
+            14px
+        );
+
+    z-index: 9999;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity .2s ease;
+
+    white-space: nowrap;
+
+    max-width:
+        calc(100vw - 40px);
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.toast.show {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   小屏手机
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .app {
+        width: calc(100% - 24px);
     }
-    else if (
-        currentMode === "favorites"
-    ) {
 
-        $("learningTopTitle")
-            .textContent =
-            "⭐ 我的生词";
-
-        $("learningTitle")
-            .textContent =
-            "我的生词";
-
-        $("learningSubtitle")
-            .textContent =
-            "重点复习";
-
-    }
-    else if (
-        currentMode === "mastered"
-    ) {
-
-        $("learningTopTitle")
-            .textContent =
-            "✅ 已掌握";
-
-        $("learningTitle")
-            .textContent =
-            "已掌握";
-
-        $("learningSubtitle")
-            .textContent =
-            "复习已经学会的单词";
-
-    }
-    else {
-
-        const episode =
-            episodes.find(
-                e =>
-                    e.id ===
-                    currentEpisodeId
+    .card-wrap {
+        height:
+            clamp(
+                285px,
+                47dvh,
+                350px
             );
 
-        if (episode) {
-
-            $("learningTopTitle")
-                .textContent =
-                episode.title;
-
-            $("learningTitle")
-                .textContent =
-                episode.title;
-
-            $("learningSubtitle")
-                .textContent =
-                episode.cn;
-
-        }
-
+        min-height: 285px;
     }
 
-
-    /*
-       进度
-    */
-
-    $("progress").textContent =
-        `${current + 1} / ${currentWords.length}`;
-
-
-    const percent =
-        ((current + 1) /
-            currentWords.length) * 100;
-
-
-    $("progressFill")
-        .style.width =
-        `${percent}%`;
-
-
-    /*
-       翻面
-    */
-
-    $("card")
-        .classList.toggle(
-            "flipped",
-            flipped
-        );
-
-
-    /*
-       收藏状态
-    */
-
-    const favoriteBtn =
-        $("favoriteBtn");
-
-    const isFavorite =
-        favorites.includes(word.id);
-
-    favoriteBtn
-        .classList.toggle(
-            "active",
-            isFavorite
-        );
-
-    favoriteBtn.textContent =
-        isFavorite
-            ? "★ 生词"
-            : "☆ 生词";
-
-
-    /*
-       掌握状态
-    */
-
-    const masteredBtn =
-        $("masteredBtn");
-
-    const isMastered =
-        mastered.includes(word.id);
-
-    masteredBtn
-        .classList.toggle(
-            "active",
-            isMastered
-        );
-
-    masteredBtn.textContent =
-        isMastered
-            ? "✓ 已掌握"
-            : "✓ 掌握";
-
-}
-
-
-/* =========================================================
-   翻面
-   ========================================================= */
-
-function flip() {
-
-    flipped =
-        !flipped;
-
-    $("card")
-        .classList.toggle(
-            "flipped",
-            flipped
-        );
-
-}
-
-
-/* =========================================================
-   下一个
-   ========================================================= */
-
-function next() {
-
-    if (!currentWords.length)
-        return;
-
-    current =
-        (current + 1) %
-        currentWords.length;
-
-    flipped = false;
-
-    renderCard();
-
-}
-
-
-/* =========================================================
-   上一个
-   ========================================================= */
-
-function prev() {
-
-    if (!currentWords.length)
-        return;
-
-    current =
-        (current - 1 +
-            currentWords.length) %
-        currentWords.length;
-
-    flipped = false;
-
-    renderCard();
-
-}
-
-
-/* =========================================================
-   随机当前
-   ========================================================= */
-
-function randomCurrent() {
-
-    if (!currentWords.length)
-        return;
-
-    current =
-        Math.floor(
-            Math.random() *
-            currentWords.length
-        );
-
-    flipped = false;
-
-    renderCard();
-
-}
-
-
-/* =========================================================
-   收藏生词
-   ========================================================= */
-
-function toggleFavorite() {
-
-    if (!currentWords.length)
-        return;
-
-
-    const word =
-        currentWords[current];
-
-
-    const index =
-        favorites.indexOf(word.id);
-
-
-    if (index >= 0) {
-
-        favorites.splice(
-            index,
-            1
-        );
-
-        showToast(
-            "已从生词中移除"
-        );
-
-    }
-    else {
-
-        favorites.push(
-            word.id
-        );
-
-        showToast(
-            "⭐ 已加入我的生词"
-        );
-
+    .face {
+        padding: 18px;
     }
 
+    .word {
+        font-size: 39px;
+    }
 
-    saveState();
+    .meaning {
+        font-size: 24px;
+    }
 
-    renderCard();
+    .example {
+        font-size: 16px;
+    }
 
-    updateHomeStats();
+    .translation {
+        font-size: 14px;
+    }
 
+    .controls button {
+        font-size: 12px;
+    }
+
+    .learning-tools button {
+        font-size: 11px;
+    }
+
+    .tip {
+        font-size: 10px;
+    }
 }
 
 
 /* =========================================================
-   标记掌握
+   普通手机
    ========================================================= */
 
-function toggleMastered() {
+@media (min-width: 381px) and (max-width: 600px) {
 
-    if (!currentWords.length)
-        return;
-
-
-    const word =
-        currentWords[current];
-
-
-    const index =
-        mastered.indexOf(word.id);
-
-
-    if (index >= 0) {
-
-        mastered.splice(
-            index,
-            1
-        );
-
-        showToast(
-            "已取消「已掌握」"
-        );
-
-    }
-    else {
-
-        mastered.push(
-            word.id
-        );
-
-        showToast(
-            "✅ 已标记为掌握"
-        );
-
-    }
-
-
-    saveState();
-
-    renderCard();
-
-    updateHomeStats();
-
-}
-
-
-/* =========================================================
-   发音
-   ========================================================= */
-
-function speak() {
-
-    if (!currentWords.length)
-        return;
-
-    speakText(
-        currentWords[current].word
-    );
-
-}
-
-
-function speakWord(id) {
-
-    const word =
-        getWordById(id);
-
-    if (word) {
-
-        speakText(
-            word.word
-        );
-
-    }
-
-}
-
-
-function speakText(text) {
-
-    if (
-        "speechSynthesis"
-        in window
-    ) {
-
-        window.speechSynthesis.cancel();
-
-        const utterance =
-            new SpeechSynthesisUtterance(
-                text
+    .card-wrap {
+        height:
+            clamp(
+                320px,
+                50dvh,
+                395px
             );
 
-        utterance.lang =
-            "en-US";
-
-        utterance.rate =
-            0.72;
-
-        utterance.pitch =
-            1;
-
-        window.speechSynthesis
-            .speak(utterance);
-
+        min-height: 320px;
     }
-    else {
+}
 
-        showToast(
-            "当前浏览器不支持语音"
-        );
 
+/* =========================================================
+   手机横屏
+   ========================================================= */
+
+@media (
+    max-height: 500px
+) and (
+    orientation: landscape
+) {
+
+    .app {
+        padding-top: 10px;
+        padding-bottom: 15px;
+    }
+
+    .card-wrap {
+        height: 58dvh;
+        min-height: 230px;
+        max-height: 330px;
+    }
+
+    .home-header {
+        padding-top: 5px;
+    }
+
+    .logo {
+        font-size: 34px;
+    }
+
+    .home-title {
+        font-size: 22px;
+    }
+
+    .section-title {
+        margin-top: 15px;
     }
 
 }
 
 
 /* =========================================================
-   点击事件
+   平板
    ========================================================= */
 
-$("cardWrap")
-    .addEventListener(
-        "click",
-        flip
-    );
+@media (min-width: 601px) {
 
-
-$("flip")
-    .addEventListener(
-        "click",
-        flip
-    );
-
-
-$("next")
-    .addEventListener(
-        "click",
-        next
-    );
-
-
-$("prev")
-    .addEventListener(
-        "click",
-        prev
-    );
-
-
-$("speak")
-    .addEventListener(
-        "click",
-        speak
-    );
-
-
-$("favoriteBtn")
-    .addEventListener(
-        "click",
-        toggleFavorite
-    );
-
-
-$("masteredBtn")
-    .addEventListener(
-        "click",
-        toggleMastered
-    );
-
-
-/* =========================================================
-   键盘操作
-   ========================================================= */
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            $("learningPage")
-                .classList.contains(
-                    "hidden"
-                )
-        ) {
-            return;
-        }
-
-
-        if (
-            event.key ===
-            "ArrowRight"
-        ) {
-
-            next();
-
-        }
-        else if (
-            event.key ===
-            "ArrowLeft"
-        ) {
-
-            prev();
-
-        }
-        else if (
-            event.key === " " ||
-            event.key === "Enter"
-        ) {
-
-            event.preventDefault();
-
-            flip();
-
-        }
-
+    .app {
+        width: min(
+            calc(100% - 48px),
+            720px
+        );
     }
-);
+
+    .card-wrap {
+        height: min(
+            52dvh,
+            410px
+        );
+    }
+
+}
 
 
 /* =========================================================
-   手机左右滑动
+   大屏电脑
    ========================================================= */
 
-let touchStartX = 0;
+@media (min-width: 1000px) {
 
-let touchStartY = 0;
+    .app {
+        padding-top: 30px;
+    }
 
+    .card-wrap {
+        height: 410px;
+    }
 
-$("cardWrap")
-    .addEventListener(
-        "touchstart",
-        event => {
-
-            const touch =
-                event.changedTouches[0];
-
-            touchStartX =
-                touch.clientX;
-
-            touchStartY =
-                touch.clientY;
-
-        },
-        {
-            passive: true
-        }
-    );
-
-
-$("cardWrap")
-    .addEventListener(
-        "touchend",
-        event => {
-
-            const touch =
-                event.changedTouches[0];
-
-            const deltaX =
-                touch.clientX -
-                touchStartX;
-
-            const deltaY =
-                touch.clientY -
-                touchStartY;
-
-
-            /*
-               如果横向滑动明显
-               就切换单词
-            */
-
-            if (
-                Math.abs(deltaX) > 60 &&
-                Math.abs(deltaX) >
-                Math.abs(deltaY)
-            ) {
-
-                if (deltaX < 0) {
-
-                    next();
-
-                }
-                else {
-
-                    prev();
-
-                }
-
-            }
-
-        },
-        {
-            passive: true
-        }
-    );
+}
 
 
 /* =========================================================
-   初始化
+   防止超小高度设备内容溢出
    ========================================================= */
 
-updateHomeStats();
+@media (max-height: 650px) and (orientation: portrait) {
 
-goHome();
+    .home-header {
+        padding-top: 5px;
+    }
 
-</script>
+    .section-title {
+        margin-top: 16px;
+    }
 
-</body>
-</html>
+    .stats {
+        margin-top: 12px;
+    }
+
+    .card-wrap {
+        height: 43dvh;
+        min-height: 280px;
+    }
+
+}
+</style>
