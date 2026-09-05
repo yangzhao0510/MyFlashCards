@@ -1,2159 +1,1184 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
 
-<meta http-equiv="Cache-Control"
-      content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
+  <title>胖哥学英语</title>
 
-<title>胖哥学英语 · 听句子</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-<style>
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
-
-html,
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
-    background: #f7f8fa;
-    font-family:
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+      font-family:
         -apple-system,
         BlinkMacSystemFont,
         "Segoe UI",
         "PingFang SC",
         "Hiragino Sans GB",
         "Microsoft YaHei",
-        Arial,
         sans-serif;
-    color: #222;
-}
-
-body {
-    display: flex;
-    justify-content: center;
-}
-
-.app {
-    width: 100%;
-    max-width: 520px;
-    min-height: 100vh;
-    padding: 20px 18px 28px;
-    display: flex;
-    flex-direction: column;
-}
-
-/* 顶部 */
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 22px;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #222;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 21px;
-}
-
-.logo-text {
-    font-size: 18px;
-    font-weight: 700;
-}
-
-.logo-sub {
-    font-size: 11px;
-    color: #999;
-    margin-top: 2px;
-}
-
-.stats {
-    text-align: right;
-    color: #888;
-    font-size: 12px;
-}
-
-.stats strong {
-    display: block;
-    color: #222;
-    font-size: 17px;
-}
-
-/* 主区域 */
-.main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-/* 进度 */
-.progress-wrap {
-    margin-bottom: 18px;
-}
-
-.progress-info {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: #999;
-    margin-bottom: 7px;
-}
-
-.progress {
-    width: 100%;
-    height: 4px;
-    background: #e7e7e7;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.progress-bar {
-    width: 0;
-    height: 100%;
-    background: #222;
-    border-radius: 10px;
-    transition: width .3s ease;
-}
-
-/* 听力区域 */
-.listen-card {
-    flex: 1;
-    min-height: 420px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-/* 序号 */
-.number {
-    color: #aaa;
-    font-size: 13px;
-    margin-bottom: 28px;
-}
-
-/* 播放 */
-.play-btn {
-    width: 92px;
-    height: 92px;
-    border: none;
-    border-radius: 50%;
-    background: #222;
-    color: white;
-    font-size: 35px;
-    cursor: pointer;
-    box-shadow: 0 8px 25px rgba(0,0,0,.12);
-    transition: transform .15s ease;
-}
-
-.play-btn:active {
-    transform: scale(.94);
-}
-
-.playing {
-    animation: pulse 1.2s infinite;
-}
-
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(0,0,0,.18);
+      background: #f6f7f9;
+      color: #222;
     }
-    70% {
-        box-shadow: 0 0 0 18px rgba(0,0,0,0);
+
+    body {
+      min-height: 100vh;
     }
-    100% {
-        box-shadow: 0 0 0 0 rgba(0,0,0,0);
+
+    button {
+      font: inherit;
     }
-}
 
-.play-hint {
-    margin-top: 16px;
-    font-size: 13px;
-    color: #999;
-}
-
-/* 提问 */
-.question {
-    margin-top: 38px;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1.6;
-}
-
-/* 答案 */
-.answer {
-    width: 100%;
-    margin-top: 28px;
-    padding: 18px 16px;
-    border-radius: 14px;
-    background: white;
-    text-align: left;
-    box-shadow: 0 3px 15px rgba(0,0,0,.04);
-    display: none;
-}
-
-.answer.show {
-    display: block;
-}
-
-.english {
-    font-size: 17px;
-    line-height: 1.65;
-    font-weight: 600;
-}
-
-.chinese {
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid #eee;
-    color: #666;
-    font-size: 15px;
-    line-height: 1.7;
-}
-
-/* 按钮 */
-.actions {
-    margin-top: 24px;
-}
-
-.answer-btn {
-    width: 100%;
-    height: 48px;
-    border: none;
-    border-radius: 12px;
-    background: #222;
-    color: white;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.after-answer {
-    display: none;
-}
-
-.after-answer.show {
-    display: block;
-}
-
-.small-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.small-btn {
-    height: 46px;
-    border: none;
-    border-radius: 12px;
-    background: white;
-    color: #333;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.small-btn:active,
-.answer-btn:active {
-    transform: scale(.98);
-}
-
-.next-btn {
-    width: 100%;
-    height: 48px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 12px;
-    background: #f0f0f0;
-    color: #222;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-/* 底部 */
-.footer {
-    margin-top: 22px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.footer button {
-    border: none;
-    background: none;
-    color: #999;
-    font-size: 12px;
-    cursor: pointer;
-}
-
-/* 今日完成 */
-.today {
-    margin-top: 18px;
-    text-align: center;
-    font-size: 12px;
-    color: #aaa;
-}
-
-/* 手机 */
-@media (max-width: 420px) {
     .app {
-        padding: 16px 15px 22px;
+      width: 100%;
+      max-width: 560px;
+      min-height: 100vh;
+      margin: 0 auto;
+      background: #fff;
     }
 
-    .listen-card {
-        min-height: 390px;
+    /* =========================
+       首页
+       ========================= */
+
+    .home {
+      min-height: 100vh;
+      padding: 24px 18px 30px;
     }
 
-    .question {
-        font-size: 17px;
+    .home-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
     }
 
-    .play-btn {
-        width: 86px;
-        height: 86px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-}
-</style>
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #111;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 23px;
+      font-weight: 700;
+    }
+
+    .brand-text h1 {
+      margin: 0;
+      font-size: 21px;
+      line-height: 1.2;
+    }
+
+    .brand-text p {
+      margin: 4px 0 0;
+      font-size: 12px;
+      color: #999;
+    }
+
+    .today-card {
+      background: #f5f6f8;
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .today-title {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    .today-number {
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .today-number span {
+      font-size: 14px;
+      color: #999;
+      margin-left: 4px;
+      font-weight: 400;
+    }
+
+    .today-progress {
+      margin-top: 16px;
+      height: 6px;
+      border-radius: 6px;
+      background: #e5e7eb;
+      overflow: hidden;
+    }
+
+    .today-progress-bar {
+      height: 100%;
+      width: 0;
+      background: #111;
+      border-radius: 6px;
+      transition: width 0.3s ease;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin: 24px 0 12px;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .quick-item {
+      border: 1px solid #eee;
+      border-radius: 14px;
+      padding: 16px;
+      background: #fff;
+      cursor: pointer;
+      text-align: left;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .quick-item:active {
+      transform: scale(0.97);
+      background: #f8f8f8;
+    }
+
+    .quick-icon {
+      font-size: 23px;
+      margin-bottom: 8px;
+    }
+
+    .quick-name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .quick-desc {
+      font-size: 11px;
+      color: #999;
+      margin-top: 4px;
+    }
+
+    .empty-home {
+      margin-top: 30px;
+      padding: 30px 20px;
+      text-align: center;
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    /* =========================
+       听力页面
+       ========================= */
+
+    .listening-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+    }
+
+    .listening-header {
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      border-bottom: 1px solid #f0f0f0;
+      flex-shrink: 0;
+    }
+
+    .back-btn {
+      border: 0;
+      background: transparent;
+      padding: 8px 4px;
+      font-size: 22px;
+      cursor: pointer;
+      color: #222;
+    }
+
+    .listening-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .header-progress {
+      font-size: 12px;
+      color: #999;
+      min-width: 55px;
+      text-align: right;
+    }
+
+    .listening-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 18px;
+    }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .mode-label {
+      font-size: 12px;
+      color: #999;
+    }
+
+    .random-btn {
+      border: 0;
+      background: #f5f5f5;
+      border-radius: 20px;
+      padding: 7px 12px;
+      font-size: 12px;
+      color: #555;
+      cursor: pointer;
+    }
+
+    .sentence-card {
+      flex: 1;
+      min-height: 330px;
+      border-radius: 20px;
+      background: #f7f8fa;
+      padding: 28px 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .listen-icon {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: #111;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 27px;
+      margin-bottom: 24px;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.15s ease;
+    }
+
+    .listen-icon:active {
+      transform: scale(0.94);
+    }
+
+    .sentence-hidden {
+      font-size: 17px;
+      color: #aaa;
+      letter-spacing: 0.5px;
+      line-height: 1.7;
+    }
+
+    .sentence-en {
+      display: none;
+      font-size: 21px;
+      font-weight: 650;
+      line-height: 1.6;
+      color: #111;
+    }
+
+    .sentence-zh {
+      display: none;
+      margin-top: 13px;
+      font-size: 14px;
+      color: #777;
+      line-height: 1.7;
+    }
+
+    .sentence-card.show-answer .sentence-hidden {
+      display: none;
+    }
+
+    .sentence-card.show-answer .sentence-en,
+    .sentence-card.show-answer .sentence-zh {
+      display: block;
+    }
+
+    .answer-btn {
+      margin-top: 22px;
+      border: 0;
+      background: #111;
+      color: #fff;
+      border-radius: 12px;
+      padding: 11px 24px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .answer-btn:active {
+      transform: scale(0.97);
+    }
+
+    .result-buttons {
+      display: none;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .sentence-card.show-answer + .result-buttons {
+      display: grid;
+    }
+
+    .result-btn {
+      border: 1px solid #e5e5e5;
+      background: #fff;
+      border-radius: 12px;
+      padding: 12px 8px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .result-btn:active {
+      transform: scale(0.97);
+    }
+
+    .result-btn.good {
+      background: #f2f2f2;
+    }
+
+    .next-btn {
+      width: 100%;
+      margin-top: 10px;
+      border: 0;
+      background: #111;
+      color: #fff;
+      border-radius: 12px;
+      padding: 13px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .next-btn:active {
+      transform: scale(0.98);
+    }
+
+    .listening-footer {
+      padding: 12px 18px 20px;
+      flex-shrink: 0;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 11px;
+      color: #aaa;
+      margin-bottom: 10px;
+    }
+
+    .stats strong {
+      color: #555;
+      font-weight: 600;
+    }
+
+    /* =========================
+       Toast
+       ========================= */
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      transform: translate(-50%, 20px);
+      background: rgba(0, 0, 0, 0.82);
+      color: #fff;
+      padding: 9px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease;
+      z-index: 999;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* =========================
+       桌面端
+       ========================= */
+
+    @media (min-width: 700px) {
+      body {
+        background: #f0f1f3;
+      }
+
+      .app {
+        min-height: 100vh;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="app">
+<div class="app" id="app"></div>
 
-    <header class="header">
+<div class="toast" id="toast"></div>
 
-        <div class="logo">
+<!--
+  独立加载听力句子数据
 
-            <div class="avatar">胖</div>
-
-            <div>
-                <div class="logo-text">胖哥学英语</div>
-                <div class="logo-sub">听句子</div>
-            </div>
-
-        </div>
-
-        <div class="stats">
-            <strong id="todayCount">0</strong>
-            今日完成
-        </div>
-
-    </header>
-
-
-    <main class="main">
-
-        <div class="progress-wrap">
-
-            <div class="progress-info">
-                <span id="progressText">第 1 句</span>
-                <span id="totalText">共 300 句</span>
-            </div>
-
-            <div class="progress">
-                <div class="progress-bar" id="progressBar"></div>
-            </div>
-
-        </div>
-
-
-        <section class="listen-card">
-
-            <div class="number" id="sentenceNumber">
-                Sentence 1
-            </div>
-
-            <button
-                class="play-btn"
-                id="playBtn"
-                onclick="speakCurrent()">
-                ▶
-            </button>
-
-            <div class="play-hint">
-                先听句子，想一想是什么意思
-            </div>
-
-
-            <div class="question">
-                这句话是什么意思？
-            </div>
-
-
-            <div class="answer" id="answer">
-
-                <div class="english" id="english"></div>
-
-                <div class="chinese" id="chinese"></div>
-
-            </div>
-
-
-            <div class="actions">
-
-                <button
-                    class="answer-btn"
-                    id="answerBtn"
-                    onclick="showAnswer()">
-                    显示答案
-                </button>
-
-
-                <div
-                    class="after-answer"
-                    id="afterAnswer">
-
-                    <div class="small-actions">
-
-                        <button
-                            class="small-btn"
-                            onclick="speakCurrent()">
-                            🔊 再听一次
-                        </button>
-
-                        <button
-                            class="small-btn"
-                            onclick="markNotUnderstand()">
-                            没听懂
-                        </button>
-
-                    </div>
-
-                    <button
-                        class="next-btn"
-                        onclick="markUnderstand()">
-                        听懂了 · 下一句 →
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <div class="today">
-            今日已听 <span id="todayDone">0</span> 句
-        </div>
-
-    </main>
-
-
-    <footer class="footer">
-
-        <button onclick="randomSentence()">
-            随机复习
-        </button>
-
-        <button onclick="resetToday()">
-            重置今日
-        </button>
-
-    </footer>
-
-</div>
-
+  如果以后修改了 listening-sentences.js，
+  可以把 ?v=20260905 改成新的版本号，
+  例如 ?v=20260906，
+  用于避免 GitHub Pages / 微信缓存旧文件。
+-->
+<script src="./data/listening-sentences.js?v=20260905"></script>
 
 <script>
+  "use strict";
 
-/* =========================================================
-   300 个英语完整句子
-   难度：简单完整句子
-   ========================================================= */
+  /* =========================================================
+     基础配置
+     ========================================================= */
 
-const sentences = [
+  const STORAGE_KEY = "pangge_english_listening_v1";
 
-/* ---------- 1-30 日常生活 ---------- */
+  /*
+   * 从独立 JS 文件读取句子
+   */
+  const sentences = Array.isArray(window.listeningSentences)
+    ? window.listeningSentences
+    : [];
 
-{
-    en: "I usually get up early because I like having a quiet morning.",
-    zh: "我通常很早起床，因为我喜欢安静的早晨。"
-},
-{
-    en: "I need a few more minutes before I get out of bed.",
-    zh: "我还需要几分钟才能起床。"
-},
-{
-    en: "I usually drink a glass of water after I wake up.",
-    zh: "我通常醒来后会喝一杯水。"
-},
-{
-    en: "My phone is on the table next to my bed.",
-    zh: "我的手机在床边的桌子上。"
-},
-{
-    en: "I forgot to charge my phone last night.",
-    zh: "我昨晚忘记给手机充电了。"
-},
-{
-    en: "I have to leave home in about twenty minutes.",
-    zh: "我大约二十分钟后必须出门。"
-},
-{
-    en: "I am getting ready for work now.",
-    zh: "我现在正在准备去上班。"
-},
-{
-    en: "I usually take a shower before breakfast.",
-    zh: "我通常吃早餐前洗澡。"
-},
-{
-    en: "I couldn't find my keys this morning.",
-    zh: "今天早上我找不到钥匙了。"
-},
-{
-    en: "My keys were in my jacket pocket the whole time.",
-    zh: "我的钥匙一直都在我的夹克口袋里。"
-},
-{
-    en: "I need to clean my room this weekend.",
-    zh: "这个周末我需要打扫房间。"
-},
-{
-    en: "There are too many things on my desk.",
-    zh: "我的桌子上东西太多了。"
-},
-{
-    en: "I usually listen to music while I am cleaning.",
-    zh: "我通常打扫的时候听音乐。"
-},
-{
-    en: "I have already finished my breakfast.",
-    zh: "我已经吃完早餐了。"
-},
-{
-    en: "I don't have enough time to cook today.",
-    zh: "我今天没有足够的时间做饭。"
-},
-{
-    en: "I will make something simple for dinner tonight.",
-    zh: "今晚我会做一些简单的东西当晚餐。"
-},
-{
-    en: "The food smells really good.",
-    zh: "食物闻起来很香。"
-},
-{
-    en: "I think we should eat before we go out.",
-    zh: "我觉得我们应该出去之前先吃饭。"
-},
-{
-    en: "I am a little tired because I didn't sleep well last night.",
-    zh: "我有点累，因为我昨晚没睡好。"
-},
-{
-    en: "I usually go to bed before midnight.",
-    zh: "我通常在午夜之前睡觉。"
-},
-{
-    en: "I stayed up late because I had a lot of work to do.",
-    zh: "我熬夜了，因为我有很多工作要做。"
-},
-{
-    en: "I don't feel like going out tonight.",
-    zh: "我今晚不太想出去。"
-},
-{
-    en: "I would rather stay home and watch a movie.",
-    zh: "我宁愿待在家里看电影。"
-},
-{
-    en: "The house is very quiet tonight.",
-    zh: "今晚家里非常安静。"
-},
-{
-    en: "I need to remember to turn off the lights.",
-    zh: "我需要记得关灯。"
-},
-{
-    en: "Please close the door when you leave.",
-    zh: "你离开的时候请关门。"
-},
-{
-    en: "I left my bag in the living room.",
-    zh: "我把包落在客厅了。"
-},
-{
-    en: "Can you help me move this table?",
-    zh: "你能帮我搬一下这张桌子吗？"
-},
-{
-    en: "This room feels much better after we cleaned it.",
-    zh: "打扫完以后这个房间感觉好多了。"
-},
-{
-    en: "I think everything is ready now.",
-    zh: "我觉得现在一切都准备好了。"
-},
+  let currentIndex = 0;
+  let listeningMode = "normal";
+
+  /*
+   * 学习记录
+   *
+   * {
+   *   understood: {
+   *     0: true,
+   *     3: true
+   *   },
+   *   notUnderstood: {
+   *     1: true,
+   *     5: true
+   *   },
+   *   lastDate: "2026-09-05",
+   *   todayCount: 5
+   * }
+   */
+  let studyData = loadStudyData();
 
 
-/* ---------- 31-60 工作学习 ---------- */
+  /* =========================================================
+     初始化
+     ========================================================= */
 
-{
-    en: "I have a meeting at nine o'clock this morning.",
-    zh: "我今天早上九点有一个会议。"
-},
-{
-    en: "I need to finish this report before lunch.",
-    zh: "我需要在午饭前完成这份报告。"
-},
-{
-    en: "Could you send me the file when you finish it?",
-    zh: "你完成后可以把文件发给我吗？"
-},
-{
-    en: "I will check the information again before I send it.",
-    zh: "发送之前我会再检查一下信息。"
-},
-{
-    en: "There is a small problem with the computer.",
-    zh: "电脑出了一个小问题。"
-},
-{
-    en: "I think we need to restart the computer.",
-    zh: "我觉得我们需要重新启动电脑。"
-},
-{
-    en: "The internet is much slower than usual today.",
-    zh: "今天的网络比平时慢很多。"
-},
-{
-    en: "I can't open the file on my computer.",
-    zh: "我在电脑上打不开这个文件。"
-},
-{
-    en: "Can you show me how to fix this problem?",
-    zh: "你能告诉我怎么解决这个问题吗？"
-},
-{
-    en: "I will take a look at it after the meeting.",
-    zh: "会议结束后我会看一下。"
-},
-{
-    en: "We need to talk about this problem later.",
-    zh: "我们稍后需要谈谈这个问题。"
-},
-{
-    en: "I don't think we have enough information yet.",
-    zh: "我觉得我们现在还没有足够的信息。"
-},
-{
-    en: "Let's wait until we know more about it.",
-    zh: "我们等了解更多情况以后再说吧。"
-},
-{
-    en: "I wrote down some notes during the meeting.",
-    zh: "我在会议期间记了一些笔记。"
-},
-{
-    en: "I forgot to bring my notebook today.",
-    zh: "我今天忘记带笔记本了。"
-},
-{
-    en: "I need to learn how to use this tool.",
-    zh: "我需要学习如何使用这个工具。"
-},
-{
-    en: "This is easier than I expected.",
-    zh: "这个比我想象的容易。"
-},
-{
-    en: "This part is a little difficult for me.",
-    zh: "这一部分对我来说有点难。"
-},
-{
-    en: "I need some time to think about the answer.",
-    zh: "我需要一些时间考虑答案。"
-},
-{
-    en: "I finally understand what you mean.",
-    zh: "我终于明白你的意思了。"
-},
-{
-    en: "Could you explain that one more time?",
-    zh: "你可以再解释一次吗？"
-},
-{
-    en: "Please speak a little more slowly.",
-    zh: "请说得稍微慢一点。"
-},
-{
-    en: "I didn't hear the last part of your sentence.",
-    zh: "我没听清你句子的最后一部分。"
-},
-{
-    en: "I am trying to improve my English every day.",
-    zh: "我每天都在努力提高英语。"
-},
-{
-    en: "I usually practice English for about thirty minutes.",
-    zh: "我通常练习英语大约三十分钟。"
-},
-{
-    en: "I can understand more English than I could before.",
-    zh: "我现在能听懂的英语比以前多了。"
-},
-{
-    en: "I still need to practice listening more often.",
-    zh: "我还是需要多练习听力。"
-},
-{
-    en: "I learned a few useful expressions today.",
-    zh: "我今天学到了几个有用的表达。"
-},
-{
-    en: "I want to remember these sentences for later.",
-    zh: "我想把这些句子记下来以后使用。"
-},
-{
-    en: "Learning a language takes time and practice.",
-    zh: "学习一门语言需要时间和练习。"
-},
-
-
-/* ---------- 61-90 家庭朋友 ---------- */
-
-{
-    en: "My family usually has dinner together on weekends.",
-    zh: "我的家人通常周末一起吃晚饭。"
-},
-{
-    en: "My mother called me while I was working.",
-    zh: "我工作的时候妈妈给我打了电话。"
-},
-{
-    en: "My father likes watching the news after dinner.",
-    zh: "我爸爸喜欢晚饭后看新闻。"
-},
-{
-    en: "My brother is still sleeping upstairs.",
-    zh: "我哥哥还在楼上睡觉。"
-},
-{
-    en: "My sister is learning how to drive.",
-    zh: "我妹妹正在学习开车。"
-},
-{
-    en: "We haven't seen each other for a long time.",
-    zh: "我们已经很久没有见面了。"
-},
-{
-    en: "I am going to visit my parents this weekend.",
-    zh: "这个周末我要去看我的父母。"
-},
-{
-    en: "My parents live about an hour away from here.",
-    zh: "我的父母住的地方离这里大约一小时。"
-},
-{
-    en: "I usually call my family on Sunday evening.",
-    zh: "我通常周日晚上给家人打电话。"
-},
-{
-    en: "Everyone was happy to see him again.",
-    zh: "大家再次见到他都很高兴。"
-},
-{
-    en: "My friend invited me to dinner tonight.",
-    zh: "我的朋友邀请我今晚吃饭。"
-},
-{
-    en: "I told my friend about my new job.",
-    zh: "我告诉了朋友我的新工作。"
-},
-{
-    en: "We talked about many interesting things.",
-    zh: "我们聊了很多有趣的事情。"
-},
-{
-    en: "I haven't decided what I want to do yet.",
-    zh: "我还没有决定我想做什么。"
-},
-{
-    en: "My friend said that he could help me.",
-    zh: "我的朋友说他可以帮助我。"
-},
-{
-    en: "I really appreciate your help.",
-    zh: "我真的很感谢你的帮助。"
-},
-{
-    en: "Don't worry about it because everything is fine.",
-    zh: "不用担心，因为一切都很好。"
-},
-{
-    en: "I hope we can meet again soon.",
-    zh: "我希望我们很快能再次见面。"
-},
-{
-    en: "We had a great time together yesterday.",
-    zh: "我们昨天一起度过了很愉快的时光。"
-},
-{
-    en: "Everyone laughed when he told the story.",
-    zh: "他说那个故事的时候大家都笑了。"
-},
-{
-    en: "She was happy because her parents came to visit.",
-    zh: "她很开心，因为她的父母来看她了。"
-},
-{
-    en: "He didn't tell anyone about the problem.",
-    zh: "他没有告诉任何人这个问题。"
-},
-{
-    en: "I think we should ask someone for help.",
-    zh: "我觉得我们应该找人帮忙。"
-},
-{
-    en: "We can talk about it when you have more time.",
-    zh: "你有更多时间的时候我们可以谈谈这件事。"
-},
-{
-    en: "I am glad that you came today.",
-    zh: "我很高兴你今天来了。"
-},
-{
-    en: "It was nice talking to you.",
-    zh: "和你聊天很愉快。"
-},
-{
-    en: "I haven't heard from him since last week.",
-    zh: "从上周开始我就没有他的消息了。"
-},
-{
-    en: "She asked me if I needed anything.",
-    zh: "她问我是否需要什么。"
-},
-{
-    en: "He promised that he would call me later.",
-    zh: "他答应稍后给我打电话。"
-},
-{
-    en: "We decided to have dinner at home.",
-    zh: "我们决定在家吃晚饭。"
-},
-
-
-/* ---------- 91-120 出门交通 ---------- */
-
-{
-    en: "I usually take the bus to work.",
-    zh: "我通常坐公交车去上班。"
-},
-{
-    en: "The bus was very crowded this morning.",
-    zh: "今天早上的公交车非常拥挤。"
-},
-{
-    en: "I missed the bus because I left home too late.",
-    zh: "我因为出门太晚而错过了公交车。"
-},
-{
-    en: "The next bus should arrive in ten minutes.",
-    zh: "下一班公交车应该十分钟后到。"
-},
-{
-    en: "There was a lot of traffic on the road.",
-    zh: "路上的交通非常拥堵。"
-},
-{
-    en: "It usually takes about thirty minutes to get there.",
-    zh: "通常需要大约三十分钟才能到那里。"
-},
-{
-    en: "We should leave early because the traffic may be heavy.",
-    zh: "我们应该早点出发，因为路上可能会堵车。"
-},
-{
-    en: "I am waiting for a taxi outside the building.",
-    zh: "我正在楼外等出租车。"
-},
-{
-    en: "The driver asked me where I wanted to go.",
-    zh: "司机问我想去哪里。"
-},
-{
-    en: "Please let me know when we arrive.",
-    zh: "到了以后请告诉我。"
-},
-{
-    en: "I think we are going in the wrong direction.",
-    zh: "我觉得我们走错方向了。"
-},
-{
-    en: "Could you check the map on your phone?",
-    zh: "你能在手机上看一下地图吗？"
-},
-{
-    en: "I don't know this area very well.",
-    zh: "我不太熟悉这个地方。"
-},
-{
-    en: "The station is just around the corner.",
-    zh: "车站就在拐角附近。"
-},
-{
-    en: "It is easier to walk from here.",
-    zh: "从这里走过去更方便。"
-},
-{
-    en: "We should cross the street at the lights.",
-    zh: "我们应该在红绿灯那里过马路。"
-},
-{
-    en: "Be careful when you cross the road.",
-    zh: "过马路的时候要小心。"
-},
-{
-    en: "I forgot which way we came from.",
-    zh: "我忘了我们是从哪个方向来的。"
-},
-{
-    en: "Let's take a short break before we continue walking.",
-    zh: "我们继续走之前先休息一下吧。"
-},
-{
-    en: "I need to find a place to sit down.",
-    zh: "我需要找个地方坐下来。"
-},
-{
-    en: "The train is about to leave the station.",
-    zh: "火车马上就要离开车站了。"
-},
-{
-    en: "We need to hurry if we want to catch the train.",
-    zh: "如果我们想赶上火车，就得快一点。"
-},
-{
-    en: "I bought a ticket at the station.",
-    zh: "我在车站买了一张票。"
-},
-{
-    en: "Do you know which platform we need?",
-    zh: "你知道我们需要在哪个站台吗？"
-},
-{
-    en: "The train was delayed because of the weather.",
-    zh: "火车因为天气原因晚点了。"
-},
-{
-    en: "We arrived earlier than I expected.",
-    zh: "我们比我预想的更早到了。"
-},
-{
-    en: "I will meet you at the entrance.",
-    zh: "我会在入口处和你见面。"
-},
-{
-    en: "Please wait for me near the door.",
-    zh: "请在门附近等我。"
-},
-{
-    en: "I will be there in about ten minutes.",
-    zh: "我大约十分钟后到。"
-},
-{
-    en: "Sorry, I am running a little late.",
-    zh: "不好意思，我要晚一点到。"
-},
-
-
-/* ---------- 121-150 商店购物 ---------- */
-
-{
-    en: "I need to buy some food for dinner.",
-    zh: "我需要买一些晚餐用的食物。"
-},
-{
-    en: "There is a supermarket near my home.",
-    zh: "我家附近有一家超市。"
-},
-{
-    en: "I usually go shopping after work.",
-    zh: "我通常下班后去购物。"
-},
-{
-    en: "I made a list before I went to the store.",
-    zh: "去商店之前我列了一张清单。"
-},
-{
-    en: "I forgot to buy milk again.",
-    zh: "我又忘记买牛奶了。"
-},
-{
-    en: "Do you know where I can find the vegetables?",
-    zh: "你知道我在哪里可以找到蔬菜吗？"
-},
-{
-    en: "The vegetables are on the other side of the store.",
-    zh: "蔬菜在商店的另一边。"
-},
-{
-    en: "I think this one is better than that one.",
-    zh: "我觉得这个比那个更好。"
-},
-{
-    en: "How much does this one cost?",
-    zh: "这个多少钱？"
-},
-{
-    en: "This is a little more expensive than I expected.",
-    zh: "这个比我想象的贵一点。"
-},
-{
-    en: "Do you have this shirt in a larger size?",
-    zh: "这件衬衫有大一点的尺码吗？"
-},
-{
-    en: "I would like to try this one on.",
-    zh: "我想试一下这个。"
-},
-{
-    en: "The fitting room is over there.",
-    zh: "试衣间在那边。"
-},
-{
-    en: "This shirt fits me pretty well.",
-    zh: "这件衬衫很合身。"
-},
-{
-    en: "I am not sure which color I should choose.",
-    zh: "我不确定应该选择哪种颜色。"
-},
-{
-    en: "I think the black one looks better.",
-    zh: "我觉得黑色的那个看起来更好。"
-},
-{
-    en: "Can I pay by credit card?",
-    zh: "我可以刷信用卡吗？"
-},
-{
-    en: "Could you give me a receipt, please?",
-    zh: "可以给我一张收据吗？"
-},
-{
-    en: "I don't need a shopping bag, thank you.",
-    zh: "我不需要购物袋，谢谢。"
-},
-{
-    en: "The store is very busy today.",
-    zh: "今天商店非常忙。"
-},
-{
-    en: "There are too many people in the store.",
-    zh: "商店里人太多了。"
-},
-{
-    en: "I only came here to buy one thing.",
-    zh: "我来这里只是想买一样东西。"
-},
-{
-    en: "I ended up buying more than I planned.",
-    zh: "结果我买的东西比原计划多。"
-},
-{
-    en: "I need to return this because it is broken.",
-    zh: "我需要退掉这个，因为它坏了。"
-},
-{
-    en: "Do you have another one that is not damaged?",
-    zh: "你们还有没有一个没有损坏的？"
-},
-{
-    en: "I bought this yesterday, but I changed my mind.",
-    zh: "我昨天买了这个，但是我改变主意了。"
-},
-{
-    en: "The price is reasonable for this kind of product.",
-    zh: "这种产品的价格还是比较合理的。"
-},
-{
-    en: "I want to compare these two before I decide.",
-    zh: "决定之前我想比较一下这两个。"
-},
-{
-    en: "I will think about it and come back later.",
-    zh: "我考虑一下，稍后再回来。"
-},
-{
-    en: "I finally found what I was looking for.",
-    zh: "我终于找到了我一直在找的东西。"
-},
-
-
-/* ---------- 151-180 餐厅吃饭 ---------- */
-
-{
-    en: "We are looking for a quiet place to have dinner.",
-    zh: "我们正在找一个安静的地方吃晚饭。"
-},
-{
-    en: "Do you have a table for two?",
-    zh: "你们有两个人的桌子吗？"
-},
-{
-    en: "Could we sit near the window?",
-    zh: "我们可以坐在窗户附近吗？"
-},
-{
-    en: "Can we see the menu, please?",
-    zh: "可以给我们看看菜单吗？"
-},
-{
-    en: "I am not sure what I should order.",
-    zh: "我不确定应该点什么。"
-},
-{
-    en: "What do you recommend?",
-    zh: "你推荐什么？"
-},
-{
-    en: "I would like to try something local.",
-    zh: "我想尝试一些当地的食物。"
-},
-{
-    en: "I don't eat very spicy food.",
-    zh: "我不吃太辣的食物。"
-},
-{
-    en: "Could you make it a little less spicy?",
-    zh: "可以做得稍微不那么辣吗？"
-},
-{
-    en: "I would like a glass of water, please.",
-    zh: "请给我一杯水。"
-},
-{
-    en: "The food looks better than I expected.",
-    zh: "食物看起来比我想象的更好。"
-},
-{
-    en: "This dish smells really good.",
-    zh: "这道菜闻起来很香。"
-},
-{
-    en: "I think this is enough food for everyone.",
-    zh: "我觉得这些食物够大家吃了。"
-},
-{
-    en: "Could we have some extra plates?",
-    zh: "可以给我们几个额外的盘子吗？"
-},
-{
-    en: "Can we get another bottle of water?",
-    zh: "可以再给我们一瓶水吗？"
-},
-{
-    en: "Everything tastes really good.",
-    zh: "所有东西尝起来都很好吃。"
-},
-{
-    en: "This is probably my favorite dish here.",
-    zh: "这可能是我在这里最喜欢的一道菜。"
-},
-{
-    en: "I am already full, but the dessert looks great.",
-    zh: "我已经饱了，但是甜点看起来很好吃。"
-},
-{
-    en: "Would you like to share a dessert?",
-    zh: "你想一起吃一份甜点吗？"
-},
-{
-    en: "I think we should order one more dish.",
-    zh: "我觉得我们应该再点一道菜。"
-},
-{
-    en: "Could we have the bill, please?",
-    zh: "请给我们账单好吗？"
-},
-{
-    en: "Can we pay separately?",
-    zh: "我们可以分开付款吗？"
-},
-{
-    en: "I think there is a mistake on the bill.",
-    zh: "我觉得账单上有一个错误。"
-},
-{
-    en: "Let me check the bill one more time.",
-    zh: "让我再检查一下账单。"
-},
-{
-    en: "The service was very good tonight.",
-    zh: "今晚的服务非常好。"
-},
-{
-    en: "We had a really nice dinner here.",
-    zh: "我们在这里吃了一顿很不错的晚餐。"
-},
-{
-    en: "I would definitely come here again.",
-    zh: "我以后肯定还会再来这里。"
-},
-{
-    en: "The restaurant was much busier than I expected.",
-    zh: "这家餐厅比我想象的忙很多。"
-},
-{
-    en: "We had to wait about twenty minutes for a table.",
-    zh: "我们不得不等大约二十分钟才有桌子。"
-},
-{
-    en: "The food was worth the wait.",
-    zh: "这些食物值得等待。"
-},
-
-
-/* ---------- 181-210 天气 ---------- */
-
-{
-    en: "It is much colder today than yesterday.",
-    zh: "今天比昨天冷很多。"
-},
-{
-    en: "It looks like it is going to rain.",
-    zh: "看起来马上要下雨了。"
-},
-{
-    en: "Don't forget to take an umbrella with you.",
-    zh: "别忘了带雨伞。"
-},
-{
-    en: "I didn't bring an umbrella this morning.",
-    zh: "我今天早上没有带雨伞。"
-},
-{
-    en: "It started raining while I was walking home.",
-    zh: "我走回家的时候开始下雨了。"
-},
-{
-    en: "The rain stopped about an hour ago.",
-    zh: "雨大约一小时前停了。"
-},
-{
-    en: "The weather is perfect for a walk today.",
-    zh: "今天的天气非常适合散步。"
-},
-{
-    en: "It is too hot to stay outside for a long time.",
-    zh: "天气太热了，不能在外面待太久。"
-},
-{
-    en: "I need to drink more water when it is hot.",
-    zh: "天气热的时候我需要多喝水。"
-},
-{
-    en: "The wind is getting stronger now.",
-    zh: "现在风越来越大了。"
-},
-{
-    en: "It was very windy yesterday afternoon.",
-    zh: "昨天下午风非常大。"
-},
-{
-    en: "The sky is clear and there are no clouds.",
-    zh: "天空很晴朗，没有云。"
-},
-{
-    en: "The sun is coming out now.",
-    zh: "太阳现在出来了。"
-},
-{
-    en: "It feels much warmer in the afternoon.",
-    zh: "下午感觉暖和多了。"
-},
-{
-    en: "I hope the weather stays nice this weekend.",
-    zh: "我希望这个周末天气保持晴朗。"
-},
-{
-    en: "The weather changes very quickly here.",
-    zh: "这里的天气变化得非常快。"
-},
-{
-    en: "It snowed a lot last winter.",
-    zh: "去年冬天下了很多雪。"
-},
-{
-    en: "I have never seen so much snow before.",
-    zh: "我以前从来没见过这么多雪。"
-},
-{
-    en: "The roads may be dangerous after the snow.",
-    zh: "下雪以后路上可能会很危险。"
-},
-{
-    en: "We should stay inside until the storm is over.",
-    zh: "暴风雨结束之前我们应该待在室内。"
-},
-{
-    en: "The weather forecast says it will rain tomorrow.",
-    zh: "天气预报说明天会下雨。"
-},
-{
-    en: "I always check the weather before I travel.",
-    zh: "我旅行前总是查看天气。"
-},
-{
-    en: "It is getting dark because of the clouds.",
-    zh: "因为乌云，天越来越黑了。"
-},
-{
-    en: "The temperature is much lower than usual.",
-    zh: "气温比平时低很多。"
-},
-{
-    en: "I need to wear a warmer jacket today.",
-    zh: "今天我需要穿一件更暖和的外套。"
-},
-{
-    en: "The morning was cold, but the afternoon was warm.",
-    zh: "早上很冷，但是下午很暖和。"
-},
-{
-    en: "The weather was better than we expected.",
-    zh: "天气比我们预想的更好。"
-},
-{
-    en: "We canceled our plans because of the bad weather.",
-    zh: "我们因为糟糕的天气取消了计划。"
-},
-{
-    en: "Maybe we can go outside when the rain stops.",
-    zh: "也许雨停以后我们可以出去。"
-},
-{
-    en: "I hope tomorrow will be a little warmer.",
-    zh: "我希望明天会暖和一点。"
-},
-
-
-/* ---------- 211-240 时间计划 ---------- */
-
-{
-    en: "What time do you usually finish work?",
-    zh: "你通常几点下班？"
-},
-{
-    en: "I usually finish work around six.",
-    zh: "我通常六点左右下班。"
-},
-{
-    en: "I have something important to do this afternoon.",
-    zh: "我今天下午有一些重要的事情要做。"
-},
-{
-    en: "Are you free tomorrow evening?",
-    zh: "你明天晚上有空吗？"
-},
-{
-    en: "I already have plans for tomorrow.",
-    zh: "我明天已经有安排了。"
-},
-{
-    en: "Can we meet sometime next week?",
-    zh: "我们下周找个时间见面可以吗？"
-},
-{
-    en: "I am available after three o'clock.",
-    zh: "我三点以后有时间。"
-},
-{
-    en: "Let me check my schedule first.",
-    zh: "让我先看一下我的日程。"
-},
-{
-    en: "I will let you know when I have time.",
-    zh: "我有时间的时候告诉你。"
-},
-{
-    en: "We need to finish this before Friday.",
-    zh: "我们需要在星期五之前完成这个。"
-},
-{
-    en: "I don't think we can finish everything today.",
-    zh: "我觉得我们今天不能完成所有事情。"
-},
-{
-    en: "Let's do the most important things first.",
-    zh: "我们先做最重要的事情吧。"
-},
-{
-    en: "I have been waiting for about twenty minutes.",
-    zh: "我已经等了大约二十分钟。"
-},
-{
-    en: "I will call you when I get home.",
-    zh: "我到家以后给你打电话。"
-},
-{
-    en: "Please remind me tomorrow morning.",
-    zh: "请明天早上提醒我。"
-},
-{
-    en: "I almost forgot about our meeting.",
-    zh: "我差点忘记我们的会议了。"
-},
-{
-    en: "We need to change the time of the meeting.",
-    zh: "我们需要改变会议的时间。"
-},
-{
-    en: "Can we move the meeting to tomorrow?",
-    zh: "我们可以把会议改到明天吗？"
-},
-{
-    en: "I am sorry, but something came up.",
-    zh: "不好意思，但是突然有事情发生了。"
-},
-{
-    en: "I may be a little late tomorrow morning.",
-    zh: "我明天早上可能会晚一点。"
-},
-{
-    en: "I have enough time to finish this today.",
-    zh: "我有足够的时间今天完成这个。"
-},
-{
-    en: "I need to leave early because I have an appointment.",
-    zh: "我需要早点离开，因为我有一个约会。"
-},
-{
-    en: "We should make a plan before we start.",
-    zh: "开始之前我们应该制定一个计划。"
-},
-{
-    en: "The plan sounds good to me.",
-    zh: "这个计划听起来不错。"
-},
-{
-    en: "I think we should keep the original plan.",
-    zh: "我觉得我们应该保持原来的计划。"
-},
-{
-    en: "Something unexpected happened this morning.",
-    zh: "今天早上发生了一些意料之外的事情。"
-},
-{
-    en: "We can deal with that problem tomorrow.",
-    zh: "我们明天可以处理那个问题。"
-},
-{
-    en: "I will finish this before I go home.",
-    zh: "我回家之前会完成这个。"
-},
-{
-    en: "I have nothing planned for this weekend.",
-    zh: "这个周末我没有安排任何事情。"
-},
-{
-    en: "Maybe we can go somewhere together.",
-    zh: "也许我们可以一起去某个地方。"
-},
-
-
-/* ---------- 241-270 旅行 ---------- */
-
-{
-    en: "I am planning a trip for next month.",
-    zh: "我正在计划下个月的一次旅行。"
-},
-{
-    en: "I have always wanted to visit this city.",
-    zh: "我一直想参观这个城市。"
-},
-{
-    en: "We booked the hotel a few weeks ago.",
-    zh: "我们几周前订好了酒店。"
-},
-{
-    en: "The hotel is close to the train station.",
-    zh: "酒店离火车站很近。"
-},
-{
-    en: "I need to check in before three o'clock.",
-    zh: "我需要在三点之前办理入住。"
-},
-{
-    en: "Could you tell me where the hotel is?",
-    zh: "你能告诉我酒店在哪里吗？"
-},
-{
-    en: "We got a room with a nice view.",
-    zh: "我们订到了一个景色很好的房间。"
-},
-{
-    en: "The room is smaller than I expected.",
-    zh: "房间比我想象的小。"
-},
-{
-    en: "Everything in the room looks clean.",
-    zh: "房间里的一切看起来都很干净。"
-},
-{
-    en: "I need to find a place to eat nearby.",
-    zh: "我需要找一个附近吃饭的地方。"
-},
-{
-    en: "There are many restaurants around the hotel.",
-    zh: "酒店周围有很多餐厅。"
-},
-{
-    en: "I want to try some local food.",
-    zh: "我想尝试一些当地食物。"
-},
-{
-    en: "We walked around the city for several hours.",
-    zh: "我们在城市里走了几个小时。"
-},
-{
-    en: "There were many interesting places to visit.",
-    zh: "有很多有趣的地方可以参观。"
-},
-{
-    en: "I took a lot of pictures during the trip.",
-    zh: "旅行期间我拍了很多照片。"
-},
-{
-    en: "The view from the top was amazing.",
-    zh: "从顶部看到的景色非常棒。"
-},
-{
-    en: "I wish we had more time here.",
-    zh: "我希望我们能在这里多待一些时间。"
-},
-{
-    en: "We need to leave early tomorrow morning.",
-    zh: "我们明天早上需要早点出发。"
-},
-{
-    en: "I don't want to miss our flight.",
-    zh: "我不想错过我们的航班。"
-},
-{
-    en: "We arrived at the airport two hours early.",
-    zh: "我们提前两个小时到达了机场。"
-},
-{
-    en: "I need to find the right gate.",
-    zh: "我需要找到正确的登机口。"
-},
-{
-    en: "Our flight has been delayed for an hour.",
-    zh: "我们的航班已经延误了一个小时。"
-},
-{
-    en: "We finally arrived at our destination.",
-    zh: "我们终于到达了目的地。"
-},
-{
-    en: "I was very tired after the long flight.",
-    zh: "长途飞行之后我非常累。"
-},
-{
-    en: "The city was much more beautiful than I expected.",
-    zh: "这个城市比我想象的漂亮得多。"
-},
-{
-    en: "I would love to come back here someday.",
-    zh: "我很希望有一天能再来这里。"
-},
-{
-    en: "We had a wonderful time during the trip.",
-    zh: "这次旅行我们度过了非常愉快的时光。"
-},
-{
-    en: "I learned a lot about the local culture.",
-    zh: "我了解了很多当地文化。"
-},
-{
-    en: "Traveling gives me a chance to see new things.",
-    zh: "旅行让我有机会看到新的东西。"
-},
-{
-    en: "I hope we can travel together again next year.",
-    zh: "我希望明年我们还能一起旅行。"
-},
-
-
-/* ---------- 271-300 日常思考与实用表达 ---------- */
-
-{
-    en: "I think this is a good idea.",
-    zh: "我觉得这是个好主意。"
-},
-{
-    en: "I am not sure if this is the right choice.",
-    zh: "我不确定这是不是正确的选择。"
-},
-{
-    en: "Let me think about it for a moment.",
-    zh: "让我考虑一下。"
-},
-{
-    en: "I completely understand what you are saying.",
-    zh: "我完全明白你说的意思。"
-},
-{
-    en: "I agree with you on this point.",
-    zh: "在这一点上我同意你的看法。"
-},
-{
-    en: "I don't completely agree with you.",
-    zh: "我不完全同意你的看法。"
-},
-{
-    en: "Maybe there is a better way to do it.",
-    zh: "也许有更好的方法来做这件事。"
-},
-{
-    en: "We should think about the problem carefully.",
-    zh: "我们应该仔细考虑这个问题。"
-},
-{
-    en: "I don't know what happened yesterday.",
-    zh: "我不知道昨天发生了什么。"
-},
-{
-    en: "Nobody told me about the change.",
-    zh: "没有人告诉我这个变化。"
-},
-{
-    en: "I thought you already knew about it.",
-    zh: "我以为你已经知道这件事了。"
-},
-{
-    en: "I didn't expect things to change so quickly.",
-    zh: "我没想到事情会变化得这么快。"
-},
-{
-    en: "Everything turned out better than expected.",
-    zh: "最后一切都比预期的好。"
-},
-{
-    en: "Sometimes things don't go according to plan.",
-    zh: "有时候事情不会按照计划发展。"
-},
-{
-    en: "We just need to find another way.",
-    zh: "我们只需要找到另一种方法。"
-},
-{
-    en: "I believe we can solve this problem together.",
-    zh: "我相信我们可以一起解决这个问题。"
-},
-{
-    en: "Don't give up just because it is difficult.",
-    zh: "不要因为困难就放弃。"
-},
-{
-    en: "It takes time to get used to something new.",
-    zh: "适应新事物需要时间。"
-},
-{
-    en: "I am slowly getting better at listening.",
-    zh: "我的听力正在慢慢变好。"
-},
-{
-    en: "I still make mistakes sometimes.",
-    zh: "我有时候还是会犯错误。"
-},
-{
-    en: "Making mistakes is part of learning.",
-    zh: "犯错误是学习的一部分。"
-},
-{
-    en: "I want to speak English more naturally.",
-    zh: "我想让自己的英语说得更自然。"
-},
-{
-    en: "I need to practice speaking more often.",
-    zh: "我需要更经常地练习口语。"
-},
-{
-    en: "I understand the sentence when I read it.",
-    zh: "我读的时候能理解这个句子。"
-},
-{
-    en: "It is harder for me to understand it when I hear it.",
-    zh: "听到这个句子的时候，对我来说更难理解。"
-},
-{
-    en: "I will listen to this sentence one more time.",
-    zh: "我会再听一次这个句子。"
-},
-{
-    en: "I think I understand the main idea now.",
-    zh: "我觉得我现在明白主要意思了。"
-},
-{
-    en: "I don't know every word, but I understand the sentence.",
-    zh: "我不是每个单词都知道，但是我能理解这个句子。"
-},
-{
-    en: "The more I practice, the easier it becomes.",
-    zh: "我练习得越多，就会变得越容易。"
-},
-{
-    en: "I will keep practicing until I can understand it easily.",
-    zh: "我会一直练习，直到我能轻松听懂。"
-}
-
-];
-
-
-/* =========================================================
-   状态
-   ========================================================= */
-
-let currentIndex = 0;
-
-let todayKey =
-    new Date().toISOString().slice(0, 10);
-
-let progress = loadProgress();
-
-
-/* =========================================================
-   初始化
-   ========================================================= */
-
-document.getElementById("totalText").textContent =
-    "共 " + sentences.length + " 句";
-
-loadCurrent();
-
-
-/* =========================================================
-   本地数据
-   ========================================================= */
-
-function loadProgress() {
-
-    try {
-
-        const data =
-            JSON.parse(
-                localStorage.getItem("pangge_english_listening")
-            );
-
-        if (data) {
-            return data;
-        }
-
-    } catch (e) {}
-
-    return {
-        current: 0,
-        understood: {},
-        notUnderstood: {},
-        today: {}
-    };
-}
-
-
-function saveProgress() {
-
-    localStorage.setItem(
-        "pangge_english_listening",
-        JSON.stringify(progress)
-    );
-
-}
-
-
-/* =========================================================
-   加载句子
-   ========================================================= */
-
-function loadCurrent() {
-
-    if (currentIndex < 0) {
-        currentIndex = 0;
+  document.addEventListener("DOMContentLoaded", () => {
+    if (!sentences.length) {
+      showDataError();
+      return;
     }
 
-    if (currentIndex >= sentences.length) {
-        currentIndex = 0;
+    showHome();
+  });
+
+
+  /* =========================================================
+     首页
+     ========================================================= */
+
+  function showHome() {
+    const app = document.getElementById("app");
+
+    const todayCount = getTodayCount();
+
+    app.innerHTML = `
+      <div class="home">
+
+        <div class="home-header">
+          <div class="brand">
+            <div class="avatar">胖</div>
+
+            <div class="brand-text">
+              <h1>胖哥学英语</h1>
+              <p>每天听一点，英语自然就会了</p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="today-card">
+          <div class="today-title">今日学习</div>
+
+          <div class="today-number">
+            ${todayCount}
+            <span>句</span>
+          </div>
+
+          <div class="today-progress">
+            <div
+              class="today-progress-bar"
+              style="width:${Math.min(todayCount * 10, 100)}%"
+            ></div>
+          </div>
+        </div>
+
+
+        <div class="section-title">快速学习</div>
+
+        <div class="quick-grid">
+
+          <button
+            class="quick-item"
+            onclick="openListening('normal')"
+          >
+            <div class="quick-icon">🎧</div>
+            <div class="quick-name">听力训练</div>
+            <div class="quick-desc">听一句，猜意思</div>
+          </button>
+
+
+          <button
+            class="quick-item"
+            onclick="openListening('review')"
+          >
+            <div class="quick-icon">🔄</div>
+            <div class="quick-name">随机复习</div>
+            <div class="quick-desc">重点复习没听懂的</div>
+          </button>
+
+
+          <button
+            class="quick-item"
+            onclick="showComingSoon('生词功能')"
+          >
+            <div class="quick-icon">📖</div>
+            <div class="quick-name">我的生词</div>
+            <div class="quick-desc">以后继续完善</div>
+          </button>
+
+
+          <button
+            class="quick-item"
+            onclick="showComingSoon('动画课程')"
+          >
+            <div class="quick-icon">📺</div>
+            <div class="quick-name">动画课程</div>
+            <div class="quick-desc">Peppa Pig / 神奇校车</div>
+          </button>
+
+        </div>
+
+
+        <div class="section-title">学习内容</div>
+
+        <div class="quick-grid">
+
+          <button
+            class="quick-item"
+            onclick="openListening('normal')"
+          >
+            <div class="quick-icon">🎧</div>
+            <div class="quick-name">300句生活英语</div>
+            <div class="quick-desc">${sentences.length} 条短句</div>
+          </button>
+
+
+          <button
+            class="quick-item"
+            onclick="showComingSoon('更多课程')"
+          >
+            <div class="quick-icon">＋</div>
+            <div class="quick-name">更多内容</div>
+            <div class="quick-desc">后续可以继续增加</div>
+          </button>
+
+        </div>
+
+      </div>
+    `;
+  }
+
+
+  /* =========================================================
+     听力页面
+     ========================================================= */
+
+  function openListening(mode = "normal") {
+    listeningMode = mode;
+
+    if (mode === "review") {
+      const reviewIndexes = getReviewIndexes();
+
+      if (reviewIndexes.length > 0) {
+        currentIndex =
+          reviewIndexes[
+            Math.floor(Math.random() * reviewIndexes.length)
+          ];
+      } else {
+        currentIndex =
+          Math.floor(Math.random() * sentences.length);
+
+        showToast("暂时没有没听懂的句子");
+      }
+
+    } else {
+      currentIndex =
+        Math.floor(Math.random() * sentences.length);
     }
 
-    progress.current = currentIndex;
+    renderListeningPage();
+  }
 
-    saveProgress();
+
+  function renderListeningPage() {
+    const app = document.getElementById("app");
 
     const item = sentences[currentIndex];
 
-    document.getElementById("sentenceNumber")
-        .textContent =
-        "Sentence " + (currentIndex + 1);
+    if (!item) {
+      currentIndex = 0;
+      renderListeningPage();
+      return;
+    }
 
-    document.getElementById("progressText")
-        .textContent =
-        "第 " + (currentIndex + 1) + " 句";
+    app.innerHTML = `
+      <div class="listening-page">
 
-    const percent =
-        ((currentIndex + 1) / sentences.length) * 100;
+        <div class="listening-header">
 
-    document.getElementById("progressBar")
-        .style.width =
-        percent + "%";
+          <button
+            class="back-btn"
+            onclick="showHome()"
+            aria-label="返回"
+          >
+            ‹
+          </button>
 
-    document.getElementById("english")
-        .textContent = item.en;
+          <div class="listening-title">
+            听力训练
+          </div>
 
-    document.getElementById("chinese")
-        .textContent = item.zh;
+          <div class="header-progress">
+            ${currentIndex + 1}/${sentences.length}
+          </div>
 
-    document.getElementById("answer")
-        .classList.remove("show");
-
-    document.getElementById("afterAnswer")
-        .classList.remove("show");
-
-    document.getElementById("answerBtn")
-        .style.display = "block";
-
-    updateToday();
-
-}
+        </div>
 
 
-/* =========================================================
-   播放
-   ========================================================= */
+        <div class="listening-content">
 
-function speakCurrent() {
+          <div class="status-row">
+
+            <div class="mode-label">
+              ${listeningMode === "review"
+                ? "🔄 重点复习"
+                : "🎧 正常训练"}
+            </div>
+
+            <button
+              class="random-btn"
+              onclick="randomSentence()"
+            >
+              随机
+            </button>
+
+          </div>
+
+
+          <div
+            class="sentence-card"
+            id="sentenceCard"
+          >
+
+            <div
+              class="listen-icon"
+              onclick="speakCurrentSentence()"
+              aria-label="播放"
+            >
+              ▶
+            </div>
+
+
+            <div class="sentence-hidden">
+              仔细听，想想是什么意思？
+            </div>
+
+
+            <div class="sentence-en">
+              ${escapeHtml(item.en)}
+            </div>
+
+
+            <div class="sentence-zh">
+              ${escapeHtml(item.zh)}
+            </div>
+
+
+            <button
+              class="answer-btn"
+              onclick="showAnswer()"
+            >
+              显示答案
+            </button>
+
+          </div>
+
+
+          <div
+            class="result-buttons"
+            id="resultButtons"
+          >
+
+            <button
+              class="result-btn good"
+              onclick="markUnderstood()"
+            >
+              ✓ 听懂了
+            </button>
+
+            <button
+              class="result-btn"
+              onclick="markNotUnderstood()"
+            >
+              ✕ 没听懂
+            </button>
+
+          </div>
+
+
+          <button
+            class="next-btn"
+            onclick="nextSentence()"
+          >
+            下一句
+          </button>
+
+        </div>
+
+
+        <div class="listening-footer">
+
+          <div class="stats">
+            <span>
+              今日 <strong>${getTodayCount()}</strong> 句
+            </span>
+
+            <span>
+              已掌握 <strong>${getUnderstoodCount()}</strong>
+            </span>
+
+            <span>
+              待复习 <strong>${getReviewIndexes().length}</strong>
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+    `;
+
+    /*
+     * 页面出现后自动播放
+     */
+    setTimeout(() => {
+      speakCurrentSentence();
+    }, 350);
+  }
+
+
+  /* =========================================================
+     播放语音
+     ========================================================= */
+
+  function speakCurrentSentence() {
+    const item = sentences[currentIndex];
+
+    if (!item) return;
 
     if (!("speechSynthesis" in window)) {
-
-        alert("你的浏览器不支持英语语音播放。");
-
-        return;
+      showToast("当前浏览器不支持语音播放");
+      return;
     }
 
     window.speechSynthesis.cancel();
 
-    const text =
-        sentences[currentIndex].en;
-
     const utterance =
-        new SpeechSynthesisUtterance(text);
+      new SpeechSynthesisUtterance(item.en);
 
     utterance.lang = "en-US";
-
     utterance.rate = 0.82;
-
     utterance.pitch = 1;
-
     utterance.volume = 1;
 
-    const btn =
-        document.getElementById("playBtn");
-
-    btn.classList.add("playing");
-
-    utterance.onend = function () {
-
-        btn.classList.remove("playing");
-
-    };
-
-    utterance.onerror = function () {
-
-        btn.classList.remove("playing");
-
-    };
-
     window.speechSynthesis.speak(utterance);
-
-}
-
-
-/* =========================================================
-   显示答案
-   ========================================================= */
-
-function showAnswer() {
-
-    document.getElementById("answer")
-        .classList.add("show");
-
-    document.getElementById("afterAnswer")
-        .classList.add("show");
-
-    document.getElementById("answerBtn")
-        .style.display = "none";
-
-}
+  }
 
 
-/* =========================================================
-   听懂
-   ========================================================= */
+  /* =========================================================
+     显示答案
+     ========================================================= */
 
-function markUnderstand() {
+  function showAnswer() {
+    const card = document.getElementById("sentenceCard");
 
-    progress.understood[currentIndex] = true;
+    if (!card) return;
 
-    delete progress.notUnderstood[currentIndex];
+    card.classList.add("show-answer");
 
-    addTodayRecord();
-
-    saveProgress();
-
-    nextSentence();
-
-}
-
-
-/* =========================================================
-   没听懂
-   ========================================================= */
-
-function markNotUnderstand() {
-
-    progress.notUnderstood[currentIndex] = true;
-
-    delete progress.understood[currentIndex];
-
-    addTodayRecord();
-
-    saveProgress();
-
-    nextSentence();
-
-}
+    /*
+     * 显示答案以后，
+     * 自动停止正在播放的语音
+     */
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+    }
+  }
 
 
-/* =========================================================
-   下一句
-   ========================================================= */
+  /* =========================================================
+     标记：听懂
+     ========================================================= */
 
-function nextSentence() {
+  function markUnderstood() {
+    studyData.understood[currentIndex] = true;
 
-    window.speechSynthesis.cancel();
+    /*
+     * 如果之前标记为没听懂，
+     * 现在听懂了就删除待复习标记
+     */
+    delete studyData.notUnderstood[currentIndex];
+
+    increaseTodayCount();
+
+    saveStudyData();
+
+    showToast("已记录：听懂了");
+
+    setTimeout(() => {
+      nextSentence();
+    }, 250);
+  }
+
+
+  /* =========================================================
+     标记：没听懂
+     ========================================================= */
+
+  function markNotUnderstood() {
+    studyData.notUnderstood[currentIndex] = true;
+
+    delete studyData.understood[currentIndex];
+
+    increaseTodayCount();
+
+    saveStudyData();
+
+    showToast("已加入复习");
+
+    setTimeout(() => {
+      nextSentence();
+    }, 250);
+  }
+
+
+  /* =========================================================
+     下一句
+     ========================================================= */
+
+  function nextSentence() {
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+    }
+
+    if (listeningMode === "review") {
+      const reviewIndexes = getReviewIndexes();
+
+      if (reviewIndexes.length > 0) {
+        currentIndex =
+          reviewIndexes[
+            Math.floor(Math.random() * reviewIndexes.length)
+          ];
+
+        renderListeningPage();
+        return;
+      }
+    }
 
     currentIndex++;
 
     if (currentIndex >= sentences.length) {
-
-        currentIndex = 0;
-
-        alert(
-            "🎉 这一轮已经完成！\n\n继续下一轮吧。"
-        );
-
+      currentIndex = 0;
     }
 
-    loadCurrent();
+    renderListeningPage();
+  }
 
-}
+
+  /* =========================================================
+     随机一句
+     ========================================================= */
+
+  function randomSentence() {
+    if (sentences.length <= 1) return;
+
+    let newIndex;
+
+    do {
+      newIndex =
+        Math.floor(Math.random() * sentences.length);
+    } while (newIndex === currentIndex);
+
+    currentIndex = newIndex;
+
+    renderListeningPage();
+  }
 
 
-/* =========================================================
-   今日记录
-   ========================================================= */
+  /* =========================================================
+     复习列表
+     ========================================================= */
 
-function addTodayRecord() {
+  function getReviewIndexes() {
+    return Object.keys(studyData.notUnderstood)
+      .map(Number)
+      .filter(index =>
+        index >= 0 &&
+        index < sentences.length &&
+        studyData.notUnderstood[index]
+      );
+  }
 
-    if (!progress.today[todayKey]) {
 
-        progress.today[todayKey] = {};
+  /* =========================================================
+     学习统计
+     ========================================================= */
 
+  function increaseTodayCount() {
+    const today = getTodayString();
+
+    if (studyData.lastDate !== today) {
+      studyData.lastDate = today;
+      studyData.todayCount = 0;
     }
 
-    progress.today[todayKey][currentIndex] = true;
-
-}
-
-
-function updateToday() {
-
-    const today =
-        progress.today[todayKey] || {};
-
-    const count =
-        Object.keys(today).length;
-
-    document.getElementById("todayCount")
-        .textContent = count;
-
-    document.getElementById("todayDone")
-        .textContent = count;
-
-}
+    studyData.todayCount++;
+  }
 
 
-/* =========================================================
-   随机复习
-   ========================================================= */
+  function getTodayCount() {
+    const today = getTodayString();
 
-function randomSentence() {
-
-    window.speechSynthesis.cancel();
-
-    const indexes = [];
-
-    for (
-        let i = 0;
-        i < sentences.length;
-        i++
-    ) {
-
-        if (
-            progress.notUnderstood[i]
-        ) {
-
-            indexes.push(i);
-
-        }
-
+    if (studyData.lastDate !== today) {
+      studyData.lastDate = today;
+      studyData.todayCount = 0;
+      saveStudyData();
     }
 
-    let target;
+    return studyData.todayCount || 0;
+  }
 
-    /*
-     * 优先随机复习没听懂的句子
-     */
-    if (indexes.length > 0) {
 
-        target =
-            indexes[
-                Math.floor(
-                    Math.random() * indexes.length
-                )
-            ];
+  function getUnderstoodCount() {
+    return Object.keys(studyData.understood)
+      .filter(index =>
+        studyData.understood[index]
+      ).length;
+  }
 
-    } else {
 
-        target =
-            Math.floor(
-                Math.random() * sentences.length
-            );
+  function getTodayString() {
+    const now = new Date();
 
+    const year = now.getFullYear();
+
+    const month =
+      String(now.getMonth() + 1).padStart(2, "0");
+
+    const day =
+      String(now.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  }
+
+
+  /* =========================================================
+     LocalStorage
+     ========================================================= */
+
+  function loadStudyData() {
+    const defaultData = {
+      understood: {},
+      notUnderstood: {},
+      lastDate: getTodayString(),
+      todayCount: 0
+    };
+
+    try {
+      const saved =
+        localStorage.getItem(STORAGE_KEY);
+
+      if (!saved) {
+        return defaultData;
+      }
+
+      const data = JSON.parse(saved);
+
+      return {
+        understood:
+          data.understood || {},
+
+        notUnderstood:
+          data.notUnderstood || {},
+
+        lastDate:
+          data.lastDate || getTodayString(),
+
+        todayCount:
+          Number(data.todayCount) || 0
+      };
+
+    } catch (error) {
+      console.error(
+        "读取学习记录失败:",
+        error
+      );
+
+      return defaultData;
     }
-
-    currentIndex = target;
-
-    loadCurrent();
-
-}
+  }
 
 
-/* =========================================================
-   重置今日
-   ========================================================= */
-
-function resetToday() {
-
-    const ok =
-        confirm(
-            "确定要重置今天的学习记录吗？"
-        );
-
-    if (!ok) {
-        return;
+  function saveStudyData() {
+    try {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(studyData)
+      );
+    } catch (error) {
+      console.error(
+        "保存学习记录失败:",
+        error
+      );
     }
-
-    delete progress.today[todayKey];
-
-    saveProgress();
-
-    updateToday();
-
-}
+  }
 
 
-/* =========================================================
-   键盘操作
-   ========================================================= */
+  /* =========================================================
+     数据错误
+     ========================================================= */
 
-document.addEventListener(
-    "keydown",
-    function(e) {
+  function showDataError() {
+    const app = document.getElementById("app");
 
-        if (e.code === "Space") {
+    app.innerHTML = `
+      <div class="home">
 
-            e.preventDefault();
+        <div class="empty-home">
+          <div style="font-size:32px;margin-bottom:12px;">
+            😕
+          </div>
 
-            speakCurrent();
+          <div>
+            听力数据加载失败
+          </div>
 
-        }
+          <div style="margin-top:8px;font-size:11px;">
+            请检查 data/listening-sentences.js
+          </div>
 
-        if (e.key === "Enter") {
+        </div>
 
-            const answer =
-                document.getElementById("answer");
+      </div>
+    `;
+  }
 
-            if (
-                !answer.classList.contains("show")
-            ) {
 
-                showAnswer();
+  /* =========================================================
+     HTML 转义
+     ========================================================= */
 
-            } else {
+  function escapeHtml(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
 
-                nextSentence();
 
-            }
+  /* =========================================================
+     Toast
+     ========================================================= */
 
-        }
+  let toastTimer = null;
 
-        if (e.key === "ArrowRight") {
+  function showToast(message) {
+    const toast =
+      document.getElementById("toast");
 
-            nextSentence();
+    if (!toast) return;
 
-        }
+    toast.textContent = message;
 
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(() => {
+      toast.classList.remove("show");
+    }, 1500);
+  }
+
+
+  /* =========================================================
+     暂未开放功能
+     ========================================================= */
+
+  function showComingSoon(name) {
+    showToast(name + "正在完善");
+  }
+
+
+  /* =========================================================
+     防止页面退出时继续播放
+     ========================================================= */
+
+  window.addEventListener("pagehide", () => {
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
     }
-);
-
-
-/* =========================================================
-   防止页面切换后语音继续播放
-   ========================================================= */
-
-document.addEventListener(
-    "visibilitychange",
-    function() {
-
-        if (document.hidden) {
-
-            window.speechSynthesis.cancel();
-
-            document
-                .getElementById("playBtn")
-                .classList.remove("playing");
-
-        }
-
-    }
-);
+  });
 
 </script>
 
