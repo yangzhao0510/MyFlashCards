@@ -1,1675 +1,4181 @@
-<style>
-/* =========================================================
-   Peppa Pig English
-   Responsive Mobile / Tablet / Desktop
-   ========================================================= */
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
 
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    >
 
-html {
-    width: 100%;
-    min-height: 100%;
-    overflow-x: hidden;
-}
+    <meta name="theme-color" content="#ff8fab">
 
-body {
-    width: 100%;
-    min-height: 100vh;
-    min-height: 100dvh;
-    margin: 0;
-    padding: 0;
+    <meta
+        name="description"
+        content="Peppa Pig English - 小猪佩奇英语单词学习"
+    >
 
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        "PingFang SC",
-        "Microsoft YaHei",
-        sans-serif;
+    <title>🐷 Peppa Pig English</title>
 
-    background:
-        linear-gradient(
-            135deg,
-            #f7f7f7,
-            #e9e9e9
-        );
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-    color: #222;
+        html {
+            width: 100%;
+            min-height: 100%;
+            background: #fff7fa;
+        }
 
-    overflow-x: hidden;
+        body {
+            margin: 0;
+            width: 100%;
+            min-height: 100dvh;
 
-    /* 防止微信浏览器出现奇怪的文字缩放 */
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-}
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                "PingFang SC",
+                "Hiragino Sans GB",
+                "Microsoft YaHei",
+                sans-serif;
 
-button {
-    font-family: inherit;
-    border: 0;
-    outline: none;
-    cursor: pointer;
+            background:
+                linear-gradient(
+                    180deg,
+                    #fff7fa 0%,
+                    #fff 45%,
+                    #fff7fa 100%
+                );
 
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-}
+            color: #333;
 
-.hidden {
-    display: none !important;
-}
+            -webkit-text-size-adjust: 100%;
+            overscroll-behavior: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        .app {
+            width: min(calc(100% - 32px), 720px);
+            min-height: 100dvh;
+
+            margin: 0 auto;
+
+            padding:
+                max(18px, env(safe-area-inset-top))
+                0
+                max(24px, env(safe-area-inset-bottom));
+        }
+
+        /* =========================
+           Header
+        ========================= */
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 8px 0 18px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .brand-icon {
+            width: clamp(42px, 11vw, 54px);
+            height: clamp(42px, 11vw, 54px);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #ffd6e0;
+
+            font-size: clamp(24px, 7vw, 32px);
+
+            box-shadow:
+                0 5px 15px rgba(255, 143, 171, 0.18);
+        }
+
+        .brand-text h1 {
+            margin: 0;
+
+            font-size: clamp(19px, 5vw, 25px);
+            font-weight: 800;
+
+            color: #333;
+        }
+
+        .brand-text p {
+            margin: 3px 0 0;
+
+            font-size: clamp(11px, 3vw, 14px);
+            color: #999;
+        }
+
+        .home-btn {
+            width: 42px;
+            height: 42px;
+
+            border: none;
+            border-radius: 50%;
+
+            background: #fff;
+
+            box-shadow:
+                0 4px 14px rgba(0, 0, 0, 0.08);
+
+            cursor: pointer;
+
+            font-size: 20px;
+        }
+
+        /* =========================
+           Page
+        ========================= */
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================
+           Welcome
+        ========================= */
+
+        .welcome {
+            padding: 8px 0 22px;
+        }
+
+        .welcome h2 {
+            margin: 0;
+
+            font-size: clamp(25px, 7vw, 34px);
+            line-height: 1.25;
+
+            font-weight: 900;
+        }
+
+        .welcome p {
+            margin: 8px 0 0;
+
+            color: #999;
+
+            font-size: clamp(13px, 3.5vw, 16px);
+        }
+
+        /* =========================
+           Stats
+        ========================= */
+
+        .stats-card {
+            background: #fff;
+
+            border-radius: 22px;
+
+            padding: 18px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 8px 28px rgba(0, 0, 0, 0.06);
+        }
+
+        .stats-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 16px;
+
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .today-badge {
+            font-size: 12px;
+            color: #ff6f91;
+        }
+
+        .today-main {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .progress-circle {
+            position: relative;
+
+            width: 82px;
+            height: 82px;
+
+            flex-shrink: 0;
+        }
+
+        .progress-circle svg {
+            width: 100%;
+            height: 100%;
+
+            transform: rotate(-90deg);
+        }
+
+        .progress-circle circle {
+            fill: none;
+            stroke-width: 8;
+        }
+
+        .circle-bg {
+            stroke: #ffe5ec;
+        }
+
+        .circle-progress {
+            stroke: #ff8fab;
+
+            stroke-linecap: round;
+
+            transition:
+                stroke-dashoffset 0.4s ease;
+        }
+
+        .circle-text {
+            position: absolute;
+
+            inset: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .today-info {
+            flex: 1;
+        }
+
+        .today-info .number {
+            font-size: 25px;
+            font-weight: 900;
+
+            color: #ff6f91;
+        }
+
+        .today-info .label {
+            margin-top: 3px;
+
+            color: #999;
+            font-size: 13px;
+        }
+
+        .streak {
+            margin-top: 14px;
+
+            padding-top: 14px;
+
+            border-top: 1px solid #f3f3f3;
+
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .streak span {
+            color: #ff8c42;
+        }
+
+        /* =========================
+           Quick Actions
+        ========================= */
+
+        .quick-grid {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 12px;
+
+            margin-bottom: 26px;
+        }
+
+        .quick-card {
+            min-height: 82px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 15px;
+
+            border: none;
+            border-radius: 18px;
+
+            background: #fff;
+
+            box-shadow:
+                0 6px 20px rgba(0, 0, 0, 0.05);
+
+            text-align: left;
+
+            cursor: pointer;
+        }
+
+        .quick-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background: #fff0f4;
+
+            font-size: 21px;
+
+            flex-shrink: 0;
+        }
+
+        .quick-title {
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .quick-sub {
+            margin-top: 3px;
+
+            color: #999;
+
+            font-size: 11px;
+        }
+
+        /* =========================
+           Section
+        ========================= */
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin: 25px 0 12px;
+        }
+
+        .section-title h3 {
+            margin: 0;
+
+            font-size: 19px;
+            font-weight: 900;
+        }
+
+        .section-title span {
+            color: #aaa;
+            font-size: 12px;
+        }
+
+        /* =========================
+           Episode
+        ========================= */
+
+        .episode-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .episode-card {
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+
+            padding: 15px;
+
+            border: none;
+            border-radius: 19px;
+
+            background: #fff;
+
+            box-shadow:
+                0 6px 20px rgba(0, 0, 0, 0.05);
+
+            text-align: left;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.15s ease,
+                box-shadow 0.15s ease;
+        }
+
+        .episode-card:active {
+            transform: scale(0.985);
+        }
+
+        .episode-number {
+            width: 54px;
+            height: 54px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background: #fff0f4;
+
+            color: #ff6f91;
+
+            font-size: 12px;
+            font-weight: 900;
+
+            flex-shrink: 0;
+        }
+
+        .episode-info {
+            flex: 1;
+
+            min-width: 0;
+
+            margin-left: 13px;
+        }
+
+        .episode-title {
+            font-size: 15px;
+            font-weight: 850;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .episode-meta {
+            margin-top: 5px;
+
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+
+            color: #999;
+
+            font-size: 11px;
+        }
+
+        .episode-progress {
+            margin-top: 9px;
+
+            height: 6px;
+
+            overflow: hidden;
+
+            border-radius: 999px;
+
+            background: #f3f3f3;
+        }
+
+        .episode-progress-inner {
+            height: 100%;
+
+            border-radius: inherit;
+
+            background: #ff9bb5;
+
+            transition: width 0.3s ease;
+        }
+
+        .episode-arrow {
+            margin-left: 10px;
+
+            color: #bbb;
+
+            font-size: 24px;
+        }
+
+        /* =========================
+           Empty
+        ========================= */
+
+        .empty {
+            padding: 45px 20px;
+
+            text-align: center;
+
+            color: #aaa;
+        }
+
+        .empty-icon {
+            font-size: 46px;
+            margin-bottom: 10px;
+        }
+
+        .empty-title {
+            font-size: 16px;
+            font-weight: 800;
+
+            color: #777;
+        }
+
+        .empty-text {
+            margin-top: 6px;
+
+            font-size: 12px;
+        }
+
+        /* =========================
+           Back
+        ========================= */
+
+        .back-row {
+            display: flex;
+            align-items: center;
+
+            margin-bottom: 15px;
+        }
+
+        .back-btn {
+            border: none;
+            background: none;
+
+            padding: 8px 0;
+
+            color: #888;
+
+            font-size: 14px;
+
+            cursor: pointer;
+        }
+
+        /* =========================
+           Learning Header
+        ========================= */
+
+        .learning-header {
+            margin-bottom: 15px;
+        }
+
+        .learning-title {
+            font-size: 21px;
+            font-weight: 900;
+        }
+
+        .learning-subtitle {
+            margin-top: 4px;
+
+            color: #999;
+
+            font-size: 12px;
+        }
+
+        .learning-progress {
+            height: 7px;
+
+            margin-top: 12px;
+
+            overflow: hidden;
+
+            border-radius: 999px;
+
+            background: #f0f0f0;
+        }
+
+        .learning-progress-inner {
+            height: 100%;
+
+            background: #ff8fab;
+
+            border-radius: inherit;
+
+            transition: width 0.3s ease;
+        }
+
+        /* =========================
+           Flash Card
+        ========================= */
+
+        .card-wrap {
+            height: clamp(300px, 50dvh, 410px);
+
+            min-height: 300px;
+            max-height: 410px;
+
+            perspective: 1200px;
+
+            margin: 18px 0;
+        }
+
+        .flash-card {
+            position: relative;
+
+            width: 100%;
+            height: 100%;
+
+            cursor: pointer;
+
+            transform-style: preserve-3d;
+
+            transition:
+                transform 0.55s cubic-bezier(.2,.7,.2,1);
+
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .flash-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+
+            inset: 0;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            padding: 25px;
+
+            border-radius: 28px;
+
+            background: #fff;
+
+            box-shadow:
+                0 12px 35px rgba(0, 0, 0, 0.08);
+
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .card-front {
+            border: 1px solid #ffe8ee;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #fff,
+                    #fff7fa
+                );
+        }
+
+        .word {
+            max-width: 100%;
+
+            font-size: clamp(31px, 9vw, 48px);
+
+            line-height: 1.1;
+
+            font-weight: 900;
+
+            text-align: center;
+
+            word-break: break-word;
+        }
+
+        .phonetic {
+            margin-top: 12px;
+
+            color: #999;
+
+            font-size: clamp(13px, 3.5vw, 16px);
+        }
+
+        .tap-hint {
+            position: absolute;
+
+            bottom: 22px;
+
+            color: #bbb;
+
+            font-size: 11px;
+        }
+
+        .meaning {
+            font-size: clamp(24px, 7vw, 34px);
+
+            font-weight: 900;
+
+            text-align: center;
+        }
+
+        .example {
+            max-width: 95%;
+
+            margin-top: 18px;
+
+            padding: 14px 16px;
+
+            border-radius: 16px;
+
+            background: #fff;
+
+            color: #666;
+
+            font-size: clamp(13px, 3.5vw, 16px);
+
+            line-height: 1.6;
+
+            text-align: center;
+        }
+
+        .example-cn {
+            margin-top: 7px;
+
+            color: #aaa;
+
+            font-size: 12px;
+        }
+
+        /* =========================
+           Learning Controls
+        ========================= */
+
+        .speak-row {
+            display: flex;
+            justify-content: center;
+
+            gap: 9px;
+
+            margin: 12px 0;
+        }
+
+        .small-btn {
+            border: none;
+
+            padding: 9px 13px;
+
+            border-radius: 999px;
+
+            background: #fff;
+
+            color: #777;
+
+            box-shadow:
+                0 4px 12px rgba(0, 0, 0, 0.06);
+
+            cursor: pointer;
+
+            font-size: 12px;
+        }
+
+        .learning-actions {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr 1fr;
+
+            gap: 9px;
+
+            margin-top: 13px;
+        }
+
+        .action-btn {
+            min-height: 48px;
+
+            border: none;
+
+            border-radius: 15px;
+
+            background: #fff;
+
+            color: #666;
+
+            box-shadow:
+                0 5px 16px rgba(0, 0, 0, 0.05);
+
+            cursor: pointer;
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .action-btn.primary {
+            background: #ff8fab;
+            color: #fff;
+
+            box-shadow:
+                0 7px 18px rgba(255, 143, 171, 0.25);
+        }
+
+        .action-btn.starred {
+            background: #fff0c8;
+            color: #d69a00;
+        }
+
+        .action-btn.mastered {
+            background: #e8f8ed;
+            color: #45a866;
+        }
+
+        .nav-row {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 10px;
+
+            margin-top: 12px;
+        }
+
+        .nav-btn {
+            min-height: 48px;
+
+            border: none;
+
+            border-radius: 15px;
+
+            background: #f7f7f7;
+
+            color: #555;
+
+            cursor: pointer;
+
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        /* =========================
+           Word List
+        ========================= */
+
+        .list-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 14px 16px;
+
+            margin-bottom: 12px;
+
+            background: #fff;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 5px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .list-summary strong {
+            font-size: 18px;
+        }
+
+        .word-list {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .word-item {
+            display: flex;
+            align-items: center;
+
+            gap: 11px;
+
+            padding: 13px 14px;
+
+            border-radius: 15px;
+
+            background: #fff;
+
+            box-shadow:
+                0 4px 14px rgba(0, 0, 0, 0.04);
+        }
+
+        .word-item-main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .word-item-word {
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .word-item-meaning {
+            margin-top: 3px;
+
+            color: #999;
+
+            font-size: 12px;
+        }
+
+        .word-item-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .mini-btn {
+            width: 35px;
+            height: 35px;
+
+            border: none;
+            border-radius: 11px;
+
+            background: #f7f7f7;
+
+            cursor: pointer;
+        }
+
+        /* =========================
+           Settings
+        ========================= */
+
+        .settings-card {
+            background: #fff;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 7px 22px rgba(0, 0, 0, 0.05);
+        }
+
+        .setting-item {
+            width: 100%;
+
+            min-height: 58px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 16px;
+
+            border: none;
+
+            border-bottom: 1px solid #f3f3f3;
+
+            background: #fff;
+
+            text-align: left;
+
+            cursor: pointer;
+        }
+
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+
+        .setting-label {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .setting-desc {
+            margin-top: 3px;
+
+            color: #aaa;
+
+            font-size: 11px;
+        }
+
+        /* =========================
+           Toast
+        ========================= */
+
+        .toast {
+            position: fixed;
+
+            left: 50%;
+
+            bottom:
+                calc(
+                    24px + env(safe-area-inset-bottom)
+                );
+
+            transform:
+                translate(-50%, 20px);
+
+            max-width: calc(100% - 40px);
+
+            padding: 11px 17px;
+
+            border-radius: 999px;
+
+            background: rgba(40, 40, 40, 0.92);
+
+            color: #fff;
+
+            font-size: 13px;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition:
+                opacity 0.25s ease,
+                transform 0.25s ease;
+
+            z-index: 9999;
+
+            text-align: center;
+        }
+
+        .toast.show {
+            opacity: 1;
+
+            transform:
+                translate(-50%, 0);
+        }
+
+        /* =========================
+           Footer
+        ========================= */
+
+        .footer {
+            padding: 30px 0 10px;
+
+            text-align: center;
+
+            color: #bbb;
+
+            font-size: 11px;
+        }
+
+        /* =========================
+           Dark mode
+        ========================= */
+
+        @media (prefers-color-scheme: dark) {
+            html {
+                background: #171316;
+            }
+
+            body {
+                background:
+                    linear-gradient(
+                        180deg,
+                        #171316 0%,
+                        #201a1d 100%
+                    );
+
+                color: #f5f5f5;
+            }
+
+            .brand-text h1 {
+                color: #fff;
+            }
+
+            .brand-text p,
+            .welcome p,
+            .episode-meta,
+            .learning-subtitle,
+            .phonetic,
+            .example-cn,
+            .empty,
+            .setting-desc {
+                color: #999;
+            }
+
+            .stats-card,
+            .quick-card,
+            .episode-card,
+            .card-face,
+            .list-summary,
+            .word-item,
+            .settings-card,
+            .setting-item,
+            .home-btn,
+            .small-btn,
+            .action-btn {
+                background: #292124;
+                color: #eee;
+            }
+
+            .card-back {
+                background: #292124;
+            }
+
+            .example {
+                background: #211b1e;
+                color: #ddd;
+            }
+
+            .nav-btn {
+                background: #292124;
+                color: #ddd;
+            }
+
+            .mini-btn {
+                background: #342c30;
+            }
+
+            .setting-item {
+                border-bottom-color: #3b3337;
+            }
+
+            .circle-bg {
+                stroke: #47353c;
+            }
+
+            .episode-progress {
+                background: #3c3538;
+            }
+
+            .back-btn {
+                color: #aaa;
+            }
+
+            .section-title span {
+                color: #888;
+            }
+        }
+
+        /* =========================
+           Small phones
+        ========================= */
+
+        @media (max-width: 380px) {
+            .app {
+                width: min(calc(100% - 22px), 720px);
+            }
+
+            .card-wrap {
+                height: clamp(285px, 48dvh, 350px);
+                min-height: 285px;
+                max-height: 350px;
+            }
+
+            .card-face {
+                padding: 20px;
+                border-radius: 23px;
+            }
+
+            .learning-actions {
+                gap: 6px;
+            }
+
+            .action-btn {
+                font-size: 12px;
+                padding: 5px;
+            }
+
+            .quick-card {
+                padding: 12px;
+            }
+        }
+
+        /* =========================
+           Normal phones
+        ========================= */
+
+        @media (min-width: 381px) and (max-width: 600px) {
+            .card-wrap {
+                height: clamp(320px, 50dvh, 395px);
+                min-height: 320px;
+                max-height: 395px;
+            }
+        }
+
+        /* =========================
+           Landscape phones
+        ========================= */
+
+        @media (orientation: landscape) and (max-height: 500px) {
+            .app {
+                padding-top: 10px;
+            }
+
+            .header {
+                padding-bottom: 10px;
+            }
+
+            .welcome {
+                padding-bottom: 12px;
+            }
+
+            .card-wrap {
+                height: 58dvh;
+                min-height: 240px;
+                max-height: 330px;
+            }
+        }
+
+        /* =========================
+           Tablet
+        ========================= */
+
+        @media (min-width: 601px) {
+            .app {
+                width: min(calc(100% - 50px), 760px);
+            }
+
+            .quick-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .quick-card {
+                min-height: 100px;
+
+                flex-direction: column;
+
+                align-items: flex-start;
+                justify-content: center;
+            }
+
+            .card-wrap {
+                height: 420px;
+                max-height: 420px;
+            }
+        }
+
+        /* =========================
+           Desktop
+        ========================= */
+
+        @media (min-width: 1000px) {
+            .app {
+                width: 760px;
+            }
+
+            body {
+                display: flex;
+                justify-content: center;
+            }
+
+            .app {
+                background: transparent;
+            }
+        }
+
+        /* =========================
+           Very short portrait
+        ========================= */
+
+        @media (orientation: portrait) and (max-height: 650px) {
+            .card-wrap {
+                height: 43dvh;
+                min-height: 280px;
+                max-height: 340px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =========================
+         Header
+    ========================= -->
+
+    <header class="header">
+
+        <div
+            class="brand"
+            onclick="showPage('home')"
+        >
+            <div class="brand-icon">🐷</div>
+
+            <div class="brand-text">
+                <h1>Peppa Pig English</h1>
+                <p>小猪佩奇英语学习</p>
+            </div>
+        </div>
+
+        <button
+            class="home-btn"
+            onclick="showPage('home')"
+            aria-label="首页"
+        >
+            🏠
+        </button>
+
+    </header>
 
 
-/* =========================================================
-   APP 主容器
-   ========================================================= */
+    <!-- =========================
+         HOME
+    ========================= -->
 
-.app {
-    width: min(
-        calc(100% - 32px),
-        720px
+    <main
+        id="page-home"
+        class="page active"
+    >
+
+        <section class="welcome">
+            <h2>Let's Learn English! 🐷</h2>
+            <p>每天学习一点点，英语越来越棒！</p>
+        </section>
+
+
+        <!-- 学习统计 -->
+
+        <section class="stats-card">
+
+            <div class="stats-title">
+                <span>📊 今日学习</span>
+
+                <span
+                    id="today-date"
+                    class="today-badge"
+                ></span>
+            </div>
+
+
+            <div class="today-main">
+
+                <div class="progress-circle">
+
+                    <svg viewBox="0 0 100 100">
+
+                        <circle
+                            class="circle-bg"
+                            cx="50"
+                            cy="50"
+                            r="40"
+                        ></circle>
+
+                        <circle
+                            id="today-circle"
+                            class="circle-progress"
+                            cx="50"
+                            cy="50"
+                            r="40"
+                        ></circle>
+
+                    </svg>
+
+                    <div
+                        id="today-percent"
+                        class="circle-text"
+                    >
+                        0%
+                    </div>
+
+                </div>
+
+
+                <div class="today-info">
+
+                    <div>
+                        <span
+                            id="today-count"
+                            class="number"
+                        >
+                            0
+                        </span>
+
+                        <span
+                            style="font-size:14px;color:#aaa;"
+                        >
+                            / <span id="today-target">20</span>
+                        </span>
+                    </div>
+
+                    <div class="label">
+                        今日学习单词
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="streak">
+                🔥 连续学习
+                <span id="streak-count">0</span>
+                天
+            </div>
+
+        </section>
+
+
+        <!-- 快速入口 -->
+
+        <div class="quick-grid">
+
+            <button
+                class="quick-card"
+                onclick="showPage('favorites')"
+            >
+                <div class="quick-icon">⭐</div>
+
+                <div>
+                    <div class="quick-title">
+                        我的生词
+                    </div>
+
+                    <div class="quick-sub">
+                        <span id="favorite-count">0</span>
+                        个单词
+                    </div>
+                </div>
+            </button>
+
+
+            <button
+                class="quick-card"
+                onclick="showPage('mastered')"
+            >
+                <div class="quick-icon">✅</div>
+
+                <div>
+                    <div class="quick-title">
+                        已掌握
+                    </div>
+
+                    <div class="quick-sub">
+                        <span id="mastered-count">0</span>
+                        个单词
+                    </div>
+                </div>
+            </button>
+
+
+            <button
+                class="quick-card"
+                onclick="startRandomReview()"
+            >
+                <div class="quick-icon">🔀</div>
+
+                <div>
+                    <div class="quick-title">
+                        随机复习
+                    </div>
+
+                    <div class="quick-sub">
+                        随机抽取
+                    </div>
+                </div>
+            </button>
+
+
+            <button
+                class="quick-card"
+                onclick="showPage('settings')"
+            >
+                <div class="quick-icon">⚙️</div>
+
+                <div>
+                    <div class="quick-title">
+                        设置
+                    </div>
+
+                    <div class="quick-sub">
+                        学习数据
+                    </div>
+                </div>
+            </button>
+
+        </div>
+
+
+        <!-- 第一季 -->
+
+        <div class="section-title">
+
+            <h3>📚 第一季</h3>
+
+            <span>
+                <span id="season-total">0</span> 个单词
+            </span>
+
+        </div>
+
+
+        <div
+            id="episode-list"
+            class="episode-list"
+        ></div>
+
+
+        <div class="footer">
+            🐷 Peppa Pig English
+            <br>
+            Learn • Review • Remember
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         FAVORITES
+    ========================= -->
+
+    <main
+        id="page-favorites"
+        class="page"
+    >
+
+        <div class="back-row">
+
+            <button
+                class="back-btn"
+                onclick="showPage('home')"
+            >
+                ← 返回首页
+            </button>
+
+        </div>
+
+        <div class="section-title">
+            <h3>⭐ 我的生词</h3>
+
+            <span>
+                <span id="favorites-total">0</span> 个
+            </span>
+        </div>
+
+        <div
+            id="favorites-list"
+            class="word-list"
+        ></div>
+
+    </main>
+
+
+    <!-- =========================
+         MASTERED
+    ========================= -->
+
+    <main
+        id="page-mastered"
+        class="page"
+    >
+
+        <div class="back-row">
+
+            <button
+                class="back-btn"
+                onclick="showPage('home')"
+            >
+                ← 返回首页
+            </button>
+
+        </div>
+
+        <div class="section-title">
+            <h3>✅ 已掌握</h3>
+
+            <span>
+                <span id="mastered-total">0</span> 个
+            </span>
+        </div>
+
+        <div
+            id="mastered-list"
+            class="word-list"
+        ></div>
+
+    </main>
+
+
+    <!-- =========================
+         EPISODE WORD LIST
+    ========================= -->
+
+    <main
+        id="page-episode"
+        class="page"
+    >
+
+        <div class="back-row">
+
+            <button
+                class="back-btn"
+                onclick="showPage('home')"
+            >
+                ← 返回第一季
+            </button>
+
+        </div>
+
+        <div
+            id="episode-detail"
+        ></div>
+
+    </main>
+
+
+    <!-- =========================
+         LEARNING
+    ========================= -->
+
+    <main
+        id="page-learning"
+        class="page"
+    >
+
+        <div class="back-row">
+
+            <button
+                class="back-btn"
+                onclick="backFromLearning()"
+            >
+                ← 返回
+            </button>
+
+        </div>
+
+
+        <div class="learning-header">
+
+            <div
+                id="learning-title"
+                class="learning-title"
+            >
+                Learning
+            </div>
+
+            <div
+                id="learning-subtitle"
+                class="learning-subtitle"
+            ></div>
+
+            <div class="learning-progress">
+
+                <div
+                    id="learning-progress-inner"
+                    class="learning-progress-inner"
+                    style="width:0%"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Flash Card -->
+
+        <div class="card-wrap">
+
+            <div
+                id="flash-card"
+                class="flash-card"
+                onclick="flipCard()"
+            >
+
+                <!-- 正面 -->
+
+                <div class="card-face card-front">
+
+                    <div
+                        id="card-word"
+                        class="word"
+                    >
+                        favourite
+                    </div>
+
+                    <div
+                        id="card-phonetic"
+                        class="phonetic"
+                    >
+                    </div>
+
+                    <div class="tap-hint">
+                        👆 点击卡片查看中文
+                    </div>
+
+                </div>
+
+
+                <!-- 背面 -->
+
+                <div class="card-face card-back">
+
+                    <div
+                        id="card-meaning"
+                        class="meaning"
+                    >
+                        最喜欢的
+                    </div>
+
+                    <div
+                        id="card-example"
+                        class="example"
+                    >
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 发音 -->
+
+        <div class="speak-row">
+
+            <button
+                class="small-btn"
+                onclick="speakCurrent(1)"
+            >
+                🔊 正常
+            </button>
+
+            <button
+                class="small-btn"
+                onclick="speakCurrent(0.7)"
+            >
+                🐢 慢速
+            </button>
+
+        </div>
+
+
+        <!-- 操作 -->
+
+        <div class="learning-actions">
+
+            <button
+                id="favorite-btn"
+                class="action-btn"
+                onclick="toggleFavorite()"
+            >
+                ☆ 生词
+            </button>
+
+            <button
+                id="mastered-btn"
+                class="action-btn"
+                onclick="toggleMastered()"
+            >
+                ○ 掌握
+            </button>
+
+            <button
+                class="action-btn primary"
+                onclick="speakCurrent(1)"
+            >
+                🔊 发音
+            </button>
+
+        </div>
+
+
+        <!-- 上一个 / 下一个 -->
+
+        <div class="nav-row">
+
+            <button
+                class="nav-btn"
+                onclick="previousCard()"
+            >
+                ← 上一个
+            </button>
+
+            <button
+                class="nav-btn"
+                onclick="nextCard()"
+            >
+                下一个 →
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         SETTINGS
+    ========================= -->
+
+    <main
+        id="page-settings"
+        class="page"
+    >
+
+        <div class="back-row">
+
+            <button
+                class="back-btn"
+                onclick="showPage('home')"
+            >
+                ← 返回首页
+            </button>
+
+        </div>
+
+        <div class="section-title">
+            <h3>⚙️ 设置</h3>
+        </div>
+
+
+        <div class="settings-card">
+
+            <button
+                class="setting-item"
+                onclick="exportData()"
+            >
+                <div>
+                    <div class="setting-label">
+                        📤 导出学习数据
+                    </div>
+
+                    <div class="setting-desc">
+                        备份你的生词和学习进度
+                    </div>
+                </div>
+
+                <span>›</span>
+            </button>
+
+
+            <button
+                class="setting-item"
+                onclick="showToast('数据导入功能后续加入')"
+            >
+                <div>
+                    <div class="setting-label">
+                        📥 导入学习数据
+                    </div>
+
+                    <div class="setting-desc">
+                        从备份文件恢复
+                    </div>
+                </div>
+
+                <span>›</span>
+            </button>
+
+
+            <button
+                class="setting-item"
+                onclick="resetData()"
+            >
+                <div>
+                    <div
+                        class="setting-label"
+                        style="color:#e45d70;"
+                    >
+                        🗑️ 重置学习数据
+                    </div>
+
+                    <div class="setting-desc">
+                        清除生词、掌握状态和学习记录
+                    </div>
+                </div>
+
+                <span>›</span>
+            </button>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- Toast -->
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
+<script>
+
+    /* =====================================================
+       Peppa Pig English
+       数据区
+       ===================================================== */
+
+    const episodes = [
+
+        {
+            id: "S1E01",
+            title: "Muddy Puddles",
+
+            words: [
+
+                {
+                    word: "favourite",
+                    meaning: "最喜欢的",
+                    phonetic: "/ˈfeɪvərɪt/",
+                    example: "What is your favourite thing?",
+                    exampleCn: "你最喜欢的东西是什么？"
+                },
+
+                {
+                    word: "scare",
+                    meaning: "害怕；吓",
+                    phonetic: "/skeər/",
+                    example: "I don't want to scare you.",
+                    exampleCn: "我不想吓到你。"
+                },
+
+                {
+                    word: "suppertime",
+                    meaning: "晚餐时间",
+                    phonetic: "/ˈsʌpərtaɪm/",
+                    example: "It is nearly suppertime.",
+                    exampleCn: "快到晚餐时间了。"
+                },
+
+                {
+                    word: "pardon",
+                    meaning: "请再说一遍；什么",
+                    phonetic: "/ˈpɑːrdən/",
+                    example: "Pardon?",
+                    exampleCn: "什么？请再说一遍。"
+                },
+
+                {
+                    word: "bath",
+                    meaning: "洗澡",
+                    phonetic: "/bæθ/",
+                    example: "It is time for a bath.",
+                    exampleCn: "该洗澡了。"
+                },
+
+                {
+                    word: "shares",
+                    meaning: "分享",
+                    phonetic: "/ʃerz/",
+                    example: "She shares her toys.",
+                    exampleCn: "她分享她的玩具。"
+                },
+
+                {
+                    word: "throwing",
+                    meaning: "扔；投掷",
+                    phonetic: "/ˈθroʊɪŋ/",
+                    example: "Stop throwing the ball.",
+                    exampleCn: "不要再扔球了。"
+                },
+
+                {
+                    word: "catching",
+                    meaning: "接住；抓住",
+                    phonetic: "/ˈkætʃɪŋ/",
+                    example: "Daddy Pig is catching the ball.",
+                    exampleCn: "猪爸爸正在接球。"
+                },
+
+                {
+                    word: "draughts",
+                    meaning: "国际跳棋",
+                    phonetic: "/drɑːfts/",
+                    example: "George likes playing draughts.",
+                    exampleCn: "乔治喜欢下跳棋。"
+                },
+
+                {
+                    word: "matter",
+                    meaning: "事情；问题",
+                    phonetic: "/ˈmætər/",
+                    example: "What's the matter?",
+                    exampleCn: "怎么了？"
+                },
+
+                {
+                    word: "detective",
+                    meaning: "侦探",
+                    phonetic: "/dɪˈtektɪv/",
+                    example: "Peppa is a little detective.",
+                    exampleCn: "佩奇是一个小侦探。"
+                },
+
+                {
+                    word: "important",
+                    meaning: "重要的",
+                    phonetic: "/ɪmˈpɔːrtənt/",
+                    example: "This is very important.",
+                    exampleCn: "这非常重要。"
+                },
+
+                {
+                    word: "person",
+                    meaning: "人",
+                    phonetic: "/ˈpɜːrsən/",
+                    example: "Who is that person?",
+                    exampleCn: "那个人是谁？"
+                },
+
+                {
+                    word: "might",
+                    meaning: "可能",
+                    phonetic: "/maɪt/",
+                    example: "It might rain.",
+                    exampleCn: "可能会下雨。"
+                },
+
+                {
+                    word: "wonder",
+                    meaning: "想知道；疑惑",
+                    phonetic: "/ˈwʌndər/",
+                    example: "I wonder where it is.",
+                    exampleCn: "我想知道它在哪里。"
+                }
+
+            ]
+        },
+
+
+        {
+            id: "S1E02",
+            title: "Mr Dinosaur Is Lost",
+
+            words: [
+
+                // 后续在这里增加单词
+
+            ]
+        },
+
+
+        {
+            id: "S1E03",
+            title: "Best Friend",
+
+            words: [
+
+                // 后续在这里增加单词
+
+            ]
+        },
+
+
+        {
+            id: "S1E04",
+            title: "Polly Parrot",
+
+            words: [
+
+                // 后续在这里增加单词
+
+            ]
+        },
+
+
+        {
+            id: "S1E05",
+            title: "Hide and Seek",
+
+            words: [
+
+                // 后续在这里增加单词
+
+            ]
+        }
+
+    ];
+
+
+    /* =====================================================
+       Storage
+       ===================================================== */
+
+    const STORAGE = {
+
+        favorites: "peppa_pig_favorites_v3",
+
+        mastered: "peppa_pig_mastered_v3",
+
+        progress: "peppa_pig_progress_v3",
+
+        daily: "peppa_pig_daily_v3",
+
+        streak: "peppa_pig_streak_v3"
+
+    };
+
+
+    function loadSet(key) {
+
+        try {
+
+            return new Set(
+                JSON.parse(
+                    localStorage.getItem(key) || "[]"
+                )
+            );
+
+        } catch (e) {
+
+            return new Set();
+
+        }
+
+    }
+
+
+    let favorites = loadSet(STORAGE.favorites);
+
+    let mastered = loadSet(STORAGE.mastered);
+
+
+    let progress = loadJSON(
+        STORAGE.progress,
+        {}
     );
 
-    min-height: 100vh;
-    min-height: 100dvh;
 
-    margin: 0 auto;
+    let daily = loadJSON(
+        STORAGE.daily,
+        {}
+    );
 
-    padding-top:
-        max(
-            16px,
-            env(safe-area-inset-top)
-        );
 
-    padding-bottom:
-        max(
-            30px,
-            env(safe-area-inset-bottom)
-        );
-}
+    let streakData = loadJSON(
+        STORAGE.streak,
+        {
+            lastDate: "",
+            count: 0
+        }
+    );
 
 
-/* =========================================================
-   通用 Page
-   ========================================================= */
+    function loadJSON(key, defaultValue) {
 
-.page {
-    width: 100%;
-    min-width: 0;
-}
+        try {
 
+            return JSON.parse(
+                localStorage.getItem(key)
+            ) || defaultValue;
 
-/* =========================================================
-   首页
-   ========================================================= */
+        } catch (e) {
 
-.home-header {
-    text-align: center;
+            return defaultValue;
 
-    padding-top:
-        clamp(
-            8px,
-            3vh,
-            30px
-        );
+        }
 
-    padding-bottom: 8px;
-}
-
-.logo {
-    font-size:
-        clamp(
-            40px,
-            12vw,
-            58px
-        );
-
-    line-height: 1;
-
-    margin-bottom: 8px;
-}
-
-.home-title {
-    margin: 0;
-
-    font-size:
-        clamp(
-            24px,
-            7vw,
-            32px
-        );
-
-    line-height: 1.2;
-
-    font-weight: 800;
-}
-
-.home-subtitle {
-    margin-top: 8px;
-
-    color: #777;
-
-    font-size:
-        clamp(
-            13px,
-            3.5vw,
-            15px
-        );
-}
-
-
-/* =========================================================
-   Section
-   ========================================================= */
-
-.section-title {
-    font-size:
-        clamp(
-            18px,
-            5vw,
-            21px
-        );
-
-    font-weight: 750;
-
-    margin:
-        clamp(20px, 5vh, 30px)
-        0
-        12px;
-
-    text-align: left;
-}
-
-
-/* =========================================================
-   首页菜单
-   ========================================================= */
-
-.menu-list {
-    display: flex;
-    flex-direction: column;
-
-    gap:
-        clamp(
-            8px,
-            2vw,
-            13px
-        );
-}
-
-.menu-item {
-    width: 100%;
-
-    background: white;
-
-    border-radius:
-        clamp(
-            14px,
-            4vw,
-            19px
-        );
-
-    padding:
-        clamp(
-            13px,
-            4vw,
-            18px
-        );
-
-    display: flex;
-    align-items: center;
-
-    text-align: left;
-
-    box-shadow:
-        0 6px 20px
-        rgba(0,0,0,.07);
-
-    transition:
-        transform .15s ease;
-}
-
-.menu-item:active {
-    transform: scale(.98);
-}
-
-.menu-icon {
-    width:
-        clamp(
-            42px,
-            12vw,
-            50px
-        );
-
-    height:
-        clamp(
-            42px,
-            12vw,
-            50px
-        );
-
-    border-radius:
-        clamp(
-            12px,
-            3vw,
-            15px
-        );
-
-    background: #f3f3f3;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size:
-        clamp(
-            21px,
-            6vw,
-            26px
-        );
-
-    flex-shrink: 0;
-
-    margin-right:
-        clamp(
-            10px,
-            3vw,
-            14px
-        );
-}
-
-.menu-content {
-    flex: 1;
-    min-width: 0;
-}
-
-.menu-title {
-    font-size:
-        clamp(
-            15px,
-            4.2vw,
-            18px
-        );
-
-    font-weight: 700;
-
-    margin-bottom: 4px;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.menu-desc {
-    color: #888;
-
-    font-size:
-        clamp(
-            12px,
-            3.3vw,
-            14px
-        );
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.menu-arrow {
-    color: #aaa;
-
-    font-size:
-        clamp(
-            20px,
-            6vw,
-            24px
-        );
-
-    margin-left: 8px;
-}
-
-
-/* =========================================================
-   首页统计
-   ========================================================= */
-
-.stats {
-    margin-top:
-        clamp(
-            14px,
-            4vw,
-            21px
-        );
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap:
-        clamp(
-            6px,
-            2vw,
-            10px
-        );
-}
-
-.stat {
-    background: white;
-
-    border-radius:
-        clamp(
-            12px,
-            3vw,
-            17px
-        );
-
-    padding:
-        clamp(
-            11px,
-            3vw,
-            16px
-        )
-        5px;
-
-    text-align: center;
-
-    box-shadow:
-        0 5px 15px
-        rgba(0,0,0,.06);
-}
-
-.stat-number {
-    font-size:
-        clamp(
-            19px,
-            6vw,
-            25px
-        );
-
-    font-weight: 800;
-}
-
-.stat-label {
-    color: #888;
-
-    font-size:
-        clamp(
-            10px,
-            3vw,
-            13px
-        );
-
-    margin-top: 3px;
-}
-
-
-/* =========================================================
-   顶部导航
-   ========================================================= */
-
-.topbar {
-    width: 100%;
-
-    min-height:
-        clamp(
-            38px,
-            10vw,
-            44px
-        );
-
-    display: flex;
-    align-items: center;
-
-    margin-bottom:
-        clamp(
-            10px,
-            3vw,
-            16px
-        );
-}
-
-.back-btn {
-    flex-shrink: 0;
-
-    background: white;
-
-    border-radius:
-        clamp(
-            9px,
-            3vw,
-            13px
-        );
-
-    padding:
-        clamp(
-            8px,
-            2.5vw,
-            11px
-        )
-        clamp(
-            10px,
-            3vw,
-            15px
-        );
-
-    font-size:
-        clamp(
-            13px,
-            3.5vw,
-            15px
-        );
-
-    box-shadow:
-        0 4px 12px
-        rgba(0,0,0,.06);
-}
-
-.topbar-title {
-    flex: 1;
-
-    min-width: 0;
-
-    text-align: center;
-
-    font-weight: 750;
-
-    font-size:
-        clamp(
-            15px,
-            4.5vw,
-            18px
-        );
-
-    margin:
-        0
-        clamp(6px, 2vw, 10px);
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-}
-
-.topbar-placeholder {
-    width:
-        clamp(
-            60px,
-            18vw,
-            75px
-        );
-
-    flex-shrink: 0;
-}
-
-
-/* =========================================================
-   Episode
-   ========================================================= */
-
-.episode-list {
-    display: flex;
-    flex-direction: column;
-
-    gap:
-        clamp(
-            8px,
-            2.5vw,
-            13px
-        );
-}
-
-.episode-card {
-    width: 100%;
-
-    background: white;
-
-    border-radius:
-        clamp(
-            14px,
-            4vw,
-            19px
-        );
-
-    padding:
-        clamp(
-            14px,
-            4vw,
-            19px
-        );
-
-    box-shadow:
-        0 6px 20px
-        rgba(0,0,0,.07);
-
-    text-align: left;
-
-    transition:
-        transform .15s ease;
-}
-
-.episode-card:active {
-    transform: scale(.985);
-}
-
-.episode-row {
-    display: flex;
-    align-items: center;
-    min-width: 0;
-}
-
-.episode-icon {
-    width:
-        clamp(
-            42px,
-            13vw,
-            52px
-        );
-
-    height:
-        clamp(
-            42px,
-            13vw,
-            52px
-        );
-
-    flex-shrink: 0;
-
-    background: #f3f3f3;
-
-    border-radius:
-        clamp(
-            12px,
-            3.5vw,
-            16px
-        );
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-size:
-        clamp(
-            21px,
-            6vw,
-            27px
-        );
-
-    margin-right:
-        clamp(
-            10px,
-            3vw,
-            15px
-        );
-}
-
-.episode-info {
-    flex: 1;
-    min-width: 0;
-}
-
-.episode-title {
-    font-size:
-        clamp(
-            15px,
-            4.2vw,
-            18px
-        );
-
-    font-weight: 750;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.episode-cn {
-    color: #888;
-
-    font-size:
-        clamp(
-            12px,
-            3.3vw,
-            14px
-        );
-
-    margin-top: 5px;
-}
-
-.episode-count {
-    flex-shrink: 0;
-
-    color: #999;
-
-    font-size:
-        clamp(
-            11px,
-            3vw,
-            14px
-        );
-
-    margin-left: 8px;
-}
-
-.episode-progress {
-    width: 100%;
-
-    height:
-        clamp(
-            4px,
-            1.3vw,
-            6px
-        );
-
-    background: #eee;
-
-    border-radius: 999px;
-
-    margin-top:
-        clamp(
-            10px,
-            3vw,
-            15px
-        );
-
-    overflow: hidden;
-}
-
-.episode-progress-bar {
-    height: 100%;
-
-    background: #222;
-
-    border-radius: 999px;
-
-    transition:
-        width .25s ease;
-}
-
-
-/* =========================================================
-   学习页面
-   ========================================================= */
-
-.learning-header {
-    text-align: center;
-
-    width: 100%;
-}
-
-.learning-title {
-    font-size:
-        clamp(
-            17px,
-            5vw,
-            20px
-        );
-
-    font-weight: 750;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-}
-
-.learning-subtitle {
-    color: #888;
-
-    font-size:
-        clamp(
-            12px,
-            3.3vw,
-            14px
-        );
-
-    margin-top: 4px;
-}
-
-.progress {
-    font-size:
-        clamp(
-            12px,
-            3.5vw,
-            15px
-        );
-
-    color: #666;
-
-    margin:
-        clamp(
-            9px,
-            2.5vw,
-            14px
-        )
-        0
-        9px;
-
-    text-align: center;
-}
-
-.progress-bar {
-    width: 100%;
-
-    height:
-        clamp(
-            4px,
-            1.2vw,
-            6px
-        );
-
-    background: #ddd;
-
-    border-radius: 999px;
-
-    overflow: hidden;
-
-    margin-bottom:
-        clamp(
-            10px,
-            3vw,
-            16px
-        );
-}
-
-.progress-fill {
-    height: 100%;
-
-    background: #222;
-
-    border-radius: 999px;
-
-    transition:
-        width .25s ease;
-}
-
-
-/* =========================================================
-   ⭐ 核心：Flash Card 自适应高度
-   ========================================================= */
-
-.card-wrap {
-    width: 100%;
-
-    /*
-       根据屏幕高度自动计算。
-
-       手机：
-       约 45~52vh
-
-       大屏：
-       最大 410px
-
-       最小：
-       300px
-    */
-
-    height:
-        clamp(
-            300px,
-            50dvh,
-            410px
-        );
-
-    min-height: 300px;
-    max-height: 410px;
-
-    perspective: 1200px;
-
-    cursor: pointer;
-
-    user-select: none;
-
-    touch-action: pan-y;
-}
-
-.card {
-    width: 100%;
-    height: 100%;
-
-    position: relative;
-
-    transform-style: preserve-3d;
-
-    transition:
-        transform .45s ease;
-}
-
-.card.flipped {
-    transform:
-        rotateY(180deg);
-}
-
-.face {
-    position: absolute;
-
-    inset: 0;
-
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-
-    border-radius:
-        clamp(
-            18px,
-            5vw,
-            25px
-        );
-
-    background: white;
-
-    box-shadow:
-        0 14px 40px
-        rgba(0,0,0,.12);
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
-    padding:
-        clamp(
-            18px,
-            6vw,
-            34px
-        );
-
-    overflow: hidden;
-}
-
-.front {
-    text-align: center;
-}
-
-.back {
-    transform:
-        rotateY(180deg);
-
-    text-align: left;
-
-    align-items: stretch;
-
-    overflow-y: auto;
-
-    -webkit-overflow-scrolling: touch;
-}
-
-
-/* =========================================================
-   单词
-   ========================================================= */
-
-.word {
-    font-size:
-        clamp(
-            38px,
-            10vw,
-            76px
-        );
-
-    line-height: 1.05;
-
-    font-weight: 800;
-
-    margin-bottom:
-        clamp(
-            8px,
-            2.5vw,
-            13px
-        );
-
-    max-width: 100%;
-
-    overflow-wrap: break-word;
-
-    word-break: break-word;
-}
-
-.ipa {
-    color: #777;
-
-    font-size:
-        clamp(
-            16px,
-            5vw,
-            21px
-        );
-
-    line-height: 1.2;
-
-    margin-bottom:
-        clamp(
-            16px,
-            5vw,
-            26px
-        );
-}
-
-.hint {
-    color: #aaa;
-
-    font-size:
-        clamp(
-            12px,
-            3.5vw,
-            15px
-        );
-
-    line-height: 1.5;
-
-    text-align: center;
-}
-
-
-/* =========================================================
-   卡片背面
-   ========================================================= */
-
-.tag {
-    display: inline-block;
-
-    align-self: center;
-
-    padding:
-        5px
-        11px;
-
-    border-radius: 999px;
-
-    background: #eee;
-
-    color: #666;
-
-    font-size:
-        clamp(
-            11px,
-            3vw,
-            14px
-        );
-
-    margin-bottom:
-        clamp(
-            9px,
-            3vw,
-            15px
-        );
-}
-
-.meaning {
-    font-size:
-        clamp(
-            25px,
-            8vw,
-            35px
-        );
-
-    line-height: 1.2;
-
-    font-weight: 750;
-
-    margin-bottom:
-        clamp(
-            10px,
-            3vw,
-            20px
-        );
-
-    text-align: center;
-}
-
-.example {
-    font-size:
-        clamp(
-            17px,
-            5vw,
-            23px
-        );
-
-    line-height: 1.45;
-
-    margin:
-        8px 0;
-
-    overflow-wrap: break-word;
-}
-
-.translation {
-    color: #666;
-
-    font-size:
-        clamp(
-            14px,
-            4vw,
-            19px
-        );
-
-    line-height: 1.5;
-
-    overflow-wrap: break-word;
-}
-
-
-/* =========================================================
-   学习按钮
-   ========================================================= */
-
-.controls {
-    width: 100%;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap:
-        clamp(
-            6px,
-            2vw,
-            11px
-        );
-
-    margin-top:
-        clamp(
-            10px,
-            3vw,
-            18px
-        );
-}
-
-.controls button {
-    min-width: 0;
-
-    background: white;
-
-    border-radius:
-        clamp(
-            11px,
-            3.5vw,
-            15px
-        );
-
-    padding:
-        clamp(
-            11px,
-            3.5vw,
-            15px
-        )
-        5px;
-
-    font-size:
-        clamp(
-            13px,
-            3.8vw,
-            16px
-        );
-
-    white-space: nowrap;
-
-    box-shadow:
-        0 5px 15px
-        rgba(0,0,0,.08);
-}
-
-.controls button:active {
-    transform: scale(.97);
-}
-
-
-/* =========================================================
-   学习工具
-   ========================================================= */
-
-.learning-tools {
-    width: 100%;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap:
-        clamp(
-            6px,
-            2vw,
-            11px
-        );
-
-    margin-top:
-        clamp(
-            7px,
-            2vw,
-            11px
-        );
-}
-
-.learning-tools button {
-    min-width: 0;
-
-    background: white;
-
-    border-radius:
-        clamp(
-            11px,
-            3.5vw,
-            15px
-        );
-
-    padding:
-        clamp(
-            10px,
-            3vw,
-            13px
-        )
-        4px;
-
-    font-size:
-        clamp(
-            12px,
-            3.5vw,
-            15px
-        );
-
-    white-space: nowrap;
-
-    box-shadow:
-        0 5px 15px
-        rgba(0,0,0,.06);
-}
-
-.learning-tools button:active {
-    transform: scale(.97);
-}
-
-.favorite.active {
-    background: #f1f1f1;
-
-    font-weight: 700;
-}
-
-.mastered.active {
-    background: #222;
-
-    color: white;
-
-    font-weight: 700;
-}
-
-
-/* =========================================================
-   提示
-   ========================================================= */
-
-.tip {
-    margin-top:
-        clamp(
-            9px,
-            2.5vw,
-            16px
-        );
-
-    color: #999;
-
-    font-size:
-        clamp(
-            10px,
-            3vw,
-            13px
-        );
-
-    text-align: center;
-
-    line-height: 1.4;
-}
-
-
-/* =========================================================
-   单词列表
-   ========================================================= */
-
-.word-list {
-    display: flex;
-    flex-direction: column;
-
-    gap:
-        clamp(
-            7px,
-            2vw,
-            11px
-        );
-}
-
-.word-item {
-    width: 100%;
-
-    background: white;
-
-    border-radius:
-        clamp(
-            13px,
-            4vw,
-            17px
-        );
-
-    padding:
-        clamp(
-            12px,
-            3.5vw,
-            16px
-        );
-
-    box-shadow:
-        0 5px 15px
-        rgba(0,0,0,.06);
-
-    display: flex;
-    align-items: center;
-
-    min-width: 0;
-}
-
-.word-main {
-    flex: 1;
-
-    min-width: 0;
-}
-
-.word-title {
-    font-size:
-        clamp(
-            18px,
-            5vw,
-            21px
-        );
-
-    font-weight: 750;
-
-    overflow-wrap: break-word;
-}
-
-.word-meaning {
-    color: #666;
-
-    margin-top: 4px;
-
-    font-size:
-        clamp(
-            13px,
-            3.5vw,
-            15px
-        );
-}
-
-.word-episode {
-    color: #999;
-
-    font-size:
-        clamp(
-            10px,
-            3vw,
-            13px
-        );
-
-    margin-top: 4px;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-}
-
-.word-actions {
-    display: flex;
-
-    gap:
-        clamp(
-            4px,
-            1.5vw,
-            7px
-        );
-
-    margin-left: 8px;
-
-    flex-shrink: 0;
-}
-
-.small-btn {
-    background: #f3f3f3;
-
-    border-radius:
-        clamp(
-            8px,
-            2.5vw,
-            11px
-        );
-
-    padding:
-        clamp(
-            7px,
-            2.5vw,
-            10px
-        );
-
-    font-size:
-        clamp(
-            13px,
-            4vw,
-            16px
-        );
-}
-
-
-/* =========================================================
-   Empty
-   ========================================================= */
-
-.empty {
-    background: white;
-
-    border-radius:
-        clamp(
-            15px,
-            4vw,
-            19px
-        );
-
-    padding:
-        clamp(
-            35px,
-            12vw,
-            48px
-        )
-        20px;
-
-    text-align: center;
-
-    color: #888;
-
-    box-shadow:
-        0 6px 20px
-        rgba(0,0,0,.06);
-}
-
-.empty-icon {
-    font-size:
-        clamp(
-            38px,
-            12vw,
-            48px
-        );
-
-    margin-bottom: 12px;
-}
-
-.empty-title {
-    font-size:
-        clamp(
-            16px,
-            5vw,
-            19px
-        );
-
-    font-weight: 700;
-
-    color: #555;
-
-    margin-bottom: 8px;
-}
-
-.empty-desc {
-    font-size:
-        clamp(
-            12px,
-            3.5vw,
-            14px
-        );
-
-    line-height: 1.6;
-}
-
-
-/* =========================================================
-   Toast
-   ========================================================= */
-
-.toast {
-    position: fixed;
-
-    left: 50%;
-
-    bottom:
-        max(
-            25px,
-            env(safe-area-inset-bottom)
-        );
-
-    transform:
-        translateX(-50%);
-
-    background:
-        rgba(0,0,0,.82);
-
-    color: white;
-
-    padding:
-        9px
-        16px;
-
-    border-radius: 999px;
-
-    font-size:
-        clamp(
-            12px,
-            3.5vw,
-            14px
-        );
-
-    z-index: 9999;
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    transition:
-        opacity .2s ease;
-
-    white-space: nowrap;
-
-    max-width:
-        calc(100vw - 40px);
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-}
-
-.toast.show {
-    opacity: 1;
-}
-
-
-/* =========================================================
-   小屏手机
-   ========================================================= */
-
-@media (max-width: 380px) {
-
-    .app {
-        width: calc(100% - 24px);
     }
 
-    .card-wrap {
-        height:
-            clamp(
-                285px,
-                47dvh,
-                350px
+
+    function saveData() {
+
+        localStorage.setItem(
+            STORAGE.favorites,
+            JSON.stringify([...favorites])
+        );
+
+        localStorage.setItem(
+            STORAGE.mastered,
+            JSON.stringify([...mastered])
+        );
+
+        localStorage.setItem(
+            STORAGE.progress,
+            JSON.stringify(progress)
+        );
+
+        localStorage.setItem(
+            STORAGE.daily,
+            JSON.stringify(daily)
+        );
+
+        localStorage.setItem(
+            STORAGE.streak,
+            JSON.stringify(streakData)
+        );
+
+    }
+
+
+    /* =====================================================
+       Global learning state
+       ===================================================== */
+
+    let currentEpisode = null;
+
+    let currentWords = [];
+
+    let currentIndex = 0;
+
+    let learningFrom = "episode";
+
+    let isFlipped = false;
+
+
+    /* =====================================================
+       Helpers
+       ===================================================== */
+
+    function allWords() {
+
+        const result = [];
+
+        episodes.forEach(ep => {
+
+            ep.words.forEach((word, index) => {
+
+                result.push({
+                    ...word,
+                    episodeId: ep.id,
+                    episodeTitle: ep.title,
+                    index
+                });
+
+            });
+
+        });
+
+        return result;
+
+    }
+
+
+    function wordKey(word) {
+
+        return `${word.episodeId}:${word.word}`;
+
+    }
+
+
+    function todayKey() {
+
+        const now = new Date();
+
+        const y = now.getFullYear();
+
+        const m = String(
+            now.getMonth() + 1
+        ).padStart(2, "0");
+
+        const d = String(
+            now.getDate()
+        ).padStart(2, "0");
+
+        return `${y}-${m}-${d}`;
+
+    }
+
+
+    function formatToday() {
+
+        const now = new Date();
+
+        return `${now.getMonth() + 1}月${now.getDate()}日`;
+
+    }
+
+
+    /* =====================================================
+       Page navigation
+       ===================================================== */
+
+    function showPage(page) {
+
+        document
+            .querySelectorAll(".page")
+            .forEach(el => {
+
+                el.classList.remove("active");
+
+            });
+
+
+        const target =
+            document.getElementById(
+                `page-${page}`
             );
 
-        min-height: 285px;
+
+        if (target) {
+
+            target.classList.add("active");
+
+        }
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+
+        if (page === "home") {
+
+            renderHome();
+
+        }
+
+        if (page === "favorites") {
+
+            renderFavorites();
+
+        }
+
+        if (page === "mastered") {
+
+            renderMastered();
+
+        }
+
     }
 
-    .face {
-        padding: 18px;
+
+    /* =====================================================
+       Home
+       ===================================================== */
+
+    function renderHome() {
+
+        renderEpisodes();
+
+        updateStats();
+
     }
 
-    .word {
-        font-size: 39px;
-    }
 
-    .meaning {
-        font-size: 24px;
-    }
+    function renderEpisodes() {
 
-    .example {
-        font-size: 16px;
-    }
-
-    .translation {
-        font-size: 14px;
-    }
-
-    .controls button {
-        font-size: 12px;
-    }
-
-    .learning-tools button {
-        font-size: 11px;
-    }
-
-    .tip {
-        font-size: 10px;
-    }
-}
-
-
-/* =========================================================
-   普通手机
-   ========================================================= */
-
-@media (min-width: 381px) and (max-width: 600px) {
-
-    .card-wrap {
-        height:
-            clamp(
-                320px,
-                50dvh,
-                395px
+        const container =
+            document.getElementById(
+                "episode-list"
             );
 
-        min-height: 320px;
+
+        container.innerHTML = "";
+
+
+        let seasonTotal = 0;
+
+
+        episodes.forEach(ep => {
+
+            const total =
+                ep.words.length;
+
+
+            seasonTotal += total;
+
+
+            const masteredCount =
+                ep.words.filter(word =>
+                    mastered.has(
+                        wordKey({
+                            ...word,
+                            episodeId: ep.id
+                        })
+                    )
+                ).length;
+
+
+            const percent =
+                total > 0
+                    ? Math.round(
+                        masteredCount /
+                        total *
+                        100
+                    )
+                    : 0;
+
+
+            const card =
+                document.createElement(
+                    "button"
+                );
+
+
+            card.className =
+                "episode-card";
+
+
+            card.onclick = () =>
+                openEpisode(ep.id);
+
+
+            card.innerHTML = `
+
+                <div class="episode-number">
+                    ${ep.id.replace("S1E", "E")}
+                </div>
+
+                <div class="episode-info">
+
+                    <div class="episode-title">
+                        ${escapeHTML(ep.title)}
+                    </div>
+
+                    <div class="episode-meta">
+
+                        <span>
+                            📖 ${total} 个单词
+                        </span>
+
+                        <span>
+                            ✅ ${masteredCount}
+                        </span>
+
+                        ${
+                            total === 0
+                                ? "<span>🚧 待添加</span>"
+                                : ""
+                        }
+
+                    </div>
+
+                    <div class="episode-progress">
+
+                        <div
+                            class="episode-progress-inner"
+                            style="width:${percent}%"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+                <div class="episode-arrow">
+                    ›
+                </div>
+
+            `;
+
+
+            container.appendChild(card);
+
+        });
+
+
+        document.getElementById(
+            "season-total"
+        ).textContent = seasonTotal;
+
     }
-}
 
 
-/* =========================================================
-   手机横屏
-   ========================================================= */
+    /* =====================================================
+       Stats
+       ===================================================== */
 
-@media (
-    max-height: 500px
-) and (
-    orientation: landscape
-) {
+    function updateStats() {
 
-    .app {
-        padding-top: 10px;
-        padding-bottom: 15px;
+        const today =
+            todayKey();
+
+
+        const todayCount =
+            daily[today]?.count || 0;
+
+
+        const target = 20;
+
+
+        const percent =
+            Math.min(
+                100,
+                Math.round(
+                    todayCount /
+                    target *
+                    100
+                )
+            );
+
+
+        document.getElementById(
+            "today-date"
+        ).textContent =
+            formatToday();
+
+
+        document.getElementById(
+            "today-count"
+        ).textContent =
+            todayCount;
+
+
+        document.getElementById(
+            "today-target"
+        ).textContent =
+            target;
+
+
+        document.getElementById(
+            "today-percent"
+        ).textContent =
+            `${percent}%`;
+
+
+        const circle =
+            document.getElementById(
+                "today-circle"
+            );
+
+
+        const radius = 40;
+
+        const circumference =
+            2 * Math.PI * radius;
+
+
+        circle.style.strokeDasharray =
+            circumference;
+
+
+        circle.style.strokeDashoffset =
+            circumference *
+            (1 - percent / 100);
+
+
+        document.getElementById(
+            "favorite-count"
+        ).textContent =
+            favorites.size;
+
+
+        document.getElementById(
+            "mastered-count"
+        ).textContent =
+            mastered.size;
+
+
+        document.getElementById(
+            "streak-count"
+        ).textContent =
+            streakData.count || 0;
+
     }
 
-    .card-wrap {
-        height: 58dvh;
-        min-height: 230px;
-        max-height: 330px;
+
+    /* =====================================================
+       Episode
+       ===================================================== */
+
+    function openEpisode(id) {
+
+        const ep =
+            episodes.find(
+                item => item.id === id
+            );
+
+
+        if (!ep) return;
+
+
+        currentEpisode = ep;
+
+
+        renderEpisodeDetail(ep);
+
+
+        showPage("episode");
+
     }
 
-    .home-header {
-        padding-top: 5px;
+
+    function renderEpisodeDetail(ep) {
+
+        const container =
+            document.getElementById(
+                "episode-detail"
+            );
+
+
+        const total =
+            ep.words.length;
+
+
+        const masteredCount =
+            ep.words.filter(word =>
+                mastered.has(
+                    wordKey({
+                        ...word,
+                        episodeId: ep.id
+                    })
+                )
+            ).length;
+
+
+        const percent =
+            total
+                ? Math.round(
+                    masteredCount /
+                    total *
+                    100
+                )
+                : 0;
+
+
+        let html = `
+
+            <div class="section-title">
+
+                <h3>
+                    ${ep.id} ${escapeHTML(ep.title)}
+                </h3>
+
+                <span>
+                    ${total} 个单词
+                </span>
+
+            </div>
+
+            <div class="list-summary">
+
+                <div>
+                    <strong>${masteredCount}</strong>
+                    <span style="color:#aaa;font-size:12px;">
+                        / ${total} 已掌握
+                    </span>
+                </div>
+
+                <div style="color:#ff8fab;font-weight:800;">
+                    ${percent}%
+                </div>
+
+            </div>
+
+        `;
+
+
+        if (total === 0) {
+
+            html += `
+
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        🚧
+                    </div>
+
+                    <div class="empty-title">
+                        本集单词正在整理中
+                    </div>
+
+                    <div class="empty-text">
+                        后续只需要在代码中的
+                        words 数组添加单词即可
+                    </div>
+
+                </div>
+
+            `;
+
+        } else {
+
+            html += `
+
+                <button
+                    class="action-btn primary"
+                    style="width:100%;margin-bottom:14px;"
+                    onclick="startEpisode('${ep.id}')"
+                >
+                    🃏 开始学习
+                </button>
+
+                <div class="word-list">
+
+            `;
+
+
+            ep.words.forEach(word => {
+
+                const key =
+                    wordKey({
+                        ...word,
+                        episodeId: ep.id
+                    });
+
+
+                const isMastered =
+                    mastered.has(key);
+
+
+                const isFavorite =
+                    favorites.has(key);
+
+
+                html += `
+
+                    <div class="word-item">
+
+                        <div class="word-item-main">
+
+                            <div class="word-item-word">
+                                ${escapeHTML(word.word)}
+                            </div>
+
+                            <div class="word-item-meaning">
+                                ${escapeHTML(word.meaning)}
+                            </div>
+
+                        </div>
+
+                        <div class="word-item-actions">
+
+                            <button
+                                class="mini-btn"
+                                onclick="speakWord(
+                                    '${escapeJS(word.word)}'
+                                )"
+                            >
+                                🔊
+                            </button>
+
+                            <button
+                                class="mini-btn"
+                                onclick="startSingleWord(
+                                    '${ep.id}',
+                                    '${escapeJS(word.word)}'
+                                )"
+                            >
+                                ▶
+                            </button>
+
+                            ${
+                                isFavorite
+                                    ? "<span>⭐</span>"
+                                    : ""
+                            }
+
+                            ${
+                                isMastered
+                                    ? "<span>✅</span>"
+                                    : ""
+                            }
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            });
+
+
+            html += `</div>`;
+
+        }
+
+
+        container.innerHTML = html;
+
     }
 
-    .logo {
-        font-size: 34px;
+
+    /* =====================================================
+       Start learning
+       ===================================================== */
+
+    function startEpisode(id) {
+
+        const ep =
+            episodes.find(
+                item => item.id === id
+            );
+
+
+        if (!ep || !ep.words.length) {
+
+            showToast("本集暂时还没有单词");
+
+            return;
+
+        }
+
+
+        currentEpisode = ep;
+
+        currentWords =
+            ep.words.map(word => ({
+                ...word,
+                episodeId: ep.id,
+                episodeTitle: ep.title
+            }));
+
+        currentIndex = 0;
+
+        learningFrom = "episode";
+
+
+        showPage("learning");
+
+        renderCard();
+
     }
 
-    .home-title {
-        font-size: 22px;
+
+    function startSingleWord(
+        episodeId,
+        wordText
+    ) {
+
+        const ep =
+            episodes.find(
+                item => item.id === episodeId
+            );
+
+
+        if (!ep) return;
+
+
+        const word =
+            ep.words.find(
+                item => item.word === wordText
+            );
+
+
+        if (!word) return;
+
+
+        currentEpisode = ep;
+
+
+        currentWords = [{
+            ...word,
+            episodeId: ep.id,
+            episodeTitle: ep.title
+        }];
+
+
+        currentIndex = 0;
+
+        learningFrom = "episode";
+
+
+        showPage("learning");
+
+        renderCard();
+
     }
 
-    .section-title {
-        margin-top: 15px;
+
+    function startRandomReview() {
+
+        const words =
+            allWords();
+
+
+        if (!words.length) {
+
+            showToast("目前还没有单词");
+
+            return;
+
+        }
+
+
+        let pool =
+            words.filter(word =>
+                !mastered.has(
+                    wordKey(word)
+                )
+            );
+
+
+        if (!pool.length) {
+
+            pool = words;
+
+            showToast(
+                "所有未掌握单词都复习完了，开始复习全部单词"
+            );
+
+        }
+
+
+        pool =
+            shuffle(pool);
+
+
+        currentWords = pool;
+
+        currentIndex = 0;
+
+        currentEpisode = null;
+
+        learningFrom = "random";
+
+
+        showPage("learning");
+
+        renderCard();
+
     }
 
-}
+
+    /* =====================================================
+       Render card
+       ===================================================== */
+
+    function renderCard() {
+
+        if (!currentWords.length) return;
 
 
-/* =========================================================
-   平板
-   ========================================================= */
+        const word =
+            currentWords[currentIndex];
 
-@media (min-width: 601px) {
 
-    .app {
-        width: min(
-            calc(100% - 48px),
-            720px
+        isFlipped = false;
+
+
+        const card =
+            document.getElementById(
+                "flash-card"
+            );
+
+
+        card.classList.remove(
+            "flipped"
         );
+
+
+        document.getElementById(
+            "card-word"
+        ).textContent =
+            word.word;
+
+
+        document.getElementById(
+            "card-phonetic"
+        ).textContent =
+            word.phonetic || "";
+
+
+        document.getElementById(
+            "card-meaning"
+        ).textContent =
+            word.meaning;
+
+
+        document.getElementById(
+            "card-example"
+        ).innerHTML = `
+
+            ${escapeHTML(word.example || "")}
+
+            ${
+                word.exampleCn
+                    ? `
+                        <div class="example-cn">
+                            ${escapeHTML(word.exampleCn)}
+                        </div>
+                    `
+                    : ""
+            }
+
+        `;
+
+
+        const title =
+            learningFrom === "random"
+                ? "🔀 随机复习"
+                : (
+                    currentEpisode
+                        ? currentEpisode.title
+                        : "学习"
+                );
+
+
+        document.getElementById(
+            "learning-title"
+        ).textContent =
+            title;
+
+
+        document.getElementById(
+            "learning-subtitle"
+        ).textContent =
+            `${currentIndex + 1} / ${currentWords.length}`;
+
+
+        const percent =
+            (
+                (currentIndex + 1) /
+                currentWords.length *
+                100
+            ).toFixed(1);
+
+
+        document.getElementById(
+            "learning-progress-inner"
+        ).style.width =
+            `${percent}%`;
+
+
+        updateLearningButtons();
+
+
+        markDailyLearning(word);
+
     }
 
-    .card-wrap {
-        height: min(
-            52dvh,
-            410px
+
+    /* =====================================================
+       Card flip
+       ===================================================== */
+
+    function flipCard() {
+
+        isFlipped =
+            !isFlipped;
+
+
+        document
+            .getElementById("flash-card")
+            .classList.toggle(
+                "flipped",
+                isFlipped
+            );
+
+    }
+
+
+    /* =====================================================
+       Navigation
+       ===================================================== */
+
+    function previousCard() {
+
+        if (!currentWords.length)
+            return;
+
+
+        currentIndex--;
+
+
+        if (currentIndex < 0) {
+
+            currentIndex =
+                currentWords.length - 1;
+
+        }
+
+
+        renderCard();
+
+    }
+
+
+    function nextCard() {
+
+        if (!currentWords.length)
+            return;
+
+
+        if (
+            currentIndex <
+            currentWords.length - 1
+        ) {
+
+            currentIndex++;
+
+            renderCard();
+
+        } else {
+
+            showToast(
+                "🎉 本轮学习完成！"
+            );
+
+            currentIndex = 0;
+
+            renderCard();
+
+        }
+
+    }
+
+
+    function backFromLearning() {
+
+        if (
+            learningFrom === "random"
+        ) {
+
+            showPage("home");
+
+            return;
+
+        }
+
+
+        if (currentEpisode) {
+
+            openEpisode(
+                currentEpisode.id
+            );
+
+        } else {
+
+            showPage("home");
+
+        }
+
+    }
+
+
+    /* =====================================================
+       Favorite
+       ===================================================== */
+
+    function toggleFavorite() {
+
+        const word =
+            currentWords[currentIndex];
+
+
+        if (!word) return;
+
+
+        const key =
+            wordKey(word);
+
+
+        if (favorites.has(key)) {
+
+            favorites.delete(key);
+
+            showToast(
+                "已从生词中移除"
+            );
+
+        } else {
+
+            favorites.add(key);
+
+            showToast(
+                "⭐ 已加入我的生词"
+            );
+
+        }
+
+
+        saveData();
+
+        updateLearningButtons();
+
+        updateStats();
+
+    }
+
+
+    /* =====================================================
+       Mastered
+       ===================================================== */
+
+    function toggleMastered() {
+
+        const word =
+            currentWords[currentIndex];
+
+
+        if (!word) return;
+
+
+        const key =
+            wordKey(word);
+
+
+        if (mastered.has(key)) {
+
+            mastered.delete(key);
+
+            showToast(
+                "已取消掌握"
+            );
+
+        } else {
+
+            mastered.add(key);
+
+            showToast(
+                "✅ 已标记为掌握"
+            );
+
+        }
+
+
+        saveData();
+
+        updateLearningButtons();
+
+        updateStats();
+
+        renderEpisodes();
+
+    }
+
+
+    function updateLearningButtons() {
+
+        const word =
+            currentWords[currentIndex];
+
+
+        if (!word) return;
+
+
+        const key =
+            wordKey(word);
+
+
+        const favoriteBtn =
+            document.getElementById(
+                "favorite-btn"
+            );
+
+
+        const masteredBtn =
+            document.getElementById(
+                "mastered-btn"
+            );
+
+
+        const isFavorite =
+            favorites.has(key);
+
+
+        const isMastered =
+            mastered.has(key);
+
+
+        favoriteBtn.textContent =
+            isFavorite
+                ? "★ 生词"
+                : "☆ 生词";
+
+
+        favoriteBtn.classList.toggle(
+            "starred",
+            isFavorite
         );
+
+
+        masteredBtn.textContent =
+            isMastered
+                ? "✓ 已掌握"
+                : "○ 掌握";
+
+
+        masteredBtn.classList.toggle(
+            "mastered",
+            isMastered
+        );
+
     }
 
-}
+
+    /* =====================================================
+       Daily learning
+       ===================================================== */
+
+    function markDailyLearning(word) {
+
+        const today =
+            todayKey();
 
 
-/* =========================================================
-   大屏电脑
-   ========================================================= */
+        if (!daily[today]) {
 
-@media (min-width: 1000px) {
+            daily[today] = {
+                count: 0,
+                words: []
+            };
 
-    .app {
-        padding-top: 30px;
+        }
+
+
+        const key =
+            wordKey(word);
+
+
+        if (
+            !daily[today].words.includes(key)
+        ) {
+
+            daily[today].words.push(key);
+
+            daily[today].count =
+                daily[today].words.length;
+
+        }
+
+
+        updateStreak();
+
+        saveData();
+
+        updateStats();
+
     }
 
-    .card-wrap {
-        height: 410px;
+
+    /* =====================================================
+       Streak
+       ===================================================== */
+
+    function updateStreak() {
+
+        const today =
+            todayKey();
+
+
+        if (
+            streakData.lastDate === today
+        ) {
+
+            return;
+
+        }
+
+
+        if (!streakData.lastDate) {
+
+            streakData.count = 1;
+
+        } else {
+
+            const last =
+                new Date(
+                    streakData.lastDate
+                );
+
+
+            const now =
+                new Date(today);
+
+
+            const diff =
+                Math.round(
+                    (
+                        now - last
+                    ) /
+                    86400000
+                );
+
+
+            if (diff === 1) {
+
+                streakData.count++;
+
+            } else {
+
+                streakData.count = 1;
+
+            }
+
+        }
+
+
+        streakData.lastDate =
+            today;
+
     }
 
-}
+
+    /* =====================================================
+       Favorites list
+       ===================================================== */
+
+    function renderFavorites() {
+
+        const container =
+            document.getElementById(
+                "favorites-list"
+            );
 
 
-/* =========================================================
-   防止超小高度设备内容溢出
-   ========================================================= */
+        const words =
+            allWords().filter(
+                word =>
+                    favorites.has(
+                        wordKey(word)
+                    )
+            );
 
-@media (max-height: 650px) and (orientation: portrait) {
 
-    .home-header {
-        padding-top: 5px;
+        document.getElementById(
+            "favorites-total"
+        ).textContent =
+            words.length;
+
+
+        if (!words.length) {
+
+            container.innerHTML = `
+
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        ⭐
+                    </div>
+
+                    <div class="empty-title">
+                        还没有生词
+                    </div>
+
+                    <div class="empty-text">
+                        学习时点击“☆ 生词”
+                        就可以加入这里
+                    </div>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            words.map(word =>
+                renderWordItem(
+                    word,
+                    true
+                )
+            ).join("");
+
     }
 
-    .section-title {
-        margin-top: 16px;
+
+    /* =====================================================
+       Mastered list
+       ===================================================== */
+
+    function renderMastered() {
+
+        const container =
+            document.getElementById(
+                "mastered-list"
+            );
+
+
+        const words =
+            allWords().filter(
+                word =>
+                    mastered.has(
+                        wordKey(word)
+                    )
+            );
+
+
+        document.getElementById(
+            "mastered-total"
+        ).textContent =
+            words.length;
+
+
+        if (!words.length) {
+
+            container.innerHTML = `
+
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        ✅
+                    </div>
+
+                    <div class="empty-title">
+                        还没有掌握单词
+                    </div>
+
+                    <div class="empty-text">
+                        学习完成后点击“○ 掌握”
+                    </div>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            words.map(word =>
+                renderWordItem(
+                    word,
+                    false
+                )
+            ).join("");
+
     }
 
-    .stats {
-        margin-top: 12px;
+
+    function renderWordItem(
+        word,
+        isFavorite
+    ) {
+
+        return `
+
+            <div class="word-item">
+
+                <div class="word-item-main">
+
+                    <div class="word-item-word">
+                        ${escapeHTML(word.word)}
+                    </div>
+
+                    <div class="word-item-meaning">
+                        ${escapeHTML(word.meaning)}
+                    </div>
+
+                </div>
+
+                <div class="word-item-actions">
+
+                    <button
+                        class="mini-btn"
+                        onclick="speakWord(
+                            '${escapeJS(word.word)}'
+                        )"
+                    >
+                        🔊
+                    </button>
+
+                    <button
+                        class="mini-btn"
+                        onclick="learnFromList(
+                            '${escapeJS(word.episodeId)}',
+                            '${escapeJS(word.word)}'
+                        )"
+                    >
+                        ▶
+                    </button>
+
+                    ${
+                        isFavorite
+                            ? `
+                                <button
+                                    class="mini-btn"
+                                    onclick="removeFavorite(
+                                        '${escapeJS(word.episodeId)}',
+                                        '${escapeJS(word.word)}'
+                                    )"
+                                >
+                                    ⭐
+                                </button>
+                            `
+                            : `
+                                <button
+                                    class="mini-btn"
+                                    onclick="removeMastered(
+                                        '${escapeJS(word.episodeId)}',
+                                        '${escapeJS(word.word)}'
+                                    )"
+                                >
+                                    ↩️
+                                </button>
+                            `
+                    }
+
+                </div>
+
+            </div>
+
+        `;
+
     }
 
-    .card-wrap {
-        height: 43dvh;
-        min-height: 280px;
+
+    function learnFromList(
+        episodeId,
+        wordText
+    ) {
+
+        startSingleWord(
+            episodeId,
+            wordText
+        );
+
     }
 
-}
-</style>
+
+    function removeFavorite(
+        episodeId,
+        wordText
+    ) {
+
+        const key =
+            `${episodeId}:${wordText}`;
+
+
+        favorites.delete(key);
+
+        saveData();
+
+        renderFavorites();
+
+        updateStats();
+
+        showToast(
+            "已移除生词"
+        );
+
+    }
+
+
+    function removeMastered(
+        episodeId,
+        wordText
+    ) {
+
+        const key =
+            `${episodeId}:${wordText}`;
+
+
+        mastered.delete(key);
+
+        saveData();
+
+        renderMastered();
+
+        updateStats();
+
+        showToast(
+            "已取消掌握"
+        );
+
+    }
+
+
+    /* =====================================================
+       Speech
+       ===================================================== */
+
+    function speakCurrent(rate = 1) {
+
+        const word =
+            currentWords[currentIndex];
+
+
+        if (!word) return;
+
+
+        speakWord(
+            word.word,
+            rate
+        );
+
+    }
+
+
+    function speakWord(
+        text,
+        rate = 1
+    ) {
+
+        if (
+            !("speechSynthesis" in window)
+        ) {
+
+            showToast(
+                "当前浏览器不支持英语发音"
+            );
+
+            return;
+
+        }
+
+
+        speechSynthesis.cancel();
+
+
+        const utterance =
+            new SpeechSynthesisUtterance(
+                text
+            );
+
+
+        utterance.lang =
+            "en-US";
+
+
+        utterance.rate =
+            rate;
+
+
+        utterance.pitch =
+            1;
+
+
+        speechSynthesis.speak(
+            utterance
+        );
+
+    }
+
+
+    /* =====================================================
+       Shuffle
+       ===================================================== */
+
+    function shuffle(array) {
+
+        const arr =
+            [...array];
+
+
+        for (
+            let i = arr.length - 1;
+            i > 0;
+            i--
+        ) {
+
+            const j =
+                Math.floor(
+                    Math.random() *
+                    (i + 1)
+                );
+
+
+            [
+                arr[i],
+                arr[j]
+            ] = [
+                arr[j],
+                arr[i]
+            ];
+
+        }
+
+
+        return arr;
+
+    }
+
+
+    /* =====================================================
+       Export
+       ===================================================== */
+
+    function exportData() {
+
+        const data = {
+
+            version: 3,
+
+            exportTime:
+                new Date().toISOString(),
+
+            favorites:
+                [...favorites],
+
+            mastered:
+                [...mastered],
+
+            progress,
+
+            daily,
+
+            streak:
+                streakData
+
+        };
+
+
+        const blob =
+            new Blob(
+                [
+                    JSON.stringify(
+                        data,
+                        null,
+                        2
+                    )
+                ],
+                {
+                    type:
+                        "application/json"
+                }
+            );
+
+
+        const url =
+            URL.createObjectURL(
+                blob
+            );
+
+
+        const a =
+            document.createElement(
+                "a"
+            );
+
+
+        a.href = url;
+
+        a.download =
+            `peppa-pig-learning-${todayKey()}.json`;
+
+
+        document.body.appendChild(a);
+
+        a.click();
+
+        a.remove();
+
+
+        URL.revokeObjectURL(url);
+
+
+        showToast(
+            "📤 学习数据已导出"
+        );
+
+    }
+
+
+    /* =====================================================
+       Reset
+       ===================================================== */
+
+    function resetData() {
+
+        const confirmed =
+            confirm(
+                "确定要清除所有学习数据吗？\n\n包括：\n⭐ 我的生词\n✅ 已掌握\n📅 今日学习\n🔥 连续学习"
+            );
+
+
+        if (!confirmed)
+            return;
+
+
+        localStorage.removeItem(
+            STORAGE.favorites
+        );
+
+        localStorage.removeItem(
+            STORAGE.mastered
+        );
+
+        localStorage.removeItem(
+            STORAGE.progress
+        );
+
+        localStorage.removeItem(
+            STORAGE.daily
+        );
+
+        localStorage.removeItem(
+            STORAGE.streak
+        );
+
+
+        favorites =
+            new Set();
+
+
+        mastered =
+            new Set();
+
+
+        progress =
+            {};
+
+
+        daily =
+            {};
+
+
+        streakData = {
+
+            lastDate: "",
+
+            count: 0
+
+        };
+
+
+        renderHome();
+
+
+        showPage("home");
+
+
+        showToast(
+            "学习数据已经重置"
+        );
+
+    }
+
+
+    /* =====================================================
+       Toast
+       ===================================================== */
+
+    let toastTimer;
+
+
+    function showToast(
+        message
+    ) {
+
+        const toast =
+            document.getElementById(
+                "toast"
+            );
+
+
+        toast.textContent =
+            message;
+
+
+        toast.classList.add(
+            "show"
+        );
+
+
+        clearTimeout(
+            toastTimer
+        );
+
+
+        toastTimer =
+            setTimeout(
+                () => {
+
+                    toast.classList.remove(
+                        "show"
+                    );
+
+                },
+                2200
+            );
+
+    }
+
+
+    /* =====================================================
+       Swipe
+       ===================================================== */
+
+    let touchStartX = 0;
+
+    let touchStartY = 0;
+
+
+    const flashCard =
+        document.getElementById(
+            "flash-card"
+        );
+
+
+    flashCard.addEventListener(
+        "touchstart",
+        function(e) {
+
+            if (!e.touches.length)
+                return;
+
+
+            touchStartX =
+                e.touches[0].clientX;
+
+
+            touchStartY =
+                e.touches[0].clientY;
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    flashCard.addEventListener(
+        "touchend",
+        function(e) {
+
+            if (!e.changedTouches.length)
+                return;
+
+
+            const endX =
+                e.changedTouches[0].clientX;
+
+
+            const endY =
+                e.changedTouches[0].clientY;
+
+
+            const diffX =
+                endX - touchStartX;
+
+
+            const diffY =
+                endY - touchStartY;
+
+
+            if (
+                Math.abs(diffX) > 60 &&
+                Math.abs(diffX) >
+                Math.abs(diffY)
+            ) {
+
+                if (diffX < 0) {
+
+                    nextCard();
+
+                } else {
+
+                    previousCard();
+
+                }
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    /* =====================================================
+       Keyboard
+       ===================================================== */
+
+    document.addEventListener(
+        "keydown",
+        function(e) {
+
+            const learningPage =
+                document.getElementById(
+                    "page-learning"
+                );
+
+
+            if (
+                !learningPage.classList.contains(
+                    "active"
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                e.key === "ArrowRight"
+            ) {
+
+                nextCard();
+
+            }
+
+
+            if (
+                e.key === "ArrowLeft"
+            ) {
+
+                previousCard();
+
+            }
+
+
+            if (
+                e.key === " " ||
+                e.key === "Enter"
+            ) {
+
+                e.preventDefault();
+
+                flipCard();
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       HTML Escape
+       ===================================================== */
+
+    function escapeHTML(
+        value
+    ) {
+
+        return String(value ?? "")
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+    }
+
+
+    function escapeJS(
+        value
+    ) {
+
+        return String(value ?? "")
+            .replace(
+                /\\/g,
+                "\\\\"
+            )
+            .replace(
+                /'/g,
+                "\\'"
+            )
+            .replace(
+                /"/g,
+                '\\"'
+            );
+
+    }
+
+
+    /* =====================================================
+       Initialize
+       ===================================================== */
+
+    document.getElementById(
+        "today-date"
+    ).textContent =
+        formatToday();
+
+
+    renderHome();
+
+
+</script>
+
+</body>
+</html>
