@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -7,19 +8,29 @@
 
 <meta
     name="viewport"
-    content="width=device-width,initial-scale=1,viewport-fit=cover">
+    content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<meta
+    name="theme-color"
+    content="#ffffff">
 
 <title>胖哥学英语</title>
 
 <style>
 
+/* =====================================================
+   基础
+===================================================== */
+
 * {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html,
 body {
     margin: 0;
+    padding: 0;
     width: 100%;
     min-height: 100%;
 }
@@ -34,36 +45,29 @@ body {
         "Noto Sans SC",
         sans-serif;
 
-    background: #f5f7fb;
+    background: #f7f8fc;
 
     color: #111827;
 
     overflow-x: hidden;
 }
 
-body.dark {
-
-    background: #0f172a;
-
-    color: #f8fafc;
+button,
+select {
+    font: inherit;
 }
 
 
-/* =========================
-   Header
-========================= */
+/* =====================================================
+   顶部
+===================================================== */
 
-header {
+.header {
 
-    width: 100%;
+    height: 60px;
 
-    min-height: 70px;
-
-    padding: 12px 20px;
-
-    background: white;
-
-    border-bottom: 1px solid #e5e7eb;
+    padding:
+        0 18px;
 
     display: flex;
 
@@ -71,20 +75,25 @@ header {
 
     justify-content: space-between;
 
+    background: rgba(
+        255,
+        255,
+        255,
+        .92
+    );
+
+    border-bottom:
+        1px solid #edf0f5;
+
     position: sticky;
 
     top: 0;
 
-    z-index: 10;
+    z-index: 100;
+
+    backdrop-filter:
+        blur(12px);
 }
-
-body.dark header {
-
-    background: #1e293b;
-
-    border-color: #334155;
-}
-
 
 .brand {
 
@@ -92,16 +101,18 @@ body.dark header {
 
     align-items: center;
 
-    gap: 10px;
+    gap: 9px;
+
+    cursor: pointer;
 }
 
 .logo {
 
-    width: 44px;
+    width: 34px;
 
-    height: 44px;
+    height: 34px;
 
-    border-radius: 12px;
+    border-radius: 10px;
 
     display: flex;
 
@@ -109,194 +120,163 @@ body.dark header {
 
     justify-content: center;
 
-    font-size: 25px;
-
     background:
         linear-gradient(
             135deg,
             #6366f1,
             #8b5cf6
         );
+
+    font-size: 19px;
 }
 
-.brand h1 {
+.brand-name {
 
-    margin: 0;
+    font-size: 17px;
 
-    font-size: 20px;
+    font-weight: 800;
+
+    letter-spacing: -.3px;
 }
 
-.brand p {
+.header-actions {
 
-    margin: 2px 0 0;
+    display: flex;
 
-    font-size: 12px;
+    align-items: center;
 
-    color: #6b7280;
+    gap: 7px;
 }
 
-.theme {
+.icon-button {
 
-    width: 42px;
+    width: 38px;
 
-    height: 42px;
+    height: 38px;
+
+    border: 0;
 
     border-radius: 10px;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 18px;
+}
+
+.icon-button:hover {
+
+    background: #f1f3f7;
+}
+
+
+/* =====================================================
+   页面
+===================================================== */
+
+.page {
+
+    display: none;
+
+    min-height:
+        calc(
+            100vh - 60px
+        );
+}
+
+.page.active {
+
+    display: block;
+}
+
+
+/* =====================================================
+   学习页面
+===================================================== */
+
+.study-page {
+
+    width: 100%;
+
+    min-height:
+        calc(
+            100vh - 60px
+        );
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    padding:
+        20px
+        20px
+        35px;
+}
+
+
+/* 词库标题 */
+
+.deck-header {
+
+    width: 100%;
+
+    max-width: 760px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 12px;
+
+    position: relative;
+}
+
+.deck-name {
+
+    font-size: 14px;
+
+    color: #6b7280;
+
+    text-align: center;
+
+    font-weight: 600;
+}
+
+.deck-selector-button {
+
+    position: absolute;
+
+    right: 0;
 
     border: 1px solid #e5e7eb;
 
     background: white;
 
-    cursor: pointer;
-
-    font-size: 18px;
-}
-
-
-/* =========================
-   Main
-========================= */
-
-main {
-
-    width: 100%;
-
-    max-width: 1100px;
-
-    margin: auto;
+    border-radius: 9px;
 
     padding:
-        clamp(20px,4vw,40px)
-        clamp(14px,4vw,25px)
-        50px;
-}
-
-
-/* =========================
-   Controls
-========================= */
-
-.controls {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 15px;
-
-    margin-bottom: 25px;
-}
-
-.controls-left {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    min-width: 0;
-
-    flex: 1;
-}
-
-.controls label {
-
-    color: #6b7280;
-
-    white-space: nowrap;
-}
-
-select {
-
-    width: 280px;
-
-    max-width: 100%;
-
-    min-height: 44px;
-
-    border:
-        1px solid #d1d5db;
-
-    border-radius: 10px;
-
-    padding: 8px 12px;
-
-    background: white;
-
-    color: #111827;
-}
-
-.random {
-
-    min-height: 44px;
-
-    padding: 0 18px;
-
-    border: none;
-
-    border-radius: 10px;
-
-    background: #4f46e5;
-
-    color: white;
-
-    font-weight: 600;
-
-    cursor: pointer;
-}
-
-
-/* =========================
-   Stats
-========================= */
-
-.stats {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap: 15px;
-
-    margin-bottom: 30px;
-}
-
-.stat {
-
-    background: white;
-
-    border:
-        1px solid #e5e7eb;
-
-    border-radius: 14px;
-
-    padding: 18px;
-}
-
-.stat-label {
-
-    color: #6b7280;
+        6px 10px;
 
     font-size: 13px;
 
-    margin-bottom: 8px;
-}
-
-.stat-value {
-
-    font-size: 28px;
-
-    font-weight: 800;
+    cursor: pointer;
 }
 
 
-/* =========================
-   Card
-========================= */
+/* =====================================================
+   卡片
+===================================================== */
 
 .card-container {
 
@@ -306,15 +286,16 @@ select {
 
     height:
         clamp(
-            350px,
-            55vh,
-            460px
+            390px,
+            58vh,
+            500px
         );
 
-    margin:
-        auto auto 25px;
+    perspective:
+        1400px;
 
-    perspective: 1200px;
+    margin:
+        0 auto 15px;
 }
 
 .card {
@@ -329,7 +310,13 @@ select {
         preserve-3d;
 
     transition:
-        transform .55s;
+        transform .5s
+        cubic-bezier(
+            .2,
+            .7,
+            .2,
+            1
+        );
 
     cursor: pointer;
 }
@@ -346,6 +333,22 @@ select {
 
     inset: 0;
 
+    border-radius: 25px;
+
+    background: white;
+
+    border:
+        1px solid #e8ebf1;
+
+    box-shadow:
+        0 12px 40px
+        rgba(
+            15,
+            23,
+            42,
+            .07
+        );
+
     display: flex;
 
     flex-direction: column;
@@ -354,25 +357,14 @@ select {
 
     justify-content: center;
 
+    padding: 35px;
+
     text-align: center;
-
-    padding: 30px;
-
-    border-radius: 24px;
-
-    background: white;
-
-    border:
-        1px solid #e5e7eb;
-
-    box-shadow:
-        0 10px 35px
-        rgba(0,0,0,.08);
 
     backface-visibility:
         hidden;
 
-    overflow: auto;
+    overflow: hidden;
 }
 
 .back {
@@ -381,48 +373,61 @@ select {
         rotateY(180deg);
 }
 
-.label {
+.card-label {
 
-    font-size: 12px;
+    font-size: 11px;
 
     letter-spacing: 2px;
 
-    color: #6b7280;
+    font-weight: 700;
 
-    margin-bottom: 18px;
+    color: #a0a7b5;
+
+    margin-bottom: 20px;
 }
 
 .word {
 
     font-size:
         clamp(
-            42px,
+            44px,
             8vw,
             72px
         );
 
-    font-weight: 800;
+    font-weight: 850;
 
-    overflow-wrap: anywhere;
+    letter-spacing:
+        -2px;
+
+    line-height: 1.1;
+
+    overflow-wrap:
+        anywhere;
 }
 
 .phonetic {
 
-    margin-top: 12px;
+    margin-top: 13px;
 
-    font-size: 19px;
+    color: #7c8493;
 
-    color: #6b7280;
+    font-size: 17px;
 }
 
-.hint {
+.flip-hint {
 
-    margin-top: 25px;
+    position: absolute;
 
-    font-size: 14px;
+    bottom: 24px;
 
-    color: #9ca3af;
+    font-size: 12px;
+
+    color: #b0b5c0;
 }
+
+
+/* 中文 */
 
 .meaning {
 
@@ -433,143 +438,193 @@ select {
             40px
         );
 
-    font-weight: 700;
+    font-weight: 800;
 
-    margin-bottom: 20px;
+    margin-bottom: 22px;
+
+    line-height: 1.3;
 }
 
 .example {
 
-    max-width: 650px;
+    max-width: 620px;
+
+    font-size: 17px;
 
     line-height: 1.7;
-
-    font-size: 18px;
 }
 
 .example-cn {
 
-    margin-top: 7px;
+    max-width: 620px;
 
-    color: #6b7280;
+    margin-top: 6px;
+
+    color: #7c8493;
+
+    font-size: 15px;
 
     line-height: 1.6;
 }
 
-.audio {
 
-    margin-top: 20px;
+/* =====================================================
+   发音
+===================================================== */
 
-    padding: 10px 18px;
+.speak-button {
 
-    border: none;
+    margin-top: 22px;
 
-    border-radius: 10px;
+    border: 0;
 
-    background: #f3f4f6;
+    border-radius: 12px;
+
+    padding:
+        10px 17px;
+
+    background: #f1f3f8;
+
+    color: #374151;
 
     cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.speak-button:active {
+
+    transform:
+        scale(.96);
 }
 
 
-/* =========================
-   Progress
-========================= */
+/* =====================================================
+   进度
+===================================================== */
 
-.progress {
+.progress-area {
+
+    width: 100%;
 
     max-width: 760px;
 
-    margin: auto auto 25px;
+    margin-bottom: 15px;
 }
 
-.progress-info {
+.progress-top {
 
     display: flex;
 
+    align-items: center;
+
     justify-content: space-between;
 
-    color: #6b7280;
+    margin-bottom: 6px;
 
-    font-size: 13px;
+    color: #8a91a0;
 
-    margin-bottom: 7px;
+    font-size: 12px;
 }
 
 .progress-bar {
 
-    height: 8px;
+    width: 100%;
 
-    border-radius: 10px;
+    height: 5px;
 
-    background: #e5e7eb;
+    background: #e9ebf0;
+
+    border-radius: 20px;
 
     overflow: hidden;
 }
 
 .progress-value {
 
-    width: 0%;
-
     height: 100%;
 
-    background: #4f46e5;
+    width: 0%;
 
-    transition: width .3s;
+    background: #6366f1;
+
+    border-radius: 20px;
+
+    transition:
+        width .25s;
 }
 
 
-/* =========================
-   Buttons
-========================= */
+/* =====================================================
+   操作按钮
+===================================================== */
 
-.actions {
+.main-actions {
+
+    width: 100%;
 
     max-width: 760px;
-
-    margin: auto auto 20px;
 
     display: grid;
 
     grid-template-columns:
         1fr 1fr;
 
-    gap: 15px;
+    gap: 12px;
+
+    margin-bottom: 12px;
 }
 
-.action {
+.action-button {
 
-    min-height: 50px;
+    height: 50px;
 
-    border: none;
+    border: 0;
 
-    border-radius: 12px;
+    border-radius: 13px;
+
+    cursor: pointer;
+
+    font-size: 15px;
 
     font-weight: 700;
 
-    cursor: pointer;
+    transition:
+        transform .1s;
+}
+
+.action-button:active {
+
+    transform:
+        scale(.97);
 }
 
 .unknown {
 
-    background: #fee2e2;
+    background: #fff0f0;
 
-    color: #dc2626;
+    color: #ef4444;
 }
 
 .known {
 
-    background: #dcfce7;
+    background: #effbf3;
 
     color: #16a34a;
 }
 
 
+/* =====================================================
+   下一步
+===================================================== */
+
 .navigation {
 
-    max-width: 760px;
+    width: 100%;
 
-    margin: auto;
+    max-width: 760px;
 
     display: grid;
 
@@ -579,28 +634,251 @@ select {
     gap: 12px;
 }
 
-.nav {
+.nav-button {
 
-    min-height: 46px;
+    height: 44px;
 
     border:
-        1px solid #e5e7eb;
+        1px solid #e7e9ee;
 
-    border-radius: 10px;
+    border-radius: 11px;
 
     background: white;
 
+    color: #4b5563;
+
     cursor: pointer;
+
+    font-size: 14px;
 }
 
 
-/* =========================
+/* =====================================================
+   快捷键
+===================================================== */
+
+.keyboard-hint {
+
+    margin-top: 18px;
+
+    color: #b0b5c0;
+
+    font-size: 11px;
+
+    text-align: center;
+}
+
+
+/* =====================================================
+   词库页面
+===================================================== */
+
+.library-page {
+
+    padding:
+        30px 20px 100px;
+
+    max-width: 900px;
+
+    margin: auto;
+}
+
+.page-title {
+
+    font-size: 26px;
+
+    font-weight: 850;
+
+    margin:
+        0 0 6px;
+}
+
+.page-subtitle {
+
+    margin:
+        0 0 25px;
+
+    color: #7c8493;
+
+    font-size: 14px;
+}
+
+.deck-list {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(
+                220px,
+                1fr
+            )
+        );
+
+    gap: 14px;
+}
+
+.deck-item {
+
+    border:
+        1px solid #e6e9ef;
+
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 20px;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition:
+        transform .15s,
+        box-shadow .15s;
+}
+
+.deck-item:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 25px
+        rgba(
+            15,
+            23,
+            42,
+            .06
+        );
+}
+
+.deck-item-name {
+
+    font-size: 17px;
+
+    font-weight: 750;
+
+    margin-bottom: 7px;
+}
+
+.deck-item-file {
+
+    font-size: 12px;
+
+    color: #9ca3af;
+}
+
+
+/* =====================================================
+   统计页面
+===================================================== */
+
+.stats-page {
+
+    padding:
+        30px 20px 100px;
+
+    max-width: 900px;
+
+    margin: auto;
+}
+
+.stat-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            1fr
+        );
+
+    gap: 14px;
+}
+
+.stat-card {
+
+    background: white;
+
+    border:
+        1px solid #e7e9ef;
+
+    border-radius: 16px;
+
+    padding: 20px;
+}
+
+.stat-card-label {
+
+    color: #8a91a0;
+
+    font-size: 13px;
+
+    margin-bottom: 10px;
+}
+
+.stat-card-value {
+
+    font-size: 30px;
+
+    font-weight: 850;
+}
+
+
+/* =====================================================
+   设置/说明
+===================================================== */
+
+.info-box {
+
+    margin-top: 25px;
+
+    background: white;
+
+    border:
+        1px solid #e7e9ef;
+
+    border-radius: 16px;
+
+    padding: 20px;
+
+    line-height: 1.8;
+
+    color: #6b7280;
+
+    font-size: 14px;
+}
+
+.key {
+
+    display: inline-block;
+
+    padding:
+        2px 7px;
+
+    border-radius: 5px;
+
+    background: #f1f3f5;
+
+    color: #555d6d;
+
+    font-size: 11px;
+}
+
+
+/* =====================================================
    Loading
-========================= */
+===================================================== */
 
 .loading {
 
-    min-height: 400px;
+    position: fixed;
+
+    inset: 60px 0 0;
+
+    background: #f7f8fc;
 
     display: flex;
 
@@ -612,25 +890,29 @@ select {
 
     gap: 15px;
 
-    color: #6b7280;
+    z-index: 50;
+
+    color: #7c8493;
+
+    font-size: 14px;
 }
 
 .spinner {
 
-    width: 38px;
+    width: 34px;
 
-    height: 38px;
+    height: 34px;
 
     border:
-        4px solid #e5e7eb;
+        3px solid #e5e7eb;
 
     border-top-color:
-        #4f46e5;
+        #6366f1;
 
     border-radius: 50%;
 
     animation:
-        spin .8s linear infinite;
+        spin .75s linear infinite;
 }
 
 @keyframes spin {
@@ -639,203 +921,437 @@ select {
         transform:
             rotate(360deg);
     }
+
 }
 
 
-/* =========================
+/* =====================================================
    Error
-========================= */
+===================================================== */
 
 .error {
 
-    max-width: 760px;
+    position: fixed;
 
-    margin: 30px auto;
+    inset:
+        60px 0 0;
 
-    padding: 25px;
+    background: #f7f8fc;
 
-    border-radius: 15px;
+    z-index: 60;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.error-card {
+
+    width: 100%;
+
+    max-width: 600px;
 
     background: white;
 
     border:
         1px solid #fecaca;
 
+    border-radius: 18px;
+
+    padding: 25px;
+
     color: #b91c1c;
 
-    line-height: 1.8;
+    line-height: 1.7;
+}
 
-    word-break: break-word;
+.retry-button {
+
+    margin-top: 15px;
+
+    border: 0;
+
+    border-radius: 9px;
+
+    background: #4f46e5;
+
+    color: white;
+
+    padding:
+        9px 15px;
+
+    cursor: pointer;
 }
 
 
-/* =========================
-   Mobile
-========================= */
+/* =====================================================
+   底部导航
+===================================================== */
 
-@media (max-width:700px) {
+.bottom-nav {
 
-    header {
+    display: none;
+}
+
+
+/* =====================================================
+   Dark Mode
+===================================================== */
+
+body.dark {
+
+    background: #0f172a;
+
+    color: #f8fafc;
+}
+
+body.dark .header {
+
+    background:
+        rgba(
+            15,
+            23,
+            42,
+            .92
+        );
+
+    border-color: #1e293b;
+}
+
+body.dark .icon-button:hover {
+
+    background: #1e293b;
+}
+
+body.dark .deck-selector-button,
+body.dark .face,
+body.dark .deck-item,
+body.dark .stat-card,
+body.dark .info-box,
+body.dark .nav-button,
+body.dark .error-card {
+
+    background: #1e293b;
+
+    border-color: #334155;
+
+    color: #f8fafc;
+}
+
+body.dark .speak-button {
+
+    background: #334155;
+
+    color: #f8fafc;
+}
+
+body.dark .progress-bar {
+
+    background: #334155;
+}
+
+body.dark .unknown {
+
+    background: #3a2024;
+}
+
+body.dark .known {
+
+    background: #193324;
+}
+
+body.dark .loading,
+body.dark .error {
+
+    background: #0f172a;
+}
+
+body.dark .page-subtitle,
+body.dark .deck-item-file,
+body.dark .phonetic,
+body.dark .example-cn,
+body.dark .keyboard-hint,
+body.dark .deck-name {
+
+    color: #94a3b8;
+}
+
+
+/* =====================================================
+   手机端
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .header {
+
+        height: 56px;
 
         padding:
-            10px 14px;
+            0 12px;
     }
 
-    .brand h1 {
+    .page {
 
-        font-size: 17px;
+        min-height:
+            calc(
+                100vh - 56px - 62px
+            );
     }
 
-    .brand p {
+    .study-page {
 
-        display: none;
+        min-height:
+            calc(
+                100vh - 56px - 62px
+            );
+
+        padding:
+            14px
+            14px
+            80px;
+    }
+
+    .brand-name {
+
+        font-size: 16px;
     }
 
     .logo {
 
-        width: 38px;
+        width: 32px;
 
-        height: 38px;
-
-        font-size: 22px;
+        height: 32px;
     }
 
-    main {
+    .deck-header {
+
+        margin-bottom: 10px;
+    }
+
+    .deck-selector-button {
+
+        right: 0;
 
         padding:
-            20px 14px 40px;
-    }
+            5px 8px;
 
-    .controls {
-
-        flex-direction:
-            column;
-
-        align-items:
-            stretch;
-    }
-
-    .controls-left {
-
-        width: 100%;
-    }
-
-    select {
-
-        flex: 1;
-
-        width: 100%;
-    }
-
-    .random {
-
-        width: 100%;
-    }
-
-    .stats {
-
-        grid-template-columns:
-            repeat(2,1fr);
-
-        gap: 10px;
-    }
-
-    .stat {
-
-        padding: 14px;
-    }
-
-    .stat-value {
-
-        font-size: 23px;
+        font-size: 12px;
     }
 
     .card-container {
 
         height:
             min(
-                58vh,
-                420px
+                56vh,
+                440px
             );
 
-        min-height: 330px;
+        min-height: 350px;
+
+        margin-bottom: 12px;
     }
 
     .face {
 
-        padding: 20px;
+        padding: 25px 18px;
+
+        border-radius: 21px;
     }
 
     .word {
 
         font-size:
             clamp(
-                38px,
-                12vw,
-                58px
+                42px,
+                13vw,
+                60px
             );
+    }
+
+    .phonetic {
+
+        font-size: 15px;
     }
 
     .meaning {
 
-        font-size:
-            clamp(
-                24px,
-                8vw,
-                34px
-            );
+        font-size: 27px;
     }
 
     .example {
 
-        font-size: 16px;
+        font-size: 15px;
+    }
+
+    .example-cn {
+
+        font-size: 13px;
+    }
+
+    .main-actions {
+
+        gap: 9px;
+    }
+
+    .action-button {
+
+        height: 47px;
+
+        font-size: 14px;
+    }
+
+    .navigation {
+
+        gap: 9px;
+    }
+
+    .nav-button {
+
+        height: 42px;
+    }
+
+    .keyboard-hint {
+
+        display: none;
+    }
+
+    .bottom-nav {
+
+        position: fixed;
+
+        bottom: 0;
+
+        left: 0;
+
+        right: 0;
+
+        height: 62px;
+
+        background:
+            rgba(
+                255,
+                255,
+                255,
+                .95
+            );
+
+        border-top:
+            1px solid #e7e9ef;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(
+                3,
+                1fr
+            );
+
+        z-index: 200;
+
+        backdrop-filter:
+            blur(12px);
+    }
+
+    .bottom-button {
+
+        border: 0;
+
+        background: transparent;
+
+        color: #9ca3af;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 3px;
+
+        font-size: 11px;
+
+        cursor: pointer;
+    }
+
+    .bottom-button span:first-child {
+
+        font-size: 19px;
+    }
+
+    .bottom-button.active {
+
+        color: #4f46e5;
+
+        font-weight: 700;
+    }
+
+    body.dark .bottom-nav {
+
+        background:
+            rgba(
+                15,
+                23,
+                42,
+                .95
+            );
+
+        border-color: #1e293b;
     }
 
 }
 
 
-/* =========================
-   Dark
-========================= */
+/* =====================================================
+   超小屏
+===================================================== */
 
-body.dark .stat,
-body.dark .face,
-body.dark .nav,
-body.dark .error {
+@media (max-width: 380px) {
 
-    background: #1e293b;
+    .study-page {
 
-    border-color: #334155;
+        padding-left: 10px;
+
+        padding-right: 10px;
+    }
+
+    .card-container {
+
+        min-height: 330px;
+
+        height: 53vh;
+    }
+
+    .word {
+
+        font-size: 39px;
+    }
+
+    .action-button {
+
+        font-size: 13px;
+    }
+
 }
 
-body.dark select,
-body.dark .theme {
 
-    background: #1e293b;
+/* =====================================================
+   桌面端
+===================================================== */
 
-    color: #f8fafc;
+@media (min-width: 701px) {
 
-    border-color: #334155;
-}
+    .bottom-nav {
 
-body.dark .audio {
+        display: none;
+    }
 
-    background: #334155;
-
-    color: white;
-}
-
-body.dark .nav {
-
-    color: white;
-}
-
-body.dark .stat-label,
-body.dark .phonetic,
-body.dark .hint,
-body.dark .example-cn {
-
-    color: #94a3b8;
 }
 
 </style>
@@ -846,170 +1362,130 @@ body.dark .example-cn {
 <body>
 
 
-<header>
+<!-- =====================================================
+     Header
+===================================================== -->
 
-    <div class="brand">
+<header class="header">
+
+    <div
+        class="brand"
+        onclick="showPage('study')">
 
         <div class="logo">
             🐼
         </div>
 
-        <div>
-
-            <h1>
-                胖哥学英语
-            </h1>
-
-            <p>
-                English Flash Cards
-            </p>
-
+        <div class="brand-name">
+            胖哥学英语
         </div>
 
     </div>
 
 
-    <button
-        class="theme"
-        id="themeButton">
-
-        🌙
-
-    </button>
-
-</header>
-
-
-<main>
-
-
-    <div class="controls">
-
-        <div class="controls-left">
-
-            <label>
-                📚 词库
-            </label>
-
-            <select
-                id="deckSelect">
-
-                <option>
-                    加载中...
-                </option>
-
-            </select>
-
-        </div>
-
+    <div class="header-actions">
 
         <button
-            class="random"
-            id="randomButton">
+            class="icon-button"
+            id="themeButton"
+            title="切换主题">
 
-            🎲 随机单词
+            🌙
 
         </button>
 
     </div>
 
+</header>
 
-    <div class="stats">
 
-        <div class="stat">
+<!-- =====================================================
+     Loading
+===================================================== -->
 
-            <div class="stat-label">
-                词库总数
-            </div>
+<div
+    class="loading"
+    id="loading">
 
-            <div
-                class="stat-value"
-                id="totalWords">
+    <div class="spinner"></div>
 
-                0
+    <div id="loadingText">
+        正在加载词库...
+    </div>
 
-            </div>
+</div>
 
+
+<!-- =====================================================
+     Error
+===================================================== -->
+
+<div
+    class="error"
+    id="error">
+
+    <div class="error-card">
+
+        <strong>
+            ❌ 词库加载失败
+        </strong>
+
+        <div
+            id="errorMessage"
+            style="margin-top:10px;">
         </div>
 
+        <button
+            class="retry-button"
+            onclick="location.reload()">
 
-        <div class="stat">
+            🔄 重新加载
 
-            <div class="stat-label">
-                已学习
-            </div>
-
-            <div
-                class="stat-value"
-                id="learnedWords">
-
-                0
-
-            </div>
-
-        </div>
-
-
-        <div class="stat">
-
-            <div class="stat-label">
-                已掌握
-            </div>
-
-            <div
-                class="stat-value"
-                id="knownWords">
-
-                0
-
-            </div>
-
-        </div>
-
-
-        <div class="stat">
-
-            <div class="stat-label">
-                掌握率
-            </div>
-
-            <div
-                class="stat-value"
-                id="masteryRate">
-
-                0%
-
-            </div>
-
-        </div>
+        </button>
 
     </div>
 
+</div>
 
-    <div
-        id="loading"
-        class="loading">
 
-        <div class="spinner"></div>
+<!-- =====================================================
+     PAGE 1
+     学习
+===================================================== -->
 
-        <div id="loadingText">
-            正在加载最新词库...
+<section
+    class="page active"
+    id="studyPage">
+
+
+    <div class="study-page">
+
+
+        <!-- 当前词库 -->
+
+        <div class="deck-header">
+
+            <div
+                class="deck-name"
+                id="deckName">
+
+                加载中...
+
+            </div>
+
+
+            <button
+                class="deck-selector-button"
+                onclick="showPage('library')">
+
+                📚
+
+            </button>
+
         </div>
 
-    </div>
 
-
-    <div
-        id="error"
-        class="error"
-        style="display:none;">
-    </div>
-
-
-    <div
-        id="learningArea"
-        style="display:none;">
-
+        <!-- 闪卡 -->
 
         <div class="card-container">
 
@@ -1018,65 +1494,90 @@ body.dark .example-cn {
                 id="card">
 
 
-                <div class="face front">
+                <!-- 正面 -->
 
-                    <div class="label">
+                <div class="face">
+
+
+                    <div class="card-label">
                         ENGLISH
                     </div>
+
 
                     <div
                         class="word"
                         id="word">
+
+                        --
+
                     </div>
+
 
                     <div
                         class="phonetic"
                         id="phonetic">
+
                     </div>
 
-                    <div class="hint">
-                        点击卡片查看中文
-                    </div>
 
                     <button
-                        class="audio"
-                        id="audioButton">
+                        class="speak-button"
+                        id="speakButton">
 
-                        🔊 听发音
+                        🔊 发音
 
                     </button>
+
+
+                    <div class="flip-hint">
+                        点击卡片查看释义
+                    </div>
+
 
                 </div>
 
 
+                <!-- 背面 -->
+
                 <div class="face back">
 
-                    <div class="label">
-                        中文释义
+
+                    <div class="card-label">
+                        MEANING
                     </div>
+
 
                     <div
                         class="meaning"
                         id="meaning">
+
+                        --
+
                     </div>
+
 
                     <div
                         class="example"
                         id="example">
+
                     </div>
+
 
                     <div
                         class="example-cn"
                         id="exampleCn">
+
                     </div>
 
+
                     <button
-                        class="audio"
-                        id="audioButtonBack">
+                        class="speak-button"
+                        id="speakButtonBack">
 
                         🔊 再听一次
 
                     </button>
+
 
                 </div>
 
@@ -1085,26 +1586,32 @@ body.dark .example-cn {
         </div>
 
 
-        <div class="progress">
+        <!-- 进度 -->
 
-            <div class="progress-info">
+        <div class="progress-area">
+
+            <div class="progress-top">
 
                 <span>
-                    当前进度
+                    学习进度
                 </span>
 
                 <span
                     id="progressText">
+
                     0 / 0
+
                 </span>
 
             </div>
+
 
             <div class="progress-bar">
 
                 <div
                     class="progress-value"
                     id="progressValue">
+
                 </div>
 
             </div>
@@ -1112,18 +1619,21 @@ body.dark .example-cn {
         </div>
 
 
-        <div class="actions">
+        <!-- 掌握 -->
+
+        <div class="main-actions">
 
             <button
-                class="action unknown"
+                class="action-button unknown"
                 id="unknownButton">
 
                 ❌ 不认识
 
             </button>
 
+
             <button
-                class="action known"
+                class="action-button known"
                 id="knownButton">
 
                 ❤️ 已掌握
@@ -1133,18 +1643,21 @@ body.dark .example-cn {
         </div>
 
 
+        <!-- 上下 -->
+
         <div class="navigation">
 
             <button
-                class="nav"
+                class="nav-button"
                 id="previousButton">
 
                 ← 上一个
 
             </button>
 
+
             <button
-                class="nav"
+                class="nav-button"
                 id="nextButton">
 
                 下一个 →
@@ -1153,34 +1666,280 @@ body.dark .example-cn {
 
         </div>
 
+
+        <div class="keyboard-hint">
+
+            Space 翻卡 · ← → 切换 · R 随机 · S 发音 · K 掌握 · X 不认识
+
+        </div>
+
     </div>
 
-</main>
+</section>
+
+
+<!-- =====================================================
+     PAGE 2
+     词库
+===================================================== -->
+
+<section
+    class="page"
+    id="libraryPage">
+
+    <div class="library-page">
+
+        <h2 class="page-title">
+            📚 词库
+        </h2>
+
+        <p class="page-subtitle">
+            选择你想学习的英语词库
+        </p>
+
+
+        <div
+            class="deck-list"
+            id="deckList">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PAGE 3
+     统计
+===================================================== -->
+
+<section
+    class="page"
+    id="statsPage">
+
+    <div class="stats-page">
+
+        <h2 class="page-title">
+            📊 学习统计
+        </h2>
+
+        <p
+            class="page-subtitle"
+            id="statsDeckName">
+
+            当前词库
+
+        </p>
+
+
+        <div class="stat-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-card-label">
+                    词库单词
+                </div>
+
+                <div
+                    class="stat-card-value"
+                    id="statTotal">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-card-label">
+                    已学习
+                </div>
+
+                <div
+                    class="stat-card-value"
+                    id="statLearned">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-card-label">
+                    已掌握
+                </div>
+
+                <div
+                    class="stat-card-value"
+                    id="statKnown">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-card-label">
+                    掌握率
+                </div>
+
+                <div
+                    class="stat-card-value"
+                    id="statRate">
+
+                    0%
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <strong>
+                ⌨️ 快捷键
+            </strong>
+
+            <br>
+
+            <span class="key">
+                Space
+            </span>
+            翻转卡片
+
+            <br>
+
+            <span class="key">
+                ←
+            </span>
+
+            <span class="key">
+                →
+            </span>
+            上一个 / 下一个
+
+            <br>
+
+            <span class="key">
+                R
+            </span>
+            随机单词
+
+            <br>
+
+            <span class="key">
+                S
+            </span>
+            英语发音
+
+            <br>
+
+            <span class="key">
+                K
+            </span>
+            已掌握
+
+            <br>
+
+            <span class="key">
+                X
+            </span>
+            不认识
+
+        </div>
+
+
+        <div class="info-box">
+
+            💾 学习记录保存在当前浏览器的
+            LocalStorage 中。
+
+            <br>
+
+            更换设备或浏览器后，学习记录不会自动同步。
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     Mobile Bottom Navigation
+===================================================== -->
+
+<nav class="bottom-nav">
+
+    <button
+        class="bottom-button active"
+        id="navStudy"
+        onclick="showPage('study')">
+
+        <span>🃏</span>
+
+        <span>学习</span>
+
+    </button>
+
+
+    <button
+        class="bottom-button"
+        id="navLibrary"
+        onclick="showPage('library')">
+
+        <span>📚</span>
+
+        <span>词库</span>
+
+    </button>
+
+
+    <button
+        class="bottom-button"
+        id="navStats"
+        onclick="showPage('stats')">
+
+        <span>📊</span>
+
+        <span>统计</span>
+
+    </button>
+
+</nav>
 
 
 <script>
 
 
 /* =====================================================
-   关键配置
-
-   使用 GitHub Pages 的绝对路径。
+   配置
 ===================================================== */
 
 const SITE_ROOT =
     "/MyFlashCards/";
 
-
 const DATA_ROOT =
     SITE_ROOT + "data/";
-
 
 const DECK_INDEX =
     DATA_ROOT + "index.json";
 
 
 /* =====================================================
-   全局变量
+   全局状态
 ===================================================== */
 
 let decks = [];
@@ -1195,14 +1954,7 @@ let progress = {};
 
 
 /* =====================================================
-   获取最新 JSON
-
-   重点：
-
-   1. 时间戳
-   2. no-store
-   3. 10 秒超时
-   4. 错误直接抛出
+   JSON 加载
 ===================================================== */
 
 async function getJSON(url) {
@@ -1218,7 +1970,7 @@ async function getJSON(url) {
 
 
     console.log(
-        "Loading:",
+        "[PangGe] Loading:",
         finalUrl
     );
 
@@ -1282,11 +2034,11 @@ async function getJSON(url) {
             return JSON.parse(text);
 
         }
-        catch (e) {
+        catch (error) {
 
             throw new Error(
                 "JSON 格式错误：" +
-                e.message
+                error.message
             );
 
         }
@@ -1300,7 +2052,7 @@ async function getJSON(url) {
         ) {
 
             throw new Error(
-                "请求超时（10 秒）"
+                "请求超时：10 秒内没有收到响应"
             );
 
         }
@@ -1335,20 +2087,11 @@ async function init() {
 
     bindEvents();
 
+
     try {
 
         setLoading(
-            "正在连接 GitHub Pages..."
-        );
-
-
-        /*
-         * 第一步：
-         * 加载词库目录
-         */
-
-        setLoading(
-            "正在读取 data/index.json..."
+            "正在读取词库..."
         );
 
 
@@ -1356,12 +2099,6 @@ async function init() {
             await getJSON(
                 DECK_INDEX
             );
-
-
-        console.log(
-            "Decks:",
-            decks
-        );
 
 
         if (
@@ -1386,23 +2123,21 @@ async function init() {
         }
 
 
-        renderDecks();
+        renderDeckList();
 
-
-        /*
-         * 第二步：
-         * 加载第一个词库
-         */
 
         await loadDeck(
             decks[0].id
         );
 
+
+        hideLoading();
+
     }
     catch (error) {
 
         console.error(
-            "初始化失败：",
+            "[PangGe] 初始化失败:",
             error
         );
 
@@ -1417,7 +2152,7 @@ async function init() {
 
 
 /* =====================================================
-   显示加载状态
+   Loading
 ===================================================== */
 
 function setLoading(text) {
@@ -1430,45 +2165,12 @@ function setLoading(text) {
 }
 
 
-/* =====================================================
-   显示词库
-===================================================== */
+function hideLoading() {
 
-function renderDecks() {
-
-    const select =
-        document.getElementById(
-            "deckSelect"
-        );
-
-
-    select.innerHTML = "";
-
-
-    decks.forEach(
-        deck => {
-
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-
-            option.value =
-                deck.id;
-
-
-            option.textContent =
-                deck.name ||
-                deck.id;
-
-
-            select.appendChild(
-                option
-            );
-
-        }
-    );
+    document.getElementById(
+        "loading"
+    ).style.display =
+        "none";
 
 }
 
@@ -1500,26 +2202,15 @@ async function loadDeck(id) {
 
 
     setLoading(
-        "正在加载：" +
-        deck.name
+        "正在加载 " +
+        deck.name +
+        "..."
     );
 
-
-    /*
-     * 例如：
-     *
-     * /MyFlashCards/data/cet4.json
-     */
 
     const url =
         DATA_ROOT +
         deck.file;
-
-
-    console.log(
-        "Loading deck:",
-        url
-    );
 
 
     words =
@@ -1552,10 +2243,6 @@ async function loadDeck(id) {
     }
 
 
-    /*
-     * 读取本地学习记录
-     */
-
     loadProgress();
 
 
@@ -1567,11 +2254,11 @@ async function loadDeck(id) {
 
     if (
         saved &&
-        typeof saved.currentIndex ===
-            "number" &&
+        Number.isInteger(
+            saved.currentIndex
+        ) &&
         saved.currentIndex >= 0 &&
-        saved.currentIndex <
-            words.length
+        saved.currentIndex < words.length
     ) {
 
         currentIndex =
@@ -1585,25 +2272,152 @@ async function loadDeck(id) {
     }
 
 
+    document.getElementById(
+        "deckName"
+    ).textContent =
+        deck.name;
+
+
+    document.getElementById(
+        "statsDeckName"
+    ).textContent =
+        deck.name;
+
+
     renderWord();
 
+    updateStatsPage();
 
-    document.getElementById(
-        "loading"
-    ).style.display =
-        "none";
+}
 
 
-    document.getElementById(
-        "learningArea"
-    ).style.display =
-        "block";
+/* =====================================================
+   词库列表
+===================================================== */
+
+function renderDeckList() {
+
+    const list =
+        document.getElementById(
+            "deckList"
+        );
 
 
-    document.getElementById(
-        "error"
-    ).style.display =
-        "none";
+    list.innerHTML = "";
+
+
+    decks.forEach(
+        deck => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "deck-item";
+
+
+            item.innerHTML = `
+
+                <div class="deck-item-name">
+                    ${escapeHTML(
+                        deck.name ||
+                        deck.id
+                    )}
+                </div>
+
+                <div class="deck-item-file">
+                    ${escapeHTML(
+                        deck.file || ""
+                    )}
+                </div>
+
+            `;
+
+
+            item.addEventListener(
+                "click",
+                async () => {
+
+                    try {
+
+                        showPage(
+                            "study"
+                        );
+
+
+                        setLoading(
+                            "正在加载 " +
+                            deck.name +
+                            "..."
+                        );
+
+
+                        document.getElementById(
+                            "loading"
+                        ).style.display =
+                            "flex";
+
+
+                        await loadDeck(
+                            deck.id
+                        );
+
+
+                        hideLoading();
+
+                    }
+                    catch (error) {
+
+                        showError(
+                            error
+                        );
+
+                    }
+
+                }
+            );
+
+
+            list.appendChild(
+                item
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   HTML 安全
+===================================================== */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
@@ -1614,13 +2428,19 @@ async function loadDeck(id) {
 
 function renderWord() {
 
-    if (!words.length) {
+    if (
+        !words.length
+    ) {
+
         return;
+
     }
 
 
     const item =
-        words[currentIndex];
+        words[
+            currentIndex
+        ];
 
 
     document.getElementById(
@@ -1669,270 +2489,94 @@ function renderWord() {
 
 
 /* =====================================================
-   统计
+   翻卡
 ===================================================== */
 
-function updateStats() {
-
-    if (!currentDeck) {
-        return;
-    }
-
-
-    const data =
-        progress[
-            currentDeck.id
-        ] || {
-
-            known: [],
-
-            unknown: []
-
-        };
-
-
-    const known =
-        data.known.length;
-
-
-    const unknown =
-        data.unknown.length;
-
-
-    const learned =
-        known + unknown;
-
-
-    const rate =
-        words.length
-            ? Math.round(
-                known /
-                words.length *
-                100
-            )
-            : 0;
-
+function flipCard() {
 
     document.getElementById(
-        "totalWords"
-    ).textContent =
-        words.length;
-
-
-    document.getElementById(
-        "learnedWords"
-    ).textContent =
-        learned;
-
-
-    document.getElementById(
-        "knownWords"
-    ).textContent =
-        known;
-
-
-    document.getElementById(
-        "masteryRate"
-    ).textContent =
-        rate + "%";
-
-
-    const percent =
-        (
-            (currentIndex + 1) /
-            words.length
-        ) * 100;
-
-
-    document.getElementById(
-        "progressValue"
-    ).style.width =
-        percent + "%";
-
-
-    document.getElementById(
-        "progressText"
-    ).textContent =
-        `${currentIndex + 1} / ${words.length}`;
-
-}
-
-
-/* =====================================================
-   LocalStorage
-===================================================== */
-
-function loadProgress() {
-
-    try {
-
-        const saved =
-            localStorage.getItem(
-                "pangge_progress"
-            );
-
-
-        progress =
-            saved
-                ? JSON.parse(saved)
-                : {};
-
-    }
-    catch {
-
-        progress = {};
-
-    }
-
-}
-
-
-function saveProgress() {
-
-    localStorage.setItem(
-        "pangge_progress",
-        JSON.stringify(
-            progress
-        )
+        "card"
+    ).classList.toggle(
+        "flipped"
     );
 
 }
 
 
-function saveCurrentIndex() {
-
-    if (!currentDeck) {
-        return;
-    }
-
-
-    if (
-        !progress[
-            currentDeck.id
-        ]
-    ) {
-
-        progress[
-            currentDeck.id
-        ] = {
-
-            known: [],
-
-            unknown: [],
-
-            currentIndex: 0
-
-        };
-
-    }
-
-
-    progress[
-        currentDeck.id
-    ].currentIndex =
-        currentIndex;
-
-
-    saveProgress();
-
-}
-
-
 /* =====================================================
-   标记
+   发音
 ===================================================== */
 
-function markWord(type) {
-
-    if (!currentDeck) {
-        return;
-    }
-
+function speak() {
 
     if (
-        !progress[
-            currentDeck.id
-        ]
+        !words.length
     ) {
 
-        progress[
-            currentDeck.id
-        ] = {
-
-            known: [],
-
-            unknown: [],
-
-            currentIndex: 0
-
-        };
+        return;
 
     }
 
 
-    const data =
-        progress[
-            currentDeck.id
-        ];
-
-
-    const word =
+    const text =
         words[
             currentIndex
         ].word;
 
 
-    data.known =
-        data.known.filter(
-            x => x !== word
-        );
-
-
-    data.unknown =
-        data.unknown.filter(
-            x => x !== word
-        );
-
-
     if (
-        type === "known"
+        !window.speechSynthesis
     ) {
 
-        data.known.push(
-            word
+        alert(
+            "当前浏览器不支持英语发音"
         );
 
-    }
-    else {
-
-        data.unknown.push(
-            word
-        );
+        return;
 
     }
 
 
-    saveProgress();
-
-    updateStats();
+    speechSynthesis.cancel();
 
 
-    setTimeout(
-        nextWord,
-        150
+    const speech =
+        new SpeechSynthesisUtterance(
+            text
+        );
+
+
+    speech.lang =
+        "en-US";
+
+
+    speech.rate =
+        .85;
+
+
+    speech.pitch =
+        1;
+
+
+    speechSynthesis.speak(
+        speech
     );
 
 }
 
 
 /* =====================================================
-   Navigation
+   上一个
 ===================================================== */
 
 function previousWord() {
 
-    if (!words.length) {
+    if (
+        !words.length
+    ) {
+
         return;
+
     }
 
 
@@ -1954,10 +2598,18 @@ function previousWord() {
 }
 
 
+/* =====================================================
+   下一个
+===================================================== */
+
 function nextWord() {
 
-    if (!words.length) {
+    if (
+        !words.length
+    ) {
+
         return;
+
     }
 
 
@@ -1978,6 +2630,10 @@ function nextWord() {
 
 }
 
+
+/* =====================================================
+   随机
+===================================================== */
 
 function randomWord() {
 
@@ -2018,56 +2674,423 @@ function randomWord() {
 
 
 /* =====================================================
-   发音
+   标记单词
 ===================================================== */
 
-function speak() {
+function markWord(type) {
 
-    if (!words.length) {
+    if (
+        !currentDeck ||
+        !words.length
+    ) {
+
         return;
+
     }
 
 
-    const text =
+    if (
+        !progress[
+            currentDeck.id
+        ]
+    ) {
+
+        progress[
+            currentDeck.id
+        ] = {
+
+            known: [],
+
+            unknown: [],
+
+            currentIndex: 0
+
+        };
+
+    }
+
+
+    const data =
+        progress[
+            currentDeck.id
+        ];
+
+
+    const word =
         words[
             currentIndex
         ].word;
 
 
-    speechSynthesis.cancel();
-
-
-    const speech =
-        new SpeechSynthesisUtterance(
-            text
+    data.known =
+        data.known.filter(
+            x =>
+                x !== word
         );
 
 
-    speech.lang =
-        "en-US";
+    data.unknown =
+        data.unknown.filter(
+            x =>
+                x !== word
+        );
 
 
-    speech.rate =
-        .85;
+    if (
+        type === "known"
+    ) {
+
+        data.known.push(
+            word
+        );
+
+    }
+    else {
+
+        data.unknown.push(
+            word
+        );
+
+    }
 
 
-    speechSynthesis.speak(
-        speech
+    saveProgress();
+
+    updateStats();
+
+
+    setTimeout(
+        nextWord,
+        150
     );
 
 }
 
 
 /* =====================================================
-   Theme
+   统计
+===================================================== */
+
+function getCurrentStats() {
+
+    if (
+        !currentDeck
+    ) {
+
+        return {
+
+            total: 0,
+
+            learned: 0,
+
+            known: 0,
+
+            rate: 0
+
+        };
+
+    }
+
+
+    const data =
+        progress[
+            currentDeck.id
+        ] || {
+
+            known: [],
+
+            unknown: []
+
+        };
+
+
+    const known =
+        data.known.length;
+
+
+    const unknown =
+        data.unknown.length;
+
+
+    const learned =
+        known + unknown;
+
+
+    const rate =
+        words.length
+            ? Math.round(
+                known /
+                words.length *
+                100
+            )
+            : 0;
+
+
+    return {
+
+        total:
+            words.length,
+
+        learned,
+
+        known,
+
+        rate
+
+    };
+
+}
+
+
+function updateStats() {
+
+    const stats =
+        getCurrentStats();
+
+
+    document.getElementById(
+        "progressText"
+    ).textContent =
+        `${currentIndex + 1} / ${stats.total}`;
+
+
+    const percentage =
+        stats.total
+            ? (
+                (currentIndex + 1) /
+                stats.total *
+                100
+            )
+            : 0;
+
+
+    document.getElementById(
+        "progressValue"
+    ).style.width =
+        percentage + "%";
+
+}
+
+
+function updateStatsPage() {
+
+    const stats =
+        getCurrentStats();
+
+
+    document.getElementById(
+        "statTotal"
+    ).textContent =
+        stats.total;
+
+
+    document.getElementById(
+        "statLearned"
+    ).textContent =
+        stats.learned;
+
+
+    document.getElementById(
+        "statKnown"
+    ).textContent =
+        stats.known;
+
+
+    document.getElementById(
+        "statRate"
+    ).textContent =
+        stats.rate + "%";
+
+}
+
+
+/* =====================================================
+   LocalStorage
+===================================================== */
+
+function loadProgress() {
+
+    try {
+
+        const data =
+            localStorage.getItem(
+                "pangge_progress"
+            );
+
+
+        progress =
+            data
+                ? JSON.parse(data)
+                : {};
+
+    }
+    catch {
+
+        progress = {};
+
+    }
+
+}
+
+
+function saveProgress() {
+
+    try {
+
+        localStorage.setItem(
+            "pangge_progress",
+            JSON.stringify(
+                progress
+            )
+        );
+
+    }
+    catch {
+
+        console.warn(
+            "无法保存学习记录"
+        );
+
+    }
+
+}
+
+
+function saveCurrentIndex() {
+
+    if (
+        !currentDeck
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        !progress[
+            currentDeck.id
+        ]
+    ) {
+
+        progress[
+            currentDeck.id
+        ] = {
+
+            known: [],
+
+            unknown: [],
+
+            currentIndex: 0
+
+        };
+
+    }
+
+
+    progress[
+        currentDeck.id
+    ].currentIndex =
+        currentIndex;
+
+
+    saveProgress();
+
+}
+
+
+/* =====================================================
+   页面切换
+===================================================== */
+
+function showPage(page) {
+
+    document
+        .querySelectorAll(
+            ".page"
+        )
+        .forEach(
+            element => {
+
+                element.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    document.getElementById(
+        page + "Page"
+    ).classList.add(
+        "active"
+    );
+
+
+    document
+        .querySelectorAll(
+            ".bottom-button"
+        )
+        .forEach(
+            button => {
+
+                button.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    const nav =
+        document.getElementById(
+            "nav" +
+            page.charAt(0)
+                .toUpperCase() +
+            page.slice(1)
+        );
+
+
+    if (nav) {
+
+        nav.classList.add(
+            "active"
+        );
+
+    }
+
+
+    if (
+        page === "stats"
+    ) {
+
+        updateStatsPage();
+
+    }
+
+
+    window.scrollTo(
+        0,
+        0
+    );
+
+}
+
+
+/* =====================================================
+   Dark Mode
 ===================================================== */
 
 function loadTheme() {
 
-    if (
+    const theme =
         localStorage.getItem(
             "pangge_theme"
-        ) === "dark"
+        );
+
+
+    if (
+        theme === "dark"
     ) {
 
         document.body.classList.add(
@@ -2112,36 +3135,13 @@ function toggleTheme() {
 
 
 /* =====================================================
-   Events
+   事件
 ===================================================== */
 
 function bindEvents() {
 
 
-    document.getElementById(
-        "deckSelect"
-    ).addEventListener(
-        "change",
-        async event => {
-
-            try {
-
-                await loadDeck(
-                    event.target.value
-                );
-
-            }
-            catch (error) {
-
-                showError(
-                    error
-                );
-
-            }
-
-        }
-    );
-
+    /* 卡片 */
 
     document.getElementById(
         "card"
@@ -2151,7 +3151,7 @@ function bindEvents() {
 
             if (
                 event.target.closest(
-                    ".audio"
+                    ".speak-button"
                 )
             ) {
 
@@ -2160,18 +3160,16 @@ function bindEvents() {
             }
 
 
-            event.currentTarget
-                .classList
-                .toggle(
-                    "flipped"
-                );
+            flipCard();
 
         }
     );
 
 
+    /* 发音 */
+
     document.getElementById(
-        "audioButton"
+        "speakButton"
     ).addEventListener(
         "click",
         event => {
@@ -2185,7 +3183,7 @@ function bindEvents() {
 
 
     document.getElementById(
-        "audioButtonBack"
+        "speakButtonBack"
     ).addEventListener(
         "click",
         event => {
@@ -2198,11 +3196,27 @@ function bindEvents() {
     );
 
 
+    /* 按钮 */
+
     document.getElementById(
-        "randomButton"
+        "unknownButton"
     ).addEventListener(
         "click",
-        randomWord
+        () =>
+            markWord(
+                "unknown"
+            )
+    );
+
+
+    document.getElementById(
+        "knownButton"
+    ).addEventListener(
+        "click",
+        () =>
+            markWord(
+                "known"
+            )
     );
 
 
@@ -2222,23 +3236,7 @@ function bindEvents() {
     );
 
 
-    document.getElementById(
-        "knownButton"
-    ).addEventListener(
-        "click",
-        () =>
-            markWord("known")
-    );
-
-
-    document.getElementById(
-        "unknownButton"
-    ).addEventListener(
-        "click",
-        () =>
-            markWord("unknown")
-    );
-
+    /* 主题 */
 
     document.getElementById(
         "themeButton"
@@ -2248,9 +3246,29 @@ function bindEvents() {
     );
 
 
+    /* 键盘 */
+
     document.addEventListener(
         "keydown",
         event => {
+
+            /*
+             * 输入框中不要触发快捷键
+             */
+
+            if (
+                event.target.tagName ===
+                "INPUT" ||
+                event.target.tagName ===
+                "TEXTAREA" ||
+                event.target.tagName ===
+                "SELECT"
+            ) {
+
+                return;
+
+            }
+
 
             switch (
                 event.key
@@ -2260,11 +3278,7 @@ function bindEvents() {
 
                     event.preventDefault();
 
-                    document.getElementById(
-                        "card"
-                    ).classList.toggle(
-                        "flipped"
-                    );
+                    flipCard();
 
                     break;
 
@@ -2327,23 +3341,12 @@ function bindEvents() {
 
 
 /* =====================================================
-   错误显示
-
-   不再无限 Loading。
+   错误
 ===================================================== */
 
 function showError(error) {
 
-    document.getElementById(
-        "loading"
-    ).style.display =
-        "none";
-
-
-    document.getElementById(
-        "learningArea"
-    ).style.display =
-        "none";
+    hideLoading();
 
 
     const box =
@@ -2352,61 +3355,41 @@ function showError(error) {
         );
 
 
-    box.style.display =
-        "block";
+    document.getElementById(
+        "errorMessage"
+    ).innerHTML = `
 
-
-    box.innerHTML = `
-        <strong>❌ 词库加载失败</strong>
-
-        <br><br>
-
-        ${error.message}
+        ${escapeHTML(
+            error.message
+        )}
 
         <br><br>
 
-        <strong>请检查：</strong>
+        <strong>
+            词库目录：
+        </strong>
 
         <br>
 
-        1. data/index.json 是否存在
-
-        <br>
-
-        2. JSON 文件格式是否正确
-
-        <br>
-
-        3. GitHub Pages 是否已经完成部署
-
-        <br>
-
-        4. 文件名大小写是否完全一致
+        ${escapeHTML(
+            DATA_ROOT
+        )}
 
         <br><br>
 
-        <strong>当前词库目录：</strong>
+        请确认 GitHub Pages 中存在：
 
         <br>
 
-        ${DATA_ROOT}
+        <code>
+            data/index.json
+        </code>
 
-        <br><br>
-
-        <button
-            onclick="location.reload()"
-            style="
-                padding:10px 18px;
-                border:0;
-                border-radius:8px;
-                background:#4f46e5;
-                color:white;
-                cursor:pointer;
-            "
-        >
-            🔄 重新加载
-        </button>
     `;
+
+
+    box.style.display =
+        "flex";
 
 }
 
@@ -2415,3 +3398,4 @@ function showError(error) {
 </body>
 
 </html>
+```
