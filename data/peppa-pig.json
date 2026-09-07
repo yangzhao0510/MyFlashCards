@@ -1,450 +1,396 @@
 [
   {
-    "word": "muddy",
-    "phonetic": "/ˈmʌdi/",
-    "meaning": "泥泞的；沾满泥的",
-    "example": "The puddle is very muddy.",
-    "example_cn": "这个水坑里有很多泥。"
+    "word": "little",
+    "phonetic": "/ˈlɪtl/",
+    "meaning": "小的",
+    "example": "This is my little brother, George.",
+    "example_cn": "这是我的弟弟乔治。",
+    "level": 1
   },
   {
-    "word": "puddle",
-    "phonetic": "/ˈpʌdl/",
-    "meaning": "水坑",
-    "example": "Peppa likes jumping in muddy puddles.",
-    "example_cn": "小猪佩奇喜欢跳进泥坑里。"
-  },
-  {
-    "word": "jump",
-    "phonetic": "/dʒʌmp/",
-    "meaning": "跳；跳跃",
-    "example": "George likes to jump in puddles.",
-    "example_cn": "乔治喜欢跳进水坑里。"
-  },
-  {
-    "word": "boots",
-    "phonetic": "/buːts/",
-    "meaning": "靴子",
-    "example": "Put on your boots.",
-    "example_cn": "穿上你的靴子。"
+    "word": "brother",
+    "phonetic": "/ˈbrʌðər/",
+    "meaning": "弟弟；兄弟",
+    "example": "This is my little brother, George.",
+    "example_cn": "这是我的弟弟乔治。",
+    "level": 1
   },
   {
     "word": "rain",
     "phonetic": "/reɪn/",
     "meaning": "雨；下雨",
-    "example": "It is raining.",
-    "example_cn": "正在下雨。"
+    "example": "It is raining today.",
+    "example_cn": "今天下雨了。",
+    "level": 1
   },
   {
-    "word": "sunny",
-    "phonetic": "/ˈsʌni/",
-    "meaning": "晴朗的",
-    "example": "It is a sunny day.",
-    "example_cn": "今天是晴天。"
+    "word": "outside",
+    "phonetic": "/ˌaʊtˈsaɪd/",
+    "meaning": "外面",
+    "example": "Peppa and George cannot play outside.",
+    "example_cn": "佩奇和乔治不能在外面玩。",
+    "level": 1
   },
   {
-    "word": "dirty",
-    "phonetic": "/ˈdɜːrti/",
-    "meaning": "脏的",
-    "example": "Peppa's boots are dirty.",
-    "example_cn": "佩奇的靴子脏了。"
+    "word": "play",
+    "phonetic": "/pleɪ/",
+    "meaning": "玩",
+    "example": "Can we go out to play?",
+    "example_cn": "我们能出去玩吗？",
+    "level": 1
   },
   {
-    "word": "clean",
-    "phonetic": "/kliːn/",
-    "meaning": "干净的；清洁",
-    "example": "Let's clean your boots.",
-    "example_cn": "我们把你的靴子洗干净吧。"
+    "word": "jump",
+    "phonetic": "/dʒʌmp/",
+    "meaning": "跳",
+    "example": "Peppa loves jumping in muddy puddles.",
+    "example_cn": "佩奇喜欢在泥坑里跳。",
+    "level": 1
   },
   {
-    "word": "dinosaur",
-    "phonetic": "/ˈdaɪnəsɔːr/",
-    "meaning": "恐龙",
-    "example": "George loves dinosaurs.",
-    "example_cn": "乔治喜欢恐龙。"
+    "word": "muddy",
+    "phonetic": "/ˈmʌdi/",
+    "meaning": "泥泞的；沾满泥的",
+    "example": "Peppa loves jumping in muddy puddles.",
+    "example_cn": "佩奇喜欢在泥坑里跳。",
+    "level": 1
   },
   {
-    "word": "lost",
-    "phonetic": "/lɔːst/",
-    "meaning": "丢失的；迷路的",
-    "example": "Mr. Dinosaur is lost.",
-    "example_cn": "恐龙先生丢了。"
+    "word": "puddle",
+    "phonetic": "/ˈpʌdl/",
+    "meaning": "水坑；泥坑",
+    "example": "I love muddy puddles.",
+    "example_cn": "我喜欢泥坑。",
+    "level": 1
+  },
+  {
+    "word": "must",
+    "phonetic": "/mʌst/",
+    "meaning": "必须",
+    "example": "You must wear your boots.",
+    "example_cn": "你必须穿上靴子。",
+    "level": 1
+  },
+  {
+    "word": "wear",
+    "phonetic": "/wer/",
+    "meaning": "穿；戴",
+    "example": "You must wear your boots.",
+    "example_cn": "你必须穿上靴子。",
+    "level": 1
+  },
+  {
+    "word": "boots",
+    "phonetic": "/buːts/",
+    "meaning": "靴子",
+    "example": "You must wear your boots.",
+    "example_cn": "你必须穿上靴子。",
+    "level": 1
   },
   {
     "word": "find",
     "phonetic": "/faɪnd/",
     "meaning": "找到；发现",
-    "example": "Can we find Mr. Dinosaur?",
-    "example_cn": "我们能找到恐龙先生吗？"
-  },
-  {
-    "word": "look",
-    "phonetic": "/lʊk/",
-    "meaning": "看",
-    "example": "Look over there!",
-    "example_cn": "看那边！"
-  },
-  {
-    "word": "there",
-    "phonetic": "/ðer/",
-    "meaning": "那里",
-    "example": "It is over there.",
-    "example_cn": "它在那里。"
-  },
-  {
-    "word": "where",
-    "phonetic": "/wer/",
-    "meaning": "哪里",
-    "example": "Where is Mr. Dinosaur?",
-    "example_cn": "恐龙先生在哪里？"
-  },
-  {
-    "word": "friend",
-    "phonetic": "/frend/",
-    "meaning": "朋友",
-    "example": "Suzy Sheep is Peppa's best friend.",
-    "example_cn": "小羊苏西是佩奇最好的朋友。"
-  },
-  {
-    "word": "best",
-    "phonetic": "/best/",
-    "meaning": "最好的",
-    "example": "She is my best friend.",
-    "example_cn": "她是我最好的朋友。"
-  },
-  {
-    "word": "sheep",
-    "phonetic": "/ʃiːp/",
-    "meaning": "羊",
-    "example": "Suzy is a little sheep.",
-    "example_cn": "苏西是一只小羊。"
-  },
-  {
-    "word": "play",
-    "phonetic": "/pleɪ/",
-    "meaning": "玩；玩耍",
-    "example": "Peppa and Suzy like to play together.",
-    "example_cn": "佩奇和苏西喜欢一起玩。"
-  },
-  {
-    "word": "together",
-    "phonetic": "/təˈɡeðər/",
-    "meaning": "一起",
-    "example": "Let's play together.",
-    "example_cn": "我们一起玩吧。"
-  },
-  {
-    "word": "share",
-    "phonetic": "/ʃer/",
-    "meaning": "分享；共同使用",
-    "example": "Good friends share their toys.",
-    "example_cn": "好朋友会分享他们的玩具。"
-  },
-  {
-    "word": "toy",
-    "phonetic": "/tɔɪ/",
-    "meaning": "玩具",
-    "example": "George has a favorite toy.",
-    "example_cn": "乔治有一个最喜欢的玩具。"
-  },
-  {
-    "word": "parrot",
-    "phonetic": "/ˈpærət/",
-    "meaning": "鹦鹉",
-    "example": "Polly is a green parrot.",
-    "example_cn": "波莉是一只绿色的鹦鹉。"
-  },
-  {
-    "word": "bird",
-    "phonetic": "/bɜːrd/",
-    "meaning": "鸟",
-    "example": "Polly is a very clever bird.",
-    "example_cn": "波莉是一只非常聪明的鸟。"
-  },
-  {
-    "word": "clever",
-    "phonetic": "/ˈklevər/",
-    "meaning": "聪明的",
-    "example": "Polly is very clever.",
-    "example_cn": "波莉非常聪明。"
-  },
-  {
-    "word": "say",
-    "phonetic": "/seɪ/",
-    "meaning": "说",
-    "example": "Can Polly say hello?",
-    "example_cn": "波莉会说你好么？"
-  },
-  {
-    "word": "hello",
-    "phonetic": "/həˈloʊ/",
-    "meaning": "你好",
-    "example": "Hello, Polly!",
-    "example_cn": "你好，波莉！"
-  },
-  {
-    "word": "repeat",
-    "phonetic": "/rɪˈpiːt/",
-    "meaning": "重复",
-    "example": "Can you repeat that?",
-    "example_cn": "你能重复一遍吗？"
-  },
-  {
-    "word": "hide",
-    "phonetic": "/haɪd/",
-    "meaning": "躲藏",
-    "example": "Peppa wants to hide.",
-    "example_cn": "佩奇想躲起来。"
-  },
-  {
-    "word": "seek",
-    "phonetic": "/siːk/",
-    "meaning": "寻找",
-    "example": "Let's play hide and seek.",
-    "example_cn": "我们来玩捉迷藏吧。"
-  },
-  {
-    "word": "ready",
-    "phonetic": "/ˈredi/",
-    "meaning": "准备好的",
-    "example": "Are you ready?",
-    "example_cn": "你准备好了吗？"
-  },
-  {
-    "word": "count",
-    "phonetic": "/kaʊnt/",
-    "meaning": "数数；计算",
-    "example": "George can count to ten.",
-    "example_cn": "乔治会数到十。"
-  },
-  {
-    "word": "one",
-    "phonetic": "/wʌn/",
-    "meaning": "一",
-    "example": "One, two, three!",
-    "example_cn": "一、二、三！"
-  },
-  {
-    "word": "two",
-    "phonetic": "/tuː/",
-    "meaning": "二",
-    "example": "One, two, three!",
-    "example_cn": "一、二、三！"
-  },
-  {
-    "word": "three",
-    "phonetic": "/θriː/",
-    "meaning": "三",
-    "example": "One, two, three!",
-    "example_cn": "一、二、三！"
-  },
-  {
-    "word": "four",
-    "phonetic": "/fɔːr/",
-    "meaning": "四",
-    "example": "Count to four.",
-    "example_cn": "数到四。"
-  },
-  {
-    "word": "five",
-    "phonetic": "/faɪv/",
-    "meaning": "五",
-    "example": "I can count to five.",
-    "example_cn": "我会数到五。"
-  },
-  {
-    "word": "six",
-    "phonetic": "/sɪks/",
-    "meaning": "六",
-    "example": "Count to six.",
-    "example_cn": "数到六。"
-  },
-  {
-    "word": "seven",
-    "phonetic": "/ˈsevən/",
-    "meaning": "七",
-    "example": "There are seven toys.",
-    "example_cn": "有七个玩具。"
-  },
-  {
-    "word": "eight",
-    "phonetic": "/eɪt/",
-    "meaning": "八",
-    "example": "Count to eight.",
-    "example_cn": "数到八。"
-  },
-  {
-    "word": "nine",
-    "phonetic": "/naɪn/",
-    "meaning": "九",
-    "example": "There are nine ducks.",
-    "example_cn": "有九只鸭子。"
-  },
-  {
-    "word": "ten",
-    "phonetic": "/ten/",
-    "meaning": "十",
-    "example": "I can count to ten.",
-    "example_cn": "我会数到十。"
-  },
-  {
-    "word": "family",
-    "phonetic": "/ˈfæməli/",
-    "meaning": "家庭；家人",
-    "example": "Peppa loves her family.",
-    "example_cn": "佩奇爱她的家人。"
-  },
-  {
-    "word": "Mummy",
-    "phonetic": "/ˈmʌmi/",
-    "meaning": "妈妈",
-    "example": "Mummy Pig is in the garden.",
-    "example_cn": "猪妈妈在花园里。"
-  },
-  {
-    "word": "Daddy",
-    "phonetic": "/ˈdædi/",
-    "meaning": "爸爸",
-    "example": "Daddy Pig is very funny.",
-    "example_cn": "猪爸爸非常有趣。"
-  },
-  {
-    "word": "George",
-    "phonetic": "/dʒɔːrdʒ/",
-    "meaning": "乔治",
-    "example": "George loves his dinosaur.",
-    "example_cn": "乔治喜欢他的恐龙。"
-  },
-  {
-    "word": "garden",
-    "phonetic": "/ˈɡɑːrdən/",
-    "meaning": "花园",
-    "example": "Peppa is playing in the garden.",
-    "example_cn": "佩奇正在花园里玩。"
-  },
-  {
-    "word": "house",
-    "phonetic": "/haʊs/",
-    "meaning": "房子；家",
-    "example": "Peppa is at home.",
-    "example_cn": "佩奇在家。"
-  },
-  {
-    "word": "home",
-    "phonetic": "/hoʊm/",
-    "meaning": "家；家里",
-    "example": "Let's go home.",
-    "example_cn": "我们回家吧。"
-  },
-  {
-    "word": "happy",
-    "phonetic": "/ˈhæpi/",
-    "meaning": "开心的；快乐的",
-    "example": "Peppa is very happy.",
-    "example_cn": "佩奇非常开心。"
-  },
-  {
-    "word": "fun",
-    "phonetic": "/fʌn/",
-    "meaning": "有趣的；乐趣",
-    "example": "Jumping in puddles is fun.",
-    "example_cn": "跳泥坑很有趣。"
-  },
-  {
-    "word": "funny",
-    "phonetic": "/ˈfʌni/",
-    "meaning": "有趣的；好笑的",
-    "example": "Daddy Pig is funny.",
-    "example_cn": "猪爸爸很搞笑。"
+    "example": "Let's find some more puddles.",
+    "example_cn": "我们再找几个泥坑吧。",
+    "level": 1
   },
   {
     "word": "big",
     "phonetic": "/bɪɡ/",
     "meaning": "大的",
-    "example": "That is a big puddle.",
-    "example_cn": "那是一个大水坑。"
-  },
-  {
-    "word": "little",
-    "phonetic": "/ˈlɪtl/",
-    "meaning": "小的；年幼的",
-    "example": "George is little.",
-    "example_cn": "乔治还很小。"
-  },
-  {
-    "word": "small",
-    "phonetic": "/smɔːl/",
-    "meaning": "小的",
-    "example": "It is a small puddle.",
-    "example_cn": "这是一个小水坑。"
-  },
-  {
-    "word": "wet",
-    "phonetic": "/wet/",
-    "meaning": "湿的",
-    "example": "My boots are wet.",
-    "example_cn": "我的靴子湿了。"
-  },
-  {
-    "word": "again",
-    "phonetic": "/əˈɡen/",
-    "meaning": "再次；又一次",
-    "example": "Let's do it again.",
-    "example_cn": "我们再做一次吧。"
-  },
-  {
-    "word": "come",
-    "phonetic": "/kʌm/",
-    "meaning": "来",
-    "example": "Come and play with us.",
-    "example_cn": "来和我们一起玩吧。"
-  },
-  {
-    "word": "go",
-    "phonetic": "/ɡoʊ/",
-    "meaning": "去",
-    "example": "Let's go!",
-    "example_cn": "我们走吧！"
-  },
-  {
-    "word": "wait",
-    "phonetic": "/weɪt/",
-    "meaning": "等待",
-    "example": "Wait for me!",
-    "example_cn": "等等我！"
+    "example": "George has found a big puddle.",
+    "example_cn": "乔治找到了一个大泥坑。",
+    "level": 1
   },
   {
     "word": "stop",
-    "phonetic": "/stɑːp/",
-    "meaning": "停止",
-    "example": "Stop jumping!",
-    "example_cn": "别跳了！"
+    "phonetic": "/stɒp/",
+    "meaning": "停止；停下",
+    "example": "Stop, George.",
+    "example_cn": "等一下，乔治。",
+    "level": 1
   },
   {
-    "word": "please",
-    "phonetic": "/pliːz/",
-    "meaning": "请",
-    "example": "Please come here.",
-    "example_cn": "请到这里来。"
+    "word": "safe",
+    "phonetic": "/seɪf/",
+    "meaning": "安全的",
+    "example": "It is safe for you.",
+    "example_cn": "这里对你来说是安全的。",
+    "level": 1
   },
   {
-    "word": "thank",
-    "phonetic": "/θæŋk/",
-    "meaning": "感谢",
-    "example": "Thank you!",
-    "example_cn": "谢谢你！"
+    "word": "mud",
+    "phonetic": "/mʌd/",
+    "meaning": "泥；泥巴",
+    "example": "It's only mud.",
+    "example_cn": "只是些泥而已。",
+    "level": 1
+  },
+  {
+    "word": "clean",
+    "phonetic": "/kliːn/",
+    "meaning": "清洁；干净的",
+    "example": "Let's clean up quickly.",
+    "example_cn": "我们快点清理干净。",
+    "level": 1
+  },
+  {
+    "word": "garden",
+    "phonetic": "/ˈɡɑːrdən/",
+    "meaning": "花园",
+    "example": "We can all play in the garden.",
+    "example_cn": "我们可以一起在花园里玩。",
+    "level": 1
+  },
+
+  {
+    "word": "alright",
+    "phonetic": "/ɔːlˈraɪt/",
+    "meaning": "好的；没问题",
+    "example": "Alright, run along you two.",
+    "example_cn": "好的，你们两个去玩吧。",
+    "level": 2
   },
   {
     "word": "sorry",
-    "phonetic": "/ˈsɑːri/",
-    "meaning": "对不起；抱歉",
-    "example": "Sorry, I forgot.",
-    "example_cn": "对不起，我忘了。"
+    "phonetic": "/ˈsɒri/",
+    "meaning": "对不起",
+    "example": "Sorry, Mummy.",
+    "example_cn": "对不起，妈妈。",
+    "level": 2
   },
   {
-    "word": "okay",
-    "phonetic": "/oʊˈkeɪ/",
-    "meaning": "好的；可以",
-    "example": "Okay, let's go.",
-    "example_cn": "好的，我们走吧。"
+    "word": "too",
+    "phonetic": "/tuː/",
+    "meaning": "也",
+    "example": "George likes to jump in muddy puddles, too.",
+    "example_cn": "乔治也喜欢在泥坑里跳。",
+    "level": 2
+  },
+  {
+    "word": "more",
+    "phonetic": "/mɔːr/",
+    "meaning": "更多的",
+    "example": "Let's find some more puddles.",
+    "example_cn": "我们再找几个泥坑吧。",
+    "level": 2
+  },
+  {
+    "word": "fun",
+    "phonetic": "/fʌn/",
+    "meaning": "乐趣；开心",
+    "example": "Peppa and George are having a lot of fun.",
+    "example_cn": "佩奇和乔治玩得很开心。",
+    "level": 2
+  },
+  {
+    "word": "really",
+    "phonetic": "/ˈriːəli/",
+    "meaning": "真正地；非常",
+    "example": "There's a really big puddle.",
+    "example_cn": "那里有一个非常大的泥坑。",
+    "level": 2
+  },
+  {
+    "word": "check",
+    "phonetic": "/tʃek/",
+    "meaning": "检查",
+    "example": "I must check if it's safe for you.",
+    "example_cn": "我得检查一下这里对你是否安全。",
+    "level": 2
+  },
+  {
+    "word": "show",
+    "phonetic": "/ʃoʊ/",
+    "meaning": "给……看；展示",
+    "example": "Let's go and show Daddy.",
+    "example_cn": "我们去给爸爸看看。",
+    "level": 2
+  },
+  {
+    "word": "guess",
+    "phonetic": "/ɡes/",
+    "meaning": "猜",
+    "example": "Guess what we've been doing.",
+    "example_cn": "猜猜我们刚才干了什么。",
+    "level": 2
+  },
+  {
+    "word": "think",
+    "phonetic": "/θɪŋk/",
+    "meaning": "想；思考",
+    "example": "Let me think.",
+    "example_cn": "让我想一想。",
+    "level": 2
+  },
+  {
+    "word": "watch",
+    "phonetic": "/wɒtʃ/",
+    "meaning": "观看",
+    "example": "Have you been watching television?",
+    "example_cn": "你们刚才看电视了吗？",
+    "level": 2
+  },
+  {
+    "word": "television",
+    "phonetic": "/ˈtelɪvɪʒən/",
+    "meaning": "电视",
+    "example": "Have you been watching television?",
+    "example_cn": "你们刚才看电视了吗？",
+    "level": 2
+  },
+  {
+    "word": "bath",
+    "phonetic": "/bɑːθ/",
+    "meaning": "洗澡；浴缸",
+    "example": "Have you just had a bath?",
+    "example_cn": "你们刚才洗澡了吗？",
+    "level": 2
+  },
+  {
+    "word": "know",
+    "phonetic": "/noʊ/",
+    "meaning": "知道",
+    "example": "I know.",
+    "example_cn": "我知道了。",
+    "level": 2
+  },
+  {
+    "word": "mess",
+    "phonetic": "/mes/",
+    "meaning": "脏乱；一团糟",
+    "example": "Look at the mess you're in.",
+    "example_cn": "看看你们弄得多脏呀。",
+    "level": 2
+  },
+  {
+    "word": "quickly",
+    "phonetic": "/ˈkwɪkli/",
+    "meaning": "快速地",
+    "example": "Let's clean up quickly.",
+    "example_cn": "我们快点清理干净。",
+    "level": 2
+  },
+  {
+    "word": "before",
+    "phonetic": "/bɪˈfɔːr/",
+    "meaning": "在……之前",
+    "example": "Clean up quickly before Mummy sees the mess.",
+    "example_cn": "快点清理干净，别让妈妈看到这么乱。",
+    "level": 2
+  },
+
+  {
+    "word": "look after",
+    "phonetic": "/lʊk ˈæftər/",
+    "meaning": "照顾",
+    "example": "Peppa likes to look after her little brother.",
+    "example_cn": "佩奇喜欢照顾她的弟弟。",
+    "level": 3
+  },
+  {
+    "word": "come on",
+    "phonetic": "/kʌm ɒn/",
+    "meaning": "来吧；快点",
+    "example": "Come on, George.",
+    "example_cn": "来吧，乔治。",
+    "level": 3
+  },
+  {
+    "word": "have fun",
+    "phonetic": "/hæv fʌn/",
+    "meaning": "玩得开心",
+    "example": "Peppa and George are having a lot of fun.",
+    "example_cn": "佩奇和乔治玩得很开心。",
+    "level": 3
+  },
+  {
+    "word": "jump into",
+    "phonetic": "/dʒʌmp ˈɪntuː/",
+    "meaning": "跳进……",
+    "example": "George wants to jump into the big puddle.",
+    "example_cn": "乔治想跳进那个大泥坑。",
+    "level": 3
+  },
+  {
+    "word": "jump in",
+    "phonetic": "/dʒʌmp ɪn/",
+    "meaning": "跳进；跳入",
+    "example": "Peppa loves jumping in muddy puddles.",
+    "example_cn": "佩奇喜欢在泥坑里跳。",
+    "level": 3
+  },
+  {
+    "word": "play outside",
+    "phonetic": "/pleɪ aʊtˈsaɪd/",
+    "meaning": "在外面玩",
+    "example": "Peppa and George cannot play outside.",
+    "example_cn": "佩奇和乔治不能在外面玩。",
+    "level": 3
+  },
+  {
+    "word": "a lot of fun",
+    "phonetic": "/ə lɒt əv fʌn/",
+    "meaning": "非常开心；很多乐趣",
+    "example": "They are having a lot of fun.",
+    "example_cn": "他们玩得非常开心。",
+    "level": 3
+  },
+  {
+    "word": "guess what",
+    "phonetic": "/ɡes wɒt/",
+    "meaning": "猜猜是什么；猜猜看",
+    "example": "Guess what we've been doing.",
+    "example_cn": "猜猜我们刚才干了什么。",
+    "level": 3
+  },
+  {
+    "word": "have a bath",
+    "phonetic": "/hæv ə bæθ/",
+    "meaning": "洗澡",
+    "example": "Have you just had a bath?",
+    "example_cn": "你们刚才洗澡了吗？",
+    "level": 3
+  },
+  {
+    "word": "clean up",
+    "phonetic": "/kliːn ʌp/",
+    "meaning": "清理；打扫干净",
+    "example": "Let's clean up quickly.",
+    "example_cn": "我们快点清理干净。",
+    "level": 3
+  },
+  {
+    "word": "look at",
+    "phonetic": "/lʊk æt/",
+    "meaning": "看；看一看",
+    "example": "Look at the mess you're in.",
+    "example_cn": "看看你们弄得多脏呀。",
+    "level": 3
+  },
+  {
+    "word": "go out",
+    "phonetic": "/ɡoʊ aʊt/",
+    "meaning": "出去",
+    "example": "Can we go out to play?",
+    "example_cn": "我们能出去玩吗？",
+    "level": 3
+  },
+  {
+    "word": "wear your boots",
+    "phonetic": "/wer jʊr buːts/",
+    "meaning": "穿上你的靴子",
+    "example": "You must wear your boots.",
+    "example_cn": "你必须穿上你的靴子。",
+    "level": 3
+  },
+  {
+    "word": "in the garden",
+    "phonetic": "/ɪn ðə ˈɡɑːrdən/",
+    "meaning": "在花园里",
+    "example": "We can all play in the garden.",
+    "example_cn": "我们可以一起在花园里玩。",
+    "level": 3
   }
 ]
