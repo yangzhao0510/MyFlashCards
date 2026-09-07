@@ -15,8 +15,8 @@
     "file": "daily.json"
   },
   {
-    "id": "travel",
-    "name": "旅游英语",
-    "file": "travel.json"
+    "id": "peppa-pig",
+    "name": "小猪佩奇生词",
+    "file": "peppa-pig.json"
   }
 ]
