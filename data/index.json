@@ -1,0 +1,22 @@
+[
+  {
+    "id": "cet4",
+    "name": "CET-4 四级词汇",
+    "file": "cet4.json"
+  },
+  {
+    "id": "cet6",
+    "name": "CET-6 六级词汇",
+    "file": "cet6.json"
+  },
+  {
+    "id": "daily",
+    "name": "日常英语",
+    "file": "daily.json"
+  },
+  {
+    "id": "travel",
+    "name": "旅游英语",
+    "file": "travel.json"
+  }
+]
