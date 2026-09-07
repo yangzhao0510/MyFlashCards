@@ -1,0 +1,107 @@
+[
+    {
+        "word": "abandon",
+        "phonetic": "/əˈbændən/",
+        "meaning": "放弃；遗弃",
+        "example": "He decided to abandon the plan.",
+        "example_cn": "他决定放弃这个计划。"
+    },
+    {
+        "word": "ability",
+        "phonetic": "/əˈbɪləti/",
+        "meaning": "能力；才能",
+        "example": "She has the ability to solve difficult problems.",
+        "example_cn": "她有能力解决困难的问题。"
+    },
+    {
+        "word": "abroad",
+        "phonetic": "/əˈbrɔːd/",
+        "meaning": "在国外；到国外",
+        "example": "He wants to study abroad.",
+        "example_cn": "他想去国外留学。"
+    },
+    {
+        "word": "accept",
+        "phonetic": "/əkˈsept/",
+        "meaning": "接受；承认",
+        "example": "I gladly accept your invitation.",
+        "example_cn": "我很高兴接受你的邀请。"
+    },
+    {
+        "word": "achieve",
+        "phonetic": "/əˈtʃiːv/",
+        "meaning": "实现；达到；取得",
+        "example": "She worked hard to achieve her goal.",
+        "example_cn": "她努力实现自己的目标。"
+    },
+    {
+        "word": "active",
+        "phonetic": "/ˈæktɪv/",
+        "meaning": "积极的；活跃的",
+        "example": "He is very active in the community.",
+        "example_cn": "他在社区里非常活跃。"
+    },
+    {
+        "word": "advantage",
+        "phonetic": "/ədˈvæntɪdʒ/",
+        "meaning": "优势；优点；有利条件",
+        "example": "Experience gives you a big advantage.",
+        "example_cn": "经验会给你带来很大的优势。"
+    },
+    {
+        "word": "advice",
+        "phonetic": "/ədˈvaɪs/",
+        "meaning": "建议；忠告",
+        "example": "Can you give me some advice?",
+        "example_cn": "你能给我一些建议吗？"
+    },
+    {
+        "word": "allow",
+        "phonetic": "/əˈlaʊ/",
+        "meaning": "允许；准许",
+        "example": "Smoking is not allowed here.",
+        "example_cn": "这里禁止吸烟。"
+    },
+    {
+        "word": "although",
+        "phonetic": "/ɔːlˈðəʊ/",
+        "meaning": "虽然；尽管",
+        "example": "Although it was raining, we went outside.",
+        "example_cn": "虽然下着雨，我们还是出去了。"
+    },
+    {
+        "word": "environment",
+        "phonetic": "/ɪnˈvaɪrənmənt/",
+        "meaning": "环境",
+        "example": "We should protect the environment.",
+        "example_cn": "我们应该保护环境。"
+    },
+    {
+        "word": "experience",
+        "phonetic": "/ɪkˈspɪəriəns/",
+        "meaning": "经验；经历；体验",
+        "example": "He has a lot of work experience.",
+        "example_cn": "他有丰富的工作经验。"
+    },
+    {
+        "word": "improve",
+        "phonetic": "/ɪmˈpruːv/",
+        "meaning": "改善；提高",
+        "example": "Reading can improve your English.",
+        "example_cn": "阅读可以提高你的英语水平。"
+    },
+    {
+        "word": "important",
+        "phonetic": "/ɪmˈpɔːtənt/",
+        "meaning": "重要的",
+        "example": "Learning English is very important.",
+        "example_cn": "学习英语非常重要。"
+    },
+    {
+        "word": "opportunity",
+        "phonetic": "/ˌɒpəˈtjuːnəti/",
+        "meaning": "机会",
+        "example": "This is a great opportunity for you.",
+        "example_cn": "这是一个对你来说很好的机会。"
+    }
+]
