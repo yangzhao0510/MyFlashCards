@@ -1,0 +1,72 @@
+[
+    {
+        "word": "awesome",
+        "phonetic": "/ˈɔːsəm/",
+        "meaning": "很棒的；极好的",
+        "example": "That's an awesome idea!",
+        "example_cn": "这个主意太棒了！"
+    },
+    {
+        "word": "actually",
+        "phonetic": "/ˈæktʃuəli/",
+        "meaning": "实际上；事实上",
+        "example": "Actually, I don't know the answer.",
+        "example_cn": "事实上，我不知道答案。"
+    },
+    {
+        "word": "probably",
+        "phonetic": "/ˈprɒbəbli/",
+        "meaning": "可能；大概",
+        "example": "I'll probably go there tomorrow.",
+        "example_cn": "我可能明天去那里。"
+    },
+    {
+        "word": "exactly",
+        "phonetic": "/ɪɡˈzæktli/",
+        "meaning": "确切地；正是如此",
+        "example": "That's exactly what I mean.",
+        "example_cn": "这正是我的意思。"
+    },
+    {
+        "word": "comfortable",
+        "phonetic": "/ˈkʌmftəbəl/",
+        "meaning": "舒服的；舒适的",
+        "example": "This chair is very comfortable.",
+        "example_cn": "这把椅子非常舒服。"
+    },
+    {
+        "word": "available",
+        "phonetic": "/əˈveɪləbəl/",
+        "meaning": "可获得的；有空的",
+        "example": "Are you available tomorrow?",
+        "example_cn": "你明天有空吗？"
+    },
+    {
+        "word": "schedule",
+        "phonetic": "/ˈʃedjuːl/",
+        "meaning": "日程；安排",
+        "example": "Let me check my schedule.",
+        "example_cn": "让我看看我的日程安排。"
+    },
+    {
+        "word": "probably",
+        "phonetic": "/ˈprɒbəbli/",
+        "meaning": "可能；大概",
+        "example": "She will probably arrive soon.",
+        "example_cn": "她可能很快就到了。"
+    },
+    {
+        "word": "sure",
+        "phonetic": "/ʃʊə(r)/",
+        "meaning": "当然；确定的",
+        "example": "Sure, no problem.",
+        "example_cn": "当然，没问题。"
+    },
+    {
+        "word": "prefer",
+        "phonetic": "/prɪˈfɜː(r)/",
+        "meaning": "更喜欢；宁愿",
+        "example": "I prefer coffee to tea.",
+        "example_cn": "相比茶，我更喜欢咖啡。"
+    }
+]
