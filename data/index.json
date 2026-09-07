@@ -1,5 +1,10 @@
 [
   {
+    "id": "peppa-pig",
+    "name": "小猪佩奇生词",
+    "file": "peppa-pig.json"
+  },
+  {
     "id": "cet4",
     "name": "CET-4 四级词汇",
     "file": "cet4.json"
@@ -13,10 +18,5 @@
     "id": "daily",
     "name": "日常英语",
     "file": "daily.json"
-  },
-  {
-    "id": "peppa-pig",
-    "name": "小猪佩奇生词",
-    "file": "peppa-pig.json"
   }
 ]
