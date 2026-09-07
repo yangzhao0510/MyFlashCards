@@ -1,1961 +1,1345 @@
 ```html
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <!-- 防止浏览器缓存 HTML -->
+    <meta
+        http-equiv="Cache-Control"
+        content="no-cache, no-store, must-revalidate"
+    >
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <title>胖哥学英语 · Flash Cards</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                "PingFang SC",
+                "Microsoft YaHei",
+                sans-serif;
+            background: #f5f6f8;
+            color: #1f2937;
+        }
+
+        body.dark {
+            background: #111827;
+            color: #f3f4f6;
+        }
+
+        button,
+        select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* =========================
+           Header
+        ========================= */
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            height: 64px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 20px;
+
+            background: rgba(255,255,255,.92);
+            border-bottom: 1px solid #e5e7eb;
+
+            backdrop-filter: blur(12px);
+        }
+
+        body.dark .header {
+            background: rgba(17,24,39,.92);
+            border-color: #374151;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            font-size: 19px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .brand-icon {
+            font-size: 25px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
 
-<meta charset="UTF-8">
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, viewport-fit=cover">
+            border: 0;
+            border-radius: 12px;
 
-<meta
-    name="theme-color"
-    content="#ffffff">
+            background: #f3f4f6;
+            color: #374151;
 
-<title>胖哥学英语</title>
+            font-size: 18px;
+        }
 
-<style>
+        .icon-btn:hover {
+            background: #e5e7eb;
+        }
 
-/* =====================================================
-   基础
-===================================================== */
+        body.dark .icon-btn {
+            background: #1f2937;
+            color: #e5e7eb;
+        }
 
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
+        body.dark .icon-btn:hover {
+            background: #374151;
+        }
 
-html,
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
-}
+        /* =========================
+           Main
+        ========================= */
 
-body {
+        .container {
+            width: min(100%, 900px);
+            margin: 0 auto;
+            padding: 28px 20px 100px;
+        }
 
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        "Noto Sans SC",
-        sans-serif;
+        .page {
+            display: none;
+        }
 
-    background: #f7f8fc;
+        .page.active {
+            display: block;
+        }
 
-    color: #111827;
+        /* =========================
+           Study
+        ========================= */
 
-    overflow-x: hidden;
-}
+        .study-header {
+            margin-bottom: 20px;
+        }
 
-button,
-select {
-    font: inherit;
-}
+        .deck-name {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 6px;
+        }
 
+        body.dark .deck-name {
+            color: #9ca3af;
+        }
 
-/* =====================================================
-   顶部
-===================================================== */
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-.header {
+            font-size: 13px;
+            color: #6b7280;
+        }
 
-    height: 60px;
+        body.dark .progress-info {
+            color: #9ca3af;
+        }
 
-    padding:
-        0 18px;
+        .progress-bar {
+            width: 100%;
+            height: 7px;
 
-    display: flex;
+            margin-top: 9px;
 
-    align-items: center;
+            background: #e5e7eb;
+            border-radius: 99px;
+            overflow: hidden;
+        }
 
-    justify-content: space-between;
+        body.dark .progress-bar {
+            background: #374151;
+        }
 
-    background: rgba(
-        255,
-        255,
-        255,
-        .92
-    );
+        .progress-fill {
+            width: 0%;
+            height: 100%;
 
-    border-bottom:
-        1px solid #edf0f5;
+            background: #2563eb;
+            border-radius: 99px;
 
-    position: sticky;
+            transition: width .25s ease;
+        }
 
-    top: 0;
+        /* =========================
+           Flash Card
+        ========================= */
 
-    z-index: 100;
+        .card-wrap {
+            width: 100%;
+            max-width: 760px;
 
-    backdrop-filter:
-        blur(12px);
-}
+            margin: 0 auto;
+            perspective: 1200px;
+        }
 
-.brand {
+        .flashcard {
+            position: relative;
 
-    display: flex;
+            width: 100%;
+            min-height: 390px;
 
-    align-items: center;
+            transform-style: preserve-3d;
+            transition: transform .5s ease;
 
-    gap: 9px;
+            cursor: pointer;
+        }
 
-    cursor: pointer;
-}
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
 
-.logo {
+        .card-face {
+            position: absolute;
+            inset: 0;
 
-    width: 34px;
+            min-height: 390px;
 
-    height: 34px;
+            padding: 42px 30px;
 
-    border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
 
-    display: flex;
+            text-align: center;
 
-    align-items: center;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 24px;
 
-    justify-content: center;
+            box-shadow:
+                0 12px 35px rgba(0,0,0,.07);
 
-    background:
-        linear-gradient(
-            135deg,
-            #6366f1,
-            #8b5cf6
-        );
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
 
-    font-size: 19px;
-}
+        body.dark .card-face {
+            background: #1f2937;
+            border-color: #374151;
 
-.brand-name {
+            box-shadow:
+                0 15px 35px rgba(0,0,0,.25);
+        }
 
-    font-size: 17px;
+        .card-back {
+            transform: rotateY(180deg);
+        }
 
-    font-weight: 800;
+        .word {
+            font-size: clamp(40px, 8vw, 72px);
+            line-height: 1.1;
 
-    letter-spacing: -.3px;
-}
+            font-weight: 800;
+            letter-spacing: -.03em;
 
-.header-actions {
+            margin-bottom: 14px;
+        }
 
-    display: flex;
+        .phonetic {
+            font-size: 18px;
+            color: #6b7280;
+            margin-bottom: 24px;
+        }
 
-    align-items: center;
+        body.dark .phonetic {
+            color: #9ca3af;
+        }
 
-    gap: 7px;
-}
+        .meaning {
+            font-size: clamp(25px, 5vw, 38px);
+            font-weight: 700;
+            line-height: 1.4;
 
-.icon-button {
+            margin-bottom: 22px;
+        }
 
-    width: 38px;
+        .example {
+            max-width: 650px;
 
-    height: 38px;
+            font-size: 18px;
+            line-height: 1.7;
 
-    border: 0;
+            color: #374151;
+        }
 
-    border-radius: 10px;
+        body.dark .example {
+            color: #d1d5db;
+        }
 
-    background: transparent;
+        .example-cn {
+            margin-top: 6px;
 
-    cursor: pointer;
+            font-size: 16px;
+            color: #6b7280;
+        }
 
-    display: flex;
+        body.dark .example-cn {
+            color: #9ca3af;
+        }
 
-    align-items: center;
+        .speak-btn {
+            margin-top: 18px;
 
-    justify-content: center;
+            padding: 10px 18px;
 
-    font-size: 18px;
-}
+            border: 0;
+            border-radius: 12px;
 
-.icon-button:hover {
+            background: #eff6ff;
+            color: #2563eb;
 
-    background: #f1f3f7;
-}
+            font-weight: 600;
+        }
 
+        .speak-btn:hover {
+            background: #dbeafe;
+        }
 
-/* =====================================================
-   页面
-===================================================== */
+        body.dark .speak-btn {
+            background: #172554;
+            color: #93c5fd;
+        }
 
-.page {
+        .flip-hint {
+            position: absolute;
+            bottom: 18px;
 
-    display: none;
+            font-size: 12px;
+            color: #9ca3af;
+        }
 
-    min-height:
-        calc(
-            100vh - 60px
-        );
-}
+        /* =========================
+           Action buttons
+        ========================= */
 
-.page.active {
+        .actions {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr 1fr;
 
-    display: block;
-}
+            gap: 12px;
 
+            max-width: 760px;
+            margin: 22px auto 0;
+        }
 
-/* =====================================================
-   学习页面
-===================================================== */
+        .btn {
+            min-height: 52px;
 
-.study-page {
+            border: 0;
+            border-radius: 15px;
 
-    width: 100%;
+            font-weight: 700;
+            font-size: 15px;
 
-    min-height:
-        calc(
-            100vh - 60px
-        );
+            transition:
+                transform .15s ease,
+                background .15s ease;
+        }
 
-    display: flex;
+        .btn:active {
+            transform: scale(.97);
+        }
 
-    flex-direction: column;
+        .btn-unknown {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
 
-    align-items: center;
+        .btn-unknown:hover {
+            background: #fecaca;
+        }
 
-    padding:
-        20px
-        20px
-        35px;
-}
+        .btn-known {
+            background: #dcfce7;
+            color: #15803d;
+        }
 
+        .btn-known:hover {
+            background: #bbf7d0;
+        }
 
-/* 词库标题 */
+        .btn-next {
+            background: #2563eb;
+            color: white;
+        }
 
-.deck-header {
+        .btn-next:hover {
+            background: #1d4ed8;
+        }
 
-    width: 100%;
+        body.dark .btn-unknown {
+            background: #451a1a;
+            color: #fca5a5;
+        }
 
-    max-width: 760px;
+        body.dark .btn-known {
+            background: #052e16;
+            color: #86efac;
+        }
 
-    display: flex;
+        /* =========================
+           Secondary controls
+        ========================= */
 
-    align-items: center;
+        .secondary-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
 
-    justify-content: center;
+            margin-top: 15px;
+        }
 
-    margin-bottom: 12px;
+        .secondary-btn {
+            padding: 9px 15px;
 
-    position: relative;
-}
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
 
-.deck-name {
+            background: white;
+            color: #374151;
 
-    font-size: 14px;
+            font-size: 13px;
+        }
 
-    color: #6b7280;
+        body.dark .secondary-btn {
+            background: #1f2937;
+            border-color: #4b5563;
+            color: #d1d5db;
+        }
 
-    text-align: center;
+        /* =========================
+           Keyboard hints
+        ========================= */
 
-    font-weight: 600;
-}
+        .keyboard-hints {
+            margin-top: 20px;
 
-.deck-selector-button {
+            text-align: center;
 
-    position: absolute;
+            font-size: 12px;
+            color: #9ca3af;
+        }
 
-    right: 0;
+        /* =========================
+           Library
+        ========================= */
 
-    border: 1px solid #e5e7eb;
+        .page-title {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
 
-    background: white;
+        .deck-list {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
 
-    border-radius: 9px;
+            gap: 14px;
+        }
 
-    padding:
-        6px 10px;
+        .deck-card {
+            padding: 20px;
 
-    font-size: 13px;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
 
-    cursor: pointer;
-}
+            background: white;
 
+            cursor: pointer;
 
-/* =====================================================
-   卡片
-===================================================== */
+            transition:
+                transform .15s ease,
+                box-shadow .15s ease;
+        }
 
-.card-container {
+        .deck-card:hover {
+            transform: translateY(-2px);
 
-    width: 100%;
+            box-shadow:
+                0 8px 24px rgba(0,0,0,.08);
+        }
 
-    max-width: 760px;
+        body.dark .deck-card {
+            background: #1f2937;
+            border-color: #374151;
+        }
 
-    height:
-        clamp(
-            390px,
-            58vh,
-            500px
-        );
+        .deck-card-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
 
-    perspective:
-        1400px;
+        .deck-card-info {
+            font-size: 13px;
+            color: #6b7280;
+        }
 
-    margin:
-        0 auto 15px;
-}
+        body.dark .deck-card-info {
+            color: #9ca3af;
+        }
 
-.card {
+        /* =========================
+           Statistics
+        ========================= */
 
-    width: 100%;
+        .stats-grid {
+            display: grid;
 
-    height: 100%;
+            grid-template-columns:
+                repeat(2, 1fr);
 
-    position: relative;
+            gap: 14px;
+        }
 
-    transform-style:
-        preserve-3d;
+        .stat-card {
+            padding: 22px;
 
-    transition:
-        transform .5s
-        cubic-bezier(
-            .2,
-            .7,
-            .2,
-            1
-        );
+            border-radius: 18px;
 
-    cursor: pointer;
-}
+            background: white;
+            border: 1px solid #e5e7eb;
+        }
 
-.card.flipped {
+        body.dark .stat-card {
+            background: #1f2937;
+            border-color: #374151;
+        }
 
-    transform:
-        rotateY(180deg);
-}
+        .stat-label {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
 
-.face {
+        body.dark .stat-label {
+            color: #9ca3af;
+        }
 
-    position: absolute;
+        .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+        }
 
-    inset: 0;
+        /* =========================
+           Bottom navigation
+        ========================= */
 
-    border-radius: 25px;
+        .bottom-nav {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
 
-    background: white;
+            z-index: 90;
 
-    border:
-        1px solid #e8ebf1;
+            display: none;
 
-    box-shadow:
-        0 12px 40px
-        rgba(
-            15,
-            23,
-            42,
-            .07
-        );
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 35px;
-
-    text-align: center;
-
-    backface-visibility:
-        hidden;
-
-    overflow: hidden;
-}
-
-.back {
-
-    transform:
-        rotateY(180deg);
-}
-
-.card-label {
-
-    font-size: 11px;
-
-    letter-spacing: 2px;
-
-    font-weight: 700;
-
-    color: #a0a7b5;
-
-    margin-bottom: 20px;
-}
-
-.word {
-
-    font-size:
-        clamp(
-            44px,
-            8vw,
-            72px
-        );
-
-    font-weight: 850;
-
-    letter-spacing:
-        -2px;
-
-    line-height: 1.1;
-
-    overflow-wrap:
-        anywhere;
-}
-
-.phonetic {
-
-    margin-top: 13px;
-
-    color: #7c8493;
-
-    font-size: 17px;
-}
-
-.flip-hint {
-
-    position: absolute;
-
-    bottom: 24px;
-
-    font-size: 12px;
-
-    color: #b0b5c0;
-}
-
-
-/* 中文 */
-
-.meaning {
-
-    font-size:
-        clamp(
-            25px,
-            5vw,
-            40px
-        );
-
-    font-weight: 800;
-
-    margin-bottom: 22px;
-
-    line-height: 1.3;
-}
-
-.example {
-
-    max-width: 620px;
-
-    font-size: 17px;
-
-    line-height: 1.7;
-}
-
-.example-cn {
-
-    max-width: 620px;
-
-    margin-top: 6px;
-
-    color: #7c8493;
-
-    font-size: 15px;
-
-    line-height: 1.6;
-}
-
-
-/* =====================================================
-   发音
-===================================================== */
-
-.speak-button {
-
-    margin-top: 22px;
-
-    border: 0;
-
-    border-radius: 12px;
-
-    padding:
-        10px 17px;
-
-    background: #f1f3f8;
-
-    color: #374151;
-
-    cursor: pointer;
-
-    font-size: 14px;
-
-    font-weight: 600;
-}
-
-.speak-button:active {
-
-    transform:
-        scale(.96);
-}
-
-
-/* =====================================================
-   进度
-===================================================== */
-
-.progress-area {
-
-    width: 100%;
-
-    max-width: 760px;
-
-    margin-bottom: 15px;
-}
-
-.progress-top {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    margin-bottom: 6px;
-
-    color: #8a91a0;
-
-    font-size: 12px;
-}
-
-.progress-bar {
-
-    width: 100%;
-
-    height: 5px;
-
-    background: #e9ebf0;
-
-    border-radius: 20px;
-
-    overflow: hidden;
-}
-
-.progress-value {
-
-    height: 100%;
-
-    width: 0%;
-
-    background: #6366f1;
-
-    border-radius: 20px;
-
-    transition:
-        width .25s;
-}
-
-
-/* =====================================================
-   操作按钮
-===================================================== */
-
-.main-actions {
-
-    width: 100%;
-
-    max-width: 760px;
-
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 12px;
-
-    margin-bottom: 12px;
-}
-
-.action-button {
-
-    height: 50px;
-
-    border: 0;
-
-    border-radius: 13px;
-
-    cursor: pointer;
-
-    font-size: 15px;
-
-    font-weight: 700;
-
-    transition:
-        transform .1s;
-}
-
-.action-button:active {
-
-    transform:
-        scale(.97);
-}
-
-.unknown {
-
-    background: #fff0f0;
-
-    color: #ef4444;
-}
-
-.known {
-
-    background: #effbf3;
-
-    color: #16a34a;
-}
-
-
-/* =====================================================
-   下一步
-===================================================== */
-
-.navigation {
-
-    width: 100%;
-
-    max-width: 760px;
-
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 12px;
-}
-
-.nav-button {
-
-    height: 44px;
-
-    border:
-        1px solid #e7e9ee;
-
-    border-radius: 11px;
-
-    background: white;
-
-    color: #4b5563;
-
-    cursor: pointer;
-
-    font-size: 14px;
-}
-
-
-/* =====================================================
-   快捷键
-===================================================== */
-
-.keyboard-hint {
-
-    margin-top: 18px;
-
-    color: #b0b5c0;
-
-    font-size: 11px;
-
-    text-align: center;
-}
-
-
-/* =====================================================
-   词库页面
-===================================================== */
-
-.library-page {
-
-    padding:
-        30px 20px 100px;
-
-    max-width: 900px;
-
-    margin: auto;
-}
-
-.page-title {
-
-    font-size: 26px;
-
-    font-weight: 850;
-
-    margin:
-        0 0 6px;
-}
-
-.page-subtitle {
-
-    margin:
-        0 0 25px;
-
-    color: #7c8493;
-
-    font-size: 14px;
-}
-
-.deck-list {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(
-                220px,
-                1fr
-            )
-        );
-
-    gap: 14px;
-}
-
-.deck-item {
-
-    border:
-        1px solid #e6e9ef;
-
-    background: white;
-
-    border-radius: 16px;
-
-    padding: 20px;
-
-    cursor: pointer;
-
-    text-align: left;
-
-    transition:
-        transform .15s,
-        box-shadow .15s;
-}
-
-.deck-item:hover {
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 8px 25px
-        rgba(
-            15,
-            23,
-            42,
-            .06
-        );
-}
-
-.deck-item-name {
-
-    font-size: 17px;
-
-    font-weight: 750;
-
-    margin-bottom: 7px;
-}
-
-.deck-item-file {
-
-    font-size: 12px;
-
-    color: #9ca3af;
-}
-
-
-/* =====================================================
-   统计页面
-===================================================== */
-
-.stats-page {
-
-    padding:
-        30px 20px 100px;
-
-    max-width: 900px;
-
-    margin: auto;
-}
-
-.stat-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            2,
-            1fr
-        );
-
-    gap: 14px;
-}
-
-.stat-card {
-
-    background: white;
-
-    border:
-        1px solid #e7e9ef;
-
-    border-radius: 16px;
-
-    padding: 20px;
-}
-
-.stat-card-label {
-
-    color: #8a91a0;
-
-    font-size: 13px;
-
-    margin-bottom: 10px;
-}
-
-.stat-card-value {
-
-    font-size: 30px;
-
-    font-weight: 850;
-}
-
-
-/* =====================================================
-   设置/说明
-===================================================== */
-
-.info-box {
-
-    margin-top: 25px;
-
-    background: white;
-
-    border:
-        1px solid #e7e9ef;
-
-    border-radius: 16px;
-
-    padding: 20px;
-
-    line-height: 1.8;
-
-    color: #6b7280;
-
-    font-size: 14px;
-}
-
-.key {
-
-    display: inline-block;
-
-    padding:
-        2px 7px;
-
-    border-radius: 5px;
-
-    background: #f1f3f5;
-
-    color: #555d6d;
-
-    font-size: 11px;
-}
-
-
-/* =====================================================
-   Loading
-===================================================== */
-
-.loading {
-
-    position: fixed;
-
-    inset: 60px 0 0;
-
-    background: #f7f8fc;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    flex-direction: column;
-
-    gap: 15px;
-
-    z-index: 50;
-
-    color: #7c8493;
-
-    font-size: 14px;
-}
-
-.spinner {
-
-    width: 34px;
-
-    height: 34px;
-
-    border:
-        3px solid #e5e7eb;
-
-    border-top-color:
-        #6366f1;
-
-    border-radius: 50%;
-
-    animation:
-        spin .75s linear infinite;
-}
-
-@keyframes spin {
-
-    to {
-        transform:
-            rotate(360deg);
-    }
-
-}
-
-
-/* =====================================================
-   Error
-===================================================== */
-
-.error {
-
-    position: fixed;
-
-    inset:
-        60px 0 0;
-
-    background: #f7f8fc;
-
-    z-index: 60;
-
-    display: none;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 20px;
-}
-
-.error-card {
-
-    width: 100%;
-
-    max-width: 600px;
-
-    background: white;
-
-    border:
-        1px solid #fecaca;
-
-    border-radius: 18px;
-
-    padding: 25px;
-
-    color: #b91c1c;
-
-    line-height: 1.7;
-}
-
-.retry-button {
-
-    margin-top: 15px;
-
-    border: 0;
-
-    border-radius: 9px;
-
-    background: #4f46e5;
-
-    color: white;
-
-    padding:
-        9px 15px;
-
-    cursor: pointer;
-}
-
-
-/* =====================================================
-   底部导航
-===================================================== */
-
-.bottom-nav {
-
-    display: none;
-}
-
-
-/* =====================================================
-   Dark Mode
-===================================================== */
-
-body.dark {
-
-    background: #0f172a;
-
-    color: #f8fafc;
-}
-
-body.dark .header {
-
-    background:
-        rgba(
-            15,
-            23,
-            42,
-            .92
-        );
-
-    border-color: #1e293b;
-}
-
-body.dark .icon-button:hover {
-
-    background: #1e293b;
-}
-
-body.dark .deck-selector-button,
-body.dark .face,
-body.dark .deck-item,
-body.dark .stat-card,
-body.dark .info-box,
-body.dark .nav-button,
-body.dark .error-card {
-
-    background: #1e293b;
-
-    border-color: #334155;
-
-    color: #f8fafc;
-}
-
-body.dark .speak-button {
-
-    background: #334155;
-
-    color: #f8fafc;
-}
-
-body.dark .progress-bar {
-
-    background: #334155;
-}
-
-body.dark .unknown {
-
-    background: #3a2024;
-}
-
-body.dark .known {
-
-    background: #193324;
-}
-
-body.dark .loading,
-body.dark .error {
-
-    background: #0f172a;
-}
-
-body.dark .page-subtitle,
-body.dark .deck-item-file,
-body.dark .phonetic,
-body.dark .example-cn,
-body.dark .keyboard-hint,
-body.dark .deck-name {
-
-    color: #94a3b8;
-}
-
-
-/* =====================================================
-   手机端
-===================================================== */
-
-@media (max-width: 700px) {
-
-    .header {
-
-        height: 56px;
-
-        padding:
-            0 12px;
-    }
-
-    .page {
-
-        min-height:
-            calc(
-                100vh - 56px - 62px
-            );
-    }
-
-    .study-page {
-
-        min-height:
-            calc(
-                100vh - 56px - 62px
+            height: calc(
+                62px + env(safe-area-inset-bottom)
             );
 
-        padding:
-            14px
-            14px
-            80px;
-    }
+            padding-bottom:
+                env(safe-area-inset-bottom);
 
-    .brand-name {
+            background: rgba(255,255,255,.95);
+            border-top: 1px solid #e5e7eb;
 
-        font-size: 16px;
-    }
+            backdrop-filter: blur(12px);
+        }
 
-    .logo {
+        body.dark .bottom-nav {
+            background: rgba(17,24,39,.95);
+            border-color: #374151;
+        }
 
-        width: 32px;
+        .nav-btn {
+            flex: 1;
 
-        height: 32px;
-    }
+            border: 0;
+            background: transparent;
 
-    .deck-header {
+            color: #9ca3af;
 
-        margin-bottom: 10px;
-    }
+            font-size: 12px;
 
-    .deck-selector-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
 
-        right: 0;
+            gap: 3px;
+        }
 
-        padding:
-            5px 8px;
+        .nav-btn span:first-child {
+            font-size: 20px;
+        }
 
-        font-size: 12px;
-    }
+        .nav-btn.active {
+            color: #2563eb;
+            font-weight: 700;
+        }
 
-    .card-container {
+        /* =========================
+           Loading
+        ========================= */
 
-        height:
-            min(
-                56vh,
-                440px
+        .loading {
+            position: fixed;
+            inset: 0;
+
+            z-index: 999;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #f5f6f8;
+        }
+
+        body.dark .loading {
+            background: #111827;
+        }
+
+        .loading-box {
+            text-align: center;
+        }
+
+        .spinner {
+            width: 38px;
+            height: 38px;
+
+            margin: 0 auto 14px;
+
+            border: 4px solid #dbeafe;
+            border-top-color: #2563eb;
+
+            border-radius: 50%;
+
+            animation: spin .8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* =========================
+           Error
+        ========================= */
+
+        .error-overlay {
+            position: fixed;
+            inset: 0;
+
+            z-index: 1000;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background: rgba(0,0,0,.5);
+        }
+
+        .error-box {
+            width: min(100%, 430px);
+
+            padding: 28px;
+
+            border-radius: 20px;
+
+            background: white;
+            color: #1f2937;
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,.2);
+        }
+
+        body.dark .error-box {
+            background: #1f2937;
+            color: #f3f4f6;
+        }
+
+        .error-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .error-message {
+            font-size: 14px;
+            line-height: 1.6;
+
+            color: #6b7280;
+
+            word-break: break-word;
+        }
+
+        body.dark .error-message {
+            color: #9ca3af;
+        }
+
+        .error-retry {
+            width: 100%;
+
+            margin-top: 20px;
+
+            min-height: 48px;
+
+            border: 0;
+            border-radius: 12px;
+
+            background: #2563eb;
+            color: white;
+
+            font-weight: 700;
+        }
+
+        /* =========================
+           Update notification
+        ========================= */
+
+        .update-toast {
+            position: fixed;
+
+            left: 50%;
+            top: 78px;
+
+            z-index: 2000;
+
+            transform:
+                translateX(-50%)
+                translateY(-20px);
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            width: min(
+                calc(100% - 30px),
+                420px
             );
 
-        min-height: 350px;
+            padding: 13px 17px;
 
-        margin-bottom: 12px;
-    }
+            border-radius: 14px;
 
-    .face {
+            background: #2563eb;
+            color: white;
 
-        padding: 25px 18px;
+            font-size: 14px;
+            font-weight: 600;
 
-        border-radius: 21px;
-    }
+            text-align: center;
 
-    .word {
+            box-shadow:
+                0 10px 30px rgba(37,99,235,.3);
 
-        font-size:
-            clamp(
-                42px,
-                13vw,
-                60px
-            );
-    }
+            transition:
+                opacity .25s ease,
+                transform .25s ease;
+        }
 
-    .phonetic {
-
-        font-size: 15px;
-    }
-
-    .meaning {
-
-        font-size: 27px;
-    }
-
-    .example {
-
-        font-size: 15px;
-    }
-
-    .example-cn {
-
-        font-size: 13px;
-    }
-
-    .main-actions {
-
-        gap: 9px;
-    }
-
-    .action-button {
-
-        height: 47px;
-
-        font-size: 14px;
-    }
-
-    .navigation {
-
-        gap: 9px;
-    }
-
-    .nav-button {
-
-        height: 42px;
-    }
-
-    .keyboard-hint {
-
-        display: none;
-    }
-
-    .bottom-nav {
-
-        position: fixed;
-
-        bottom: 0;
-
-        left: 0;
-
-        right: 0;
-
-        height: 62px;
-
-        background:
-            rgba(
-                255,
-                255,
-                255,
-                .95
-            );
-
-        border-top:
-            1px solid #e7e9ef;
-
-        display: grid;
-
-        grid-template-columns:
-            repeat(
-                3,
-                1fr
-            );
-
-        z-index: 200;
-
-        backdrop-filter:
-            blur(12px);
-    }
-
-    .bottom-button {
-
-        border: 0;
-
-        background: transparent;
-
-        color: #9ca3af;
-
-        display: flex;
-
-        flex-direction: column;
-
-        align-items: center;
-
-        justify-content: center;
-
-        gap: 3px;
-
-        font-size: 11px;
-
-        cursor: pointer;
-    }
-
-    .bottom-button span:first-child {
-
-        font-size: 19px;
-    }
-
-    .bottom-button.active {
-
-        color: #4f46e5;
-
-        font-weight: 700;
-    }
-
-    body.dark .bottom-nav {
-
-        background:
-            rgba(
-                15,
-                23,
-                42,
-                .95
-            );
-
-        border-color: #1e293b;
-    }
-
-}
-
-
-/* =====================================================
-   超小屏
-===================================================== */
-
-@media (max-width: 380px) {
-
-    .study-page {
-
-        padding-left: 10px;
-
-        padding-right: 10px;
-    }
-
-    .card-container {
-
-        min-height: 330px;
-
-        height: 53vh;
-    }
-
-    .word {
-
-        font-size: 39px;
-    }
-
-    .action-button {
-
-        font-size: 13px;
-    }
-
-}
-
-
-/* =====================================================
-   桌面端
-===================================================== */
-
-@media (min-width: 701px) {
-
-    .bottom-nav {
-
-        display: none;
-    }
-
-}
-
-</style>
-
+        .update-toast.show {
+            opacity: 1;
+
+            transform:
+                translateX(-50%)
+                translateY(0);
+        }
+
+        /* =========================
+           Mobile
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .header {
+                height: 58px;
+                padding: 0 14px;
+            }
+
+            .brand {
+                font-size: 16px;
+            }
+
+            .brand-icon {
+                font-size: 22px;
+            }
+
+            .container {
+                padding:
+                    20px
+                    14px
+                    100px;
+            }
+
+            .flashcard,
+            .card-face {
+                min-height: 420px;
+            }
+
+            .card-face {
+                padding: 35px 20px;
+                border-radius: 20px;
+            }
+
+            .word {
+                font-size: 48px;
+            }
+
+            .phonetic {
+                font-size: 16px;
+            }
+
+            .meaning {
+                font-size: 28px;
+            }
+
+            .example {
+                font-size: 16px;
+            }
+
+            .actions {
+                grid-template-columns:
+                    1fr 1.25fr 1fr;
+
+                gap: 8px;
+            }
+
+            .btn {
+                min-height: 50px;
+                font-size: 14px;
+            }
+
+            .bottom-nav {
+                display: flex;
+            }
+
+            .keyboard-hints {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 380px) {
+
+            .word {
+                font-size: 42px;
+            }
+
+            .meaning {
+                font-size: 25px;
+            }
+
+            .card-face {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+    </style>
 </head>
-
 
 <body>
 
+<!-- =========================
+     Loading
+========================= -->
 
-<!-- =====================================================
+<div id="loading" class="loading">
+    <div class="loading-box">
+        <div class="spinner"></div>
+        <div>正在加载词库...</div>
+    </div>
+</div>
+
+<!-- =========================
+     Update Toast
+========================= -->
+
+<div id="updateToast" class="update-toast">
+    检测到新版本，正在更新...
+</div>
+
+<!-- =========================
+     Error
+========================= -->
+
+<div id="errorOverlay" class="error-overlay">
+    <div class="error-box">
+
+        <div class="error-title">
+            ⚠️ 词库加载失败
+        </div>
+
+        <div
+            id="errorMessage"
+            class="error-message"
+        >
+            无法加载词库。
+        </div>
+
+        <button
+            class="error-retry"
+            onclick="location.reload()"
+        >
+            重新加载
+        </button>
+
+    </div>
+</div>
+
+<!-- =========================
      Header
-===================================================== -->
+========================= -->
 
 <header class="header">
 
-    <div
-        class="brand"
-        onclick="showPage('study')">
-
-        <div class="logo">
-            🐼
-        </div>
-
-        <div class="brand-name">
-            胖哥学英语
-        </div>
-
+    <div class="brand">
+        <span class="brand-icon">🐼</span>
+        <span>胖哥学英语</span>
     </div>
-
 
     <div class="header-actions">
 
         <button
-            class="icon-button"
-            id="themeButton"
-            title="切换主题">
+            class="icon-btn"
+            title="词库"
+            onclick="showPage('library')"
+        >
+            📚
+        </button>
 
+        <button
+            id="darkModeBtn"
+            class="icon-btn"
+            title="深色模式"
+            onclick="toggleDarkMode()"
+        >
             🌙
-
         </button>
 
     </div>
 
 </header>
 
+<!-- =========================
+     Main
+========================= -->
 
-<!-- =====================================================
-     Loading
-===================================================== -->
+<main class="container">
 
-<div
-    class="loading"
-    id="loading">
+    <!-- =====================
+         Study Page
+    ====================== -->
 
-    <div class="spinner"></div>
+    <section
+        id="studyPage"
+        class="page active"
+    >
 
-    <div id="loadingText">
-        正在加载词库...
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     Error
-===================================================== -->
-
-<div
-    class="error"
-    id="error">
-
-    <div class="error-card">
-
-        <strong>
-            ❌ 词库加载失败
-        </strong>
-
-        <div
-            id="errorMessage"
-            style="margin-top:10px;">
-        </div>
-
-        <button
-            class="retry-button"
-            onclick="location.reload()">
-
-            🔄 重新加载
-
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     PAGE 1
-     学习
-===================================================== -->
-
-<section
-    class="page active"
-    id="studyPage">
-
-
-    <div class="study-page">
-
-
-        <!-- 当前词库 -->
-
-        <div class="deck-header">
+        <div class="study-header">
 
             <div
+                id="deckName"
                 class="deck-name"
-                id="deckName">
+            >
+                正在加载...
+            </div>
 
-                加载中...
+            <div class="progress-info">
+
+                <span id="progressText">
+                    0 / 0
+                </span>
+
+                <span id="masteryText">
+                    掌握率 0%
+                </span>
 
             </div>
 
-
-            <button
-                class="deck-selector-button"
-                onclick="showPage('library')">
-
-                📚
-
-            </button>
+            <div class="progress-bar">
+                <div
+                    id="progressFill"
+                    class="progress-fill"
+                ></div>
+            </div>
 
         </div>
 
+        <!-- Card -->
 
-        <!-- 闪卡 -->
-
-        <div class="card-container">
+        <div class="card-wrap">
 
             <div
-                class="card"
-                id="card">
+                id="flashcard"
+                class="flashcard"
+                onclick="flipCard()"
+            >
 
+                <!-- Front -->
 
-                <!-- 正面 -->
-
-                <div class="face">
-
-
-                    <div class="card-label">
-                        ENGLISH
-                    </div>
-
+                <div class="card-face card-front">
 
                     <div
+                        id="word"
                         class="word"
-                        id="word">
-
-                        --
-
+                    >
+                        —
                     </div>
-
 
                     <div
+                        id="phonetic"
                         class="phonetic"
-                        id="phonetic">
-
+                    >
+                        —
                     </div>
-
 
                     <button
-                        class="speak-button"
-                        id="speakButton">
-
+                        class="speak-btn"
+                        onclick="event.stopPropagation(); speakCurrent()"
+                    >
                         🔊 发音
-
                     </button>
-
 
                     <div class="flip-hint">
                         点击卡片查看释义
                     </div>
 
-
                 </div>
 
+                <!-- Back -->
 
-                <!-- 背面 -->
-
-                <div class="face back">
-
-
-                    <div class="card-label">
-                        MEANING
-                    </div>
-
+                <div class="card-face card-back">
 
                     <div
+                        id="backWord"
+                        class="word"
+                    >
+                        —
+                    </div>
+
+                    <div
+                        id="meaning"
                         class="meaning"
-                        id="meaning">
-
-                        --
-
+                    >
+                        —
                     </div>
 
-
                     <div
+                        id="example"
                         class="example"
-                        id="example">
-
+                    >
+                        —
                     </div>
-
 
                     <div
+                        id="exampleCn"
                         class="example-cn"
-                        id="exampleCn">
-
+                    >
+                        —
                     </div>
-
 
                     <button
-                        class="speak-button"
-                        id="speakButtonBack">
-
+                        class="speak-btn"
+                        onclick="event.stopPropagation(); speakCurrent()"
+                    >
                         🔊 再听一次
-
                     </button>
 
-
                 </div>
 
             </div>
 
         </div>
 
+        <!-- Actions -->
 
-        <!-- 进度 -->
-
-        <div class="progress-area">
-
-            <div class="progress-top">
-
-                <span>
-                    学习进度
-                </span>
-
-                <span
-                    id="progressText">
-
-                    0 / 0
-
-                </span>
-
-            </div>
-
-
-            <div class="progress-bar">
-
-                <div
-                    class="progress-value"
-                    id="progressValue">
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 掌握 -->
-
-        <div class="main-actions">
+        <div class="actions">
 
             <button
-                class="action-button unknown"
-                id="unknownButton">
-
+                class="btn btn-unknown"
+                onclick="markUnknown()"
+            >
                 ❌ 不认识
-
             </button>
 
+            <button
+                class="btn btn-next"
+                onclick="nextCard()"
+            >
+                下一张 →
+            </button>
 
             <button
-                class="action-button known"
-                id="knownButton">
-
-                ❤️ 已掌握
-
+                class="btn btn-known"
+                onclick="markKnown()"
+            >
+                ✅ 已掌握
             </button>
 
         </div>
 
-
-        <!-- 上下 -->
-
-        <div class="navigation">
+        <div class="secondary-actions">
 
             <button
-                class="nav-button"
-                id="previousButton">
-
+                class="secondary-btn"
+                onclick="previousCard()"
+            >
                 ← 上一个
-
             </button>
-
 
             <button
-                class="nav-button"
-                id="nextButton">
-
-                下一个 →
-
+                class="secondary-btn"
+                onclick="randomCard()"
+            >
+                🎲 随机
             </button>
 
         </div>
 
-
-        <div class="keyboard-hint">
-
-            Space 翻卡 · ← → 切换 · R 随机 · S 发音 · K 掌握 · X 不认识
-
+        <div class="keyboard-hints">
+            空格：翻转　← →：切换　R：随机　S：发音　K：掌握　X：不认识
         </div>
 
-    </div>
+    </section>
 
-</section>
+    <!-- =====================
+         Library Page
+    ====================== -->
 
+    <section
+        id="libraryPage"
+        class="page"
+    >
 
-<!-- =====================================================
-     PAGE 2
-     词库
-===================================================== -->
-
-<section
-    class="page"
-    id="libraryPage">
-
-    <div class="library-page">
-
-        <h2 class="page-title">
+        <div class="page-title">
             📚 词库
-        </h2>
-
-        <p class="page-subtitle">
-            选择你想学习的英语词库
-        </p>
-
+        </div>
 
         <div
+            id="deckList"
             class="deck-list"
-            id="deckList">
-
+        >
         </div>
 
-    </div>
+    </section>
 
-</section>
+    <!-- =====================
+         Stats Page
+    ====================== -->
 
+    <section
+        id="statsPage"
+        class="page"
+    >
 
-<!-- =====================================================
-     PAGE 3
-     统计
-===================================================== -->
-
-<section
-    class="page"
-    id="statsPage">
-
-    <div class="stats-page">
-
-        <h2 class="page-title">
+        <div class="page-title">
             📊 学习统计
-        </h2>
+        </div>
 
-        <p
-            class="page-subtitle"
-            id="statsDeckName">
-
-            当前词库
-
-        </p>
-
-
-        <div class="stat-grid">
-
+        <div class="stats-grid">
 
             <div class="stat-card">
 
-                <div class="stat-card-label">
-                    词库单词
+                <div class="stat-label">
+                    总词数
                 </div>
 
                 <div
-                    class="stat-card-value"
-                    id="statTotal">
-
+                    id="statTotal"
+                    class="stat-value"
+                >
                     0
-
                 </div>
 
             </div>
 
-
             <div class="stat-card">
 
-                <div class="stat-card-label">
+                <div class="stat-label">
                     已学习
                 </div>
 
                 <div
-                    class="stat-card-value"
-                    id="statLearned">
-
+                    id="statLearned"
+                    class="stat-value"
+                >
                     0
-
                 </div>
 
             </div>
 
-
             <div class="stat-card">
 
-                <div class="stat-card-label">
+                <div class="stat-label">
                     已掌握
                 </div>
 
                 <div
-                    class="stat-card-value"
-                    id="statKnown">
-
+                    id="statKnown"
+                    class="stat-value"
+                >
                     0
-
                 </div>
 
             </div>
 
-
             <div class="stat-card">
 
-                <div class="stat-card-label">
+                <div class="stat-label">
                     掌握率
                 </div>
 
                 <div
-                    class="stat-card-value"
-                    id="statRate">
-
+                    id="statMastery"
+                    class="stat-value"
+                >
                     0%
-
                 </div>
 
             </div>
 
         </div>
 
+    </section>
 
-        <div class="info-box">
+</main>
 
-            <strong>
-                ⌨️ 快捷键
-            </strong>
-
-            <br>
-
-            <span class="key">
-                Space
-            </span>
-            翻转卡片
-
-            <br>
-
-            <span class="key">
-                ←
-            </span>
-
-            <span class="key">
-                →
-            </span>
-            上一个 / 下一个
-
-            <br>
-
-            <span class="key">
-                R
-            </span>
-            随机单词
-
-            <br>
-
-            <span class="key">
-                S
-            </span>
-            英语发音
-
-            <br>
-
-            <span class="key">
-                K
-            </span>
-            已掌握
-
-            <br>
-
-            <span class="key">
-                X
-            </span>
-            不认识
-
-        </div>
-
-
-        <div class="info-box">
-
-            💾 学习记录保存在当前浏览器的
-            LocalStorage 中。
-
-            <br>
-
-            更换设备或浏览器后，学习记录不会自动同步。
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
+<!-- =========================
      Mobile Bottom Navigation
-===================================================== -->
+========================= -->
 
 <nav class="bottom-nav">
 
     <button
-        class="bottom-button active"
         id="navStudy"
-        onclick="showPage('study')">
-
-        <span>🃏</span>
-
+        class="nav-btn active"
+        onclick="showPage('study')"
+    >
+        <span>📖</span>
         <span>学习</span>
-
     </button>
 
-
     <button
-        class="bottom-button"
         id="navLibrary"
-        onclick="showPage('library')">
-
+        class="nav-btn"
+        onclick="showPage('library')"
+    >
         <span>📚</span>
-
         <span>词库</span>
-
     </button>
 
-
     <button
-        class="bottom-button"
         id="navStats"
-        onclick="showPage('stats')">
-
+        class="nav-btn"
+        onclick="showPage('stats')"
+    >
         <span>📊</span>
-
         <span>统计</span>
-
     </button>
 
 </nav>
 
-
 <script>
 
+/* =========================================================
+   Configuration
+========================================================= */
 
-/* =====================================================
-   配置
-===================================================== */
+const SITE_ROOT = "/MyFlashCards/";
+const DATA_ROOT = SITE_ROOT + "data/";
 
-const SITE_ROOT =
-    "/MyFlashCards/";
+const DECK_INDEX = DATA_ROOT + "index.json";
+const VERSION_URL = DATA_ROOT + "version.json";
 
-const DATA_ROOT =
-    SITE_ROOT + "data/";
+const VERSION_STORAGE_KEY =
+    "myflashcards_site_version";
 
-const DECK_INDEX =
-    DATA_ROOT + "index.json";
+const DARK_MODE_KEY =
+    "myflashcards_dark_mode";
 
-
-/* =====================================================
-   全局状态
-===================================================== */
+/* =========================================================
+   State
+========================================================= */
 
 let decks = [];
 
-let words = [];
-
 let currentDeck = null;
+let currentWords = [];
 
 let currentIndex = 0;
 
-let progress = {};
+let flipped = false;
 
+/*
+ * learningState:
+ *
+ * {
+ *   "word": "known" | "unknown"
+ * }
+ */
+let learningState = {};
 
-/* =====================================================
-   JSON 加载
-===================================================== */
+/* =========================================================
+   JSON Loader
+========================================================= */
 
 async function getJSON(url) {
 
@@ -1968,23 +1352,14 @@ async function getJSON(url) {
             .toString(36)
             .substring(2);
 
-
-    console.log(
-        "[PangGe] Loading:",
-        finalUrl
-    );
-
-
     const controller =
         new AbortController();
-
 
     const timeout =
         setTimeout(
             () => controller.abort(),
             10000
         );
-
 
     try {
 
@@ -1996,8 +1371,7 @@ async function getJSON(url) {
 
                     cache: "no-store",
 
-                    signal:
-                        controller.signal,
+                    signal: controller.signal,
 
                     headers: {
                         "Cache-Control":
@@ -2005,7 +1379,6 @@ async function getJSON(url) {
                     }
                 }
             );
-
 
         if (!response.ok) {
 
@@ -2015,10 +1388,8 @@ async function getJSON(url) {
 
         }
 
-
         const text =
             await response.text();
-
 
         if (!text.trim()) {
 
@@ -2028,23 +1399,20 @@ async function getJSON(url) {
 
         }
 
-
         try {
 
             return JSON.parse(text);
 
-        }
-        catch (error) {
+        } catch (e) {
 
             throw new Error(
                 "JSON 格式错误：" +
-                error.message
+                e.message
             );
 
         }
 
-    }
-    catch (error) {
+    } catch (error) {
 
         if (
             error.name ===
@@ -2059,90 +1427,122 @@ async function getJSON(url) {
 
         throw error;
 
-    }
-    finally {
+    } finally {
 
-        clearTimeout(
-            timeout
-        );
+        clearTimeout(timeout);
 
     }
 
 }
 
+/* =========================================================
+   Version Check
+========================================================= */
 
-/* =====================================================
-   初始化
-===================================================== */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    init
-);
-
-
-async function init() {
-
-    loadTheme();
-
-    bindEvents();
-
+async function checkVersion() {
 
     try {
 
-        setLoading(
-            "正在读取词库..."
-        );
-
-
-        decks =
+        const data =
             await getJSON(
-                DECK_INDEX
+                VERSION_URL
             );
 
-
         if (
-            !Array.isArray(decks)
+            !data ||
+            !data.version
         ) {
 
-            throw new Error(
-                "data/index.json 必须是 JSON 数组"
+            console.warn(
+                "version.json 缺少 version"
+            );
+
+            return;
+
+        }
+
+        const serverVersion =
+            String(data.version);
+
+        const localVersion =
+            localStorage.getItem(
+                VERSION_STORAGE_KEY
+            );
+
+        /*
+         * 第一次访问
+         */
+        if (!localVersion) {
+
+            localStorage.setItem(
+                VERSION_STORAGE_KEY,
+                serverVersion
+            );
+
+            return;
+
+        }
+
+        /*
+         * 检测到新版
+         */
+        if (
+            localVersion !==
+            serverVersion
+        ) {
+
+            console.log(
+                "检测到网站新版本:",
+                localVersion,
+                "→",
+                serverVersion
+            );
+
+            localStorage.setItem(
+                VERSION_STORAGE_KEY,
+                serverVersion
+            );
+
+            showUpdateToast();
+
+            /*
+             * 给用户一个很短的提示时间
+             */
+            setTimeout(
+                () => {
+
+                    /*
+                     * 加随机参数，
+                     * 避免手机继续使用旧 HTML
+                     */
+                    const newUrl =
+                        window.location.pathname +
+                        "?v=" +
+                        encodeURIComponent(
+                            serverVersion
+                        );
+
+                    window.location.replace(
+                        newUrl
+                    );
+
+                },
+                700
             );
 
         }
 
+    } catch (error) {
 
-        if (
-            decks.length === 0
-        ) {
-
-            throw new Error(
-                "data/index.json 中没有词库"
-            );
-
-        }
-
-
-        renderDeckList();
-
-
-        await loadDeck(
-            decks[0].id
-        );
-
-
-        hideLoading();
-
-    }
-    catch (error) {
-
-        console.error(
-            "[PangGe] 初始化失败:",
-            error
-        );
-
-
-        showError(
+        /*
+         * 版本检测失败不阻塞网站。
+         *
+         * 例如：
+         * - GitHub Pages 临时网络问题
+         * - 手机离线
+         */
+        console.warn(
+            "版本检测失败:",
             error
         );
 
@@ -2150,252 +1550,852 @@ async function init() {
 
 }
 
+/* =========================================================
+   Update Toast
+========================================================= */
 
-/* =====================================================
-   Loading
-===================================================== */
+function showUpdateToast() {
 
-function setLoading(text) {
+    const toast =
+        document.getElementById(
+            "updateToast"
+        );
 
-    document.getElementById(
-        "loadingText"
-    ).textContent =
-        text;
+    toast.classList.add("show");
 
 }
 
+/* =========================================================
+   Load Deck Index
+========================================================= */
 
-function hideLoading() {
+async function loadDecks() {
 
-    document.getElementById(
-        "loading"
-    ).style.display =
-        "none";
-
-}
-
-
-/* =====================================================
-   加载词库
-===================================================== */
-
-async function loadDeck(id) {
-
-    const deck =
-        decks.find(
-            item =>
-                item.id === id
-        );
-
-
-    if (!deck) {
-
-        throw new Error(
-            "找不到词库：" + id
-        );
-
-    }
-
-
-    currentDeck =
-        deck;
-
-
-    setLoading(
-        "正在加载 " +
-        deck.name +
-        "..."
-    );
-
-
-    const url =
-        DATA_ROOT +
-        deck.file;
-
-
-    words =
+    decks =
         await getJSON(
-            url
+            DECK_INDEX
         );
 
-
     if (
-        !Array.isArray(words)
+        !Array.isArray(decks) ||
+        decks.length === 0
     ) {
 
         throw new Error(
-            deck.file +
-            " 必须是 JSON 数组"
+            "index.json 中没有找到任何词库"
         );
 
     }
 
+}
 
-    if (
-        words.length === 0
-    ) {
+/* =========================================================
+   Load Deck
+========================================================= */
 
-        throw new Error(
-            deck.file +
-            " 中没有单词"
-        );
+async function loadDeck(deck) {
 
-    }
+    try {
 
+        showLoading(true);
 
-    loadProgress();
+        const words =
+            await getJSON(
+                DATA_ROOT +
+                deck.file
+            );
 
+        if (
+            !Array.isArray(words) ||
+            words.length === 0
+        ) {
 
-    const saved =
-        progress[
-            currentDeck.id
-        ];
+            throw new Error(
+                "词库为空"
+            );
 
+        }
 
-    if (
-        saved &&
-        Number.isInteger(
-            saved.currentIndex
-        ) &&
-        saved.currentIndex >= 0 &&
-        saved.currentIndex < words.length
-    ) {
-
-        currentIndex =
-            saved.currentIndex;
-
-    }
-    else {
+        currentDeck = deck;
+        currentWords = words;
 
         currentIndex = 0;
 
+        flipped = false;
+
+        learningState =
+            loadLearningState(
+                deck.id
+            );
+
+        updateDeckName();
+
+        renderDeck();
+
+        renderLibrary();
+
+        updateStats();
+
+    } catch (error) {
+
+        throw new Error(
+            `加载词库「${deck.name}」失败：${error.message}`
+        );
+
+    } finally {
+
+        showLoading(false);
+
     }
 
+}
+
+/* =========================================================
+   Learning State
+========================================================= */
+
+function getLearningStorageKey(
+    deckId
+) {
+
+    return (
+        "myflashcards_learning_" +
+        deckId
+    );
+
+}
+
+function loadLearningState(
+    deckId
+) {
+
+    try {
+
+        const value =
+            localStorage.getItem(
+                getLearningStorageKey(
+                    deckId
+                )
+            );
+
+        if (!value) {
+
+            return {};
+
+        }
+
+        return JSON.parse(
+            value
+        ) || {};
+
+    } catch (e) {
+
+        return {};
+
+    }
+
+}
+
+function saveLearningState() {
+
+    if (!currentDeck) {
+        return;
+    }
+
+    localStorage.setItem(
+        getLearningStorageKey(
+            currentDeck.id
+        ),
+        JSON.stringify(
+            learningState
+        )
+    );
+
+}
+
+/* =========================================================
+   Render
+========================================================= */
+
+function renderDeck() {
+
+    if (
+        !currentWords.length
+    ) {
+        return;
+    }
+
+    const word =
+        currentWords[
+            currentIndex
+        ];
+
+    document.getElementById(
+        "word"
+    ).textContent =
+        word.word || "—";
+
+    document.getElementById(
+        "backWord"
+    ).textContent =
+        word.word || "—";
+
+    document.getElementById(
+        "phonetic"
+    ).textContent =
+        word.phonetic || "";
+
+    document.getElementById(
+        "meaning"
+    ).textContent =
+        word.meaning || "";
+
+    document.getElementById(
+        "example"
+    ).textContent =
+        word.example
+            ? `“${word.example}”`
+            : "";
+
+    document.getElementById(
+        "exampleCn"
+    ).textContent =
+        word.example_cn || "";
+
+    flipped = false;
+
+    document.getElementById(
+        "flashcard"
+    ).classList.remove(
+        "flipped"
+    );
+
+    updateProgress();
+
+    savePosition();
+
+}
+
+/* =========================================================
+   Deck Name
+========================================================= */
+
+function updateDeckName() {
+
+    if (!currentDeck) {
+        return;
+    }
 
     document.getElementById(
         "deckName"
     ).textContent =
-        deck.name;
-
-
-    document.getElementById(
-        "statsDeckName"
-    ).textContent =
-        deck.name;
-
-
-    renderWord();
-
-    updateStatsPage();
+        currentDeck.name;
 
 }
 
+/* =========================================================
+   Progress
+========================================================= */
 
-/* =====================================================
-   词库列表
-===================================================== */
+function updateProgress() {
 
-function renderDeckList() {
+    const total =
+        currentWords.length;
 
-    const list =
-        document.getElementById(
-            "deckList"
-        );
+    const position =
+        currentIndex + 1;
 
+    const known =
+        getKnownCount();
 
-    list.innerHTML = "";
+    const mastery =
+        total > 0
+            ? Math.round(
+                known / total * 100
+            )
+            : 0;
 
+    document.getElementById(
+        "progressText"
+    ).textContent =
+        `${position} / ${total}`;
 
-    decks.forEach(
-        deck => {
+    document.getElementById(
+        "masteryText"
+    ).textContent =
+        `掌握率 ${mastery}%`;
 
-            const item =
-                document.createElement(
-                    "div"
-                );
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        `${position / total * 100}%`;
 
+}
 
-            item.className =
-                "deck-item";
+/* =========================================================
+   Card
+========================================================= */
 
+function flipCard() {
 
-            item.innerHTML = `
+    flipped = !flipped;
 
-                <div class="deck-item-name">
-                    ${escapeHTML(
-                        deck.name ||
-                        deck.id
-                    )}
-                </div>
-
-                <div class="deck-item-file">
-                    ${escapeHTML(
-                        deck.file || ""
-                    )}
-                </div>
-
-            `;
-
-
-            item.addEventListener(
-                "click",
-                async () => {
-
-                    try {
-
-                        showPage(
-                            "study"
-                        );
-
-
-                        setLoading(
-                            "正在加载 " +
-                            deck.name +
-                            "..."
-                        );
-
-
-                        document.getElementById(
-                            "loading"
-                        ).style.display =
-                            "flex";
-
-
-                        await loadDeck(
-                            deck.id
-                        );
-
-
-                        hideLoading();
-
-                    }
-                    catch (error) {
-
-                        showError(
-                            error
-                        );
-
-                    }
-
-                }
-            );
-
-
-            list.appendChild(
-                item
-            );
-
-        }
+    document.getElementById(
+        "flashcard"
+    ).classList.toggle(
+        "flipped",
+        flipped
     );
 
 }
 
+function speakCurrent() {
 
-/* =====================================================
-   HTML 安全
-===================================================== */
+    if (
+        !currentWords.length
+    ) {
+        return;
+    }
 
-function escapeHTML(value) {
+    const word =
+        currentWords[
+            currentIndex
+        ].word;
+
+    if (
+        !word ||
+        !("speechSynthesis" in window)
+    ) {
+
+        return;
+
+    }
+
+    window.speechSynthesis.cancel();
+
+    const utterance =
+        new SpeechSynthesisUtterance(
+            word
+        );
+
+    utterance.lang = "en-US";
+
+    utterance.rate = 0.85;
+
+    utterance.pitch = 1;
+
+    window.speechSynthesis.speak(
+        utterance
+    );
+
+}
+
+/* =========================================================
+   Navigation
+========================================================= */
+
+function nextCard() {
+
+    if (
+        !currentWords.length
+    ) {
+        return;
+    }
+
+    currentIndex =
+        (currentIndex + 1) %
+        currentWords.length;
+
+    renderDeck();
+
+}
+
+function previousCard() {
+
+    if (
+        !currentWords.length
+    ) {
+        return;
+    }
+
+    currentIndex =
+        (
+            currentIndex -
+            1 +
+            currentWords.length
+        ) %
+        currentWords.length;
+
+    renderDeck();
+
+}
+
+function randomCard() {
+
+    if (
+        currentWords.length <= 1
+    ) {
+        return;
+    }
+
+    let newIndex;
+
+    do {
+
+        newIndex =
+            Math.floor(
+                Math.random() *
+                currentWords.length
+            );
+
+    } while (
+        newIndex ===
+        currentIndex
+    );
+
+    currentIndex =
+        newIndex;
+
+    renderDeck();
+
+}
+
+/* =========================================================
+   Mark Known / Unknown
+========================================================= */
+
+function markKnown() {
+
+    if (
+        !currentWords.length
+    ) {
+        return;
+    }
+
+    const word =
+        currentWords[
+            currentIndex
+        ].word;
+
+    learningState[word] =
+        "known";
+
+    saveLearningState();
+
+    updateProgress();
+
+    nextCard();
+
+}
+
+function markUnknown() {
+
+    if (
+        !currentWords.length
+    ) {
+        return;
+    }
+
+    const word =
+        currentWords[
+            currentIndex
+        ].word;
+
+    learningState[word] =
+        "unknown";
+
+    saveLearningState();
+
+    updateProgress();
+
+    nextCard();
+
+}
+
+function getKnownCount() {
+
+    return Object.values(
+        learningState
+    ).filter(
+        value =>
+            value === "known"
+    ).length;
+
+}
+
+/* =========================================================
+   Position
+========================================================= */
+
+function getPositionKey(
+    deckId
+) {
+
+    return (
+        "myflashcards_position_" +
+        deckId
+    );
+
+}
+
+function savePosition() {
+
+    if (!currentDeck) {
+        return;
+    }
+
+    localStorage.setItem(
+        getPositionKey(
+            currentDeck.id
+        ),
+        String(currentIndex)
+    );
+
+}
+
+function restorePosition() {
+
+    if (!currentDeck) {
+        return;
+    }
+
+    const value =
+        localStorage.getItem(
+            getPositionKey(
+                currentDeck.id
+            )
+        );
+
+    if (value === null) {
+        return;
+    }
+
+    const index =
+        parseInt(
+            value,
+            10
+        );
+
+    if (
+        Number.isInteger(index) &&
+        index >= 0 &&
+        index < currentWords.length
+    ) {
+
+        currentIndex = index;
+
+    }
+
+}
+
+/* =========================================================
+   Library
+========================================================= */
+
+function renderLibrary() {
+
+    const container =
+        document.getElementById(
+            "deckList"
+        );
+
+    container.innerHTML = "";
+
+    decks.forEach(deck => {
+
+        const card =
+            document.createElement(
+                "div"
+            );
+
+        card.className =
+            "deck-card";
+
+        const learned =
+            getDeckLearnedCount(
+                deck.id
+            );
+
+        card.innerHTML = `
+            <div class="deck-card-title">
+                ${escapeHTML(deck.name)}
+            </div>
+
+            <div class="deck-card-info">
+                已学习 ${learned} 个
+            </div>
+        `;
+
+        card.addEventListener(
+            "click",
+            async () => {
+
+                await loadDeck(deck);
+
+                showPage("study");
+
+            }
+        );
+
+        container.appendChild(
+            card
+        );
+
+    });
+
+}
+
+function getDeckLearnedCount(
+    deckId
+) {
+
+    try {
+
+        const value =
+            localStorage.getItem(
+                getLearningStorageKey(
+                    deckId
+                )
+            );
+
+        if (!value) {
+            return 0;
+        }
+
+        const data =
+            JSON.parse(value);
+
+        return Object.keys(
+            data
+        ).length;
+
+    } catch (e) {
+
+        return 0;
+
+    }
+
+}
+
+/* =========================================================
+   Statistics
+========================================================= */
+
+function updateStats() {
+
+    const total =
+        currentWords.length;
+
+    const learned =
+        Object.keys(
+            learningState
+        ).length;
+
+    const known =
+        getKnownCount();
+
+    const mastery =
+        total > 0
+            ? Math.round(
+                known / total * 100
+            )
+            : 0;
+
+    document.getElementById(
+        "statTotal"
+    ).textContent =
+        total;
+
+    document.getElementById(
+        "statLearned"
+    ).textContent =
+        learned;
+
+    document.getElementById(
+        "statKnown"
+    ).textContent =
+        known;
+
+    document.getElementById(
+        "statMastery"
+    ).textContent =
+        `${mastery}%`;
+
+}
+
+/* =========================================================
+   Page Navigation
+========================================================= */
+
+function showPage(
+    page
+) {
+
+    const pages = [
+        "study",
+        "library",
+        "stats"
+    ];
+
+    pages.forEach(name => {
+
+        const element =
+            document.getElementById(
+                name + "Page"
+            );
+
+        if (!element) {
+            return;
+        }
+
+        element.classList.toggle(
+            "active",
+            name === page
+        );
+
+    });
+
+    document
+        .getElementById("navStudy")
+        .classList.toggle(
+            "active",
+            page === "study"
+        );
+
+    document
+        .getElementById("navLibrary")
+        .classList.toggle(
+            "active",
+            page === "library"
+        );
+
+    document
+        .getElementById("navStats")
+        .classList.toggle(
+            "active",
+            page === "stats"
+        );
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+/* =========================================================
+   Dark Mode
+========================================================= */
+
+function loadDarkMode() {
+
+    const dark =
+        localStorage.getItem(
+            DARK_MODE_KEY
+        ) === "true";
+
+    document.body.classList.toggle(
+        "dark",
+        dark
+    );
+
+    updateDarkModeButton();
+
+}
+
+function toggleDarkMode() {
+
+    const dark =
+        !document.body.classList.contains(
+            "dark"
+        );
+
+    document.body.classList.toggle(
+        "dark",
+        dark
+    );
+
+    localStorage.setItem(
+        DARK_MODE_KEY,
+        String(dark)
+    );
+
+    updateDarkModeButton();
+
+}
+
+function updateDarkModeButton() {
+
+    const button =
+        document.getElementById(
+            "darkModeBtn"
+        );
+
+    if (
+        document.body.classList.contains(
+            "dark"
+        )
+    ) {
+
+        button.textContent = "☀️";
+        button.title = "浅色模式";
+
+    } else {
+
+        button.textContent = "🌙";
+        button.title = "深色模式";
+
+    }
+
+}
+
+/* =========================================================
+   Loading
+========================================================= */
+
+function showLoading(
+    visible
+) {
+
+    document.getElementById(
+        "loading"
+    ).style.display =
+        visible
+            ? "flex"
+            : "none";
+
+}
+
+/* =========================================================
+   Error
+========================================================= */
+
+function showError(
+    error
+) {
+
+    showLoading(false);
+
+    document.getElementById(
+        "errorMessage"
+    ).textContent =
+        error.message ||
+        String(error);
+
+    document.getElementById(
+        "errorOverlay"
+    ).style.display =
+        "flex";
+
+}
+
+/* =========================================================
+   Escape HTML
+========================================================= */
+
+function escapeHTML(
+    value
+) {
 
     return String(value)
         .replace(
@@ -2421,981 +2421,147 @@ function escapeHTML(value) {
 
 }
 
+/* =========================================================
+   Keyboard
+========================================================= */
 
-/* =====================================================
-   显示单词
-===================================================== */
+document.addEventListener(
+    "keydown",
+    event => {
 
-function renderWord() {
+        /*
+         * 如果用户正在输入，
+         * 不触发快捷键。
+         */
+        if (
+            event.target.tagName ===
+            "INPUT" ||
+            event.target.tagName ===
+            "TEXTAREA" ||
+            event.target.tagName ===
+            "SELECT"
+        ) {
 
-    if (
-        !words.length
-    ) {
+            return;
 
-        return;
+        }
 
-    }
+        switch (
+            event.key
+                .toLowerCase()
+        ) {
 
+            case " ":
 
-    const item =
-        words[
-            currentIndex
-        ];
+                event.preventDefault();
 
+                flipCard();
 
-    document.getElementById(
-        "word"
-    ).textContent =
-        item.word || "";
+                break;
 
+            case "arrowright":
 
-    document.getElementById(
-        "phonetic"
-    ).textContent =
-        item.phonetic || "";
+                nextCard();
 
+                break;
 
-    document.getElementById(
-        "meaning"
-    ).textContent =
-        item.meaning ||
-        "暂无释义";
+            case "arrowleft":
 
+                previousCard();
 
-    document.getElementById(
-        "example"
-    ).textContent =
-        item.example || "";
+                break;
 
+            case "r":
 
-    document.getElementById(
-        "exampleCn"
-    ).textContent =
-        item.example_cn || "";
+                randomCard();
 
+                break;
 
-    document.getElementById(
-        "card"
-    ).classList.remove(
-        "flipped"
-    );
+            case "s":
 
+                speakCurrent();
 
-    updateStats();
+                break;
 
-    saveCurrentIndex();
+            case "k":
 
-}
+                markKnown();
 
+                break;
 
-/* =====================================================
-   翻卡
-===================================================== */
+            case "x":
 
-function flipCard() {
+                markUnknown();
 
-    document.getElementById(
-        "card"
-    ).classList.toggle(
-        "flipped"
-    );
+                break;
 
-}
-
-
-/* =====================================================
-   发音
-===================================================== */
-
-function speak() {
-
-    if (
-        !words.length
-    ) {
-
-        return;
+        }
 
     }
+);
 
+/* =========================================================
+   Initial Position
+========================================================= */
 
-    const text =
-        words[
-            currentIndex
-        ].word;
-
-
-    if (
-        !window.speechSynthesis
-    ) {
-
-        alert(
-            "当前浏览器不支持英语发音"
-        );
-
-        return;
-
-    }
-
-
-    speechSynthesis.cancel();
-
-
-    const speech =
-        new SpeechSynthesisUtterance(
-            text
-        );
-
-
-    speech.lang =
-        "en-US";
-
-
-    speech.rate =
-        .85;
-
-
-    speech.pitch =
-        1;
-
-
-    speechSynthesis.speak(
-        speech
-    );
-
-}
-
-
-/* =====================================================
-   上一个
-===================================================== */
-
-function previousWord() {
-
-    if (
-        !words.length
-    ) {
-
-        return;
-
-    }
-
-
-    currentIndex--;
-
-
-    if (
-        currentIndex < 0
-    ) {
-
-        currentIndex =
-            words.length - 1;
-
-    }
-
-
-    renderWord();
-
-}
-
-
-/* =====================================================
-   下一个
-===================================================== */
-
-function nextWord() {
-
-    if (
-        !words.length
-    ) {
-
-        return;
-
-    }
-
-
-    currentIndex++;
-
-
-    if (
-        currentIndex >=
-        words.length
-    ) {
-
-        currentIndex = 0;
-
-    }
-
-
-    renderWord();
-
-}
-
-
-/* =====================================================
-   随机
-===================================================== */
-
-function randomWord() {
-
-    if (
-        words.length <= 1
-    ) {
-
-        return;
-
-    }
-
-
-    let index;
-
-
-    do {
-
-        index =
-            Math.floor(
-                Math.random() *
-                words.length
-            );
-
-    }
-    while (
-        index ===
-        currentIndex
-    );
-
-
-    currentIndex =
-        index;
-
-
-    renderWord();
-
-}
-
-
-/* =====================================================
-   标记单词
-===================================================== */
-
-function markWord(type) {
-
-    if (
-        !currentDeck ||
-        !words.length
-    ) {
-
-        return;
-
-    }
-
-
-    if (
-        !progress[
-            currentDeck.id
-        ]
-    ) {
-
-        progress[
-            currentDeck.id
-        ] = {
-
-            known: [],
-
-            unknown: [],
-
-            currentIndex: 0
-
-        };
-
-    }
-
-
-    const data =
-        progress[
-            currentDeck.id
-        ];
-
-
-    const word =
-        words[
-            currentIndex
-        ].word;
-
-
-    data.known =
-        data.known.filter(
-            x =>
-                x !== word
-        );
-
-
-    data.unknown =
-        data.unknown.filter(
-            x =>
-                x !== word
-        );
-
-
-    if (
-        type === "known"
-    ) {
-
-        data.known.push(
-            word
-        );
-
-    }
-    else {
-
-        data.unknown.push(
-            word
-        );
-
-    }
-
-
-    saveProgress();
-
-    updateStats();
-
-
-    setTimeout(
-        nextWord,
-        150
-    );
-
-}
-
-
-/* =====================================================
-   统计
-===================================================== */
-
-function getCurrentStats() {
-
-    if (
-        !currentDeck
-    ) {
-
-        return {
-
-            total: 0,
-
-            learned: 0,
-
-            known: 0,
-
-            rate: 0
-
-        };
-
-    }
-
-
-    const data =
-        progress[
-            currentDeck.id
-        ] || {
-
-            known: [],
-
-            unknown: []
-
-        };
-
-
-    const known =
-        data.known.length;
-
-
-    const unknown =
-        data.unknown.length;
-
-
-    const learned =
-        known + unknown;
-
-
-    const rate =
-        words.length
-            ? Math.round(
-                known /
-                words.length *
-                100
-            )
-            : 0;
-
-
-    return {
-
-        total:
-            words.length,
-
-        learned,
-
-        known,
-
-        rate
-
-    };
-
-}
-
-
-function updateStats() {
-
-    const stats =
-        getCurrentStats();
-
-
-    document.getElementById(
-        "progressText"
-    ).textContent =
-        `${currentIndex + 1} / ${stats.total}`;
-
-
-    const percentage =
-        stats.total
-            ? (
-                (currentIndex + 1) /
-                stats.total *
-                100
-            )
-            : 0;
-
-
-    document.getElementById(
-        "progressValue"
-    ).style.width =
-        percentage + "%";
-
-}
-
-
-function updateStatsPage() {
-
-    const stats =
-        getCurrentStats();
-
-
-    document.getElementById(
-        "statTotal"
-    ).textContent =
-        stats.total;
-
-
-    document.getElementById(
-        "statLearned"
-    ).textContent =
-        stats.learned;
-
-
-    document.getElementById(
-        "statKnown"
-    ).textContent =
-        stats.known;
-
-
-    document.getElementById(
-        "statRate"
-    ).textContent =
-        stats.rate + "%";
-
-}
-
-
-/* =====================================================
-   LocalStorage
-===================================================== */
-
-function loadProgress() {
+async function initialize() {
 
     try {
 
-        const data =
-            localStorage.getItem(
-                "pangge_progress"
-            );
+        loadDarkMode();
 
+        /*
+         * 第一件事情：
+         * 检查版本。
+         */
+        await checkVersion();
 
-        progress =
-            data
-                ? JSON.parse(data)
-                : {};
+        /*
+         * 加载词库列表。
+         */
+        await loadDecks();
 
-    }
-    catch {
-
-        progress = {};
-
-    }
-
-}
-
-
-function saveProgress() {
-
-    try {
-
-        localStorage.setItem(
-            "pangge_progress",
-            JSON.stringify(
-                progress
-            )
+        /*
+         * 默认加载第一个词库。
+         */
+        await loadDeck(
+            decks[0]
         );
 
-    }
-    catch {
+        /*
+         * 恢复学习位置。
+         */
+        restorePosition();
 
-        console.warn(
-            "无法保存学习记录"
+        renderDeck();
+
+        renderLibrary();
+
+        updateStats();
+
+        showLoading(false);
+
+    } catch (error) {
+
+        console.error(
+            "Initialization error:",
+            error
         );
 
-    }
-
-}
-
-
-function saveCurrentIndex() {
-
-    if (
-        !currentDeck
-    ) {
-
-        return;
-
-    }
-
-
-    if (
-        !progress[
-            currentDeck.id
-        ]
-    ) {
-
-        progress[
-            currentDeck.id
-        ] = {
-
-            known: [],
-
-            unknown: [],
-
-            currentIndex: 0
-
-        };
-
-    }
-
-
-    progress[
-        currentDeck.id
-    ].currentIndex =
-        currentIndex;
-
-
-    saveProgress();
-
-}
-
-
-/* =====================================================
-   页面切换
-===================================================== */
-
-function showPage(page) {
-
-    document
-        .querySelectorAll(
-            ".page"
-        )
-        .forEach(
-            element => {
-
-                element.classList.remove(
-                    "active"
-                );
-
-            }
-        );
-
-
-    document.getElementById(
-        page + "Page"
-    ).classList.add(
-        "active"
-    );
-
-
-    document
-        .querySelectorAll(
-            ".bottom-button"
-        )
-        .forEach(
-            button => {
-
-                button.classList.remove(
-                    "active"
-                );
-
-            }
-        );
-
-
-    const nav =
-        document.getElementById(
-            "nav" +
-            page.charAt(0)
-                .toUpperCase() +
-            page.slice(1)
-        );
-
-
-    if (nav) {
-
-        nav.classList.add(
-            "active"
-        );
-
-    }
-
-
-    if (
-        page === "stats"
-    ) {
-
-        updateStatsPage();
-
-    }
-
-
-    window.scrollTo(
-        0,
-        0
-    );
-
-}
-
-
-/* =====================================================
-   Dark Mode
-===================================================== */
-
-function loadTheme() {
-
-    const theme =
-        localStorage.getItem(
-            "pangge_theme"
-        );
-
-
-    if (
-        theme === "dark"
-    ) {
-
-        document.body.classList.add(
-            "dark"
-        );
-
-
-        document.getElementById(
-            "themeButton"
-        ).textContent =
-            "☀️";
+        showError(error);
 
     }
 
 }
 
-
-function toggleTheme() {
-
-    const dark =
-        document.body.classList.toggle(
-            "dark"
-        );
-
-
-    localStorage.setItem(
-        "pangge_theme",
-        dark
-            ? "dark"
-            : "light"
-    );
-
-
-    document.getElementById(
-        "themeButton"
-    ).textContent =
-        dark
-            ? "☀️"
-            : "🌙";
-
-}
-
-
-/* =====================================================
-   事件
-===================================================== */
-
-function bindEvents() {
-
-
-    /* 卡片 */
-
-    document.getElementById(
-        "card"
-    ).addEventListener(
-        "click",
-        event => {
-
-            if (
-                event.target.closest(
-                    ".speak-button"
-                )
-            ) {
-
-                return;
-
-            }
-
-
-            flipCard();
-
-        }
-    );
-
-
-    /* 发音 */
-
-    document.getElementById(
-        "speakButton"
-    ).addEventListener(
-        "click",
-        event => {
-
-            event.stopPropagation();
-
-            speak();
-
-        }
-    );
-
-
-    document.getElementById(
-        "speakButtonBack"
-    ).addEventListener(
-        "click",
-        event => {
-
-            event.stopPropagation();
-
-            speak();
-
-        }
-    );
-
-
-    /* 按钮 */
-
-    document.getElementById(
-        "unknownButton"
-    ).addEventListener(
-        "click",
-        () =>
-            markWord(
-                "unknown"
-            )
-    );
-
-
-    document.getElementById(
-        "knownButton"
-    ).addEventListener(
-        "click",
-        () =>
-            markWord(
-                "known"
-            )
-    );
-
-
-    document.getElementById(
-        "previousButton"
-    ).addEventListener(
-        "click",
-        previousWord
-    );
-
-
-    document.getElementById(
-        "nextButton"
-    ).addEventListener(
-        "click",
-        nextWord
-    );
-
-
-    /* 主题 */
-
-    document.getElementById(
-        "themeButton"
-    ).addEventListener(
-        "click",
-        toggleTheme
-    );
-
-
-    /* 键盘 */
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            /*
-             * 输入框中不要触发快捷键
-             */
-
-            if (
-                event.target.tagName ===
-                "INPUT" ||
-                event.target.tagName ===
-                "TEXTAREA" ||
-                event.target.tagName ===
-                "SELECT"
-            ) {
-
-                return;
-
-            }
-
-
-            switch (
-                event.key
-            ) {
-
-                case " ":
-
-                    event.preventDefault();
-
-                    flipCard();
-
-                    break;
-
-
-                case "ArrowLeft":
-
-                    previousWord();
-
-                    break;
-
-
-                case "ArrowRight":
-
-                    nextWord();
-
-                    break;
-
-
-                case "r":
-                case "R":
-
-                    randomWord();
-
-                    break;
-
-
-                case "s":
-                case "S":
-
-                    speak();
-
-                    break;
-
-
-                case "k":
-                case "K":
-
-                    markWord(
-                        "known"
-                    );
-
-                    break;
-
-
-                case "x":
-                case "X":
-
-                    markWord(
-                        "unknown"
-                    );
-
-                    break;
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   错误
-===================================================== */
-
-function showError(error) {
-
-    hideLoading();
-
-
-    const box =
-        document.getElementById(
-            "error"
-        );
-
-
-    document.getElementById(
-        "errorMessage"
-    ).innerHTML = `
-
-        ${escapeHTML(
-            error.message
-        )}
-
-        <br><br>
-
-        <strong>
-            词库目录：
-        </strong>
-
-        <br>
-
-        ${escapeHTML(
-            DATA_ROOT
-        )}
-
-        <br><br>
-
-        请确认 GitHub Pages 中存在：
-
-        <br>
-
-        <code>
-            data/index.json
-        </code>
-
-    `;
-
-
-    box.style.display =
-        "flex";
-
-}
+/* =========================================================
+   Start
+========================================================= */
+
+initialize();
 
 </script>
 
 </body>
-
 </html>
 ```
