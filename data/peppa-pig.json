@@ -1,0 +1,450 @@
+[
+  {
+    "word": "muddy",
+    "phonetic": "/ˈmʌdi/",
+    "meaning": "泥泞的；沾满泥的",
+    "example": "The puddle is very muddy.",
+    "example_cn": "这个水坑里有很多泥。"
+  },
+  {
+    "word": "puddle",
+    "phonetic": "/ˈpʌdl/",
+    "meaning": "水坑",
+    "example": "Peppa likes jumping in muddy puddles.",
+    "example_cn": "小猪佩奇喜欢跳进泥坑里。"
+  },
+  {
+    "word": "jump",
+    "phonetic": "/dʒʌmp/",
+    "meaning": "跳；跳跃",
+    "example": "George likes to jump in puddles.",
+    "example_cn": "乔治喜欢跳进水坑里。"
+  },
+  {
+    "word": "boots",
+    "phonetic": "/buːts/",
+    "meaning": "靴子",
+    "example": "Put on your boots.",
+    "example_cn": "穿上你的靴子。"
+  },
+  {
+    "word": "rain",
+    "phonetic": "/reɪn/",
+    "meaning": "雨；下雨",
+    "example": "It is raining.",
+    "example_cn": "正在下雨。"
+  },
+  {
+    "word": "sunny",
+    "phonetic": "/ˈsʌni/",
+    "meaning": "晴朗的",
+    "example": "It is a sunny day.",
+    "example_cn": "今天是晴天。"
+  },
+  {
+    "word": "dirty",
+    "phonetic": "/ˈdɜːrti/",
+    "meaning": "脏的",
+    "example": "Peppa's boots are dirty.",
+    "example_cn": "佩奇的靴子脏了。"
+  },
+  {
+    "word": "clean",
+    "phonetic": "/kliːn/",
+    "meaning": "干净的；清洁",
+    "example": "Let's clean your boots.",
+    "example_cn": "我们把你的靴子洗干净吧。"
+  },
+  {
+    "word": "dinosaur",
+    "phonetic": "/ˈdaɪnəsɔːr/",
+    "meaning": "恐龙",
+    "example": "George loves dinosaurs.",
+    "example_cn": "乔治喜欢恐龙。"
+  },
+  {
+    "word": "lost",
+    "phonetic": "/lɔːst/",
+    "meaning": "丢失的；迷路的",
+    "example": "Mr. Dinosaur is lost.",
+    "example_cn": "恐龙先生丢了。"
+  },
+  {
+    "word": "find",
+    "phonetic": "/faɪnd/",
+    "meaning": "找到；发现",
+    "example": "Can we find Mr. Dinosaur?",
+    "example_cn": "我们能找到恐龙先生吗？"
+  },
+  {
+    "word": "look",
+    "phonetic": "/lʊk/",
+    "meaning": "看",
+    "example": "Look over there!",
+    "example_cn": "看那边！"
+  },
+  {
+    "word": "there",
+    "phonetic": "/ðer/",
+    "meaning": "那里",
+    "example": "It is over there.",
+    "example_cn": "它在那里。"
+  },
+  {
+    "word": "where",
+    "phonetic": "/wer/",
+    "meaning": "哪里",
+    "example": "Where is Mr. Dinosaur?",
+    "example_cn": "恐龙先生在哪里？"
+  },
+  {
+    "word": "friend",
+    "phonetic": "/frend/",
+    "meaning": "朋友",
+    "example": "Suzy Sheep is Peppa's best friend.",
+    "example_cn": "小羊苏西是佩奇最好的朋友。"
+  },
+  {
+    "word": "best",
+    "phonetic": "/best/",
+    "meaning": "最好的",
+    "example": "She is my best friend.",
+    "example_cn": "她是我最好的朋友。"
+  },
+  {
+    "word": "sheep",
+    "phonetic": "/ʃiːp/",
+    "meaning": "羊",
+    "example": "Suzy is a little sheep.",
+    "example_cn": "苏西是一只小羊。"
+  },
+  {
+    "word": "play",
+    "phonetic": "/pleɪ/",
+    "meaning": "玩；玩耍",
+    "example": "Peppa and Suzy like to play together.",
+    "example_cn": "佩奇和苏西喜欢一起玩。"
+  },
+  {
+    "word": "together",
+    "phonetic": "/təˈɡeðər/",
+    "meaning": "一起",
+    "example": "Let's play together.",
+    "example_cn": "我们一起玩吧。"
+  },
+  {
+    "word": "share",
+    "phonetic": "/ʃer/",
+    "meaning": "分享；共同使用",
+    "example": "Good friends share their toys.",
+    "example_cn": "好朋友会分享他们的玩具。"
+  },
+  {
+    "word": "toy",
+    "phonetic": "/tɔɪ/",
+    "meaning": "玩具",
+    "example": "George has a favorite toy.",
+    "example_cn": "乔治有一个最喜欢的玩具。"
+  },
+  {
+    "word": "parrot",
+    "phonetic": "/ˈpærət/",
+    "meaning": "鹦鹉",
+    "example": "Polly is a green parrot.",
+    "example_cn": "波莉是一只绿色的鹦鹉。"
+  },
+  {
+    "word": "bird",
+    "phonetic": "/bɜːrd/",
+    "meaning": "鸟",
+    "example": "Polly is a very clever bird.",
+    "example_cn": "波莉是一只非常聪明的鸟。"
+  },
+  {
+    "word": "clever",
+    "phonetic": "/ˈklevər/",
+    "meaning": "聪明的",
+    "example": "Polly is very clever.",
+    "example_cn": "波莉非常聪明。"
+  },
+  {
+    "word": "say",
+    "phonetic": "/seɪ/",
+    "meaning": "说",
+    "example": "Can Polly say hello?",
+    "example_cn": "波莉会说你好么？"
+  },
+  {
+    "word": "hello",
+    "phonetic": "/həˈloʊ/",
+    "meaning": "你好",
+    "example": "Hello, Polly!",
+    "example_cn": "你好，波莉！"
+  },
+  {
+    "word": "repeat",
+    "phonetic": "/rɪˈpiːt/",
+    "meaning": "重复",
+    "example": "Can you repeat that?",
+    "example_cn": "你能重复一遍吗？"
+  },
+  {
+    "word": "hide",
+    "phonetic": "/haɪd/",
+    "meaning": "躲藏",
+    "example": "Peppa wants to hide.",
+    "example_cn": "佩奇想躲起来。"
+  },
+  {
+    "word": "seek",
+    "phonetic": "/siːk/",
+    "meaning": "寻找",
+    "example": "Let's play hide and seek.",
+    "example_cn": "我们来玩捉迷藏吧。"
+  },
+  {
+    "word": "ready",
+    "phonetic": "/ˈredi/",
+    "meaning": "准备好的",
+    "example": "Are you ready?",
+    "example_cn": "你准备好了吗？"
+  },
+  {
+    "word": "count",
+    "phonetic": "/kaʊnt/",
+    "meaning": "数数；计算",
+    "example": "George can count to ten.",
+    "example_cn": "乔治会数到十。"
+  },
+  {
+    "word": "one",
+    "phonetic": "/wʌn/",
+    "meaning": "一",
+    "example": "One, two, three!",
+    "example_cn": "一、二、三！"
+  },
+  {
+    "word": "two",
+    "phonetic": "/tuː/",
+    "meaning": "二",
+    "example": "One, two, three!",
+    "example_cn": "一、二、三！"
+  },
+  {
+    "word": "three",
+    "phonetic": "/θriː/",
+    "meaning": "三",
+    "example": "One, two, three!",
+    "example_cn": "一、二、三！"
+  },
+  {
+    "word": "four",
+    "phonetic": "/fɔːr/",
+    "meaning": "四",
+    "example": "Count to four.",
+    "example_cn": "数到四。"
+  },
+  {
+    "word": "five",
+    "phonetic": "/faɪv/",
+    "meaning": "五",
+    "example": "I can count to five.",
+    "example_cn": "我会数到五。"
+  },
+  {
+    "word": "six",
+    "phonetic": "/sɪks/",
+    "meaning": "六",
+    "example": "Count to six.",
+    "example_cn": "数到六。"
+  },
+  {
+    "word": "seven",
+    "phonetic": "/ˈsevən/",
+    "meaning": "七",
+    "example": "There are seven toys.",
+    "example_cn": "有七个玩具。"
+  },
+  {
+    "word": "eight",
+    "phonetic": "/eɪt/",
+    "meaning": "八",
+    "example": "Count to eight.",
+    "example_cn": "数到八。"
+  },
+  {
+    "word": "nine",
+    "phonetic": "/naɪn/",
+    "meaning": "九",
+    "example": "There are nine ducks.",
+    "example_cn": "有九只鸭子。"
+  },
+  {
+    "word": "ten",
+    "phonetic": "/ten/",
+    "meaning": "十",
+    "example": "I can count to ten.",
+    "example_cn": "我会数到十。"
+  },
+  {
+    "word": "family",
+    "phonetic": "/ˈfæməli/",
+    "meaning": "家庭；家人",
+    "example": "Peppa loves her family.",
+    "example_cn": "佩奇爱她的家人。"
+  },
+  {
+    "word": "Mummy",
+    "phonetic": "/ˈmʌmi/",
+    "meaning": "妈妈",
+    "example": "Mummy Pig is in the garden.",
+    "example_cn": "猪妈妈在花园里。"
+  },
+  {
+    "word": "Daddy",
+    "phonetic": "/ˈdædi/",
+    "meaning": "爸爸",
+    "example": "Daddy Pig is very funny.",
+    "example_cn": "猪爸爸非常有趣。"
+  },
+  {
+    "word": "George",
+    "phonetic": "/dʒɔːrdʒ/",
+    "meaning": "乔治",
+    "example": "George loves his dinosaur.",
+    "example_cn": "乔治喜欢他的恐龙。"
+  },
+  {
+    "word": "garden",
+    "phonetic": "/ˈɡɑːrdən/",
+    "meaning": "花园",
+    "example": "Peppa is playing in the garden.",
+    "example_cn": "佩奇正在花园里玩。"
+  },
+  {
+    "word": "house",
+    "phonetic": "/haʊs/",
+    "meaning": "房子；家",
+    "example": "Peppa is at home.",
+    "example_cn": "佩奇在家。"
+  },
+  {
+    "word": "home",
+    "phonetic": "/hoʊm/",
+    "meaning": "家；家里",
+    "example": "Let's go home.",
+    "example_cn": "我们回家吧。"
+  },
+  {
+    "word": "happy",
+    "phonetic": "/ˈhæpi/",
+    "meaning": "开心的；快乐的",
+    "example": "Peppa is very happy.",
+    "example_cn": "佩奇非常开心。"
+  },
+  {
+    "word": "fun",
+    "phonetic": "/fʌn/",
+    "meaning": "有趣的；乐趣",
+    "example": "Jumping in puddles is fun.",
+    "example_cn": "跳泥坑很有趣。"
+  },
+  {
+    "word": "funny",
+    "phonetic": "/ˈfʌni/",
+    "meaning": "有趣的；好笑的",
+    "example": "Daddy Pig is funny.",
+    "example_cn": "猪爸爸很搞笑。"
+  },
+  {
+    "word": "big",
+    "phonetic": "/bɪɡ/",
+    "meaning": "大的",
+    "example": "That is a big puddle.",
+    "example_cn": "那是一个大水坑。"
+  },
+  {
+    "word": "little",
+    "phonetic": "/ˈlɪtl/",
+    "meaning": "小的；年幼的",
+    "example": "George is little.",
+    "example_cn": "乔治还很小。"
+  },
+  {
+    "word": "small",
+    "phonetic": "/smɔːl/",
+    "meaning": "小的",
+    "example": "It is a small puddle.",
+    "example_cn": "这是一个小水坑。"
+  },
+  {
+    "word": "wet",
+    "phonetic": "/wet/",
+    "meaning": "湿的",
+    "example": "My boots are wet.",
+    "example_cn": "我的靴子湿了。"
+  },
+  {
+    "word": "again",
+    "phonetic": "/əˈɡen/",
+    "meaning": "再次；又一次",
+    "example": "Let's do it again.",
+    "example_cn": "我们再做一次吧。"
+  },
+  {
+    "word": "come",
+    "phonetic": "/kʌm/",
+    "meaning": "来",
+    "example": "Come and play with us.",
+    "example_cn": "来和我们一起玩吧。"
+  },
+  {
+    "word": "go",
+    "phonetic": "/ɡoʊ/",
+    "meaning": "去",
+    "example": "Let's go!",
+    "example_cn": "我们走吧！"
+  },
+  {
+    "word": "wait",
+    "phonetic": "/weɪt/",
+    "meaning": "等待",
+    "example": "Wait for me!",
+    "example_cn": "等等我！"
+  },
+  {
+    "word": "stop",
+    "phonetic": "/stɑːp/",
+    "meaning": "停止",
+    "example": "Stop jumping!",
+    "example_cn": "别跳了！"
+  },
+  {
+    "word": "please",
+    "phonetic": "/pliːz/",
+    "meaning": "请",
+    "example": "Please come here.",
+    "example_cn": "请到这里来。"
+  },
+  {
+    "word": "thank",
+    "phonetic": "/θæŋk/",
+    "meaning": "感谢",
+    "example": "Thank you!",
+    "example_cn": "谢谢你！"
+  },
+  {
+    "word": "sorry",
+    "phonetic": "/ˈsɑːri/",
+    "meaning": "对不起；抱歉",
+    "example": "Sorry, I forgot.",
+    "example_cn": "对不起，我忘了。"
+  },
+  {
+    "word": "okay",
+    "phonetic": "/oʊˈkeɪ/",
+    "meaning": "好的；可以",
+    "example": "Okay, let's go.",
+    "example_cn": "好的，我们走吧。"
+  }
+]
