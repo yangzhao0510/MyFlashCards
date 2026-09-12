@@ -55,11 +55,6 @@
             user-select: none;
         }
 
-
-        /* =====================================================
-           APP
-        ===================================================== */
-
         .app {
             min-height: 100vh;
             min-height: 100dvh;
@@ -70,11 +65,6 @@
             padding-bottom:
                 calc(20px + env(safe-area-inset-bottom));
         }
-
-
-        /* =====================================================
-           HEADER
-        ===================================================== */
 
         .header {
             height: 64px;
@@ -137,11 +127,6 @@
             transform: scale(.94);
         }
 
-
-        /* =====================================================
-           MAIN
-        ===================================================== */
-
         .main {
             width: min(820px, calc(100% - 32px));
 
@@ -154,11 +139,6 @@
                 calc(40px + env(safe-area-inset-bottom));
         }
 
-
-        /* =====================================================
-           PAGE
-        ===================================================== */
-
         .page {
             display: none;
         }
@@ -166,11 +146,6 @@
         .page.active {
             display: block;
         }
-
-
-        /* =====================================================
-           TOP AREA
-        ===================================================== */
 
         .learning-top {
             display: flex;
@@ -238,11 +213,6 @@
             transition: width .25s ease;
         }
 
-
-        /* =====================================================
-           FLASH CARD
-        ===================================================== */
-
         .card-container {
             width: 100%;
 
@@ -304,11 +274,6 @@
             transform: rotateY(180deg);
         }
 
-
-        /* =====================================================
-           FRONT
-        ===================================================== */
-
         .word-label {
             margin-bottom: 12px;
 
@@ -343,11 +308,6 @@
 
             font-size: 17px;
         }
-
-
-        /* =====================================================
-           SPEAK BUTTON
-        ===================================================== */
 
         .speak-main {
             width: 52px;
@@ -390,11 +350,6 @@
             transform: translateX(1px);
         }
 
-
-        /* =====================================================
-           CARD HINT
-        ===================================================== */
-
         .card-hint {
             position: absolute;
 
@@ -404,11 +359,6 @@
 
             font-size: 12px;
         }
-
-
-        /* =====================================================
-           BACK
-        ===================================================== */
 
         .meaning {
             max-width: 90%;
@@ -437,11 +387,6 @@
 
             color: #999;
         }
-
-
-        /* =====================================================
-           NAVIGATION
-        ===================================================== */
 
         .navigation {
             display: grid;
@@ -494,11 +439,6 @@
         .nav-control.primary:hover {
             background: #303030;
         }
-
-
-        /* =====================================================
-           KNOWLEDGE
-        ===================================================== */
 
         .knowledge {
             display: grid;
@@ -555,11 +495,6 @@
             background: #fff2f0;
         }
 
-
-        /* =====================================================
-           LIBRARY
-        ===================================================== */
-
         .page-title {
             margin: 4px 0 18px;
 
@@ -614,11 +549,6 @@
 
             line-height: 1.5;
         }
-
-
-        /* =====================================================
-           STATS
-        ===================================================== */
 
         .stats-grid {
             display: grid;
@@ -680,11 +610,6 @@
 
             transition: width .3s ease;
         }
-
-
-        /* =====================================================
-           BOTTOM NAV
-        ===================================================== */
 
         .bottom-nav {
             position: fixed;
@@ -751,11 +676,6 @@
             font-size: 18px;
         }
 
-
-        /* =====================================================
-           LOADING / ERROR
-        ===================================================== */
-
         .loading,
         .error-box {
             padding: 80px 20px;
@@ -799,11 +719,6 @@
             cursor: pointer;
         }
 
-
-        /* =====================================================
-           UPDATE
-        ===================================================== */
-
         .update-toast {
             position: fixed;
 
@@ -834,11 +749,6 @@
         .update-toast.show {
             opacity: 1;
         }
-
-
-        /* =====================================================
-           DARK MODE
-        ===================================================== */
 
         body.dark {
             background: #101010;
@@ -942,11 +852,6 @@
             color: #ff8b82;
         }
 
-
-        /* =====================================================
-           TABLET / DESKTOP
-        ===================================================== */
-
         @media (min-width: 768px) {
 
             .main {
@@ -961,11 +866,6 @@
                 bottom: 16px;
             }
         }
-
-
-        /* =====================================================
-           MOBILE
-        ===================================================== */
 
         @media (max-width: 600px) {
 
@@ -1101,11 +1001,6 @@
             }
         }
 
-
-        /* =====================================================
-           SMALL MOBILE
-        ===================================================== */
-
         @media (max-width: 380px) {
 
             .card-container {
@@ -1143,14 +1038,9 @@
     </style>
 </head>
 
-
 <body>
 
 <div class="app">
-
-    <!-- =====================================================
-         HEADER
-    ====================================================== -->
 
     <header class="header">
 
@@ -1172,14 +1062,7 @@
 
     </header>
 
-
-    <!-- =====================================================
-         MAIN
-    ====================================================== -->
-
     <main class="main">
-
-        <!-- ================= Learning ================= -->
 
         <section
             id="learningPage"
@@ -1188,11 +1071,8 @@
             <div
                 id="loadingBox"
                 class="loading">
-
                 正在加载词库...
-
             </div>
-
 
             <div
                 id="errorBox"
@@ -1211,19 +1091,14 @@
                 <button
                     id="retryBtn"
                     class="retry-btn">
-
                     重新加载
-
                 </button>
 
             </div>
 
-
             <div
                 id="learningContent"
                 style="display:none;">
-
-                <!-- 词库 -->
 
                 <div class="learning-top">
 
@@ -1248,9 +1123,6 @@
 
                 </div>
 
-
-                <!-- 进度 -->
-
                 <div class="progress">
 
                     <div
@@ -1260,11 +1132,6 @@
 
                 </div>
 
-
-                <!-- =================================================
-                     FLASH CARD
-                ================================================== -->
-
                 <div
                     id="cardContainer"
                     class="card-container"
@@ -1273,9 +1140,6 @@
                     <div
                         id="flashcard"
                         class="flashcard">
-
-
-                        <!-- ================= FRONT ================= -->
 
                         <div
                             class="card-face card-front">
@@ -1287,21 +1151,14 @@
                             <div
                                 id="word"
                                 class="word">
-
                                 —
-
                             </div>
 
                             <div
                                 id="phonetic"
                                 class="phonetic">
-
                                 —
-
                             </div>
-
-
-                            <!-- 播放按钮 -->
 
                             <button
                                 id="frontSpeakBtn"
@@ -1314,15 +1171,11 @@
 
                             </button>
 
-
                             <div class="card-hint">
                                 点击卡片查看中文
                             </div>
 
                         </div>
-
-
-                        <!-- ================= BACK ================= -->
 
                         <div
                             class="card-face card-back">
@@ -1330,24 +1183,19 @@
                             <div
                                 id="meaning"
                                 class="meaning">
-
                                 —
-
                             </div>
 
                             <div
                                 id="example"
                                 class="example">
-
                                 —
-
                             </div>
 
                             <div
                                 id="exampleCn"
                                 class="example example-cn">
                             </div>
-
 
                             <button
                                 id="backSpeakBtn"
@@ -1366,60 +1214,40 @@
 
                 </div>
 
-
-                <!-- =================================================
-                     上一个 / 翻转 / 下一个
-                ================================================== -->
-
                 <div class="navigation">
 
                     <button
                         id="prevBtn"
                         class="nav-control">
-
                         ← 上一个
-
                     </button>
 
                     <button
                         id="flipBtn"
                         class="nav-control primary">
-
                         翻转
-
                     </button>
 
                     <button
                         id="nextBtn"
                         class="nav-control">
-
                         下一个 →
-
                     </button>
 
                 </div>
-
-
-                <!-- =================================================
-                     记住 / 没记住
-                ================================================== -->
 
                 <div class="knowledge">
 
                     <button
                         id="unknownBtn"
                         class="knowledge-btn unknown">
-
                         ✕ 没记住
-
                     </button>
 
                     <button
                         id="knownBtn"
                         class="knowledge-btn known">
-
                         ✓ 记住了
-
                     </button>
 
                 </div>
@@ -1427,9 +1255,6 @@
             </div>
 
         </section>
-
-
-        <!-- ================= Library ================= -->
 
         <section
             id="libraryPage"
@@ -1445,9 +1270,6 @@
             </div>
 
         </section>
-
-
-        <!-- ================= Stats ================= -->
 
         <section
             id="statsPage"
@@ -1473,7 +1295,6 @@
 
                 </div>
 
-
                 <div class="stat-card">
 
                     <div class="stat-label">
@@ -1487,7 +1308,6 @@
                     </div>
 
                 </div>
-
 
                 <div class="stat-card">
 
@@ -1503,7 +1323,6 @@
 
                 </div>
 
-
                 <div class="stat-card">
 
                     <div class="stat-label">
@@ -1518,7 +1337,6 @@
 
                 </div>
 
-
                 <div class="stat-card stat-wide">
 
                     <div class="stat-label">
@@ -1528,9 +1346,7 @@
                     <div
                         id="statMastery"
                         class="stat-value">
-
                         0%
-
                     </div>
 
                     <div class="mastery-wrap">
@@ -1556,23 +1372,11 @@
 
 </div>
 
-
-<!-- =====================================================
-     UPDATE TOAST
-====================================================== -->
-
 <div
     id="updateToast"
     class="update-toast">
-
     检测到新版本，正在刷新...
-
 </div>
-
-
-<!-- =====================================================
-     BOTTOM NAV
-====================================================== -->
 
 <nav class="bottom-nav">
 
@@ -1590,7 +1394,6 @@
 
     </button>
 
-
     <button
         class="nav-btn"
         data-page="libraryPage">
@@ -1604,7 +1407,6 @@
         </span>
 
     </button>
-
 
     <button
         class="nav-btn"
@@ -1622,14 +1424,8 @@
 
 </nav>
 
-
 <script>
 "use strict";
-
-
-/* =========================================================
-   基础配置
-========================================================= */
 
 const SITE_ROOT = "/MyFlashCards/";
 const DATA_ROOT = SITE_ROOT + "data/";
@@ -1649,27 +1445,12 @@ const THEME_STORAGE_KEY =
 const CURRENT_DECK_KEY =
     "myflashcards_current_deck";
 
-
-/* =========================================================
-   全局状态
-========================================================= */
-
 let decks = [];
-
 let currentDeck = null;
-
 let currentWords = [];
-
 let currentIndex = 0;
-
 let isFlipped = false;
-
 let learningState = {};
-
-
-/* =========================================================
-   DOM
-========================================================= */
 
 const loadingBox =
     document.getElementById("loadingBox");
@@ -1768,10 +1549,6 @@ const updateToast =
     document.getElementById("updateToast");
 
 
-/* =========================================================
-   JSON
-========================================================= */
-
 async function getJSON(url) {
 
     const separator =
@@ -1868,10 +1645,6 @@ async function getJSON(url) {
 }
 
 
-/* =========================================================
-   VERSION
-========================================================= */
-
 async function checkVersion() {
 
     try {
@@ -1953,10 +1726,6 @@ async function checkVersion() {
 }
 
 
-/* =========================================================
-   LOADING
-========================================================= */
-
 function showLoading() {
 
     loadingBox.style.display =
@@ -2003,10 +1772,6 @@ function showContent() {
 
 }
 
-
-/* =========================================================
-   LOAD DECKS
-========================================================= */
 
 async function loadDecks() {
 
@@ -2078,10 +1843,6 @@ async function loadDecks() {
 }
 
 
-/* =========================================================
-   DECK SELECT
-========================================================= */
-
 function renderDeckSelect() {
 
     deckSelect.innerHTML = "";
@@ -2110,10 +1871,6 @@ function renderDeckSelect() {
 
 }
 
-
-/* =========================================================
-   LOAD DECK
-========================================================= */
 
 async function loadDeck(deckId) {
 
@@ -2213,10 +1970,6 @@ async function loadDeck(deckId) {
 }
 
 
-/* =========================================================
-   LEARNING STATE
-========================================================= */
-
 function getStateKey() {
 
     return (
@@ -2312,10 +2065,6 @@ function saveLearningState() {
 }
 
 
-/* =========================================================
-   WORD STATE
-========================================================= */
-
 function getWordKey(index) {
 
     const item =
@@ -2361,10 +2110,6 @@ function setWordStatus(
 
 }
 
-
-/* =========================================================
-   RENDER CARD
-========================================================= */
 
 function renderCurrentCard() {
 
@@ -2425,10 +2170,6 @@ function renderCurrentCard() {
 }
 
 
-/* =========================================================
-   FLIP
-========================================================= */
-
 function flipCard() {
 
     isFlipped =
@@ -2441,10 +2182,6 @@ function flipCard() {
 
 }
 
-
-/* =========================================================
-   PREVIOUS
-========================================================= */
 
 function previousCard() {
 
@@ -2471,10 +2208,6 @@ function previousCard() {
 
 }
 
-
-/* =========================================================
-   NEXT
-========================================================= */
 
 function nextCard() {
 
@@ -2503,10 +2236,6 @@ function nextCard() {
 
 }
 
-
-/* =========================================================
-   RANDOM
-========================================================= */
 
 function randomCard() {
 
@@ -2544,10 +2273,6 @@ function randomCard() {
 
 }
 
-
-/* =========================================================
-   SPEAK
-========================================================= */
 
 function speakWord() {
 
@@ -2611,10 +2336,6 @@ function speakWord() {
 }
 
 
-/* =========================================================
-   KNOWLEDGE
-========================================================= */
-
 function markKnown() {
 
     setWordStatus(
@@ -2642,10 +2363,6 @@ function markUnknown() {
 
 }
 
-
-/* =========================================================
-   STATS
-========================================================= */
 
 function calculateStats() {
 
@@ -2731,10 +2448,6 @@ function updateStats() {
 }
 
 
-/* =========================================================
-   LIBRARY
-========================================================= */
-
 function renderLibrary() {
 
     deckList.innerHTML = "";
@@ -2818,10 +2531,6 @@ function renderLibrary() {
 }
 
 
-/* =========================================================
-   PAGE
-========================================================= */
-
 function showPage(pageId) {
 
     document
@@ -2862,10 +2571,6 @@ function showPage(pageId) {
 }
 
 
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-
 function escapeHTML(value) {
 
     return String(value)
@@ -2892,10 +2597,6 @@ function escapeHTML(value) {
 
 }
 
-
-/* =========================================================
-   THEME
-========================================================= */
 
 function loadTheme() {
 
@@ -2951,10 +2652,6 @@ function toggleTheme() {
 }
 
 
-/* =========================================================
-   CARD CLICK
-========================================================= */
-
 cardContainer.addEventListener(
     "click",
     event => {
@@ -2974,10 +2671,6 @@ cardContainer.addEventListener(
     }
 );
 
-
-/* =========================================================
-   SPEAK
-========================================================= */
 
 frontSpeakBtn.addEventListener(
     "click",
@@ -3003,39 +2696,35 @@ backSpeakBtn.addEventListener(
 );
 
 
-/* =========================================================
-   BUTTONS
-========================================================= */
-
 flipBtn.addEventListener(
     "click",
     flipCard
 );
+
 
 prevBtn.addEventListener(
     "click",
     previousCard
 );
 
+
 nextBtn.addEventListener(
     "click",
     nextCard
 );
+
 
 unknownBtn.addEventListener(
     "click",
     markUnknown
 );
 
+
 knownBtn.addEventListener(
     "click",
     markKnown
 );
 
-
-/* =========================================================
-   DECK SELECT
-========================================================= */
 
 deckSelect.addEventListener(
     "change",
@@ -3057,10 +2746,6 @@ deckSelect.addEventListener(
 );
 
 
-/* =========================================================
-   RETRY
-========================================================= */
-
 retryBtn.addEventListener(
     "click",
     () => {
@@ -3071,19 +2756,11 @@ retryBtn.addEventListener(
 );
 
 
-/* =========================================================
-   THEME
-========================================================= */
-
 themeBtn.addEventListener(
     "click",
     toggleTheme
 );
 
-
-/* =========================================================
-   BOTTOM NAV
-========================================================= */
 
 document
     .querySelectorAll(".nav-btn")
@@ -3104,10 +2781,6 @@ document
         }
     );
 
-
-/* =========================================================
-   KEYBOARD
-========================================================= */
 
 document.addEventListener(
     "keydown",
@@ -3180,10 +2853,6 @@ document.addEventListener(
 );
 
 
-/* =========================================================
-   TOUCH
-========================================================= */
-
 let lastTouchEnd = 0;
 
 document.addEventListener(
@@ -3211,10 +2880,6 @@ document.addEventListener(
 );
 
 
-/* =========================================================
-   INIT
-========================================================= */
-
 async function init() {
 
     loadTheme();
@@ -3238,9 +2903,7 @@ init().catch(
 
     }
 );
-
 </script>
 
 </body>
 </html>
-```
