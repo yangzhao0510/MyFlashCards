@@ -1,15 +1,17 @@
+```html
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
     <title>胖哥学英语</title>
 
-    <meta name="description" content="胖哥学英语 - 简洁高效的英语闪卡学习工具">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
+    <meta name="description"
+          content="胖哥学英语 - 简洁高效的英语闪卡学习工具">
+
+    <meta name="theme-color" content="#ffffff">
 
     <style>
         * {
@@ -17,13 +19,14 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        html {
-            height: 100%;
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            min-height: 100%;
         }
 
         body {
-            margin: 0;
-            min-height: 100%;
             font-family:
                 -apple-system,
                 BlinkMacSystemFont,
@@ -32,73 +35,130 @@
                 "Hiragino Sans GB",
                 "Microsoft YaHei",
                 sans-serif;
-            background: #f5f6f8;
-            color: #222;
-            transition: background .25s, color .25s;
+
+            background: #f6f7f9;
+            color: #171717;
+
+            transition:
+                background .25s ease,
+                color .25s ease;
+
+            overflow-x: hidden;
         }
 
-        button {
+        button,
+        select {
             font: inherit;
         }
 
-        .app {
-            min-height: 100vh;
-            padding-bottom: 72px;
+        button {
+            -webkit-user-select: none;
+            user-select: none;
         }
 
-        /* =========================
-           Header
-        ========================= */
+
+        /* =====================================================
+           APP
+        ===================================================== */
+
+        .app {
+            min-height: 100vh;
+            min-height: 100dvh;
+
+            display: flex;
+            flex-direction: column;
+
+            padding-bottom:
+                calc(20px + env(safe-area-inset-bottom));
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
 
         .header {
+            height: 64px;
+
             position: sticky;
             top: 0;
             z-index: 100;
-            height: 58px;
-            background: rgba(255,255,255,.94);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid #e9e9e9;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(255,255,255,.92);
+
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+
+            border-bottom: 1px solid #e9e9eb;
+        }
+
+        .header-inner {
+            width: min(820px, calc(100% - 32px));
+
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 18px;
         }
 
         .logo {
-            font-size: 18px;
-            font-weight: 700;
-            white-space: nowrap;
+            font-size: 19px;
+            font-weight: 750;
+            letter-spacing: -.3px;
         }
 
-        .header-actions {
+        .theme-btn {
+            width: 38px;
+            height: 38px;
+
+            border: 0;
+            border-radius: 50%;
+
+            background: #f2f3f5;
+
             display: flex;
             align-items: center;
-            gap: 8px;
-        }
+            justify-content: center;
 
-        .icon-btn {
-            width: 36px;
-            height: 36px;
-            border: 0;
-            background: transparent;
-            border-radius: 10px;
             cursor: pointer;
-            font-size: 18px;
+
+            transition:
+                background .2s,
+                transform .15s;
         }
 
-        .icon-btn:hover {
-            background: #f1f1f1;
+        .theme-btn:hover {
+            background: #e9eaec;
         }
 
-        /* =========================
-           Main
-        ========================= */
+        .theme-btn:active {
+            transform: scale(.94);
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
 
         .main {
-            width: min(720px, calc(100% - 32px));
+            width: min(820px, calc(100% - 32px));
+
             margin: 0 auto;
-            padding: 24px 0 30px;
+
+            flex: 1;
+
+            padding:
+                26px 0
+                calc(40px + env(safe-area-inset-bottom));
         }
+
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
 
         .page {
             display: none;
@@ -108,75 +168,105 @@
             display: block;
         }
 
-        /* =========================
-           Learning
-        ========================= */
 
-        .deck-bar {
+        /* =====================================================
+           TOP AREA
+        ===================================================== */
+
+        .learning-top {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            margin-bottom: 14px;
+            gap: 14px;
+
+            margin-bottom: 12px;
         }
 
         .deck-select {
             flex: 1;
-            min-width: 0;
-            height: 42px;
-            border: 1px solid #ddd;
+
+            height: 46px;
+
+            padding: 0 14px;
+
+            border: 1px solid #dedfe2;
+            border-radius: 13px;
+
             background: #fff;
-            border-radius: 12px;
-            padding: 0 12px;
+
+            color: #222;
+
             font-size: 14px;
-            color: #333;
+            font-weight: 500;
+
             outline: none;
+
+            cursor: pointer;
         }
 
         .deck-select:focus {
-            border-color: #999;
+            border-color: #aaa;
         }
 
         .progress-info {
+            flex-shrink: 0;
+
+            color: #858585;
+
             font-size: 13px;
-            color: #888;
-            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
         }
 
         .progress {
             height: 4px;
-            background: #e5e5e5;
-            border-radius: 99px;
+
+            background: #e5e6e8;
+
+            border-radius: 999px;
+
             overflow: hidden;
-            margin-bottom: 18px;
+
+            margin-bottom: 20px;
         }
 
         .progress-bar {
-            height: 100%;
             width: 0;
-            background: #222;
+            height: 100%;
+
+            background: #181818;
+
             border-radius: inherit;
+
             transition: width .25s ease;
         }
 
-        /* =========================
-           Flash Card
-        ========================= */
+
+        /* =====================================================
+           FLASH CARD
+        ===================================================== */
 
         .card-container {
-            perspective: 1200px;
             width: 100%;
-            height: 390px;
+
+            height: min(510px, 58vh);
+            min-height: 390px;
+
+            perspective: 1400px;
+
             cursor: pointer;
+
             user-select: none;
         }
 
         .flashcard {
             position: relative;
+
             width: 100%;
             height: 100%;
+
             transform-style: preserve-3d;
-            transition: transform .45s ease;
+
+            transition:
+                transform .5s cubic-bezier(.2,.7,.2,1);
         }
 
         .flashcard.flipped {
@@ -185,146 +275,297 @@
 
         .card-face {
             position: absolute;
+
             inset: 0;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            background: #fff;
-            border: 1px solid #e9e9e9;
-            border-radius: 22px;
-            box-shadow: 0 8px 30px rgba(0,0,0,.05);
+
+            padding: 40px;
+
             display: flex;
             flex-direction: column;
+
             align-items: center;
             justify-content: center;
-            padding: 30px;
+
+            text-align: center;
+
+            background: #fff;
+
+            border: 1px solid #e5e5e7;
+
+            border-radius: 26px;
+
+            box-shadow:
+                0 12px 40px rgba(0,0,0,.055);
+
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
         .card-back {
             transform: rotateY(180deg);
         }
 
-        .word {
-            font-size: clamp(38px, 8vw, 62px);
-            font-weight: 700;
-            letter-spacing: -1px;
-            text-align: center;
+
+        /* =====================================================
+           FRONT
+        ===================================================== */
+
+        .word-label {
             margin-bottom: 12px;
+
+            color: #a0a0a0;
+
+            font-size: 11px;
+            font-weight: 600;
+
+            letter-spacing: 1.5px;
+
+            text-transform: uppercase;
+        }
+
+        .word {
+            max-width: 100%;
+
+            font-size: clamp(42px, 8vw, 72px);
+
+            line-height: 1.05;
+
+            font-weight: 750;
+
+            letter-spacing: -2px;
+
+            word-break: break-word;
         }
 
         .phonetic {
-            color: #888;
+            margin-top: 16px;
+
+            color: #858585;
+
             font-size: 17px;
-            margin-bottom: 24px;
         }
 
+
+        /* =====================================================
+           SPEAK BUTTON
+        ===================================================== */
+
+        .speak-main {
+            width: 52px;
+            height: 52px;
+
+            margin-top: 24px;
+
+            border: 0;
+            border-radius: 50%;
+
+            background: #181818;
+            color: #fff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 20px;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 6px 18px rgba(0,0,0,.15);
+
+            transition:
+                transform .15s,
+                background .2s;
+        }
+
+        .speak-main:hover {
+            background: #303030;
+        }
+
+        .speak-main:active {
+            transform: scale(.92);
+        }
+
+        .speak-icon {
+            display: block;
+            transform: translateX(1px);
+        }
+
+
+        /* =====================================================
+           CARD HINT
+        ===================================================== */
+
+        .card-hint {
+            position: absolute;
+
+            bottom: 24px;
+
+            color: #aaa;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           BACK
+        ===================================================== */
+
         .meaning {
-            font-size: 27px;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 20px;
+            max-width: 90%;
+
+            font-size: clamp(25px, 5vw, 38px);
+
+            line-height: 1.35;
+
+            font-weight: 700;
         }
 
         .example {
-            max-width: 580px;
-            text-align: center;
-            line-height: 1.7;
+            max-width: 650px;
+
+            margin-top: 24px;
+
+            color: #4e4e4e;
+
             font-size: 16px;
-            color: #555;
+
+            line-height: 1.7;
         }
 
         .example-cn {
             margin-top: 6px;
+
             color: #999;
         }
 
-        .speak-btn {
-            position: absolute;
-            right: 18px;
-            top: 18px;
-            width: 40px;
-            height: 40px;
-            border: 0;
-            background: #f4f4f4;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 18px;
-        }
 
-        .speak-btn:hover {
-            background: #e9e9e9;
-        }
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
 
-        .hint {
-            text-align: center;
-            color: #aaa;
-            font-size: 12px;
-            margin-top: 10px;
-        }
-
-        /* =========================
-           Controls
-        ========================= */
-
-        .controls {
+        .navigation {
             display: grid;
-            grid-template-columns: 1fr 1.2fr 1fr;
+
+            grid-template-columns:
+                1fr 1.15fr 1fr;
+
             gap: 10px;
-            margin-top: 18px;
+
+            margin-top: 14px;
         }
 
-        .control-btn {
-            height: 48px;
-            border: 0;
-            border-radius: 13px;
+        .nav-control {
+            height: 50px;
+
+            border: 1px solid #dedfe2;
+
+            border-radius: 14px;
+
             background: #fff;
-            color: #333;
-            border: 1px solid #e6e6e6;
-            cursor: pointer;
+
+            color: #252525;
+
+            font-size: 14px;
             font-weight: 600;
-            transition: transform .12s, background .15s;
+
+            cursor: pointer;
+
+            transition:
+                background .18s,
+                transform .12s;
         }
 
-        .control-btn:active {
+        .nav-control:hover {
+            background: #f6f6f7;
+        }
+
+        .nav-control:active {
             transform: scale(.97);
         }
 
-        .control-btn:hover {
-            background: #f7f7f7;
-        }
+        .nav-control.primary {
+            border-color: #181818;
 
-        .control-btn.primary {
-            background: #222;
+            background: #181818;
+
             color: #fff;
-            border-color: #222;
         }
 
-        .control-btn.primary:hover {
-            background: #333;
+        .nav-control.primary:hover {
+            background: #303030;
         }
 
-        .knowledge-controls {
+
+        /* =====================================================
+           KNOWLEDGE
+        ===================================================== */
+
+        .knowledge {
             display: grid;
+
             grid-template-columns: 1fr 1fr;
+
             gap: 10px;
+
             margin-top: 10px;
         }
 
-        .unknown-btn {
-            color: #b42318;
+        .knowledge-btn {
+            height: 52px;
+
+            border-radius: 14px;
+
+            background: #fff;
+
+            font-size: 14px;
+            font-weight: 650;
+
+            cursor: pointer;
+
+            transition:
+                transform .12s,
+                background .18s;
         }
 
-        .known-btn {
+        .knowledge-btn:active {
+            transform: scale(.97);
+        }
+
+        .known {
+            border: 1px solid #b7dec9;
+
             color: #067647;
+
+            background: #f7fcf9;
         }
 
-        /* =========================
-           Library
-        ========================= */
+        .known:hover {
+            background: #eef9f3;
+        }
+
+        .unknown {
+            border: 1px solid #edc3bf;
+
+            color: #b42318;
+
+            background: #fff9f8;
+        }
+
+        .unknown:hover {
+            background: #fff2f0;
+        }
+
+
+        /* =====================================================
+           LIBRARY
+        ===================================================== */
 
         .page-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin: 4px 0 20px;
+            margin: 4px 0 18px;
+
+            font-size: 25px;
+            font-weight: 750;
         }
 
         .deck-list {
@@ -334,60 +575,82 @@
 
         .deck-item {
             width: 100%;
-            text-align: left;
-            padding: 16px;
-            border: 1px solid #e6e6e6;
-            border-radius: 14px;
-            background: #fff;
-            cursor: pointer;
-            transition: transform .12s, background .15s;
-        }
 
-        .deck-item:active {
-            transform: scale(.985);
+            padding: 18px;
+
+            text-align: left;
+
+            border: 1px solid #e2e3e5;
+
+            border-radius: 16px;
+
+            background: #fff;
+
+            cursor: pointer;
+
+            transition:
+                transform .12s,
+                background .18s;
         }
 
         .deck-item:hover {
             background: #fafafa;
         }
 
+        .deck-item:active {
+            transform: scale(.985);
+        }
+
         .deck-name {
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 650;
         }
 
         .deck-meta {
-            margin-top: 5px;
+            margin-top: 6px;
+
             color: #999;
+
             font-size: 13px;
+
+            line-height: 1.5;
         }
 
-        /* =========================
-           Stats
-        ========================= */
+
+        /* =====================================================
+           STATS
+        ===================================================== */
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
             gap: 10px;
         }
 
         .stat-card {
+            padding: 22px;
+
+            border: 1px solid #e2e3e5;
+
+            border-radius: 16px;
+
             background: #fff;
-            border: 1px solid #e6e6e6;
-            border-radius: 15px;
-            padding: 20px;
         }
 
         .stat-label {
             color: #888;
+
             font-size: 13px;
         }
 
         .stat-value {
             margin-top: 8px;
-            font-size: 30px;
-            font-weight: 700;
+
+            font-size: 32px;
+            font-weight: 750;
         }
 
         .stat-wide {
@@ -395,31 +658,111 @@
         }
 
         .mastery-wrap {
-            margin-top: 14px;
+            margin-top: 15px;
         }
 
         .mastery-track {
             height: 8px;
-            background: #e8e8e8;
-            border-radius: 99px;
+
+            background: #e8e8ea;
+
+            border-radius: 999px;
+
             overflow: hidden;
         }
 
         .mastery-bar {
-            height: 100%;
             width: 0;
-            background: #222;
-            transition: width .3s;
+            height: 100%;
+
+            background: #181818;
+
+            border-radius: inherit;
+
+            transition: width .3s ease;
         }
 
-        /* =========================
-           Loading / Error
-        ========================= */
+
+        /* =====================================================
+           BOTTOM NAV
+        ===================================================== */
+
+        .bottom-nav {
+            position: fixed;
+
+            left: 50%;
+            bottom: 14px;
+
+            transform: translateX(-50%);
+
+            width: min(430px, calc(100% - 24px));
+
+            height: 62px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            background: rgba(255,255,255,.94);
+
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+
+            border: 1px solid #e2e2e4;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 8px 30px rgba(0,0,0,.08);
+
+            z-index: 200;
+
+            padding-bottom:
+                env(safe-area-inset-bottom);
+        }
+
+        .nav-btn {
+            border: 0;
+
+            background: transparent;
+
+            color: #999;
+
+            cursor: pointer;
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 3px;
+
+            font-size: 11px;
+        }
+
+        .nav-btn.active {
+            color: #181818;
+
+            font-weight: 650;
+        }
+
+        .nav-icon {
+            font-size: 18px;
+        }
+
+
+        /* =====================================================
+           LOADING / ERROR
+        ===================================================== */
 
         .loading,
         .error-box {
-            padding: 60px 20px;
+            padding: 80px 20px;
+
             text-align: center;
+
             color: #888;
         }
 
@@ -428,43 +771,64 @@
         }
 
         .error-title {
-            font-weight: 700;
             margin-bottom: 8px;
+
+            font-weight: 700;
         }
 
         .error-detail {
             font-size: 13px;
+
             line-height: 1.6;
+
             word-break: break-word;
         }
 
         .retry-btn {
             margin-top: 18px;
+
             padding: 10px 18px;
+
             border: 0;
+
             border-radius: 10px;
-            background: #222;
+
+            background: #181818;
+
             color: #fff;
+
             cursor: pointer;
         }
 
-        /* =========================
-           Update Toast
-        ========================= */
+
+        /* =====================================================
+           UPDATE
+        ===================================================== */
 
         .update-toast {
             position: fixed;
+
             left: 50%;
-            top: 72px;
+            top: 76px;
+
             transform: translateX(-50%);
-            z-index: 300;
-            background: #222;
-            color: #fff;
+
+            z-index: 500;
+
             padding: 10px 16px;
+
             border-radius: 10px;
+
+            background: #181818;
+
+            color: #fff;
+
             font-size: 13px;
+
             opacity: 0;
+
             pointer-events: none;
+
             transition: opacity .2s;
         }
 
@@ -472,76 +836,37 @@
             opacity: 1;
         }
 
-        /* =========================
-           Bottom Navigation
-        ========================= */
 
-        .bottom-nav {
-            position: fixed;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: 64px;
-            z-index: 100;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            background: rgba(255,255,255,.96);
-            backdrop-filter: blur(12px);
-            border-top: 1px solid #e8e8e8;
-            padding-bottom: env(safe-area-inset-bottom);
-        }
-
-        .nav-btn {
-            border: 0;
-            background: transparent;
-            color: #999;
-            cursor: pointer;
-            font-size: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
-        }
-
-        .nav-icon {
-            font-size: 19px;
-        }
-
-        .nav-btn.active {
-            color: #222;
-            font-weight: 600;
-        }
-
-        /* =========================
-           Dark Mode
-        ========================= */
+        /* =====================================================
+           DARK MODE
+        ===================================================== */
 
         body.dark {
-            background: #111;
+            background: #101010;
             color: #eee;
         }
 
         body.dark .header {
-            background: rgba(20,20,20,.94);
+            background: rgba(18,18,18,.94);
+
             border-color: #292929;
         }
 
-        body.dark .icon-btn {
-            color: #eee;
-        }
-
-        body.dark .icon-btn:hover {
+        body.dark .theme-btn {
             background: #292929;
+            color: #eee;
         }
 
         body.dark .deck-select,
         body.dark .card-face,
-        body.dark .control-btn,
+        body.dark .nav-control,
+        body.dark .knowledge-btn,
         body.dark .deck-item,
         body.dark .stat-card {
-            background: #1b1b1b;
+            background: #1a1a1a;
+
             color: #eee;
+
             border-color: #303030;
         }
 
@@ -558,42 +883,40 @@
             background: #eee;
         }
 
-        body.dark .example {
-            color: #bbb;
-        }
-
-        body.dark .example-cn,
         body.dark .phonetic,
         body.dark .progress-info,
-        body.dark .hint,
+        body.dark .card-hint,
         body.dark .deck-meta,
         body.dark .stat-label {
             color: #888;
         }
 
-        body.dark .control-btn.primary {
+        body.dark .example {
+            color: #bbb;
+        }
+
+        body.dark .example-cn {
+            color: #888;
+        }
+
+        body.dark .nav-control.primary {
             background: #eee;
-            color: #111;
+
             border-color: #eee;
+
+            color: #111;
         }
 
-        body.dark .control-btn:hover,
-        body.dark .deck-item:hover {
-            background: #222;
-        }
+        body.dark .speak-main {
+            background: #eee;
 
-        body.dark .speak-btn {
-            background: #292929;
-            color: #eee;
-        }
-
-        body.dark .speak-btn:hover {
-            background: #333;
+            color: #111;
         }
 
         body.dark .bottom-nav {
-            background: rgba(20,20,20,.96);
-            border-color: #292929;
+            background: rgba(20,20,20,.94);
+
+            border-color: #303030;
         }
 
         body.dark .nav-btn {
@@ -604,91 +927,174 @@
             color: #eee;
         }
 
-        body.dark .mastery-track {
-            background: #333;
+        body.dark .known {
+            background: #142019;
+
+            border-color: #28533d;
+
+            color: #6ee7a0;
         }
 
-        /* =========================
-           Desktop
-        ========================= */
+        body.dark .unknown {
+            background: #241615;
+
+            border-color: #5b302d;
+
+            color: #ff8b82;
+        }
+
+
+        /* =====================================================
+           TABLET / DESKTOP
+        ===================================================== */
 
         @media (min-width: 768px) {
+
+            .main {
+                padding-top: 32px;
+            }
+
+            .card-container {
+                height: 500px;
+            }
+
             .bottom-nav {
-                width: 430px;
-                left: 50%;
-                right: auto;
-                transform: translateX(-50%);
-                border-left: 1px solid #e8e8e8;
-                border-right: 1px solid #e8e8e8;
-                border-radius: 14px 14px 0 0;
+                bottom: 16px;
             }
         }
 
-        /* =========================
-           Mobile
-        ========================= */
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
 
         @media (max-width: 600px) {
+
             .header {
-                height: 54px;
-                padding: 0 14px;
+                height: 56px;
+            }
+
+            .header-inner {
+                width: calc(100% - 24px);
             }
 
             .logo {
-                font-size: 16px;
+                font-size: 17px;
             }
 
             .main {
                 width: calc(100% - 20px);
-                padding-top: 15px;
+
+                padding-top: 14px;
+
+                padding-bottom: 105px;
             }
 
-            .deck-bar {
-                margin-bottom: 10px;
+            .learning-top {
+                gap: 8px;
+
+                margin-bottom: 8px;
             }
 
             .deck-select {
-                height: 40px;
+                height: 42px;
+
+                border-radius: 12px;
+
+                padding: 0 11px;
+
                 font-size: 13px;
+            }
+
+            .progress-info {
+                font-size: 12px;
+            }
+
+            .progress {
+                margin-bottom: 12px;
             }
 
             .card-container {
-                height: 330px;
+                height: min(60vh, 440px);
+
+                min-height: 340px;
             }
 
             .card-face {
-                border-radius: 18px;
-                padding: 22px 18px;
+                padding: 25px 18px;
+
+                border-radius: 20px;
             }
 
             .word {
-                font-size: 42px;
+                font-size: clamp(40px, 12vw, 58px);
+
+                letter-spacing: -1.5px;
             }
 
             .phonetic {
+                margin-top: 12px;
+
                 font-size: 15px;
-                margin-bottom: 20px;
+            }
+
+            .speak-main {
+                width: 48px;
+                height: 48px;
+
+                margin-top: 18px;
+            }
+
+            .card-hint {
+                bottom: 18px;
+
+                font-size: 11px;
             }
 
             .meaning {
-                font-size: 23px;
+                font-size: 25px;
             }
 
             .example {
+                margin-top: 18px;
+
                 font-size: 14px;
             }
 
-            .controls {
+            .navigation {
                 gap: 7px;
+
+                margin-top: 10px;
             }
 
-            .control-btn {
-                height: 45px;
+            .nav-control {
+                height: 46px;
+
+                border-radius: 12px;
+
                 font-size: 13px;
             }
 
-            .knowledge-controls {
+            .knowledge {
                 gap: 7px;
+
+                margin-top: 7px;
+            }
+
+            .knowledge-btn {
+                height: 48px;
+
+                border-radius: 12px;
+
+                font-size: 13px;
+            }
+
+            .bottom-nav {
+                bottom: 10px;
+
+                height: 58px;
+
+                border-radius: 18px;
             }
 
             .page-title {
@@ -696,145 +1102,264 @@
             }
         }
 
-        /* =========================
-           Small Mobile
-        ========================= */
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
 
         @media (max-width: 380px) {
+
             .card-container {
-                height: 310px;
+                height: 325px;
+
+                min-height: 325px;
             }
 
             .word {
-                font-size: 37px;
+                font-size: 39px;
             }
 
-            .meaning {
-                font-size: 21px;
+            .speak-main {
+                width: 44px;
+                height: 44px;
+
+                margin-top: 14px;
             }
 
-            .controls {
-                grid-template-columns: 1fr 1fr 1fr;
+            .navigation {
+                grid-template-columns:
+                    1fr 1fr 1fr;
             }
 
-            .control-btn {
+            .nav-control {
+                font-size: 12px;
+            }
+
+            .knowledge-btn {
+                height: 44px;
+
                 font-size: 12px;
             }
         }
     </style>
 </head>
 
+
 <body>
 
 <div class="app">
 
-    <!-- Header -->
-    <header class="header">
-        <div class="logo">胖哥学英语</div>
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
-        <div class="header-actions">
+    <header class="header">
+
+        <div class="header-inner">
+
+            <div class="logo">
+                胖哥学英语
+            </div>
+
             <button
-                class="icon-btn"
                 id="themeBtn"
+                class="theme-btn"
                 aria-label="切换主题"
                 title="切换主题">
-                🌙
+                ☾
             </button>
+
         </div>
+
     </header>
 
-    <!-- Main -->
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
     <main class="main">
 
-        <!-- ================= Learning Page ================= -->
-        <section id="learningPage" class="page active">
+        <!-- ================= Learning ================= -->
 
-            <div id="loadingBox" class="loading">
+        <section
+            id="learningPage"
+            class="page active">
+
+            <div
+                id="loadingBox"
+                class="loading">
+
                 正在加载词库...
+
             </div>
 
-            <div id="errorBox" class="error-box" style="display:none;">
-                <div class="error-title">词库加载失败</div>
-                <div id="errorDetail" class="error-detail"></div>
-                <button class="retry-btn" id="retryBtn">重新加载</button>
+
+            <div
+                id="errorBox"
+                class="error-box"
+                style="display:none;">
+
+                <div class="error-title">
+                    词库加载失败
+                </div>
+
+                <div
+                    id="errorDetail"
+                    class="error-detail">
+                </div>
+
+                <button
+                    id="retryBtn"
+                    class="retry-btn">
+
+                    重新加载
+
+                </button>
+
             </div>
 
-            <div id="learningContent" style="display:none;">
 
-                <div class="deck-bar">
+            <div
+                id="learningContent"
+                style="display:none;">
 
-                    <select id="deckSelect" class="deck-select">
+                <!-- 词库 -->
+
+                <div class="learning-top">
+
+                    <select
+                        id="deckSelect"
+                        class="deck-select">
                     </select>
 
                     <div class="progress-info">
-                        <span id="currentNumber">1</span>
+
+                        <span id="currentNumber">
+                            1
+                        </span>
+
                         /
-                        <span id="totalNumber">0</span>
+
+                        <span id="totalNumber">
+                            0
+                        </span>
+
                     </div>
 
                 </div>
 
+
+                <!-- 进度 -->
+
                 <div class="progress">
+
                     <div
                         id="progressBar"
                         class="progress-bar">
                     </div>
+
                 </div>
 
-                <!-- Flash Card -->
+
+                <!-- =================================================
+                     FLASH CARD
+                ================================================== -->
+
                 <div
                     id="cardContainer"
                     class="card-container"
-                    aria-label="英语闪卡">
+                    aria-label="英语单词卡片">
 
-                    <div id="flashcard" class="flashcard">
+                    <div
+                        id="flashcard"
+                        class="flashcard">
 
-                        <!-- Front -->
-                        <div class="card-face card-front">
+
+                        <!-- ================= FRONT ================= -->
+
+                        <div
+                            class="card-face card-front">
+
+                            <div class="word-label">
+                                WORD
+                            </div>
+
+                            <div
+                                id="word"
+                                class="word">
+
+                                —
+
+                            </div>
+
+                            <div
+                                id="phonetic"
+                                class="phonetic">
+
+                                —
+
+                            </div>
+
+
+                            <!-- 播放按钮 -->
 
                             <button
                                 id="frontSpeakBtn"
-                                class="speak-btn"
-                                aria-label="朗读单词"
-                                title="朗读">
-                                🔊
+                                class="speak-main"
+                                aria-label="播放单词">
+
+                                <span class="speak-icon">
+                                    ▶
+                                </span>
+
                             </button>
 
-                            <div id="word" class="word">
-                                —
-                            </div>
 
-                            <div id="phonetic" class="phonetic">
-                                —
-                            </div>
-
-                            <div class="hint">
+                            <div class="card-hint">
                                 点击卡片查看中文
                             </div>
 
                         </div>
 
-                        <!-- Back -->
-                        <div class="card-face card-back">
+
+                        <!-- ================= BACK ================= -->
+
+                        <div
+                            class="card-face card-back">
+
+                            <div
+                                id="meaning"
+                                class="meaning">
+
+                                —
+
+                            </div>
+
+                            <div
+                                id="example"
+                                class="example">
+
+                                —
+
+                            </div>
+
+                            <div
+                                id="exampleCn"
+                                class="example example-cn">
+                            </div>
+
 
                             <button
                                 id="backSpeakBtn"
-                                class="speak-btn"
-                                aria-label="朗读单词"
-                                title="朗读">
-                                🔊
+                                class="speak-main"
+                                aria-label="播放单词">
+
+                                <span class="speak-icon">
+                                    ▶
+                                </span>
+
                             </button>
-
-                            <div id="meaning" class="meaning">
-                                —
-                            </div>
-
-                            <div id="example" class="example">
-                                —
-                            </div>
-
-                            <div id="exampleCn" class="example example-cn">
-                            </div>
 
                         </div>
 
@@ -842,42 +1367,60 @@
 
                 </div>
 
-                <!-- Navigation -->
-                <div class="controls">
+
+                <!-- =================================================
+                     上一个 / 翻转 / 下一个
+                ================================================== -->
+
+                <div class="navigation">
 
                     <button
                         id="prevBtn"
-                        class="control-btn">
+                        class="nav-control">
+
                         ← 上一个
+
                     </button>
 
                     <button
                         id="flipBtn"
-                        class="control-btn primary">
+                        class="nav-control primary">
+
                         翻转
+
                     </button>
 
                     <button
                         id="nextBtn"
-                        class="control-btn">
+                        class="nav-control">
+
                         下一个 →
+
                     </button>
 
                 </div>
 
-                <!-- Learning status -->
-                <div class="knowledge-controls">
+
+                <!-- =================================================
+                     记住 / 没记住
+                ================================================== -->
+
+                <div class="knowledge">
 
                     <button
                         id="unknownBtn"
-                        class="control-btn unknown-btn">
-                        ✕ 不认识
+                        class="knowledge-btn unknown">
+
+                        ✕ 没记住
+
                     </button>
 
                     <button
                         id="knownBtn"
-                        class="control-btn known-btn">
-                        ✓ 已掌握
+                        class="knowledge-btn known">
+
+                        ✓ 记住了
+
                     </button>
 
                 </div>
@@ -886,20 +1429,30 @@
 
         </section>
 
-        <!-- ================= Library Page ================= -->
-        <section id="libraryPage" class="page">
+
+        <!-- ================= Library ================= -->
+
+        <section
+            id="libraryPage"
+            class="page">
 
             <div class="page-title">
                 词库
             </div>
 
-            <div id="deckList" class="deck-list">
+            <div
+                id="deckList"
+                class="deck-list">
             </div>
 
         </section>
 
-        <!-- ================= Stats Page ================= -->
-        <section id="statsPage" class="page">
+
+        <!-- ================= Stats ================= -->
+
+        <section
+            id="statsPage"
+            class="page">
 
             <div class="page-title">
                 学习统计
@@ -908,40 +1461,64 @@
             <div class="stats-grid">
 
                 <div class="stat-card">
+
                     <div class="stat-label">
                         总词数
                     </div>
-                    <div id="statTotal" class="stat-value">
+
+                    <div
+                        id="statTotal"
+                        class="stat-value">
                         0
                     </div>
+
                 </div>
 
+
                 <div class="stat-card">
+
                     <div class="stat-label">
                         已学习
                     </div>
-                    <div id="statLearned" class="stat-value">
+
+                    <div
+                        id="statLearned"
+                        class="stat-value">
                         0
                     </div>
+
                 </div>
 
-                <div class="stat-card">
-                    <div class="stat-label">
-                        已掌握
-                    </div>
-                    <div id="statKnown" class="stat-value">
-                        0
-                    </div>
-                </div>
 
                 <div class="stat-card">
+
                     <div class="stat-label">
-                        不认识
+                        已记住
                     </div>
-                    <div id="statUnknown" class="stat-value">
+
+                    <div
+                        id="statKnown"
+                        class="stat-value">
                         0
                     </div>
+
                 </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        没记住
+                    </div>
+
+                    <div
+                        id="statUnknown"
+                        class="stat-value">
+                        0
+                    </div>
+
+                </div>
+
 
                 <div class="stat-card stat-wide">
 
@@ -949,17 +1526,25 @@
                         掌握率
                     </div>
 
-                    <div id="statMastery" class="stat-value">
+                    <div
+                        id="statMastery"
+                        class="stat-value">
+
                         0%
+
                     </div>
 
                     <div class="mastery-wrap">
+
                         <div class="mastery-track">
+
                             <div
                                 id="masteryBar"
                                 class="mastery-bar">
                             </div>
+
                         </div>
+
                     </div>
 
                 </div>
@@ -972,45 +1557,76 @@
 
 </div>
 
-<!-- Update Toast -->
-<div id="updateToast" class="update-toast">
+
+<!-- =====================================================
+     UPDATE TOAST
+====================================================== -->
+
+<div
+    id="updateToast"
+    class="update-toast">
+
     检测到新版本，正在刷新...
+
 </div>
 
-<!-- Bottom Navigation -->
+
+<!-- =====================================================
+     BOTTOM NAV
+====================================================== -->
+
 <nav class="bottom-nav">
 
     <button
         class="nav-btn active"
         data-page="learningPage">
 
-        <span class="nav-icon">📖</span>
-        <span>学习</span>
+        <span class="nav-icon">
+            学
+        </span>
+
+        <span>
+            学习
+        </span>
 
     </button>
+
 
     <button
         class="nav-btn"
         data-page="libraryPage">
 
-        <span class="nav-icon">📚</span>
-        <span>词库</span>
+        <span class="nav-icon">
+            词
+        </span>
+
+        <span>
+            词库
+        </span>
 
     </button>
+
 
     <button
         class="nav-btn"
         data-page="statsPage">
 
-        <span class="nav-icon">📊</span>
-        <span>统计</span>
+        <span class="nav-icon">
+            统
+        </span>
+
+        <span>
+            统计
+        </span>
 
     </button>
 
 </nav>
 
+
 <script>
 "use strict";
+
 
 /* =========================================================
    基础配置
@@ -1022,9 +1638,17 @@ const DATA_ROOT = SITE_ROOT + "data/";
 const DECK_INDEX = DATA_ROOT + "index.json";
 const VERSION_URL = DATA_ROOT + "version.json";
 
-const VERSION_STORAGE_KEY = "myflashcards_site_version";
-const STATE_STORAGE_PREFIX = "myflashcards_state_";
-const THEME_STORAGE_KEY = "myflashcards_theme";
+const VERSION_STORAGE_KEY =
+    "myflashcards_site_version";
+
+const STATE_STORAGE_PREFIX =
+    "myflashcards_state_";
+
+const THEME_STORAGE_KEY =
+    "myflashcards_theme";
+
+const CURRENT_DECK_KEY =
+    "myflashcards_current_deck";
 
 
 /* =========================================================
@@ -1032,10 +1656,13 @@ const THEME_STORAGE_KEY = "myflashcards_theme";
 ========================================================= */
 
 let decks = [];
+
 let currentDeck = null;
+
 let currentWords = [];
 
 let currentIndex = 0;
+
 let isFlipped = false;
 
 let learningState = {};
@@ -1045,60 +1672,111 @@ let learningState = {};
    DOM
 ========================================================= */
 
-const loadingBox = document.getElementById("loadingBox");
-const errorBox = document.getElementById("errorBox");
-const errorDetail = document.getElementById("errorDetail");
-const retryBtn = document.getElementById("retryBtn");
+const loadingBox =
+    document.getElementById("loadingBox");
 
-const learningContent = document.getElementById("learningContent");
+const errorBox =
+    document.getElementById("errorBox");
 
-const deckSelect = document.getElementById("deckSelect");
+const errorDetail =
+    document.getElementById("errorDetail");
 
-const currentNumber = document.getElementById("currentNumber");
-const totalNumber = document.getElementById("totalNumber");
-const progressBar = document.getElementById("progressBar");
+const retryBtn =
+    document.getElementById("retryBtn");
 
-const cardContainer = document.getElementById("cardContainer");
-const flashcard = document.getElementById("flashcard");
+const learningContent =
+    document.getElementById("learningContent");
 
-const wordEl = document.getElementById("word");
-const phoneticEl = document.getElementById("phonetic");
-const meaningEl = document.getElementById("meaning");
-const exampleEl = document.getElementById("example");
-const exampleCnEl = document.getElementById("exampleCn");
+const deckSelect =
+    document.getElementById("deckSelect");
 
-const frontSpeakBtn = document.getElementById("frontSpeakBtn");
-const backSpeakBtn = document.getElementById("backSpeakBtn");
+const currentNumber =
+    document.getElementById("currentNumber");
 
-const prevBtn = document.getElementById("prevBtn");
-const flipBtn = document.getElementById("flipBtn");
-const nextBtn = document.getElementById("nextBtn");
+const totalNumber =
+    document.getElementById("totalNumber");
 
-const unknownBtn = document.getElementById("unknownBtn");
-const knownBtn = document.getElementById("knownBtn");
+const progressBar =
+    document.getElementById("progressBar");
 
-const deckList = document.getElementById("deckList");
+const cardContainer =
+    document.getElementById("cardContainer");
 
-const statTotal = document.getElementById("statTotal");
-const statLearned = document.getElementById("statLearned");
-const statKnown = document.getElementById("statKnown");
-const statUnknown = document.getElementById("statUnknown");
-const statMastery = document.getElementById("statMastery");
-const masteryBar = document.getElementById("masteryBar");
+const flashcard =
+    document.getElementById("flashcard");
 
-const themeBtn = document.getElementById("themeBtn");
+const wordEl =
+    document.getElementById("word");
 
-const updateToast = document.getElementById("updateToast");
+const phoneticEl =
+    document.getElementById("phonetic");
+
+const meaningEl =
+    document.getElementById("meaning");
+
+const exampleEl =
+    document.getElementById("example");
+
+const exampleCnEl =
+    document.getElementById("exampleCn");
+
+const frontSpeakBtn =
+    document.getElementById("frontSpeakBtn");
+
+const backSpeakBtn =
+    document.getElementById("backSpeakBtn");
+
+const prevBtn =
+    document.getElementById("prevBtn");
+
+const flipBtn =
+    document.getElementById("flipBtn");
+
+const nextBtn =
+    document.getElementById("nextBtn");
+
+const unknownBtn =
+    document.getElementById("unknownBtn");
+
+const knownBtn =
+    document.getElementById("knownBtn");
+
+const deckList =
+    document.getElementById("deckList");
+
+const statTotal =
+    document.getElementById("statTotal");
+
+const statLearned =
+    document.getElementById("statLearned");
+
+const statKnown =
+    document.getElementById("statKnown");
+
+const statUnknown =
+    document.getElementById("statUnknown");
+
+const statMastery =
+    document.getElementById("statMastery");
+
+const masteryBar =
+    document.getElementById("masteryBar");
+
+const themeBtn =
+    document.getElementById("themeBtn");
+
+const updateToast =
+    document.getElementById("updateToast");
 
 
 /* =========================================================
-   JSON 请求
-   强制绕过浏览器 / CDN 缓存
+   JSON
 ========================================================= */
 
 async function getJSON(url) {
 
-    const separator = url.includes("?") ? "&" : "?";
+    const separator =
+        url.includes("?") ? "&" : "?";
 
     const finalUrl =
         url +
@@ -1106,51 +1784,78 @@ async function getJSON(url) {
         "_=" +
         Date.now() +
         "_" +
-        Math.random().toString(36).substring(2);
+        Math.random()
+            .toString(36)
+            .substring(2);
 
-    const controller = new AbortController();
+    const controller =
+        new AbortController();
 
-    const timeout = setTimeout(() => {
-        controller.abort();
-    }, 10000);
+    const timeout =
+        setTimeout(
+            () => controller.abort(),
+            10000
+        );
 
     try {
 
-        const response = await fetch(finalUrl, {
-            method: "GET",
-            cache: "no-store",
-            signal: controller.signal,
-            headers: {
-                "Cache-Control": "no-cache"
-            }
-        });
+        const response =
+            await fetch(
+                finalUrl,
+                {
+                    method: "GET",
+                    cache: "no-store",
+                    signal: controller.signal,
+                    headers: {
+                        "Cache-Control":
+                            "no-cache"
+                    }
+                }
+            );
 
         if (!response.ok) {
+
             throw new Error(
                 `HTTP ${response.status} ${response.statusText}`
             );
+
         }
 
-        const text = await response.text();
+        const text =
+            await response.text();
 
         if (!text.trim()) {
-            throw new Error("服务器返回空内容");
+
+            throw new Error(
+                "服务器返回空内容"
+            );
+
         }
 
         try {
+
             return JSON.parse(text);
+
         } catch (e) {
+
             throw new Error(
-                "JSON 格式错误：" + e.message
+                "JSON 格式错误：" +
+                e.message
             );
+
         }
 
     } catch (error) {
 
-        if (error.name === "AbortError") {
+        if (
+            error.name ===
+            "AbortError"
+        ) {
+
             throw new Error(
                 "请求超时：10 秒内没有收到响应"
             );
+
         }
 
         throw error;
@@ -1160,34 +1865,38 @@ async function getJSON(url) {
         clearTimeout(timeout);
 
     }
+
 }
 
 
 /* =========================================================
-   版本检测
+   VERSION
 ========================================================= */
 
 async function checkVersion() {
 
     try {
 
-        const data = await getJSON(VERSION_URL);
+        const data =
+            await getJSON(VERSION_URL);
 
-        if (!data || !data.version) {
-            console.warn(
-                "version.json 缺少 version"
-            );
+        if (
+            !data ||
+            !data.version
+        ) {
+
             return;
+
         }
 
-        const serverVersion = String(data.version);
+        const serverVersion =
+            String(data.version);
 
         const localVersion =
             localStorage.getItem(
                 VERSION_STORAGE_KEY
             );
 
-        /* 第一次访问 */
         if (!localVersion) {
 
             localStorage.setItem(
@@ -1196,30 +1905,41 @@ async function checkVersion() {
             );
 
             return;
+
         }
 
-        /* 检测到新版本 */
-        if (localVersion !== serverVersion) {
+        if (
+            localVersion !==
+            serverVersion
+        ) {
 
             localStorage.setItem(
                 VERSION_STORAGE_KEY,
                 serverVersion
             );
 
-            showUpdateToast();
+            updateToast
+                .classList
+                .add("show");
 
-            setTimeout(() => {
+            setTimeout(
+                () => {
 
-                const newUrl =
-                    window.location.pathname +
-                    "?v=" +
-                    encodeURIComponent(
-                        serverVersion
+                    const newUrl =
+                        window.location.pathname +
+                        "?v=" +
+                        encodeURIComponent(
+                            serverVersion
+                        );
+
+                    window.location.replace(
+                        newUrl
                     );
 
-                window.location.replace(newUrl);
+                },
+                700
+            );
 
-            }, 700);
         }
 
     } catch (error) {
@@ -1230,38 +1950,38 @@ async function checkVersion() {
         );
 
     }
-}
-
-
-/* =========================================================
-   更新提示
-========================================================= */
-
-function showUpdateToast() {
-
-    updateToast.classList.add("show");
 
 }
 
 
 /* =========================================================
-   Loading / Error
+   LOADING
 ========================================================= */
 
 function showLoading() {
 
-    loadingBox.style.display = "block";
-    errorBox.style.display = "none";
-    learningContent.style.display = "none";
+    loadingBox.style.display =
+        "block";
+
+    errorBox.style.display =
+        "none";
+
+    learningContent.style.display =
+        "none";
 
 }
 
 
 function showError(error) {
 
-    loadingBox.style.display = "none";
-    learningContent.style.display = "none";
-    errorBox.style.display = "block";
+    loadingBox.style.display =
+        "none";
+
+    learningContent.style.display =
+        "none";
+
+    errorBox.style.display =
+        "block";
 
     errorDetail.textContent =
         error instanceof Error
@@ -1273,15 +1993,20 @@ function showError(error) {
 
 function showContent() {
 
-    loadingBox.style.display = "none";
-    errorBox.style.display = "none";
-    learningContent.style.display = "block";
+    loadingBox.style.display =
+        "none";
+
+    errorBox.style.display =
+        "none";
+
+    learningContent.style.display =
+        "block";
 
 }
 
 
 /* =========================================================
-   加载词库目录
+   LOAD DECKS
 ========================================================= */
 
 async function loadDecks() {
@@ -1290,40 +2015,53 @@ async function loadDecks() {
 
     try {
 
-        const data = await getJSON(DECK_INDEX);
+        const data =
+            await getJSON(DECK_INDEX);
 
         if (!Array.isArray(data)) {
+
             throw new Error(
                 "index.json 必须是数组格式"
             );
+
         }
 
         decks = data;
 
-        if (decks.length === 0) {
+        if (!decks.length) {
+
             throw new Error(
                 "index.json 中没有任何词库"
             );
+
         }
 
         renderDeckSelect();
+
         renderLibrary();
 
         const savedDeck =
             localStorage.getItem(
-                "myflashcards_current_deck"
+                CURRENT_DECK_KEY
             );
 
         let targetDeck =
             decks.find(
-                deck => deck.id === savedDeck
+                deck =>
+                    deck.id ===
+                    savedDeck
             );
 
         if (!targetDeck) {
-            targetDeck = decks[0];
+
+            targetDeck =
+                decks[0];
+
         }
 
-        await loadDeck(targetDeck.id);
+        await loadDeck(
+            targetDeck.id
+        );
 
         showContent();
 
@@ -1342,74 +2080,100 @@ async function loadDecks() {
 
 
 /* =========================================================
-   渲染词库下拉菜单
+   DECK SELECT
 ========================================================= */
 
 function renderDeckSelect() {
 
     deckSelect.innerHTML = "";
 
-    decks.forEach(deck => {
+    decks.forEach(
+        deck => {
 
-        const option =
-            document.createElement("option");
+            const option =
+                document.createElement(
+                    "option"
+                );
 
-        option.value = deck.id;
-        option.textContent = deck.name || deck.id;
+            option.value =
+                deck.id;
 
-        deckSelect.appendChild(option);
+            option.textContent =
+                deck.name ||
+                deck.id;
 
-    });
+            deckSelect.appendChild(
+                option
+            );
+
+        }
+    );
 
 }
 
 
 /* =========================================================
-   加载具体词库
+   LOAD DECK
 ========================================================= */
 
 async function loadDeck(deckId) {
 
     const deck =
         decks.find(
-            item => item.id === deckId
+            item =>
+                item.id ===
+                deckId
         );
 
     if (!deck) {
+
         throw new Error(
-            "找不到词库：" + deckId
+            "找不到词库：" +
+            deckId
         );
+
     }
 
     if (!deck.file) {
+
         throw new Error(
-            "词库缺少 file 字段：" + deckId
+            "词库缺少 file 字段：" +
+            deckId
         );
+
     }
 
     const url =
-        DATA_ROOT + deck.file;
+        DATA_ROOT +
+        deck.file;
 
     const data =
         await getJSON(url);
 
     if (!Array.isArray(data)) {
+
         throw new Error(
             `${deck.file} 必须是数组格式`
         );
+
     }
 
-    if (data.length === 0) {
+    if (!data.length) {
+
         throw new Error(
             `${deck.file} 没有单词`
         );
+
     }
 
-    currentDeck = deck;
-    currentWords = data;
+    currentDeck =
+        deck;
+
+    currentWords =
+        data;
 
     localStorage.setItem(
-        "myflashcards_current_deck",
+        CURRENT_DECK_KEY,
         deck.id
     );
 
@@ -1421,34 +2185,48 @@ async function loadDeck(deckId) {
         );
 
     if (
-        Number.isInteger(savedPosition) &&
+        Number.isInteger(
+            savedPosition
+        ) &&
         savedPosition >= 0 &&
-        savedPosition < currentWords.length
+        savedPosition <
+            currentWords.length
     ) {
-        currentIndex = savedPosition;
+
+        currentIndex =
+            savedPosition;
+
     } else {
+
         currentIndex = 0;
+
     }
 
     isFlipped = false;
 
+    deckSelect.value =
+        deck.id;
+
     renderCurrentCard();
+
     updateStats();
 
 }
 
 
 /* =========================================================
-   LocalStorage 学习状态
+   LEARNING STATE
 ========================================================= */
 
 function getStateKey() {
 
     return (
         STATE_STORAGE_PREFIX +
-        (currentDeck
-            ? currentDeck.id
-            : "unknown")
+        (
+            currentDeck
+                ? currentDeck.id
+                : "unknown"
+        )
     );
 
 }
@@ -1463,19 +2241,25 @@ function loadLearningState() {
                 getStateKey()
             );
 
-        if (raw) {
+        if (!raw) {
 
-            const parsed =
-                JSON.parse(raw);
+            learningState = {};
 
-            if (
-                parsed &&
-                typeof parsed === "object"
-            ) {
-                learningState = parsed;
-            } else {
-                learningState = {};
-            }
+            return;
+
+        }
+
+        const parsed =
+            JSON.parse(raw);
+
+        if (
+            parsed &&
+            typeof parsed ===
+                "object"
+        ) {
+
+            learningState =
+                parsed;
 
         } else {
 
@@ -1500,7 +2284,9 @@ function loadLearningState() {
 function saveLearningState() {
 
     if (!currentDeck) {
+
         return;
+
     }
 
     learningState.position =
@@ -1528,7 +2314,7 @@ function saveLearningState() {
 
 
 /* =========================================================
-   当前单词状态
+   WORD STATE
 ========================================================= */
 
 function getWordKey(index) {
@@ -1537,7 +2323,9 @@ function getWordKey(index) {
         currentWords[index];
 
     if (!item) {
+
         return String(index);
+
     }
 
     return (
@@ -1551,10 +2339,12 @@ function getWordKey(index) {
 
 function getWordStatus(index) {
 
-    const key =
-        getWordKey(index);
-
-    return learningState[key] || null;
+    return (
+        learningState[
+            getWordKey(index)
+        ] ||
+        null
+    );
 
 }
 
@@ -1564,13 +2354,9 @@ function setWordStatus(
     status
 ) {
 
-    const key =
-        getWordKey(index);
-
-    learningState[key] = status;
-
-    learningState.position =
-        currentIndex;
+    learningState[
+        getWordKey(index)
+    ] = status;
 
     saveLearningState();
 
@@ -1578,23 +2364,28 @@ function setWordStatus(
 
 
 /* =========================================================
-   渲染当前卡片
+   RENDER CARD
 ========================================================= */
 
 function renderCurrentCard() {
 
     if (
-        !currentWords ||
-        currentWords.length === 0
+        !currentWords.length
     ) {
+
         return;
+
     }
 
     const item =
-        currentWords[currentIndex];
+        currentWords[
+            currentIndex
+        ];
 
     if (!item) {
+
         return;
+
     }
 
     wordEl.textContent =
@@ -1632,18 +2423,17 @@ function renderCurrentCard() {
         isFlipped
     );
 
-    updateStats();
-
 }
 
 
 /* =========================================================
-   翻转
+   FLIP
 ========================================================= */
 
 function flipCard() {
 
-    isFlipped = !isFlipped;
+    isFlipped =
+        !isFlipped;
 
     flashcard.classList.toggle(
         "flipped",
@@ -1654,38 +2444,45 @@ function flipCard() {
 
 
 /* =========================================================
-   上一个
+   PREVIOUS
 ========================================================= */
 
 function previousCard() {
 
     if (!currentWords.length) {
+
         return;
+
     }
 
     currentIndex--;
 
     if (currentIndex < 0) {
+
         currentIndex =
             currentWords.length - 1;
+
     }
 
     isFlipped = false;
 
     saveLearningState();
+
     renderCurrentCard();
 
 }
 
 
 /* =========================================================
-   下一个
+   NEXT
 ========================================================= */
 
 function nextCard() {
 
     if (!currentWords.length) {
+
         return;
+
     }
 
     currentIndex++;
@@ -1694,25 +2491,32 @@ function nextCard() {
         currentIndex >=
         currentWords.length
     ) {
+
         currentIndex = 0;
+
     }
 
     isFlipped = false;
 
     saveLearningState();
+
     renderCurrentCard();
 
 }
 
 
 /* =========================================================
-   随机
+   RANDOM
 ========================================================= */
 
 function randomCard() {
 
-    if (currentWords.length <= 1) {
+    if (
+        currentWords.length <= 1
+    ) {
+
         return;
+
     }
 
     let nextIndex;
@@ -1726,34 +2530,48 @@ function randomCard() {
             );
 
     } while (
-        nextIndex === currentIndex
+        nextIndex ===
+        currentIndex
     );
 
-    currentIndex = nextIndex;
+    currentIndex =
+        nextIndex;
 
     isFlipped = false;
 
     saveLearningState();
+
     renderCurrentCard();
 
 }
 
 
 /* =========================================================
-   发音
+   SPEAK
 ========================================================= */
 
 function speakWord() {
 
-    if (!currentWords.length) {
+    if (
+        !currentWords.length
+    ) {
+
         return;
+
     }
 
     const item =
-        currentWords[currentIndex];
+        currentWords[
+            currentIndex
+        ];
 
-    if (!item || !item.word) {
+    if (
+        !item ||
+        !item.word
+    ) {
+
         return;
+
     }
 
     if (
@@ -1775,10 +2593,17 @@ function speakWord() {
             item.word
         );
 
-    utterance.lang = "en-US";
-    utterance.rate = 0.85;
-    utterance.pitch = 1;
-    utterance.volume = 1;
+    utterance.lang =
+        "en-US";
+
+    utterance.rate =
+        0.85;
+
+    utterance.pitch =
+        1;
+
+    utterance.volume =
+        1;
 
     window.speechSynthesis.speak(
         utterance
@@ -1788,7 +2613,7 @@ function speakWord() {
 
 
 /* =========================================================
-   已掌握 / 不认识
+   KNOWLEDGE
 ========================================================= */
 
 function markKnown() {
@@ -1820,7 +2645,7 @@ function markUnknown() {
 
 
 /* =========================================================
-   统计
+   STATS
 ========================================================= */
 
 function calculateStats() {
@@ -1829,6 +2654,7 @@ function calculateStats() {
         currentWords.length;
 
     let known = 0;
+
     let unknown = 0;
 
     for (
@@ -1840,12 +2666,20 @@ function calculateStats() {
         const status =
             getWordStatus(i);
 
-        if (status === "known") {
+        if (
+            status === "known"
+        ) {
+
             known++;
+
         }
 
-        if (status === "unknown") {
+        if (
+            status === "unknown"
+        ) {
+
             unknown++;
+
         }
 
     }
@@ -1856,7 +2690,8 @@ function calculateStats() {
     const mastery =
         total > 0
             ? Math.round(
-                (known / total) * 100
+                (known / total) *
+                100
             )
             : 0;
 
@@ -1898,117 +2733,138 @@ function updateStats() {
 
 
 /* =========================================================
-   词库列表
+   LIBRARY
 ========================================================= */
 
 function renderLibrary() {
 
     deckList.innerHTML = "";
 
-    decks.forEach(deck => {
+    decks.forEach(
+        deck => {
 
-        const button =
-            document.createElement("button");
+            const button =
+                document.createElement(
+                    "button"
+                );
 
-        button.className =
-            "deck-item";
+            button.className =
+                "deck-item";
 
-        const name =
-            escapeHTML(
-                deck.name || deck.id
-            );
+            const name =
+                escapeHTML(
+                    deck.name ||
+                    deck.id
+                );
 
-        const description =
-            deck.description
-                ? escapeHTML(
-                    deck.description
-                )
-                : "";
+            const description =
+                deck.description
+                    ? escapeHTML(
+                        deck.description
+                    )
+                    : "";
 
-        button.innerHTML = `
-            <div class="deck-name">
-                ${name}
-            </div>
-            ${
-                description
-                    ? `<div class="deck-meta">${description}</div>`
-                    : ""
-            }
-        `;
+            button.innerHTML = `
+                <div class="deck-name">
+                    ${name}
+                </div>
 
-        button.addEventListener(
-            "click",
-            async () => {
+                ${
+                    description
+                        ? `
+                            <div class="deck-meta">
+                                ${description}
+                            </div>
+                          `
+                        : ""
+                }
+            `;
 
-                try {
+            button.addEventListener(
+                "click",
+                async () => {
 
-                    await loadDeck(
-                        deck.id
-                    );
+                    try {
 
-                    showPage(
-                        "learningPage"
-                    );
+                        await loadDeck(
+                            deck.id
+                        );
 
-                } catch (error) {
+                        showPage(
+                            "learningPage"
+                        );
 
-                    showError(error);
+                    } catch (error) {
 
-                    showPage(
-                        "learningPage"
-                    );
+                        showError(
+                            error
+                        );
+
+                        showPage(
+                            "learningPage"
+                        );
+
+                    }
 
                 }
+            );
 
-            }
-        );
+            deckList.appendChild(
+                button
+            );
 
-        deckList.appendChild(
-            button
-        );
-
-    });
+        }
+    );
 
 }
 
 
 /* =========================================================
-   页面切换
+   PAGE
 ========================================================= */
 
 function showPage(pageId) {
 
     document
         .querySelectorAll(".page")
-        .forEach(page => {
+        .forEach(
+            page => {
 
-            page.classList.toggle(
-                "active",
-                page.id === pageId
-            );
+                page.classList.toggle(
+                    "active",
+                    page.id === pageId
+                );
 
-        });
+            }
+        );
 
     document
         .querySelectorAll(".nav-btn")
-        .forEach(button => {
+        .forEach(
+            button => {
 
-            button.classList.toggle(
-                "active",
-                button.dataset.page === pageId
-            );
+                button.classList.toggle(
+                    "active",
+                    button.dataset.page ===
+                    pageId
+                );
 
-        });
+            }
+        );
 
-    if (pageId === "statsPage") {
+    if (
+        pageId === "statsPage"
+    ) {
+
         updateStats();
+
     }
 
 }
 
 
 /* =========================================================
-   HTML 转义
+   ESCAPE HTML
 ========================================================= */
 
 function escapeHTML(value) {
@@ -2039,7 +2895,7 @@ function escapeHTML(value) {
 
 
 /* =========================================================
-   深色模式
+   THEME
 ========================================================= */
 
 function loadTheme() {
@@ -2049,13 +2905,16 @@ function loadTheme() {
             THEME_STORAGE_KEY
         );
 
-    if (savedTheme === "dark") {
+    if (
+        savedTheme === "dark"
+    ) {
 
         document.body.classList.add(
             "dark"
         );
 
-        themeBtn.textContent = "☀️";
+        themeBtn.textContent =
+            "☀";
 
     } else {
 
@@ -2063,7 +2922,8 @@ function loadTheme() {
             "dark"
         );
 
-        themeBtn.textContent = "🌙";
+        themeBtn.textContent =
+            "☾";
 
     }
 
@@ -2086,14 +2946,14 @@ function toggleTheme() {
 
     themeBtn.textContent =
         isDark
-            ? "☀️"
-            : "🌙";
+            ? "☀"
+            : "☾";
 
 }
 
 
 /* =========================================================
-   事件绑定
+   CARD CLICK
 ========================================================= */
 
 cardContainer.addEventListener(
@@ -2102,10 +2962,12 @@ cardContainer.addEventListener(
 
         if (
             event.target.closest(
-                ".speak-btn"
+                ".speak-main"
             )
         ) {
+
             return;
+
         }
 
         flipCard();
@@ -2113,6 +2975,10 @@ cardContainer.addEventListener(
     }
 );
 
+
+/* =========================================================
+   SPEAK
+========================================================= */
 
 frontSpeakBtn.addEventListener(
     "click",
@@ -2138,29 +3004,29 @@ backSpeakBtn.addEventListener(
 );
 
 
+/* =========================================================
+   BUTTONS
+========================================================= */
+
 flipBtn.addEventListener(
     "click",
     flipCard
 );
-
 
 prevBtn.addEventListener(
     "click",
     previousCard
 );
 
-
 nextBtn.addEventListener(
     "click",
     nextCard
 );
 
-
 unknownBtn.addEventListener(
     "click",
     markUnknown
 );
-
 
 knownBtn.addEventListener(
     "click",
@@ -2168,16 +3034,19 @@ knownBtn.addEventListener(
 );
 
 
+/* =========================================================
+   DECK SELECT
+========================================================= */
+
 deckSelect.addEventListener(
     "change",
     async event => {
 
-        const deckId =
-            event.target.value;
-
         try {
 
-            await loadDeck(deckId);
+            await loadDeck(
+                event.target.value
+            );
 
         } catch (error) {
 
@@ -2189,6 +3058,10 @@ deckSelect.addEventListener(
 );
 
 
+/* =========================================================
+   RETRY
+========================================================= */
+
 retryBtn.addEventListener(
     "click",
     () => {
@@ -2199,6 +3072,10 @@ retryBtn.addEventListener(
 );
 
 
+/* =========================================================
+   THEME
+========================================================= */
+
 themeBtn.addEventListener(
     "click",
     toggleTheme
@@ -2206,36 +3083,36 @@ themeBtn.addEventListener(
 
 
 /* =========================================================
-   底部导航
+   BOTTOM NAV
 ========================================================= */
 
 document
     .querySelectorAll(".nav-btn")
-    .forEach(button => {
+    .forEach(
+        button => {
 
-        button.addEventListener(
-            "click",
-            () => {
+            button.addEventListener(
+                "click",
+                () => {
 
-                showPage(
-                    button.dataset.page
-                );
+                    showPage(
+                        button.dataset.page
+                    );
 
-            }
-        );
+                }
+            );
 
-    });
+        }
+    );
 
 
 /* =========================================================
-   键盘快捷键
+   KEYBOARD
 ========================================================= */
 
 document.addEventListener(
     "keydown",
     event => {
-
-        /* 输入框 / 下拉框中不执行快捷键 */
 
         const tag =
             event.target.tagName;
@@ -2245,7 +3122,9 @@ document.addEventListener(
             tag === "TEXTAREA" ||
             tag === "SELECT"
         ) {
+
             return;
+
         }
 
         switch (
@@ -2253,32 +3132,47 @@ document.addEventListener(
         ) {
 
             case " ":
+
                 event.preventDefault();
+
                 flipCard();
+
                 break;
 
             case "arrowleft":
+
                 previousCard();
+
                 break;
 
             case "arrowright":
+
                 nextCard();
+
                 break;
 
             case "r":
+
                 randomCard();
+
                 break;
 
             case "s":
+
                 speakWord();
+
                 break;
 
             case "k":
+
                 markKnown();
+
                 break;
 
             case "x":
+
                 markUnknown();
+
                 break;
 
         }
@@ -2288,7 +3182,7 @@ document.addEventListener(
 
 
 /* =========================================================
-   防止移动端双击放大影响体验
+   TOUCH
 ========================================================= */
 
 let lastTouchEnd = 0;
@@ -2301,9 +3195,12 @@ document.addEventListener(
             Date.now();
 
         if (
-            now - lastTouchEnd <= 300
+            now - lastTouchEnd <=
+            300
         ) {
+
             event.preventDefault();
+
         }
 
         lastTouchEnd = now;
@@ -2316,19 +3213,13 @@ document.addEventListener(
 
 
 /* =========================================================
-   初始化
+   INIT
 ========================================================= */
 
 async function init() {
 
     loadTheme();
 
-    /*
-     * 先检测版本。
-     *
-     * version.json 本身也使用时间戳参数，
-     * 避免 version.json 被缓存。
-     */
     await checkVersion();
 
     await loadDecks();
@@ -2336,21 +3227,21 @@ async function init() {
 }
 
 
-/* =========================================================
-   启动
-========================================================= */
+init().catch(
+    error => {
 
-init().catch(error => {
+        console.error(
+            "程序初始化失败：",
+            error
+        );
 
-    console.error(
-        "程序初始化失败：",
-        error
-    );
+        showError(error);
 
-    showError(error);
+    }
+);
 
-});
 </script>
 
 </body>
 </html>
+```
