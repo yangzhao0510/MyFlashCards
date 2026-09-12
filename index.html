@@ -2,11 +2,22 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
     <meta name="theme-color" content="#ffffff">
+
     <title>胖哥学英语</title>
 
     <style>
+
+        /* =====================================================
+           Base
+        ===================================================== */
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -21,6 +32,8 @@
         body {
             width: 100%;
             min-height: 100vh;
+            min-height: 100dvh;
+
             font-family:
                 -apple-system,
                 BlinkMacSystemFont,
@@ -29,10 +42,15 @@
                 "Hiragino Sans GB",
                 "Microsoft YaHei",
                 sans-serif;
+
             background: #f6f7fb;
             color: #202124;
-            transition: background 0.25s, color 0.25s;
+
             overflow-x: hidden;
+
+            transition:
+                background-color 0.25s ease,
+                color 0.25s ease;
         }
 
         button,
@@ -41,23 +59,24 @@
         }
 
         button {
-            border: none;
-            cursor: pointer;
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* =========================
+        /* =====================================================
            Header
-        ========================= */
+        ===================================================== */
 
         .header {
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+
             width: 100%;
             height: 62px;
+
             background: rgba(255, 255, 255, 0.96);
-            border-bottom: 1px solid #e9eaf0;
+            border-bottom: 1px solid #e8e9ee;
+
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
@@ -65,7 +84,9 @@
         .header-inner {
             width: min(1100px, calc(100% - 32px));
             height: 100%;
+
             margin: 0 auto;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -80,28 +101,45 @@
         .theme-toggle {
             width: 38px;
             height: 38px;
+
+            border: 0;
             border-radius: 50%;
+
             background: #f0f1f5;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             font-size: 18px;
-            transition: transform 0.2s, background 0.2s;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease;
         }
 
         .theme-toggle:active {
             transform: scale(0.92);
         }
 
-        /* =========================
+        /* =====================================================
            Main
-        ========================= */
+        ===================================================== */
 
         .main {
             width: min(1100px, calc(100% - 32px));
+
             margin: 0 auto;
+
             padding-top: 18px;
-            padding-bottom: 110px;
+
+            /*
+             * Reserve enough space for the fixed bottom nav.
+             */
+            padding-bottom:
+                calc(110px + env(safe-area-inset-bottom));
         }
 
         .page {
@@ -112,97 +150,150 @@
             display: block;
         }
 
-        /* =========================
-           Loading / Error
-        ========================= */
+        /* =====================================================
+           Loading
+        ===================================================== */
 
         .loading {
-            min-height: 50vh;
+            min-height: 45vh;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             color: #777;
             font-size: 14px;
+            text-align: center;
         }
+
+        /* =====================================================
+           Error
+        ===================================================== */
 
         .error-box {
             display: none;
-            margin: 30px auto;
-            padding: 20px;
-            max-width: 700px;
+
+            width: 100%;
+            max-width: 760px;
+
+            margin: 25px auto;
+
+            padding: 18px 20px;
+
             border-radius: 14px;
+
             background: #fff;
+
             border: 1px solid #f0caca;
+
             color: #c62828;
-            line-height: 1.7;
+
             font-size: 14px;
+            line-height: 1.7;
+
+            white-space: pre-wrap;
+            word-break: break-word;
         }
 
-        /* =========================
-           Learning
-        ========================= */
+        .error-title {
+            margin-bottom: 8px;
+
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        /* =====================================================
+           Learning Top
+        ===================================================== */
 
         .learning-top {
             display: flex;
             align-items: center;
+
             gap: 12px;
+
             margin-bottom: 10px;
         }
 
         .deck-select {
             flex: 1;
+
+            width: 100%;
             height: 44px;
+
             padding: 0 14px;
+
             border: 1px solid #dedfe6;
             border-radius: 12px;
+
+            outline: none;
+
             background: #fff;
             color: #202124;
+
             font-size: 14px;
-            outline: none;
+
+            cursor: pointer;
         }
 
         .progress-info {
-            white-space: nowrap;
-            font-size: 12px;
+            flex-shrink: 0;
+
             color: #777;
+
+            font-size: 12px;
+            white-space: nowrap;
         }
 
         .progress {
             width: 100%;
             height: 4px;
+
             margin-bottom: 14px;
-            border-radius: 999px;
+
             overflow: hidden;
+
+            border-radius: 999px;
+
             background: #e6e7ec;
         }
 
         .progress-bar {
-            width: 0%;
+            width: 0;
             height: 100%;
+
             border-radius: inherit;
+
             background: #202124;
+
             transition: width 0.25s ease;
         }
 
-        /* =========================
+        /* =====================================================
            Flash Card
-        ========================= */
+        ===================================================== */
 
         .card-container {
             width: 100%;
+
             height: 430px;
             min-height: 430px;
+
             perspective: 1200px;
-            margin-bottom: 0;
         }
 
         .flashcard {
             position: relative;
+
             width: 100%;
             height: 100%;
+
             cursor: pointer;
+
             transform-style: preserve-3d;
-            transition: transform 0.55s ease;
+
+            transition:
+                transform 0.55s ease;
         }
 
         .flashcard.flipped {
@@ -212,18 +303,32 @@
         .card-face {
             position: absolute;
             inset: 0;
+
             display: flex;
             flex-direction: column;
+
             align-items: center;
             justify-content: center;
+
             padding: 30px;
+
             border-radius: 24px;
+
             background: #fff;
-            border: 1px solid #e9eaf0;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
+
+            border: 1px solid #e8e9ee;
+
+            box-shadow:
+                0 12px 35px rgba(0, 0, 0, 0.06);
+
+            overflow: hidden;
+
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
-            overflow: hidden;
+        }
+
+        .card-front {
+            transform: rotateY(0deg);
         }
 
         .card-back {
@@ -232,95 +337,150 @@
 
         .word-label {
             margin-bottom: 10px;
+
             color: #999;
+
             font-size: 11px;
             font-weight: 700;
+
             letter-spacing: 1.5px;
             text-transform: uppercase;
         }
 
         .word {
             max-width: 95%;
+
             text-align: center;
+
             font-size: clamp(46px, 7vw, 76px);
+
             line-height: 1.05;
+
             font-weight: 800;
+
             letter-spacing: -2px;
+
             word-break: break-word;
         }
 
         .phonetic {
             margin-top: 12px;
+
             color: #777;
+
             font-size: 16px;
+
+            text-align: center;
         }
 
         .speak-main {
             width: 48px;
             height: 48px;
+
             margin-top: 18px;
+
+            border: 0;
             border-radius: 50%;
+
             background: #202124;
             color: #fff;
-            font-size: 19px;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.2s;
+
+            font-size: 19px;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s ease;
         }
 
         .speak-main:active {
-            transform: scale(0.9);
+            transform: scale(0.90);
         }
 
         .card-hint {
             position: absolute;
+
             bottom: 18px;
+
             color: #aaa;
+
             font-size: 11px;
         }
 
         .meaning {
             max-width: 90%;
+
             text-align: center;
+
             font-size: 30px;
+
             line-height: 1.35;
+
             font-weight: 700;
+
+            word-break: break-word;
         }
 
         .example {
             max-width: 90%;
+
             margin-top: 18px;
+
             text-align: center;
-            font-size: 16px;
-            line-height: 1.7;
+
             color: #555;
+
+            font-size: 16px;
+
+            line-height: 1.7;
+
+            word-break: break-word;
         }
 
         .example-cn {
             margin-top: 5px;
+
             color: #888;
         }
 
-        /* =========================
-           Navigation Buttons
-        ========================= */
+        /* =====================================================
+           Navigation
+        ===================================================== */
 
         .navigation {
             display: grid;
-            grid-template-columns: 1fr 1.2fr 1fr;
+
+            grid-template-columns:
+                1fr
+                1.2fr
+                1fr;
+
             gap: 8px;
+
             margin-top: 10px;
         }
 
         .nav-control {
+            width: 100%;
             height: 46px;
-            border-radius: 12px;
-            background: #fff;
+
             border: 1px solid #e2e3e8;
+            border-radius: 12px;
+
+            background: #fff;
             color: #333;
+
             font-size: 14px;
             font-weight: 600;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.15s ease;
         }
 
         .nav-control:active {
@@ -330,58 +490,94 @@
         .flip-btn {
             background: #202124;
             color: #fff;
+
             border-color: #202124;
         }
 
+        /* =====================================================
+           Knowledge Buttons
+        ===================================================== */
+
         .knowledge {
             display: grid;
+
             grid-template-columns: 1fr 1fr;
+
             gap: 8px;
+
             margin-top: 8px;
         }
 
         .knowledge-btn {
+            width: 100%;
             height: 46px;
+
             border-radius: 12px;
+
             font-size: 14px;
             font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.15s ease;
+        }
+
+        .knowledge-btn:active {
+            transform: scale(0.98);
         }
 
         .unknown-btn {
             background: #fff0f0;
             color: #c62828;
+
             border: 1px solid #ffd3d3;
         }
 
         .known-btn {
             background: #eef8f0;
             color: #25813a;
+
             border: 1px solid #cfe8d4;
         }
 
-        /* =========================
+        /* =====================================================
            Library
-        ========================= */
+        ===================================================== */
 
         .page-title {
             margin: 4px 0 18px;
+
             font-size: 28px;
             font-weight: 800;
         }
 
         .deck-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+
+            grid-template-columns:
+                repeat(
+                    auto-fill,
+                    minmax(240px, 1fr)
+                );
+
             gap: 14px;
         }
 
         .deck-card {
             padding: 20px;
+
             border-radius: 16px;
+
             background: #fff;
+
             border: 1px solid #e8e9ee;
+
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
         }
 
         .deck-card:active {
@@ -395,41 +591,53 @@
 
         .deck-description {
             margin-top: 8px;
+
             color: #777;
+
             font-size: 13px;
             line-height: 1.6;
         }
 
         .deck-count {
             margin-top: 14px;
+
             color: #999;
+
             font-size: 12px;
         }
 
-        /* =========================
+        /* =====================================================
            Stats
-        ========================= */
+        ===================================================== */
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
             gap: 12px;
         }
 
         .stat-card {
             padding: 20px;
+
             border-radius: 16px;
+
             background: #fff;
+
             border: 1px solid #e8e9ee;
         }
 
         .stat-label {
             color: #777;
+
             font-size: 13px;
         }
 
         .stat-value {
             margin-top: 7px;
+
             font-size: 32px;
             font-weight: 800;
         }
@@ -441,58 +649,102 @@
         .mastery-label {
             display: flex;
             justify-content: space-between;
+
             margin-bottom: 7px;
+
             color: #777;
+
             font-size: 12px;
         }
 
         .mastery-bar {
+            width: 100%;
             height: 7px;
-            border-radius: 999px;
-            background: #e8e9ee;
+
             overflow: hidden;
+
+            border-radius: 999px;
+
+            background: #e8e9ee;
         }
 
         .mastery-progress {
             width: 0;
             height: 100%;
-            background: #202124;
+
             border-radius: inherit;
+
+            background: #202124;
+
+            transition: width 0.25s ease;
         }
 
-        /* =========================
+        /* =====================================================
            Bottom Navigation
-        ========================= */
+        ===================================================== */
 
         .bottom-nav {
             position: fixed;
-            z-index: 200;
+
+            z-index: 2000;
+
             left: 50%;
-            bottom: 12px;
+
+            bottom:
+                calc(12px + env(safe-area-inset-bottom));
+
             transform: translateX(-50%);
-            width: min(500px, calc(100% - 32px));
+
+            width: min(
+                500px,
+                calc(100% - 32px)
+            );
+
             height: 62px;
+
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
             padding: 4px;
+
             border-radius: 20px;
+
             background: rgba(255, 255, 255, 0.96);
+
             border: 1px solid #e4e5ea;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+
+            box-shadow:
+                0 10px 35px rgba(0, 0, 0, 0.12);
+
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
 
         .nav-btn {
+            width: 100%;
+            height: 100%;
+
+            border: 0;
+
             border-radius: 15px;
+
             background: transparent;
+
             color: #888;
-            font-size: 11px;
+
             display: flex;
             flex-direction: column;
+
             align-items: center;
             justify-content: center;
+
             gap: 3px;
+
+            font-size: 11px;
+
+            cursor: pointer;
         }
 
         .nav-btn.active {
@@ -505,9 +757,9 @@
             line-height: 1;
         }
 
-        /* =========================
+        /* =====================================================
            Dark Mode
-        ========================= */
+        ===================================================== */
 
         body.dark {
             background: #111214;
@@ -516,6 +768,7 @@
 
         body.dark .header {
             background: rgba(24, 25, 28, 0.96);
+
             border-color: #2a2b30;
         }
 
@@ -530,7 +783,9 @@
         body.dark .stat-card,
         body.dark .bottom-nav {
             background: #1b1c20;
+
             border-color: #2d2e34;
+
             color: #f3f3f3;
         }
 
@@ -555,17 +810,14 @@
             background: #303138;
         }
 
-        body.dark .nav-control {
-            color: #eee;
-        }
-
         body.dark .flip-btn {
             background: #f3f3f3;
             color: #111;
         }
 
         body.dark .bottom-nav {
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+            box-shadow:
+                0 10px 35px rgba(0, 0, 0, 0.4);
         }
 
         body.dark .nav-btn.active {
@@ -583,9 +835,22 @@
             border-color: #294d31;
         }
 
-        /* =========================
+        body.dark .mastery-bar {
+            background: #303138;
+        }
+
+        body.dark .mastery-progress {
+            background: #f3f3f3;
+        }
+
+        body.dark .error-box {
+            background: #1b1c20;
+            border-color: #5a2929;
+        }
+
+        /* =====================================================
            Mobile
-        ========================= */
+        ===================================================== */
 
         @media (max-width: 600px) {
 
@@ -594,7 +859,8 @@
             }
 
             .header-inner {
-                width: calc(100% - 24px);
+                width:
+                    calc(100% - 24px);
             }
 
             .logo {
@@ -602,15 +868,22 @@
             }
 
             .main {
-                width: calc(100% - 20px);
+                width:
+                    calc(100% - 20px);
+
                 padding-top: 10px;
 
                 /*
-                 * Bottom navigation is fixed.
-                 * Reserve enough space so the knowledge buttons
-                 * never get covered.
+                 * Bottom nav:
+                 * approximately 54px high
+                 * + bottom gap
+                 * + safe area
                  */
-                padding-bottom: calc(78px + env(safe-area-inset-bottom));
+                padding-bottom:
+                    calc(
+                        82px +
+                        env(safe-area-inset-bottom)
+                    );
             }
 
             .learning-top {
@@ -620,8 +893,11 @@
 
             .deck-select {
                 height: 40px;
-                border-radius: 10px;
+
                 padding: 0 10px;
+
+                border-radius: 10px;
+
                 font-size: 13px;
             }
 
@@ -631,12 +907,12 @@
 
             .progress {
                 height: 3px;
+
                 margin-bottom: 9px;
             }
 
             /*
-             * Slightly smaller than desktop,
-             * but not aggressively compressed.
+             * This is intentionally NOT too small.
              */
             .card-container {
                 height: 360px;
@@ -645,48 +921,67 @@
 
             .card-face {
                 padding: 24px 18px;
+
                 border-radius: 18px;
             }
 
             .word-label {
                 margin-bottom: 8px;
+
                 font-size: 10px;
+
                 letter-spacing: 1.2px;
             }
 
             .word {
-                font-size: clamp(40px, 11vw, 54px);
+                font-size:
+                    clamp(
+                        40px,
+                        11vw,
+                        54px
+                    );
+
                 letter-spacing: -1px;
+
                 line-height: 1.06;
             }
 
             .phonetic {
                 margin-top: 10px;
+
                 font-size: 15px;
             }
 
             .speak-main {
                 width: 44px;
                 height: 44px;
+
                 margin-top: 14px;
+
                 font-size: 18px;
             }
 
             .card-hint {
                 bottom: 14px;
+
                 font-size: 10px;
             }
 
             .meaning {
                 max-width: 92%;
+
                 font-size: 25px;
+
                 line-height: 1.3;
             }
 
             .example {
                 max-width: 95%;
+
                 margin-top: 14px;
+
                 font-size: 14px;
+
                 line-height: 1.55;
             }
 
@@ -696,35 +991,50 @@
 
             .navigation {
                 gap: 7px;
+
                 margin-top: 8px;
             }
 
             .nav-control {
                 height: 42px;
+
                 border-radius: 10px;
+
                 font-size: 13px;
             }
 
             .knowledge {
                 gap: 7px;
+
                 margin-top: 7px;
             }
 
             .knowledge-btn {
                 height: 42px;
+
                 border-radius: 10px;
+
                 font-size: 13px;
             }
 
             .bottom-nav {
-                bottom: calc(8px + env(safe-area-inset-bottom));
-                width: calc(100% - 20px);
+                bottom:
+                    calc(
+                        8px +
+                        env(safe-area-inset-bottom)
+                    );
+
+                width:
+                    calc(100% - 20px);
+
                 height: 54px;
+
                 border-radius: 16px;
             }
 
             .nav-btn {
                 font-size: 10px;
+
                 gap: 2px;
             }
 
@@ -734,16 +1044,20 @@
 
             .page-title {
                 margin-top: 2px;
+
                 font-size: 21px;
             }
 
             .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, 1fr);
+
                 gap: 7px;
             }
 
             .stat-card {
                 padding: 16px;
+
                 border-radius: 13px;
             }
 
@@ -753,6 +1067,7 @@
 
             .stat-value {
                 margin-top: 5px;
+
                 font-size: 27px;
             }
 
@@ -762,18 +1077,20 @@
 
             .deck-grid {
                 grid-template-columns: 1fr;
+
                 gap: 9px;
             }
 
             .deck-card {
                 padding: 16px;
+
                 border-radius: 13px;
             }
         }
 
-        /* =========================
-           Small Phones
-        ========================= */
+        /* =====================================================
+           Narrow Phone
+        ===================================================== */
 
         @media (max-width: 380px) {
 
@@ -786,21 +1103,32 @@
             }
 
             .main {
-                width: calc(100% - 16px);
+                width:
+                    calc(100% - 16px);
+
                 padding-top: 8px;
-                padding-bottom: calc(74px + env(safe-area-inset-bottom));
+
+                padding-bottom:
+                    calc(
+                        78px +
+                        env(safe-area-inset-bottom)
+                    );
             }
 
             .learning-top {
                 gap: 5px;
+
                 margin-bottom: 5px;
             }
 
             .deck-select {
                 height: 38px;
+
                 padding: 0 8px;
-                font-size: 12px;
+
                 border-radius: 9px;
+
+                font-size: 12px;
             }
 
             .progress-info {
@@ -812,8 +1140,7 @@
             }
 
             /*
-             * Keep a reasonably large card.
-             * This is only for narrow phones.
+             * Still reasonably large.
              */
             .card-container {
                 height: 330px;
@@ -822,33 +1149,40 @@
 
             .card-face {
                 padding: 20px 15px;
+
                 border-radius: 17px;
             }
 
             .word-label {
                 margin-bottom: 6px;
+
                 font-size: 9px;
             }
 
             .word {
                 font-size: 40px;
+
                 letter-spacing: -.8px;
             }
 
             .phonetic {
                 margin-top: 9px;
+
                 font-size: 14px;
             }
 
             .speak-main {
                 width: 42px;
                 height: 42px;
+
                 margin-top: 12px;
+
                 font-size: 17px;
             }
 
             .card-hint {
                 bottom: 11px;
+
                 font-size: 9px;
             }
 
@@ -858,36 +1192,52 @@
 
             .example {
                 margin-top: 11px;
+
                 font-size: 13px;
+
                 line-height: 1.45;
             }
 
             .navigation {
                 gap: 6px;
+
                 margin-top: 7px;
             }
 
             .nav-control {
                 height: 40px;
+
                 border-radius: 9px;
+
                 font-size: 12px;
             }
 
             .knowledge {
                 gap: 6px;
+
                 margin-top: 6px;
             }
 
             .knowledge-btn {
                 height: 40px;
+
                 border-radius: 9px;
+
                 font-size: 12px;
             }
 
             .bottom-nav {
-                bottom: calc(6px + env(safe-area-inset-bottom));
-                width: calc(100% - 16px);
+                bottom:
+                    calc(
+                        6px +
+                        env(safe-area-inset-bottom)
+                    );
+
+                width:
+                    calc(100% - 16px);
+
                 height: 50px;
+
                 border-radius: 15px;
             }
 
@@ -900,15 +1250,24 @@
             }
         }
 
-        /* =========================
-           Short Mobile Screens
-        ========================= */
+        /* =====================================================
+           Short Screen
+        ===================================================== */
 
-        @media (max-width: 600px) and (max-height: 700px) {
+        @media (
+            max-width: 600px
+        ) and (
+            max-height: 700px
+        ) {
 
             .main {
                 padding-top: 7px;
-                padding-bottom: calc(72px + env(safe-area-inset-bottom));
+
+                padding-bottom:
+                    calc(
+                        76px +
+                        env(safe-area-inset-bottom)
+                    );
             }
 
             .learning-top {
@@ -924,8 +1283,7 @@
             }
 
             /*
-             * For short screens, reduce moderately.
-             * Do not reduce to the previous 255px size.
+             * Only reduce when screen height is really short.
              */
             .card-container {
                 height: 310px;
@@ -942,12 +1300,14 @@
 
             .phonetic {
                 margin-top: 8px;
+
                 font-size: 13px;
             }
 
             .speak-main {
                 width: 40px;
                 height: 40px;
+
                 margin-top: 10px;
             }
 
@@ -975,1529 +1335,2650 @@
                 height: 48px;
             }
         }
+
     </style>
 </head>
 
 <body>
 
-<header class="header">
-    <div class="header-inner">
-        <div class="logo">胖哥学英语</div>
+    <!-- =====================================================
+         Header
+    ====================================================== -->
 
-        <button
-            id="themeToggle"
-            class="theme-toggle"
-            type="button"
-            aria-label="切换主题"
-        >
-            ☀️
-        </button>
-    </div>
-</header>
+    <header class="header">
 
-<main class="main">
+        <div class="header-inner">
 
-    <!-- =========================
-         Loading
-    ========================== -->
-
-    <div id="loading" class="loading">
-        正在加载词库...
-    </div>
-
-    <div id="errorBox" class="error-box"></div>
-
-    <!-- =========================
-         Learning Page
-    ========================== -->
-
-    <section id="learningPage" class="page">
-
-        <div class="learning-top">
-
-            <select id="deckSelect" class="deck-select">
-                <option value="">请选择词库</option>
-            </select>
-
-            <div id="progressInfo" class="progress-info">
-                0 / 0
+            <div class="logo">
+                胖哥学英语
             </div>
 
-        </div>
-
-        <div class="progress">
-            <div
-                id="progressBar"
-                class="progress-bar"
-            ></div>
-        </div>
-
-        <div class="card-container">
-
-            <div
-                id="flashcard"
-                class="flashcard"
-                onclick="flipCard()"
-            >
-
-                <!-- Front -->
-                <div class="card-face card-front">
-
-                    <div class="word-label">
-                        WORD
-                    </div>
-
-                    <div
-                        id="cardWord"
-                        class="word"
-                    >
-                        —
-                    </div>
-
-                    <div
-                        id="cardPhonetic"
-                        class="phonetic"
-                    >
-                        —
-                    </div>
-
-                    <button
-                        id="speakMain"
-                        class="speak-main"
-                        type="button"
-                        onclick="event.stopPropagation(); speakWord();"
-                    >
-                        🔊
-                    </button>
-
-                    <div class="card-hint">
-                        点击卡片查看释义
-                    </div>
-
-                </div>
-
-                <!-- Back -->
-                <div class="card-face card-back">
-
-                    <div
-                        id="cardMeaning"
-                        class="meaning"
-                    >
-                        —
-                    </div>
-
-                    <div
-                        id="cardExample"
-                        class="example"
-                    >
-                        —
-                    </div>
-
-                    <div
-                        id="cardExampleCn"
-                        class="example example-cn"
-                    >
-                        —
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Previous / Flip / Next -->
-        <div class="navigation">
-
             <button
-                id="previousBtn"
-                class="nav-control"
+                id="themeToggle"
+                class="theme-toggle"
                 type="button"
-                onclick="previousCard()"
+                aria-label="切换主题"
             >
-                ← 上一个
-            </button>
-
-            <button
-                class="nav-control flip-btn"
-                type="button"
-                onclick="flipCard()"
-            >
-                翻转
-            </button>
-
-            <button
-                id="nextBtn"
-                class="nav-control"
-                type="button"
-                onclick="nextCard()"
-            >
-                下一个 →
+                ☀️
             </button>
 
         </div>
 
-        <!-- Knowledge -->
-        <div class="knowledge">
+    </header>
 
-            <button
-                class="knowledge-btn unknown-btn"
-                type="button"
-                onclick="markUnknown()"
-            >
-                没记住
-            </button>
 
-            <button
-                class="knowledge-btn known-btn"
-                type="button"
-                onclick="markKnown()"
-            >
-                记住了
-            </button>
+    <!-- =====================================================
+         Main
+    ====================================================== -->
 
-        </div>
+    <main class="main">
 
-    </section>
-
-    <!-- =========================
-         Library Page
-    ========================== -->
-
-    <section id="libraryPage" class="page">
-
-        <h1 class="page-title">
-            词库
-        </h1>
+        <!-- Loading -->
 
         <div
-            id="deckGrid"
-            class="deck-grid"
+            id="loading"
+            class="loading"
+        >
+            正在加载词库...
+        </div>
+
+
+        <!-- Error -->
+
+        <div
+            id="errorBox"
+            class="error-box"
         ></div>
 
-    </section>
 
-    <!-- =========================
-         Stats Page
-    ========================== -->
+        <!-- =================================================
+             Learning Page
+        ================================================== -->
 
-    <section id="statsPage" class="page">
+        <section
+            id="learningPage"
+            class="page"
+        >
 
-        <h1 class="page-title">
-            学习统计
-        </h1>
+            <div class="learning-top">
 
-        <div class="stats-grid">
-
-            <div class="stat-card">
-                <div class="stat-label">
-                    总词数
-                </div>
-
-                <div
-                    id="totalWords"
-                    class="stat-value"
+                <select
+                    id="deckSelect"
+                    class="deck-select"
                 >
-                    0
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-label">
-                    已记住
-                </div>
+                    <option value="">
+                        正在加载词库...
+                    </option>
+                </select>
 
                 <div
-                    id="knownWords"
-                    class="stat-value"
+                    id="progressInfo"
+                    class="progress-info"
                 >
-                    0
+                    0 / 0
                 </div>
+
             </div>
 
-            <div class="stat-card">
-                <div class="stat-label">
-                    未记住
-                </div>
+
+            <div class="progress">
 
                 <div
-                    id="unknownWords"
-                    class="stat-value"
-                >
-                    0
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-label">
-                    掌握率
-                </div>
-
-                <div
-                    id="masteryRate"
-                    class="stat-value"
-                >
-                    0%
-                </div>
-            </div>
-
-        </div>
-
-        <div class="mastery-wrap">
-
-            <div class="mastery-label">
-                <span>整体学习进度</span>
-                <span id="masteryText">0%</span>
-            </div>
-
-            <div class="mastery-bar">
-                <div
-                    id="masteryProgress"
-                    class="mastery-progress"
+                    id="progressBar"
+                    class="progress-bar"
                 ></div>
+
             </div>
 
-        </div>
 
-    </section>
+            <!-- =================================================
+                 Flash Card
+            ================================================== -->
 
-</main>
+            <div class="card-container">
 
-<!-- =========================
-     Bottom Navigation
-========================== -->
+                <div
+                    id="flashcard"
+                    class="flashcard"
+                    role="button"
+                    tabindex="0"
+                    aria-label="单词卡片，点击翻转"
+                >
 
-<nav class="bottom-nav">
+                    <!-- Front -->
 
-    <button
-        id="learningNav"
-        class="nav-btn active"
-        type="button"
-        onclick="showPage('learning')"
+                    <div
+                        class="card-face card-front"
+                    >
+
+                        <div class="word-label">
+                            WORD
+                        </div>
+
+                        <div
+                            id="cardWord"
+                            class="word"
+                        >
+                            —
+                        </div>
+
+                        <div
+                            id="cardPhonetic"
+                            class="phonetic"
+                        >
+                            —
+                        </div>
+
+                        <button
+                            id="speakMain"
+                            class="speak-main"
+                            type="button"
+                            aria-label="播放单词"
+                        >
+                            🔊
+                        </button>
+
+                        <div class="card-hint">
+                            点击卡片查看释义
+                        </div>
+
+                    </div>
+
+
+                    <!-- Back -->
+
+                    <div
+                        class="card-face card-back"
+                    >
+
+                        <div
+                            id="cardMeaning"
+                            class="meaning"
+                        >
+                            —
+                        </div>
+
+                        <div
+                            id="cardExample"
+                            class="example"
+                        >
+                            —
+                        </div>
+
+                        <div
+                            id="cardExampleCn"
+                            class="example example-cn"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 Previous / Flip / Next
+            ================================================== -->
+
+            <div class="navigation">
+
+                <button
+                    id="previousBtn"
+                    class="nav-control"
+                    type="button"
+                >
+                    ← 上一个
+                </button>
+
+                <button
+                    id="flipBtn"
+                    class="nav-control flip-btn"
+                    type="button"
+                >
+                    翻转
+                </button>
+
+                <button
+                    id="nextBtn"
+                    class="nav-control"
+                    type="button"
+                >
+                    下一个 →
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 Knowledge
+            ================================================== -->
+
+            <div class="knowledge">
+
+                <button
+                    id="unknownBtn"
+                    class="knowledge-btn unknown-btn"
+                    type="button"
+                >
+                    没记住
+                </button>
+
+                <button
+                    id="knownBtn"
+                    class="knowledge-btn known-btn"
+                    type="button"
+                >
+                    记住了
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             Library Page
+        ================================================== -->
+
+        <section
+            id="libraryPage"
+            class="page"
+        >
+
+            <h1 class="page-title">
+                词库
+            </h1>
+
+            <div
+                id="deckGrid"
+                class="deck-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- =================================================
+             Statistics Page
+        ================================================== -->
+
+        <section
+            id="statsPage"
+            class="page"
+        >
+
+            <h1 class="page-title">
+                学习统计
+            </h1>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        总词数
+                    </div>
+
+                    <div
+                        id="totalWords"
+                        class="stat-value"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        已记住
+                    </div>
+
+                    <div
+                        id="knownWords"
+                        class="stat-value"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        未记住
+                    </div>
+
+                    <div
+                        id="unknownWords"
+                        class="stat-value"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        掌握率
+                    </div>
+
+                    <div
+                        id="masteryRate"
+                        class="stat-value"
+                    >
+                        0%
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="mastery-wrap">
+
+                <div class="mastery-label">
+
+                    <span>
+                        整体学习进度
+                    </span>
+
+                    <span id="masteryText">
+                        0%
+                    </span>
+
+                </div>
+
+                <div class="mastery-bar">
+
+                    <div
+                        id="masteryProgress"
+                        class="mastery-progress"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         Bottom Navigation
+    ====================================================== -->
+
+    <nav
+        class="bottom-nav"
+        aria-label="主导航"
     >
-        <span class="nav-icon">📖</span>
-        <span>学习</span>
-    </button>
 
-    <button
-        id="libraryNav"
-        class="nav-btn"
-        type="button"
-        onclick="showPage('library')"
-    >
-        <span class="nav-icon">📚</span>
-        <span>词库</span>
-    </button>
+        <button
+            id="learningNav"
+            class="nav-btn active"
+            type="button"
+        >
+            <span class="nav-icon">
+                📖
+            </span>
 
-    <button
-        id="statsNav"
-        class="nav-btn"
-        type="button"
-        onclick="showPage('stats')"
-    >
-        <span class="nav-icon">📊</span>
-        <span>统计</span>
-    </button>
+            <span>
+                学习
+            </span>
+        </button>
 
-</nav>
 
-<script>
+        <button
+            id="libraryNav"
+            class="nav-btn"
+            type="button"
+        >
+            <span class="nav-icon">
+                📚
+            </span>
 
-    /* =========================================================
-       Configuration
-    ========================================================= */
+            <span>
+                词库
+            </span>
+        </button>
 
-    const SITE_ROOT = "/MyFlashCards/";
-    const DATA_ROOT = SITE_ROOT + "data/";
-    const DECK_INDEX = DATA_ROOT + "index.json";
-    const VERSION_URL = DATA_ROOT + "version.json";
 
-    const VERSION_STORAGE_KEY =
-        "myflashcards_site_version";
+        <button
+            id="statsNav"
+            class="nav-btn"
+            type="button"
+        >
+            <span class="nav-icon">
+                📊
+            </span>
 
-    const STATE_STORAGE_PREFIX =
-        "myflashcards_state_";
+            <span>
+                统计
+            </span>
+        </button>
 
-    const THEME_STORAGE_KEY =
-        "myflashcards_theme";
+    </nav>
 
-    const CURRENT_DECK_KEY =
-        "myflashcards_current_deck";
 
+    <script>
 
-    /* =========================================================
-       Global State
-    ========================================================= */
+        "use strict";
 
-    let decks = [];
 
-    let currentDeck = null;
+        /* =====================================================
+           Configuration
+        ===================================================== */
 
-    let currentWords = [];
+        const SITE_ROOT = "/MyFlashCards/";
 
-    let currentIndex = 0;
+        const DATA_ROOT =
+            SITE_ROOT + "data/";
 
-    let isFlipped = false;
+        const DECK_INDEX =
+            DATA_ROOT + "index.json";
 
+        const VERSION_URL =
+            DATA_ROOT + "version.json";
 
-    /* =========================================================
-       DOM
-    ========================================================= */
+        const VERSION_STORAGE_KEY =
+            "myflashcards_site_version";
 
-    const loadingEl =
-        document.getElementById("loading");
+        const STATE_STORAGE_PREFIX =
+            "myflashcards_state_";
 
-    const errorBoxEl =
-        document.getElementById("errorBox");
+        const THEME_STORAGE_KEY =
+            "myflashcards_theme";
 
-    const learningPageEl =
-        document.getElementById("learningPage");
+        const CURRENT_DECK_KEY =
+            "myflashcards_current_deck";
 
-    const libraryPageEl =
-        document.getElementById("libraryPage");
 
-    const statsPageEl =
-        document.getElementById("statsPage");
+        /* =====================================================
+           Global State
+        ===================================================== */
 
-    const deckSelectEl =
-        document.getElementById("deckSelect");
+        let decks = [];
 
-    const deckGridEl =
-        document.getElementById("deckGrid");
+        let currentDeck = null;
 
-    const flashcardEl =
-        document.getElementById("flashcard");
+        let currentWords = [];
 
-    const cardWordEl =
-        document.getElementById("cardWord");
+        let currentIndex = 0;
 
-    const cardPhoneticEl =
-        document.getElementById("cardPhonetic");
+        let isFlipped = false;
 
-    const cardMeaningEl =
-        document.getElementById("cardMeaning");
+        let initialized = false;
 
-    const cardExampleEl =
-        document.getElementById("cardExample");
 
-    const cardExampleCnEl =
-        document.getElementById("cardExampleCn");
+        /* =====================================================
+           DOM
+        ===================================================== */
 
-    const progressInfoEl =
-        document.getElementById("progressInfo");
+        const loadingEl =
+            document.getElementById("loading");
 
-    const progressBarEl =
-        document.getElementById("progressBar");
+        const errorBoxEl =
+            document.getElementById("errorBox");
 
+        const learningPageEl =
+            document.getElementById("learningPage");
 
-    /* =========================================================
-       Utility
-    ========================================================= */
+        const libraryPageEl =
+            document.getElementById("libraryPage");
 
-    async function getJSON(url) {
+        const statsPageEl =
+            document.getElementById("statsPage");
 
-        const response = await fetch(
-            url,
-            {
-                cache: "no-store"
-            }
-        );
+        const deckSelectEl =
+            document.getElementById("deckSelect");
 
-        if (!response.ok) {
-            throw new Error(
-                `HTTP ${response.status}: ${url}`
-            );
-        }
+        const deckGridEl =
+            document.getElementById("deckGrid");
 
-        return await response.json();
-    }
+        const flashcardEl =
+            document.getElementById("flashcard");
 
+        const cardWordEl =
+            document.getElementById("cardWord");
 
-    function showLoading() {
+        const cardPhoneticEl =
+            document.getElementById("cardPhonetic");
 
-        loadingEl.style.display = "flex";
+        const cardMeaningEl =
+            document.getElementById("cardMeaning");
 
-        errorBoxEl.style.display = "none";
+        const cardExampleEl =
+            document.getElementById("cardExample");
 
-        learningPageEl.classList.remove("active");
+        const cardExampleCnEl =
+            document.getElementById("cardExampleCn");
 
-        libraryPageEl.classList.remove("active");
+        const progressInfoEl =
+            document.getElementById("progressInfo");
 
-        statsPageEl.classList.remove("active");
-    }
+        const progressBarEl =
+            document.getElementById("progressBar");
 
 
-    function showError(message) {
+        /* =====================================================
+           Utility
+        ===================================================== */
 
-        loadingEl.style.display = "none";
+        function escapeHTML(value) {
 
-        errorBoxEl.style.display = "block";
-
-        errorBoxEl.innerHTML =
-            escapeHTML(message);
-    }
-
-
-    function showContent() {
-
-        loadingEl.style.display = "none";
-
-        errorBoxEl.style.display = "none";
-
-        learningPageEl.classList.add("active");
-    }
-
-
-    function escapeHTML(value) {
-
-        if (value === null ||
-            value === undefined) {
-            return "";
-        }
-
-        return String(value)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-    }
-
-
-    /* =========================================================
-       Version
-    ========================================================= */
-
-    async function checkVersion() {
-
-        try {
-
-            const data =
-                await getJSON(VERSION_URL);
-
-            if (!data) {
-                return;
+            if (
+                value === null ||
+                value === undefined
+            ) {
+                return "";
             }
 
-            const version =
-                typeof data === "string"
-                    ? data
-                    : data.version;
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
 
-            if (!version) {
-                return;
+
+        function normalizeText(value) {
+
+            if (
+                value === null ||
+                value === undefined
+            ) {
+                return "";
             }
 
-            const oldVersion =
-                localStorage.getItem(
-                    VERSION_STORAGE_KEY
-                );
+            return String(value).trim();
+        }
 
-            if (oldVersion &&
-                oldVersion !== version) {
 
-                console.log(
-                    "Site version changed:",
-                    oldVersion,
-                    "->",
-                    version
-                );
+        function normalizeDeckId(deck, index) {
 
-                /*
-                 * Do not clear learning progress.
-                 * Browser cache is bypassed through cache:no-store.
-                 */
+            if (!deck || typeof deck !== "object") {
+                return String(index);
             }
 
-            localStorage.setItem(
-                VERSION_STORAGE_KEY,
-                version
-            );
-
-        } catch (error) {
-
-            console.warn(
-                "Version check failed:",
-                error
-            );
-        }
-    }
-
-
-    /* =========================================================
-       Deck Loading
-    ========================================================= */
-
-    async function loadDecks() {
-
-        const data =
-            await getJSON(DECK_INDEX);
-
-        if (Array.isArray(data)) {
-
-            decks = data;
-
-        } else if (Array.isArray(data.decks)) {
-
-            decks = data.decks;
-
-        } else {
-
-            throw new Error(
-                "data/index.json 格式不正确"
+            return normalizeText(
+                deck.id ??
+                deck.slug ??
+                deck.key ??
+                deck.name ??
+                index
             );
         }
 
-        renderDeckSelect();
 
-        renderLibrary();
+        function normalizeDeckName(deck, index) {
 
-        const savedDeck =
-            localStorage.getItem(
-                CURRENT_DECK_KEY
-            );
-
-        let deckToLoad = null;
-
-        if (savedDeck) {
-
-            deckToLoad =
-                decks.find(
-                    deck => String(deck.id) === String(savedDeck)
-                );
-        }
-
-        if (!deckToLoad && decks.length > 0) {
-            deckToLoad = decks[0];
-        }
-
-        if (deckToLoad) {
-
-            deckSelectEl.value =
-                deckToLoad.id;
-
-            await loadDeck(deckToLoad.id);
-
-        } else {
-
-            throw new Error(
-                "没有找到可用词库"
-            );
-        }
-    }
-
-
-    function renderDeckSelect() {
-
-        deckSelectEl.innerHTML =
-            '<option value="">请选择词库</option>';
-
-        decks.forEach(deck => {
-
-            const option =
-                document.createElement("option");
-
-            option.value =
-                deck.id;
-
-            option.textContent =
-                deck.name || deck.id;
-
-            deckSelectEl.appendChild(option);
-        });
-    }
-
-
-    async function loadDeck(deckId) {
-
-        const deck =
-            decks.find(
-                item =>
-                    String(item.id) === String(deckId)
-            );
-
-        if (!deck) {
-            return;
-        }
-
-        currentDeck = deck;
-
-        localStorage.setItem(
-            CURRENT_DECK_KEY,
-            deck.id
-        );
-
-        const file =
-            deck.file ||
-            `${deck.id}.json`;
-
-        const url =
-            file.startsWith("/")
-                ? file
-                : DATA_ROOT + file;
-
-        const data =
-            await getJSON(url);
-
-        if (Array.isArray(data)) {
-
-            currentWords = data;
-
-        } else if (Array.isArray(data.words)) {
-
-            currentWords = data.words;
-
-        } else {
-
-            throw new Error(
-                `词库 ${deck.name || deck.id} 格式不正确`
-            );
-        }
-
-        currentIndex = 0;
-
-        const state =
-            loadLearningState();
-
-        if (
-            state &&
-            Number.isInteger(state.currentIndex) &&
-            state.currentIndex >= 0 &&
-            state.currentIndex < currentWords.length
-        ) {
-
-            currentIndex =
-                state.currentIndex;
-        }
-
-        isFlipped = false;
-
-        renderCurrentCard();
-
-        updateStats();
-    }
-
-
-    /* =========================================================
-       Learning State
-    ========================================================= */
-
-    function getStateKey() {
-
-        if (!currentDeck) {
-            return null;
-        }
-
-        return (
-            STATE_STORAGE_PREFIX +
-            currentDeck.id
-        );
-    }
-
-
-    function loadLearningState() {
-
-        const key =
-            getStateKey();
-
-        if (!key) {
-            return null;
-        }
-
-        try {
-
-            const raw =
-                localStorage.getItem(key);
-
-            if (!raw) {
-                return null;
+            if (!deck || typeof deck !== "object") {
+                return `词库 ${index + 1}`;
             }
 
-            return JSON.parse(raw);
-
-        } catch (error) {
-
-            console.warn(
-                "读取学习进度失败:",
-                error
-            );
-
-            return null;
-        }
-    }
-
-
-    function saveLearningState() {
-
-        const key =
-            getStateKey();
-
-        if (!key) {
-            return;
-        }
-
-        const state =
-            loadLearningState() || {
-                statuses: {}
-            };
-
-        state.currentIndex =
-            currentIndex;
-
-        if (!state.statuses) {
-            state.statuses = {};
-        }
-
-        try {
-
-            localStorage.setItem(
-                key,
-                JSON.stringify(state)
-            );
-
-        } catch (error) {
-
-            console.warn(
-                "保存学习进度失败:",
-                error
-            );
-        }
-    }
-
-
-    /* =========================================================
-       Word State
-    ========================================================= */
-
-    function getWordKey(word, index) {
-
-        if (!word) {
-            return String(index);
-        }
-
-        if (word.id !== undefined) {
-            return String(word.id);
-        }
-
-        if (word.word) {
-            return String(word.word);
-        }
-
-        return String(index);
-    }
-
-
-    function getWordStatus(index) {
-
-        const state =
-            loadLearningState();
-
-        if (!state ||
-            !state.statuses) {
-
-            return null;
-        }
-
-        const word =
-            currentWords[index];
-
-        const key =
-            getWordKey(word, index);
-
-        return state.statuses[key] || null;
-    }
-
-
-    function setWordStatus(
-        index,
-        status
-    ) {
-
-        const key =
-            getStateKey();
-
-        if (!key) {
-            return;
-        }
-
-        const state =
-            loadLearningState() || {
-                currentIndex: 0,
-                statuses: {}
-            };
-
-        if (!state.statuses) {
-            state.statuses = {};
-        }
-
-        const word =
-            currentWords[index];
-
-        const wordKey =
-            getWordKey(word, index);
-
-        state.statuses[wordKey] =
-            status;
-
-        state.currentIndex =
-            currentIndex;
-
-        try {
-
-            localStorage.setItem(
-                key,
-                JSON.stringify(state)
-            );
-
-        } catch (error) {
-
-            console.warn(
-                "保存单词状态失败:",
-                error
+            return normalizeText(
+                deck.name ??
+                deck.title ??
+                deck.display_name ??
+                deck.id ??
+                `词库 ${index + 1}`
             );
         }
 
-        updateStats();
-    }
 
+        function normalizeDeckFile(deck) {
 
-    /* =========================================================
-       Render Card
-    ========================================================= */
+            if (!deck || typeof deck !== "object") {
+                return "";
+            }
 
-    function renderCurrentCard() {
-
-        if (!currentWords.length) {
-
-            cardWordEl.textContent = "暂无单词";
-
-            cardPhoneticEl.textContent = "";
-
-            cardMeaningEl.textContent = "";
-
-            cardExampleEl.textContent = "";
-
-            cardExampleCnEl.textContent = "";
-
-            progressInfoEl.textContent = "0 / 0";
-
-            progressBarEl.style.width = "0%";
-
-            return;
+            return normalizeText(
+                deck.file ??
+                deck.path ??
+                deck.url ??
+                deck.src ??
+                ""
+            );
         }
 
-        if (
-            currentIndex < 0 ||
-            currentIndex >= currentWords.length
-        ) {
 
-            currentIndex = 0;
+        function getDeckDescription(deck) {
+
+            if (!deck || typeof deck !== "object") {
+                return "";
+            }
+
+            return normalizeText(
+                deck.description ??
+                deck.desc ??
+                ""
+            );
         }
 
-        const word =
-            currentWords[currentIndex];
 
-        cardWordEl.textContent =
-            word.word || "—";
+        function resolveDeckURL(file) {
 
-        cardPhoneticEl.textContent =
-            word.phonetic || "";
+            const value =
+                normalizeText(file);
 
-        cardMeaningEl.textContent =
-            word.meaning || "";
-
-        cardExampleEl.textContent =
-            word.example || "";
-
-        cardExampleCnEl.textContent =
-            word.example_cn ||
-            word.exampleCn ||
-            "";
-
-        flashcardEl.classList.remove(
-            "flipped"
-        );
-
-        isFlipped = false;
-
-        progressInfoEl.textContent =
-            `${currentIndex + 1} / ${currentWords.length}`;
-
-        const percent =
-            ((currentIndex + 1) /
-                currentWords.length) *
-            100;
-
-        progressBarEl.style.width =
-            `${percent}%`;
-
-        saveLearningState();
-    }
-
-
-    /* =========================================================
-       Card Actions
-    ========================================================= */
-
-    function flipCard() {
-
-        if (!currentWords.length) {
-            return;
-        }
-
-        isFlipped =
-            !isFlipped;
-
-        flashcardEl.classList.toggle(
-            "flipped",
-            isFlipped
-        );
-    }
-
-
-    function previousCard() {
-
-        if (!currentWords.length) {
-            return;
-        }
-
-        currentIndex--;
-
-        if (currentIndex < 0) {
-            currentIndex =
-                currentWords.length - 1;
-        }
-
-        renderCurrentCard();
-    }
-
-
-    function nextCard() {
-
-        if (!currentWords.length) {
-            return;
-        }
-
-        currentIndex++;
-
-        if (
-            currentIndex >=
-            currentWords.length
-        ) {
-            currentIndex = 0;
-        }
-
-        renderCurrentCard();
-    }
-
-
-    function randomCard() {
-
-        if (currentWords.length <= 1) {
-            return;
-        }
-
-        let nextIndex;
-
-        do {
-
-            nextIndex =
-                Math.floor(
-                    Math.random() *
-                    currentWords.length
-                );
-
-        } while (
-            nextIndex === currentIndex
-        );
-
-        currentIndex =
-            nextIndex;
-
-        renderCurrentCard();
-    }
-
-
-    /* =========================================================
-       Speech
-    ========================================================= */
-
-    function speakWord() {
-
-        if (!currentWords.length) {
-            return;
-        }
-
-        const word =
-            currentWords[currentIndex];
-
-        const text =
-            word.word || "";
-
-        if (!text) {
-            return;
-        }
-
-        if (!("speechSynthesis" in window)) {
-            return;
-        }
-
-        window.speechSynthesis.cancel();
-
-        const utterance =
-            new SpeechSynthesisUtterance(text);
-
-        utterance.lang = "en-GB";
-
-        utterance.rate = 0.85;
-
-        window.speechSynthesis.speak(
-            utterance
-        );
-    }
-
-
-    /* =========================================================
-       Knowledge
-    ========================================================= */
-
-    function markKnown() {
-
-        if (!currentWords.length) {
-            return;
-        }
-
-        setWordStatus(
-            currentIndex,
-            "known"
-        );
-
-        nextCard();
-    }
-
-
-    function markUnknown() {
-
-        if (!currentWords.length) {
-            return;
-        }
-
-        setWordStatus(
-            currentIndex,
-            "unknown"
-        );
-
-        nextCard();
-    }
-
-
-    /* =========================================================
-       Statistics
-    ========================================================= */
-
-    function calculateStats() {
-
-        let totalWords = 0;
-
-        let knownWords = 0;
-
-        let unknownWords = 0;
-
-        decks.forEach(deck => {
+            if (!value) {
+                return "";
+            }
 
             /*
-             * For the currently loaded deck we already have
-             * the words in memory.
-             *
-             * Other decks are counted through saved statuses
-             * where possible.
+             * Absolute URL
              */
-        });
+            if (
+                value.startsWith("http://") ||
+                value.startsWith("https://")
+            ) {
+                return value;
+            }
 
-        totalWords =
-            currentWords.length;
+            /*
+             * Absolute site path
+             */
+            if (value.startsWith("/")) {
+                return value;
+            }
 
-        if (currentDeck) {
+            /*
+             * data/xxx.json
+             */
+            if (
+                value.startsWith("data/")
+            ) {
+                return SITE_ROOT + value;
+            }
 
-            const state =
-                loadLearningState();
-
-            const statuses =
-                state &&
-                state.statuses
-                    ? state.statuses
-                    : {};
-
-            Object.values(statuses)
-                .forEach(status => {
-
-                    if (status === "known") {
-                        knownWords++;
-                    }
-
-                    if (status === "unknown") {
-                        unknownWords++;
-                    }
-                });
+            /*
+             * xxx.json
+             */
+            return DATA_ROOT + value;
         }
 
-        return {
-            totalWords,
-            knownWords,
-            unknownWords
-        };
-    }
 
+        function showLoading(message) {
 
-    function updateStats() {
+            loadingEl.textContent =
+                message || "正在加载词库...";
 
-        const stats =
-            calculateStats();
+            loadingEl.style.display =
+                "flex";
 
-        const total =
-            stats.totalWords;
+            errorBoxEl.style.display =
+                "none";
 
-        const known =
-            stats.knownWords;
+            learningPageEl.classList.remove(
+                "active"
+            );
 
-        const unknown =
-            stats.unknownWords;
+            libraryPageEl.classList.remove(
+                "active"
+            );
 
-        const mastery =
-            total > 0
-                ? Math.round(
-                    (known / total) * 100
-                )
-                : 0;
-
-        document.getElementById(
-            "totalWords"
-        ).textContent =
-            total;
-
-        document.getElementById(
-            "knownWords"
-        ).textContent =
-            known;
-
-        document.getElementById(
-            "unknownWords"
-        ).textContent =
-            unknown;
-
-        document.getElementById(
-            "masteryRate"
-        ).textContent =
-            `${mastery}%`;
-
-        document.getElementById(
-            "masteryText"
-        ).textContent =
-            `${mastery}%`;
-
-        document.getElementById(
-            "masteryProgress"
-        ).style.width =
-            `${mastery}%`;
-    }
-
-
-    /* =========================================================
-       Library
-    ========================================================= */
-
-    function renderLibrary() {
-
-        deckGridEl.innerHTML = "";
-
-        if (!decks.length) {
-
-            deckGridEl.innerHTML =
-                '<div class="deck-card">暂无词库</div>';
-
-            return;
+            statsPageEl.classList.remove(
+                "active"
+            );
         }
 
-        decks.forEach(deck => {
 
-            const card =
-                document.createElement("div");
+        function hideLoading() {
 
-            card.className =
-                "deck-card";
+            loadingEl.style.display =
+                "none";
+        }
 
-            const name =
-                escapeHTML(
-                    deck.name || deck.id
-                );
 
-            const description =
-                escapeHTML(
-                    deck.description || ""
-                );
+        function showError(message) {
 
-            const count =
-                deck.count ||
-                deck.word_count ||
-                deck.words_count ||
-                "";
+            hideLoading();
 
-            card.innerHTML = `
-                <div class="deck-name">
-                    ${name}
+            errorBoxEl.style.display =
+                "block";
+
+            errorBoxEl.innerHTML = `
+                <div class="error-title">
+                    词库加载失败
                 </div>
-
-                ${
-                    description
-                        ? `
-                            <div class="deck-description">
-                                ${description}
-                            </div>
-                          `
-                        : ""
-                }
-
-                ${
-                    count
-                        ? `
-                            <div class="deck-count">
-                                ${escapeHTML(count)} 个单词
-                            </div>
-                          `
-                        : ""
-                }
+                <div>
+                    ${escapeHTML(message)}
+                </div>
             `;
-
-            card.addEventListener(
-                "click",
-                async () => {
-
-                    showPage("learning");
-
-                    deckSelectEl.value =
-                        deck.id;
-
-                    try {
-
-                        showLoading();
-
-                        await loadDeck(
-                            deck.id
-                        );
-
-                        showContent();
-
-                    } catch (error) {
-
-                        console.error(
-                            error
-                        );
-
-                        showError(
-                            `词库加载失败：${error.message}`
-                        );
-                    }
-                }
-            );
-
-            deckGridEl.appendChild(
-                card
-            );
-        });
-    }
+        }
 
 
-    /* =========================================================
-       Pages
-    ========================================================= */
+        function clearError() {
 
-    function showPage(page) {
+            errorBoxEl.style.display =
+                "none";
 
-        learningPageEl.classList.remove(
-            "active"
-        );
+            errorBoxEl.innerHTML =
+                "";
+        }
 
-        libraryPageEl.classList.remove(
-            "active"
-        );
 
-        statsPageEl.classList.remove(
-            "active"
-        );
+        function showContent() {
 
-        document
-            .getElementById("learningNav")
-            .classList.remove("active");
+            hideLoading();
 
-        document
-            .getElementById("libraryNav")
-            .classList.remove("active");
-
-        document
-            .getElementById("statsNav")
-            .classList.remove("active");
-
-        if (page === "learning") {
+            clearError();
 
             learningPageEl.classList.add(
                 "active"
             );
+        }
 
-            document
-                .getElementById("learningNav")
-                .classList.add("active");
 
-        } else if (page === "library") {
+        /* =====================================================
+           JSON Loading
+        ===================================================== */
 
-            libraryPageEl.classList.add(
-                "active"
+        async function fetchJSON(url) {
+
+            const response =
+                await fetch(
+                    url,
+                    {
+                        method: "GET",
+                        cache: "no-store",
+                        credentials: "same-origin",
+                        headers: {
+                            "Accept":
+                                "application/json"
+                        }
+                    }
+                );
+
+            if (!response.ok) {
+
+                throw new Error(
+                    `HTTP ${response.status} ${response.statusText}`
+                );
+            }
+
+            const text =
+                await response.text();
+
+            if (!text.trim()) {
+
+                throw new Error(
+                    "服务器返回了空内容"
+                );
+            }
+
+            try {
+
+                return JSON.parse(text);
+
+            } catch (error) {
+
+                throw new Error(
+                    `JSON 格式错误：${error.message}`
+                );
+            }
+        }
+
+
+        /* =====================================================
+           Version
+           Version is OPTIONAL.
+           Failure must NOT stop the application.
+        ===================================================== */
+
+        async function checkVersion() {
+
+            try {
+
+                const data =
+                    await fetchJSON(
+                        VERSION_URL
+                    );
+
+                let version = "";
+
+                if (
+                    typeof data ===
+                    "string"
+                ) {
+
+                    version = data;
+
+                } else if (
+                    data &&
+                    typeof data === "object"
+                ) {
+
+                    version =
+                        normalizeText(
+                            data.version ??
+                            data.current_version ??
+                            data.site_version
+                        );
+                }
+
+                if (!version) {
+                    return;
+                }
+
+                localStorage.setItem(
+                    VERSION_STORAGE_KEY,
+                    version
+                );
+
+            } catch (error) {
+
+                /*
+                 * version.json is optional.
+                 * Do NOT block the application.
+                 */
+
+                console.warn(
+                    "version.json 加载失败，继续加载词库:",
+                    error
+                );
+            }
+        }
+
+
+        /* =====================================================
+           Deck Index
+        ===================================================== */
+
+        function extractDeckList(data) {
+
+            if (Array.isArray(data)) {
+                return data;
+            }
+
+            if (
+                data &&
+                Array.isArray(data.decks)
+            ) {
+                return data.decks;
+            }
+
+            if (
+                data &&
+                Array.isArray(data.items)
+            ) {
+                return data.items;
+            }
+
+            if (
+                data &&
+                Array.isArray(data.data)
+            ) {
+                return data.data;
+            }
+
+            return null;
+        }
+
+
+        async function loadDecks() {
+
+            console.log(
+                "[MyFlashCards] Loading:",
+                DECK_INDEX
             );
 
-            document
-                .getElementById("libraryNav")
-                .classList.add("active");
+            let data;
+
+            try {
+
+                data =
+                    await fetchJSON(
+                        DECK_INDEX
+                    );
+
+            } catch (error) {
+
+                throw new Error(
+                    `无法加载词库索引。\n\n` +
+                    `请求地址：${DECK_INDEX}\n` +
+                    `错误：${error.message}\n\n` +
+                    `请确认 data/index.json 存在，并且服务器可以正常访问。`
+                );
+            }
+
+            const rawDecks =
+                extractDeckList(data);
+
+            if (!rawDecks) {
+
+                throw new Error(
+                    `data/index.json 格式不正确。\n\n` +
+                    `支持的格式：\n` +
+                    `1. [ {...}, {...} ]\n` +
+                    `2. { "decks": [ {...}, {...} ] }`
+                );
+            }
+
+            decks =
+                rawDecks
+                    .map(
+                        (deck, index) => {
+
+                            if (
+                                !deck ||
+                                typeof deck !== "object"
+                            ) {
+                                return null;
+                            }
+
+                            const normalized = {
+                                ...deck,
+
+                                id:
+                                    normalizeDeckId(
+                                        deck,
+                                        index
+                                    ),
+
+                                name:
+                                    normalizeDeckName(
+                                        deck,
+                                        index
+                                    ),
+
+                                file:
+                                    normalizeDeckFile(
+                                        deck
+                                    ),
+
+                                description:
+                                    getDeckDescription(
+                                        deck
+                                    )
+                            };
+
+                            return normalized;
+                        }
+                    )
+                    .filter(Boolean);
+
+            if (decks.length === 0) {
+
+                throw new Error(
+                    "index.json 中没有有效的词库。"
+                );
+            }
+
+            renderDeckSelect();
 
             renderLibrary();
 
-        } else if (page === "stats") {
+            /*
+             * Restore previous deck.
+             */
 
-            statsPageEl.classList.add(
-                "active"
+            const savedDeck =
+                localStorage.getItem(
+                    CURRENT_DECK_KEY
+                );
+
+            let deckToLoad = null;
+
+            if (savedDeck) {
+
+                deckToLoad =
+                    decks.find(
+                        deck =>
+                            String(deck.id) ===
+                            String(savedDeck)
+                    );
+            }
+
+            /*
+             * If saved deck doesn't exist,
+             * use the first deck.
+             */
+
+            if (!deckToLoad) {
+                deckToLoad = decks[0];
+            }
+
+            if (!deckToLoad) {
+
+                throw new Error(
+                    "没有可以加载的词库。"
+                );
+            }
+
+            deckSelectEl.value =
+                deckToLoad.id;
+
+            await loadDeck(
+                deckToLoad.id
+            );
+        }
+
+
+        /* =====================================================
+           Render Deck Select
+        ===================================================== */
+
+        function renderDeckSelect() {
+
+            deckSelectEl.innerHTML =
+                "";
+
+            if (decks.length === 0) {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+                option.value = "";
+
+                option.textContent =
+                    "没有可用词库";
+
+                deckSelectEl.appendChild(
+                    option
+                );
+
+                return;
+            }
+
+            decks.forEach(
+                deck => {
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+                    option.value =
+                        deck.id;
+
+                    option.textContent =
+                        deck.name;
+
+                    deckSelectEl.appendChild(
+                        option
+                    );
+                }
+            );
+        }
+
+
+        /* =====================================================
+           Load One Deck
+        ===================================================== */
+
+        function extractWords(data) {
+
+            if (Array.isArray(data)) {
+                return data;
+            }
+
+            if (
+                data &&
+                Array.isArray(data.words)
+            ) {
+                return data.words;
+            }
+
+            if (
+                data &&
+                Array.isArray(data.items)
+            ) {
+                return data.items;
+            }
+
+            if (
+                data &&
+                Array.isArray(data.data)
+            ) {
+                return data.data;
+            }
+
+            return null;
+        }
+
+
+        function normalizeWord(word, index) {
+
+            if (
+                typeof word === "string"
+            ) {
+
+                return {
+                    word: word,
+                    phonetic: "",
+                    meaning: "",
+                    example: "",
+                    example_cn: "",
+                    level: ""
+                };
+            }
+
+            if (
+                !word ||
+                typeof word !== "object"
+            ) {
+                return null;
+            }
+
+            return {
+                ...word,
+
+                word:
+                    normalizeText(
+                        word.word ??
+                        word.term ??
+                        word.text ??
+                        word.name ??
+                        ""
+                    ),
+
+                phonetic:
+                    normalizeText(
+                        word.phonetic ??
+                        word.ipa ??
+                        word.pronunciation ??
+                        ""
+                    ),
+
+                meaning:
+                    normalizeText(
+                        word.meaning ??
+                        word.definition ??
+                        word.translation ??
+                        word.cn ??
+                        ""
+                    ),
+
+                example:
+                    normalizeText(
+                        word.example ??
+                        word.sentence ??
+                        ""
+                    ),
+
+                example_cn:
+                    normalizeText(
+                        word.example_cn ??
+                        word.exampleCn ??
+                        word.example_zh ??
+                        word.translation_example ??
+                        ""
+                    ),
+
+                level:
+                    word.level ??
+                    ""
+            };
+        }
+
+
+        async function loadDeck(deckId) {
+
+            const deck =
+                decks.find(
+                    item =>
+                        String(item.id) ===
+                        String(deckId)
+                );
+
+            if (!deck) {
+
+                throw new Error(
+                    `找不到词库：${deckId}`
+                );
+            }
+
+            const file =
+                normalizeDeckFile(deck);
+
+            if (!file) {
+
+                throw new Error(
+                    `词库「${deck.name}」没有配置 file。\n\n` +
+                    `请在 data/index.json 中为该词库配置：\n` +
+                    `"file": "xxx.json"`
+                );
+            }
+
+            const url =
+                resolveDeckURL(file);
+
+            console.log(
+                "[MyFlashCards] Loading deck:",
+                url
             );
 
-            document
-                .getElementById("statsNav")
-                .classList.add("active");
+            let data;
+
+            try {
+
+                data =
+                    await fetchJSON(
+                        url
+                    );
+
+            } catch (error) {
+
+                throw new Error(
+                    `无法加载词库「${deck.name}」。\n\n` +
+                    `请求地址：${url}\n` +
+                    `错误：${error.message}`
+                );
+            }
+
+            const words =
+                extractWords(data);
+
+            if (!words) {
+
+                throw new Error(
+                    `词库「${deck.name}」JSON 格式不正确。\n\n` +
+                    `支持：\n` +
+                    `1. [ {...}, {...} ]\n` +
+                    `2. { "words": [ {...}, {...} ] }`
+                );
+            }
+
+            currentWords =
+                words
+                    .map(
+                        normalizeWord
+                    )
+                    .filter(
+                        word =>
+                            word &&
+                            word.word
+                    );
+
+            if (
+                currentWords.length === 0
+            ) {
+
+                throw new Error(
+                    `词库「${deck.name}」没有有效单词。`
+                );
+            }
+
+            currentDeck =
+                deck;
+
+            localStorage.setItem(
+                CURRENT_DECK_KEY,
+                deck.id
+            );
+
+            /*
+             * Restore learning position.
+             */
+
+            currentIndex = 0;
+
+            const state =
+                loadLearningState();
+
+            if (
+                state &&
+                Number.isInteger(
+                    state.currentIndex
+                ) &&
+                state.currentIndex >= 0 &&
+                state.currentIndex <
+                    currentWords.length
+            ) {
+
+                currentIndex =
+                    state.currentIndex;
+            }
+
+            isFlipped = false;
+
+            renderCurrentCard();
 
             updateStats();
         }
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    }
 
+        /* =====================================================
+           Learning State
+        ===================================================== */
 
-    /* =========================================================
-       Theme
-    ========================================================= */
+        function getStateKey() {
 
-    function loadTheme() {
+            if (!currentDeck) {
+                return null;
+            }
 
-        const theme =
-            localStorage.getItem(
-                THEME_STORAGE_KEY
+            return (
+                STATE_STORAGE_PREFIX +
+                String(currentDeck.id)
             );
-
-        if (theme === "dark") {
-
-            document.body.classList.add(
-                "dark"
-            );
-
-            document.getElementById(
-                "themeToggle"
-            ).textContent = "🌙";
-
-        } else {
-
-            document.body.classList.remove(
-                "dark"
-            );
-
-            document.getElementById(
-                "themeToggle"
-            ).textContent = "☀️";
         }
-    }
 
 
-    function toggleTheme() {
+        function createEmptyState() {
 
-        const dark =
-            document.body.classList.toggle(
-                "dark"
+            return {
+                currentIndex: 0,
+                statuses: {}
+            };
+        }
+
+
+        function loadLearningState() {
+
+            const key =
+                getStateKey();
+
+            if (!key) {
+                return createEmptyState();
+            }
+
+            try {
+
+                const raw =
+                    localStorage.getItem(
+                        key
+                    );
+
+                if (!raw) {
+                    return createEmptyState();
+                }
+
+                const state =
+                    JSON.parse(raw);
+
+                if (
+                    !state ||
+                    typeof state !== "object"
+                ) {
+                    return createEmptyState();
+                }
+
+                if (
+                    !state.statuses ||
+                    typeof state.statuses !==
+                        "object"
+                ) {
+                    state.statuses = {};
+                }
+
+                if (
+                    !Number.isInteger(
+                        state.currentIndex
+                    )
+                ) {
+                    state.currentIndex = 0;
+                }
+
+                return state;
+
+            } catch (error) {
+
+                console.warn(
+                    "读取学习状态失败:",
+                    error
+                );
+
+                return createEmptyState();
+            }
+        }
+
+
+        function saveLearningState() {
+
+            const key =
+                getStateKey();
+
+            if (!key) {
+                return;
+            }
+
+            const state =
+                loadLearningState();
+
+            state.currentIndex =
+                currentIndex;
+
+            try {
+
+                localStorage.setItem(
+                    key,
+                    JSON.stringify(state)
+                );
+
+            } catch (error) {
+
+                console.warn(
+                    "保存学习状态失败:",
+                    error
+                );
+            }
+        }
+
+
+        /* =====================================================
+           Word Key / Status
+        ===================================================== */
+
+        function getWordKey(
+            word,
+            index
+        ) {
+
+            if (
+                word &&
+                word.id !== undefined &&
+                word.id !== null
+            ) {
+
+                return String(word.id);
+            }
+
+            if (
+                word &&
+                word.word
+            ) {
+
+                return String(
+                    word.word
+                ).toLowerCase();
+            }
+
+            return String(index);
+        }
+
+
+        function getWordStatus(index) {
+
+            const state =
+                loadLearningState();
+
+            const word =
+                currentWords[index];
+
+            const key =
+                getWordKey(
+                    word,
+                    index
+                );
+
+            return (
+                state.statuses[key] ||
+                null
             );
-
-        localStorage.setItem(
-            THEME_STORAGE_KEY,
-            dark ? "dark" : "light"
-        );
-
-        document.getElementById(
-            "themeToggle"
-        ).textContent =
-            dark ? "🌙" : "☀️";
-    }
+        }
 
 
-    /* =========================================================
-       Events
-    ========================================================= */
+        function setWordStatus(
+            index,
+            status
+        ) {
 
-    deckSelectEl.addEventListener(
-        "change",
-        async function () {
+            if (
+                index < 0 ||
+                index >= currentWords.length
+            ) {
+                return;
+            }
 
-            const deckId =
-                this.value;
+            const state =
+                loadLearningState();
 
-            if (!deckId) {
+            const word =
+                currentWords[index];
+
+            const key =
+                getWordKey(
+                    word,
+                    index
+                );
+
+            state.statuses[key] =
+                status;
+
+            state.currentIndex =
+                currentIndex;
+
+            const storageKey =
+                getStateKey();
+
+            if (!storageKey) {
                 return;
             }
 
             try {
 
-                await loadDeck(
-                    deckId
+                localStorage.setItem(
+                    storageKey,
+                    JSON.stringify(state)
+                );
+
+            } catch (error) {
+
+                console.warn(
+                    "保存单词状态失败:",
+                    error
+                );
+            }
+
+            updateStats();
+        }
+
+
+        /* =====================================================
+           Card Render
+        ===================================================== */
+
+        function renderCurrentCard() {
+
+            if (
+                !currentWords ||
+                currentWords.length === 0
+            ) {
+
+                cardWordEl.textContent =
+                    "暂无单词";
+
+                cardPhoneticEl.textContent =
+                    "";
+
+                cardMeaningEl.textContent =
+                    "";
+
+                cardExampleEl.textContent =
+                    "";
+
+                cardExampleCnEl.textContent =
+                    "";
+
+                progressInfoEl.textContent =
+                    "0 / 0";
+
+                progressBarEl.style.width =
+                    "0%";
+
+                return;
+            }
+
+            /*
+             * Safety check.
+             */
+
+            if (
+                currentIndex < 0 ||
+                currentIndex >= currentWords.length
+            ) {
+
+                currentIndex = 0;
+            }
+
+            const word =
+                currentWords[currentIndex];
+
+            cardWordEl.textContent =
+                word.word || "—";
+
+            cardPhoneticEl.textContent =
+                word.phonetic || "";
+
+            cardMeaningEl.textContent =
+                word.meaning || "暂无释义";
+
+            cardExampleEl.textContent =
+                word.example || "";
+
+            cardExampleCnEl.textContent =
+                word.example_cn || "";
+
+            /*
+             * Always return to front
+             * when changing cards.
+             */
+
+            isFlipped = false;
+
+            flashcardEl.classList.remove(
+                "flipped"
+            );
+
+            const total =
+                currentWords.length;
+
+            const position =
+                currentIndex + 1;
+
+            progressInfoEl.textContent =
+                `${position} / ${total}`;
+
+            const percent =
+                Math.min(
+                    100,
+                    Math.max(
+                        0,
+                        (position / total) *
+                        100
+                    )
+                );
+
+            progressBarEl.style.width =
+                `${percent}%`;
+
+            saveLearningState();
+        }
+
+
+        /* =====================================================
+           Card Actions
+        ===================================================== */
+
+        function flipCard() {
+
+            if (
+                !currentWords.length
+            ) {
+                return;
+            }
+
+            isFlipped =
+                !isFlipped;
+
+            flashcardEl.classList.toggle(
+                "flipped",
+                isFlipped
+            );
+        }
+
+
+        function previousCard() {
+
+            if (
+                !currentWords.length
+            ) {
+                return;
+            }
+
+            currentIndex--;
+
+            if (
+                currentIndex < 0
+            ) {
+
+                currentIndex =
+                    currentWords.length - 1;
+            }
+
+            renderCurrentCard();
+        }
+
+
+        function nextCard() {
+
+            if (
+                !currentWords.length
+            ) {
+                return;
+            }
+
+            currentIndex++;
+
+            if (
+                currentIndex >=
+                currentWords.length
+            ) {
+
+                currentIndex = 0;
+            }
+
+            renderCurrentCard();
+        }
+
+
+        function randomCard() {
+
+            if (
+                currentWords.length <= 1
+            ) {
+                return;
+            }
+
+            let nextIndex;
+
+            do {
+
+                nextIndex =
+                    Math.floor(
+                        Math.random() *
+                        currentWords.length
+                    );
+
+            } while (
+                nextIndex ===
+                currentIndex
+            );
+
+            currentIndex =
+                nextIndex;
+
+            renderCurrentCard();
+        }
+
+
+        /* =====================================================
+           Speech
+        ===================================================== */
+
+        function speakWord() {
+
+            if (
+                !currentWords.length
+            ) {
+                return;
+            }
+
+            if (
+                !("speechSynthesis" in window)
+            ) {
+                return;
+            }
+
+            const word =
+                currentWords[currentIndex];
+
+            if (
+                !word ||
+                !word.word
+            ) {
+                return;
+            }
+
+            try {
+
+                window.speechSynthesis.cancel();
+
+                const utterance =
+                    new SpeechSynthesisUtterance(
+                        word.word
+                    );
+
+                utterance.lang =
+                    "en-GB";
+
+                utterance.rate =
+                    0.85;
+
+                utterance.pitch =
+                    1;
+
+                window.speechSynthesis.speak(
+                    utterance
+                );
+
+            } catch (error) {
+
+                console.warn(
+                    "语音播放失败:",
+                    error
+                );
+            }
+        }
+
+
+        /* =====================================================
+           Knowledge
+        ===================================================== */
+
+        function markKnown() {
+
+            if (
+                !currentWords.length
+            ) {
+                return;
+            }
+
+            setWordStatus(
+                currentIndex,
+                "known"
+            );
+
+            nextCard();
+        }
+
+
+        function markUnknown() {
+
+            if (
+                !currentWords.length
+            ) {
+                return;
+            }
+
+            setWordStatus(
+                currentIndex,
+                "unknown"
+            );
+
+            nextCard();
+        }
+
+
+        /* =====================================================
+           Statistics
+        ===================================================== */
+
+        function calculateStats() {
+
+            const total =
+                currentWords.length;
+
+            let known = 0;
+
+            let unknown = 0;
+
+            const state =
+                loadLearningState();
+
+            const statuses =
+                state.statuses || {};
+
+            /*
+             * Only count words that actually
+             * belong to the current deck.
+             *
+             * This prevents stale localStorage
+             * entries from inflating statistics.
+             */
+
+            currentWords.forEach(
+                (word, index) => {
+
+                    const key =
+                        getWordKey(
+                            word,
+                            index
+                        );
+
+                    const status =
+                        statuses[key];
+
+                    if (
+                        status === "known"
+                    ) {
+
+                        known++;
+
+                    } else if (
+                        status === "unknown"
+                    ) {
+
+                        unknown++;
+                    }
+                }
+            );
+
+            const mastery =
+                total > 0
+                    ? Math.round(
+                        (known / total) *
+                        100
+                    )
+                    : 0;
+
+            return {
+                total,
+                known,
+                unknown,
+                mastery
+            };
+        }
+
+
+        function updateStats() {
+
+            const stats =
+                calculateStats();
+
+            document.getElementById(
+                "totalWords"
+            ).textContent =
+                stats.total;
+
+            document.getElementById(
+                "knownWords"
+            ).textContent =
+                stats.known;
+
+            document.getElementById(
+                "unknownWords"
+            ).textContent =
+                stats.unknown;
+
+            document.getElementById(
+                "masteryRate"
+            ).textContent =
+                `${stats.mastery}%`;
+
+            document.getElementById(
+                "masteryText"
+            ).textContent =
+                `${stats.mastery}%`;
+
+            document.getElementById(
+                "masteryProgress"
+            ).style.width =
+                `${stats.mastery}%`;
+        }
+
+
+        /* =====================================================
+           Library
+        ===================================================== */
+
+        function renderLibrary() {
+
+            deckGridEl.innerHTML =
+                "";
+
+            if (
+                !decks ||
+                decks.length === 0
+            ) {
+
+                deckGridEl.innerHTML = `
+                    <div class="deck-card">
+                        暂无词库
+                    </div>
+                `;
+
+                return;
+            }
+
+            decks.forEach(
+                deck => {
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+                    card.className =
+                        "deck-card";
+
+                    const description =
+                        getDeckDescription(
+                            deck
+                        );
+
+                    let countText =
+                        "";
+
+                    const count =
+                        deck.count ??
+                        deck.word_count ??
+                        deck.words_count ??
+                        "";
+
+                    if (
+                        count !== "" &&
+                        count !== null &&
+                        count !== undefined
+                    ) {
+
+                        countText =
+                            `${count} 个单词`;
+                    }
+
+                    card.innerHTML = `
+
+                        <div class="deck-name">
+                            ${escapeHTML(deck.name)}
+                        </div>
+
+                        ${
+                            description
+                                ? `
+                                    <div class="deck-description">
+                                        ${escapeHTML(description)}
+                                    </div>
+                                  `
+                                : ""
+                        }
+
+                        ${
+                            countText
+                                ? `
+                                    <div class="deck-count">
+                                        ${escapeHTML(countText)}
+                                    </div>
+                                  `
+                                : ""
+                        }
+
+                    `;
+
+                    card.addEventListener(
+                        "click",
+                        async () => {
+
+                            try {
+
+                                showLoading(
+                                    `正在加载「${deck.name}」...`
+                                );
+
+                                await loadDeck(
+                                    deck.id
+                                );
+
+                                showPage(
+                                    "learning"
+                                );
+
+                            } catch (error) {
+
+                                console.error(
+                                    error
+                                );
+
+                                showError(
+                                    error.message
+                                );
+                            }
+                        }
+                    );
+
+                    deckGridEl.appendChild(
+                        card
+                    );
+                }
+            );
+        }
+
+
+        /* =====================================================
+           Page Switching
+        ===================================================== */
+
+        function setActiveNav(
+            page
+        ) {
+
+            document
+                .getElementById(
+                    "learningNav"
+                )
+                .classList.toggle(
+                    "active",
+                    page === "learning"
+                );
+
+            document
+                .getElementById(
+                    "libraryNav"
+                )
+                .classList.toggle(
+                    "active",
+                    page === "library"
+                );
+
+            document
+                .getElementById(
+                    "statsNav"
+                )
+                .classList.toggle(
+                    "active",
+                    page === "stats"
+                );
+        }
+
+
+        function showPage(page) {
+
+            learningPageEl.classList.remove(
+                "active"
+            );
+
+            libraryPageEl.classList.remove(
+                "active"
+            );
+
+            statsPageEl.classList.remove(
+                "active"
+            );
+
+            if (
+                page === "learning"
+            ) {
+
+                learningPageEl.classList.add(
+                    "active"
+                );
+
+                setActiveNav(
+                    "learning"
+                );
+
+            } else if (
+                page === "library"
+            ) {
+
+                libraryPageEl.classList.add(
+                    "active"
+                );
+
+                setActiveNav(
+                    "library"
+                );
+
+                renderLibrary();
+
+            } else if (
+                page === "stats"
+            ) {
+
+                statsPageEl.classList.add(
+                    "active"
+                );
+
+                setActiveNav(
+                    "stats"
+                );
+
+                updateStats();
+
+            } else {
+
+                learningPageEl.classList.add(
+                    "active"
+                );
+
+                setActiveNav(
+                    "learning"
+                );
+            }
+
+            /*
+             * Do not use smooth scrolling here.
+             * It can feel strange on mobile when switching
+             * between fixed navigation pages.
+             */
+
+            window.scrollTo(
+                0,
+                0
+            );
+        }
+
+
+        /* =====================================================
+           Theme
+        ===================================================== */
+
+        function loadTheme() {
+
+            let theme = "light";
+
+            try {
+
+                theme =
+                    localStorage.getItem(
+                        THEME_STORAGE_KEY
+                    ) || "light";
+
+            } catch (error) {
+
+                console.warn(
+                    "读取主题失败:",
+                    error
+                );
+            }
+
+            applyTheme(
+                theme === "dark"
+                    ? "dark"
+                    : "light"
+            );
+        }
+
+
+        function applyTheme(theme) {
+
+            const isDark =
+                theme === "dark";
+
+            document.body.classList.toggle(
+                "dark",
+                isDark
+            );
+
+            const toggle =
+                document.getElementById(
+                    "themeToggle"
+                );
+
+            toggle.textContent =
+                isDark
+                    ? "🌙"
+                    : "☀️";
+
+            toggle.setAttribute(
+                "aria-label",
+                isDark
+                    ? "切换到浅色模式"
+                    : "切换到深色模式"
+            );
+
+            const themeColor =
+                isDark
+                    ? "#111214"
+                    : "#ffffff";
+
+            const meta =
+                document.querySelector(
+                    'meta[name="theme-color"]'
+                );
+
+            if (meta) {
+                meta.setAttribute(
+                    "content",
+                    themeColor
+                );
+            }
+        }
+
+
+        function toggleTheme() {
+
+            const isDark =
+                document.body.classList.contains(
+                    "dark"
+                );
+
+            const newTheme =
+                isDark
+                    ? "light"
+                    : "dark";
+
+            applyTheme(
+                newTheme
+            );
+
+            try {
+
+                localStorage.setItem(
+                    THEME_STORAGE_KEY,
+                    newTheme
+                );
+
+            } catch (error) {
+
+                console.warn(
+                    "保存主题失败:",
+                    error
+                );
+            }
+        }
+
+
+        /* =====================================================
+           Event Handlers
+        ===================================================== */
+
+        deckSelectEl.addEventListener(
+            "change",
+            async function () {
+
+                const deckId =
+                    this.value;
+
+                if (!deckId) {
+                    return;
+                }
+
+                try {
+
+                    showLoading(
+                        "正在切换词库..."
+                    );
+
+                    await loadDeck(
+                        deckId
+                    );
+
+                    showContent();
+
+                } catch (error) {
+
+                    console.error(
+                        error
+                    );
+
+                    showError(
+                        error.message
+                    );
+                }
+            }
+        );
+
+
+        document
+            .getElementById(
+                "themeToggle"
+            )
+            .addEventListener(
+                "click",
+                toggleTheme
+            );
+
+
+        document
+            .getElementById(
+                "previousBtn"
+            )
+            .addEventListener(
+                "click",
+                previousCard
+            );
+
+
+        document
+            .getElementById(
+                "flipBtn"
+            )
+            .addEventListener(
+                "click",
+                flipCard
+            );
+
+
+        document
+            .getElementById(
+                "nextBtn"
+            )
+            .addEventListener(
+                "click",
+                nextCard
+            );
+
+
+        document
+            .getElementById(
+                "unknownBtn"
+            )
+            .addEventListener(
+                "click",
+                markUnknown
+            );
+
+
+        document
+            .getElementById(
+                "knownBtn"
+            )
+            .addEventListener(
+                "click",
+                markKnown
+            );
+
+
+        document
+            .getElementById(
+                "speakMain"
+            )
+            .addEventListener(
+                "click",
+                function (event) {
+
+                    event.stopPropagation();
+
+                    speakWord();
+                }
+            );
+
+
+        document
+            .getElementById(
+                "learningNav"
+            )
+            .addEventListener(
+                "click",
+                function () {
+
+                    showPage(
+                        "learning"
+                    );
+                }
+            );
+
+
+        document
+            .getElementById(
+                "libraryNav"
+            )
+            .addEventListener(
+                "click",
+                function () {
+
+                    showPage(
+                        "library"
+                    );
+                }
+            );
+
+
+        document
+            .getElementById(
+                "statsNav"
+            )
+            .addEventListener(
+                "click",
+                function () {
+
+                    showPage(
+                        "stats"
+                    );
+                }
+            );
+
+
+        /* =====================================================
+           Card Keyboard / Touch
+        ===================================================== */
+
+        flashcardEl.addEventListener(
+            "click",
+            function () {
+
+                flipCard();
+            }
+        );
+
+
+        flashcardEl.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Enter" ||
+                    event.key === " "
+                ) {
+
+                    event.preventDefault();
+
+                    flipCard();
+                }
+            }
+        );
+
+
+        /* =====================================================
+           Keyboard Shortcuts
+        ===================================================== */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                /*
+                 * Don't intercept keyboard input
+                 * from select or form controls.
+                 */
+
+                if (
+                    event.target &&
+                    (
+                        event.target.tagName ===
+                        "SELECT" ||
+                        event.target.tagName ===
+                        "INPUT" ||
+                        event.target.tagName ===
+                        "TEXTAREA"
+                    )
+                ) {
+                    return;
+                }
+
+                switch (event.key) {
+
+                    case "ArrowLeft":
+
+                        event.preventDefault();
+
+                        previousCard();
+
+                        break;
+
+
+                    case "ArrowRight":
+
+                        event.preventDefault();
+
+                        nextCard();
+
+                        break;
+
+
+                    case " ":
+
+                        event.preventDefault();
+
+                        flipCard();
+
+                        break;
+
+
+                    case "r":
+                    case "R":
+
+                        speakWord();
+
+                        break;
+
+
+                    case "k":
+                    case "K":
+
+                        markKnown();
+
+                        break;
+
+
+                    case "u":
+                    case "U":
+
+                        markUnknown();
+
+                        break;
+                }
+            }
+        );
+
+
+        /* =====================================================
+           Initialisation
+        ===================================================== */
+
+        async function init() {
+
+            if (initialized) {
+                return;
+            }
+
+            initialized = true;
+
+            loadTheme();
+
+            showLoading(
+                "正在加载词库..."
+            );
+
+            /*
+             * Version check is deliberately executed
+             * in parallel and independently.
+             *
+             * Even if version.json is missing,
+             * the main vocabulary must still load.
+             */
+
+            const versionPromise =
+                checkVersion();
+
+            try {
+
+                await loadDecks();
+
+                await versionPromise;
+
+                showContent();
+
+                updateStats();
+
+                console.log(
+                    "[MyFlashCards] Ready.",
+                    {
+                        decks:
+                            decks.length,
+                        currentDeck:
+                            currentDeck
+                                ? currentDeck.id
+                                : null,
+                        words:
+                            currentWords.length
+                    }
                 );
 
             } catch (error) {
 
                 console.error(
+                    "[MyFlashCards] Initialisation failed:",
                     error
                 );
 
                 showError(
-                    `词库加载失败：${error.message}`
+                    error.message ||
+                    "词库加载失败，请检查网络或 JSON 文件。"
                 );
             }
         }
-    );
 
 
-    document
-        .getElementById("themeToggle")
-        .addEventListener(
-            "click",
-            toggleTheme
-        );
+        /* =====================================================
+           Start
+        ===================================================== */
 
+        init();
 
-    /* =========================================================
-       Keyboard
-    ========================================================= */
+    </script>
 
-    document.addEventListener(
-        "keydown",
-        function (event) {
-
-            /*
-             * Avoid hijacking keyboard when
-             * selecting a deck.
-             */
-
-            if (
-                event.target.tagName ===
-                "SELECT"
-            ) {
-                return;
-            }
-
-            if (event.code === "ArrowLeft") {
-
-                previousCard();
-
-            } else if (
-               
+</body>
+</html>
