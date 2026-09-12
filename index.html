@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
@@ -10,9 +11,15 @@
     <meta name="description"
           content="胖哥学英语 - 简洁高效的英语闪卡学习工具">
 
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color"
+          content="#ffffff">
 
     <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
         * {
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
@@ -55,6 +62,11 @@
             user-select: none;
         }
 
+
+        /* =====================================================
+           APP
+        ===================================================== */
+
         .app {
             min-height: 100vh;
             min-height: 100dvh;
@@ -65,6 +77,11 @@
             padding-bottom:
                 calc(20px + env(safe-area-inset-bottom));
         }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
 
         .header {
             height: 64px;
@@ -127,6 +144,11 @@
             transform: scale(.94);
         }
 
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
         .main {
             width: min(820px, calc(100% - 32px));
 
@@ -139,6 +161,11 @@
                 calc(40px + env(safe-area-inset-bottom));
         }
 
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
+
         .page {
             display: none;
         }
@@ -146,6 +173,11 @@
         .page.active {
             display: block;
         }
+
+
+        /* =====================================================
+           TOP AREA
+        ===================================================== */
 
         .learning-top {
             display: flex;
@@ -187,6 +219,7 @@
             color: #858585;
 
             font-size: 13px;
+
             font-variant-numeric: tabular-nums;
         }
 
@@ -213,10 +246,16 @@
             transition: width .25s ease;
         }
 
+
+        /* =====================================================
+           FLASH CARD
+        ===================================================== */
+
         .card-container {
             width: 100%;
 
             height: min(510px, 58vh);
+
             min-height: 390px;
 
             perspective: 1400px;
@@ -250,9 +289,11 @@
             padding: 40px;
 
             display: flex;
+
             flex-direction: column;
 
             align-items: center;
+
             justify-content: center;
 
             text-align: center;
@@ -273,6 +314,11 @@
         .card-back {
             transform: rotateY(180deg);
         }
+
+
+        /* =====================================================
+           FRONT
+        ===================================================== */
 
         .word-label {
             margin-bottom: 12px;
@@ -309,6 +355,11 @@
             font-size: 17px;
         }
 
+
+        /* =====================================================
+           SPEAK BUTTON
+        ===================================================== */
+
         .speak-main {
             width: 52px;
             height: 52px;
@@ -316,13 +367,17 @@
             margin-top: 24px;
 
             border: 0;
+
             border-radius: 50%;
 
             background: #181818;
+
             color: #fff;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             font-size: 20px;
@@ -347,8 +402,14 @@
 
         .speak-icon {
             display: block;
+
             transform: translateX(1px);
         }
+
+
+        /* =====================================================
+           CARD HINT
+        ===================================================== */
 
         .card-hint {
             position: absolute;
@@ -359,6 +420,11 @@
 
             font-size: 12px;
         }
+
+
+        /* =====================================================
+           BACK
+        ===================================================== */
 
         .meaning {
             max-width: 90%;
@@ -388,6 +454,11 @@
             color: #999;
         }
 
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
         .navigation {
             display: grid;
 
@@ -411,6 +482,7 @@
             color: #252525;
 
             font-size: 14px;
+
             font-weight: 600;
 
             cursor: pointer;
@@ -440,10 +512,16 @@
             background: #303030;
         }
 
+
+        /* =====================================================
+           KNOWLEDGE
+        ===================================================== */
+
         .knowledge {
             display: grid;
 
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns:
+                1fr 1fr;
 
             gap: 10px;
 
@@ -458,6 +536,7 @@
             background: #fff;
 
             font-size: 14px;
+
             font-weight: 650;
 
             cursor: pointer;
@@ -495,15 +574,22 @@
             background: #fff2f0;
         }
 
+
+        /* =====================================================
+           LIBRARY
+        ===================================================== */
+
         .page-title {
             margin: 4px 0 18px;
 
             font-size: 25px;
+
             font-weight: 750;
         }
 
         .deck-list {
             display: grid;
+
             gap: 10px;
         }
 
@@ -537,6 +623,7 @@
 
         .deck-name {
             font-size: 16px;
+
             font-weight: 650;
         }
 
@@ -549,6 +636,11 @@
 
             line-height: 1.5;
         }
+
+
+        /* =====================================================
+           STATS
+        ===================================================== */
 
         .stats-grid {
             display: grid;
@@ -579,6 +671,7 @@
             margin-top: 8px;
 
             font-size: 32px;
+
             font-weight: 750;
         }
 
@@ -602,6 +695,7 @@
 
         .mastery-bar {
             width: 0;
+
             height: 100%;
 
             background: #181818;
@@ -611,11 +705,18 @@
             transition: width .3s ease;
         }
 
+
+        /* =====================================================
+           BOTTOM NAV
+        ===================================================== */
+
         .bottom-nav {
             position: fixed;
 
             left: 50%;
-            bottom: 14px;
+
+            bottom:
+                calc(14px + env(safe-area-inset-bottom));
 
             transform: translateX(-50%);
 
@@ -631,6 +732,7 @@
             background: rgba(255,255,255,.94);
 
             backdrop-filter: blur(16px);
+
             -webkit-backdrop-filter: blur(16px);
 
             border: 1px solid #e2e2e4;
@@ -656,9 +758,11 @@
             cursor: pointer;
 
             display: flex;
+
             flex-direction: column;
 
             align-items: center;
+
             justify-content: center;
 
             gap: 3px;
@@ -675,6 +779,11 @@
         .nav-icon {
             font-size: 18px;
         }
+
+
+        /* =====================================================
+           LOADING / ERROR
+        ===================================================== */
 
         .loading,
         .error-box {
@@ -719,10 +828,16 @@
             cursor: pointer;
         }
 
+
+        /* =====================================================
+           UPDATE
+        ===================================================== */
+
         .update-toast {
             position: fixed;
 
             left: 50%;
+
             top: 76px;
 
             transform: translateX(-50%);
@@ -750,8 +865,14 @@
             opacity: 1;
         }
 
+
+        /* =====================================================
+           DARK MODE
+        ===================================================== */
+
         body.dark {
             background: #101010;
+
             color: #eee;
         }
 
@@ -763,6 +884,7 @@
 
         body.dark .theme-btn {
             background: #292929;
+
             color: #eee;
         }
 
@@ -852,6 +974,11 @@
             color: #ff8b82;
         }
 
+
+        /* =====================================================
+           TABLET / DESKTOP
+        ===================================================== */
+
         @media (min-width: 768px) {
 
             .main {
@@ -865,12 +992,18 @@
             .bottom-nav {
                 bottom: 16px;
             }
+
         }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
 
         @media (max-width: 600px) {
 
             .header {
-                height: 56px;
+                height: 54px;
             }
 
             .header-inner {
@@ -884,163 +1017,522 @@
             .main {
                 width: calc(100% - 20px);
 
-                padding-top: 14px;
+                padding-top: 10px;
 
-                padding-bottom: 105px;
+                /*
+                 * 给固定底部导航预留空间
+                 */
+                padding-bottom:
+                    calc(92px + env(safe-area-inset-bottom));
             }
 
-            .learning-top {
-                gap: 8px;
 
-                margin-bottom: 8px;
+            /* =========================
+               顶部词库
+            ========================= */
+
+            .learning-top {
+                gap: 7px;
+
+                margin-bottom: 6px;
             }
 
             .deck-select {
-                height: 42px;
+                height: 38px;
 
-                border-radius: 12px;
+                border-radius: 10px;
 
-                padding: 0 11px;
+                padding: 0 10px;
 
                 font-size: 13px;
             }
 
             .progress-info {
-                font-size: 12px;
-            }
-
-            .progress {
-                margin-bottom: 12px;
-            }
-
-            .card-container {
-                height: min(60vh, 440px);
-
-                min-height: 340px;
-            }
-
-            .card-face {
-                padding: 25px 18px;
-
-                border-radius: 20px;
-            }
-
-            .word {
-                font-size: clamp(40px, 12vw, 58px);
-
-                letter-spacing: -1.5px;
-            }
-
-            .phonetic {
-                margin-top: 12px;
-
-                font-size: 15px;
-            }
-
-            .speak-main {
-                width: 48px;
-                height: 48px;
-
-                margin-top: 18px;
-            }
-
-            .card-hint {
-                bottom: 18px;
-
                 font-size: 11px;
             }
 
-            .meaning {
-                font-size: 25px;
+            .progress {
+                height: 3px;
+
+                margin-bottom: 8px;
             }
 
-            .example {
-                margin-top: 18px;
 
-                font-size: 14px;
+            /* =========================
+               单词卡片
+            ========================= */
+
+            .card-container {
+                /*
+                 * 手机端明显缩小卡片
+                 */
+                height: min(44vh, 310px);
+
+                min-height: 275px;
             }
 
-            .navigation {
-                gap: 7px;
-
-                margin-top: 10px;
-            }
-
-            .nav-control {
-                height: 46px;
-
-                border-radius: 12px;
-
-                font-size: 13px;
-            }
-
-            .knowledge {
-                gap: 7px;
-
-                margin-top: 7px;
-            }
-
-            .knowledge-btn {
-                height: 48px;
-
-                border-radius: 12px;
-
-                font-size: 13px;
-            }
-
-            .bottom-nav {
-                bottom: 10px;
-
-                height: 58px;
+            .card-face {
+                padding: 20px 15px;
 
                 border-radius: 18px;
             }
 
-            .page-title {
-                font-size: 22px;
-            }
-        }
+            .word-label {
+                margin-bottom: 7px;
 
-        @media (max-width: 380px) {
+                font-size: 10px;
 
-            .card-container {
-                height: 325px;
-
-                min-height: 325px;
+                letter-spacing: 1.2px;
             }
 
             .word {
-                font-size: 39px;
+                font-size:
+                    clamp(36px, 10vw, 50px);
+
+                letter-spacing: -1px;
+
+                line-height: 1.05;
             }
+
+            .phonetic {
+                margin-top: 9px;
+
+                font-size: 14px;
+            }
+
+
+            /* =========================
+               播放按钮
+            ========================= */
 
             .speak-main {
-                width: 44px;
-                height: 44px;
+                width: 42px;
+                height: 42px;
 
-                margin-top: 14px;
+                margin-top: 13px;
+
+                font-size: 17px;
             }
 
+            .card-hint {
+                bottom: 13px;
+
+                font-size: 10px;
+            }
+
+
+            /* =========================
+               中文背面
+            ========================= */
+
+            .meaning {
+                max-width: 92%;
+
+                font-size: 22px;
+
+                line-height: 1.3;
+            }
+
+            .example {
+                max-width: 95%;
+
+                margin-top: 12px;
+
+                font-size: 13px;
+
+                line-height: 1.5;
+            }
+
+            .example-cn {
+                margin-top: 4px;
+            }
+
+
+            /* =========================
+               上一个 / 翻转 / 下一个
+            ========================= */
+
             .navigation {
-                grid-template-columns:
-                    1fr 1fr 1fr;
+                gap: 6px;
+
+                margin-top: 7px;
             }
 
             .nav-control {
+                height: 40px;
+
+                border-radius: 10px;
+
                 font-size: 12px;
+            }
+
+
+            /* =========================
+               记住 / 没记住
+            ========================= */
+
+            .knowledge {
+                gap: 6px;
+
+                margin-top: 6px;
             }
 
             .knowledge-btn {
-                height: 44px;
+                height: 40px;
+
+                border-radius: 10px;
 
                 font-size: 12px;
             }
+
+
+            /* =========================
+               底部导航
+            ========================= */
+
+            .bottom-nav {
+                bottom:
+                    calc(8px + env(safe-area-inset-bottom));
+
+                width: calc(100% - 20px);
+
+                height: 54px;
+
+                border-radius: 16px;
+            }
+
+            .nav-btn {
+                font-size: 10px;
+
+                gap: 2px;
+            }
+
+            .nav-icon {
+                font-size: 16px;
+            }
+
+
+            /* =========================
+               页面标题
+            ========================= */
+
+            .page-title {
+                margin-top: 2px;
+
+                font-size: 21px;
+            }
+
+
+            /* =========================
+               统计
+            ========================= */
+
+            .stats-grid {
+                gap: 7px;
+            }
+
+            .stat-card {
+                padding: 16px;
+
+                border-radius: 13px;
+            }
+
+            .stat-label {
+                font-size: 12px;
+            }
+
+            .stat-value {
+                margin-top: 5px;
+
+                font-size: 27px;
+            }
+
+            .mastery-wrap {
+                margin-top: 10px;
+            }
+
         }
+
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
+        @media (max-width: 380px) {
+
+            .header {
+                height: 52px;
+            }
+
+            .logo {
+                font-size: 16px;
+            }
+
+            .main {
+                width: calc(100% - 16px);
+
+                padding-top: 8px;
+
+                padding-bottom:
+                    calc(88px + env(safe-area-inset-bottom));
+            }
+
+
+            /* =========================
+               顶部
+            ========================= */
+
+            .learning-top {
+                gap: 5px;
+
+                margin-bottom: 5px;
+            }
+
+            .deck-select {
+                height: 36px;
+
+                padding: 0 8px;
+
+                font-size: 12px;
+
+                border-radius: 9px;
+            }
+
+            .progress-info {
+                font-size: 10px;
+            }
+
+            .progress {
+                margin-bottom: 7px;
+            }
+
+
+            /* =========================
+               更小的单词卡片
+            ========================= */
+
+            .card-container {
+                height: 270px;
+
+                min-height: 270px;
+            }
+
+            .card-face {
+                padding: 16px 12px;
+
+                border-radius: 16px;
+            }
+
+            .word-label {
+                margin-bottom: 5px;
+
+                font-size: 9px;
+            }
+
+            .word {
+                font-size: 36px;
+
+                letter-spacing: -.8px;
+            }
+
+            .phonetic {
+                margin-top: 7px;
+
+                font-size: 13px;
+            }
+
+
+            /* =========================
+               播放
+            ========================= */
+
+            .speak-main {
+                width: 38px;
+                height: 38px;
+
+                margin-top: 10px;
+
+                font-size: 15px;
+            }
+
+            .card-hint {
+                bottom: 10px;
+
+                font-size: 9px;
+            }
+
+
+            /* =========================
+               背面
+            ========================= */
+
+            .meaning {
+                font-size: 20px;
+            }
+
+            .example {
+                margin-top: 9px;
+
+                font-size: 12px;
+
+                line-height: 1.4;
+            }
+
+
+            /* =========================
+               操作按钮
+            ========================= */
+
+            .navigation {
+                gap: 5px;
+
+                margin-top: 6px;
+            }
+
+            .nav-control {
+                height: 37px;
+
+                border-radius: 9px;
+
+                font-size: 11px;
+            }
+
+            .knowledge {
+                gap: 5px;
+
+                margin-top: 5px;
+            }
+
+            .knowledge-btn {
+                height: 37px;
+
+                border-radius: 9px;
+
+                font-size: 11px;
+            }
+
+
+            /* =========================
+               底部导航
+            ========================= */
+
+            .bottom-nav {
+                bottom:
+                    calc(6px + env(safe-area-inset-bottom));
+
+                width: calc(100% - 16px);
+
+                height: 50px;
+
+                border-radius: 15px;
+            }
+
+            .nav-btn {
+                font-size: 9px;
+            }
+
+            .nav-icon {
+                font-size: 15px;
+            }
+
+        }
+
+
+        /* =====================================================
+           VERY SHORT MOBILE
+           针对高度较小的手机
+        ===================================================== */
+
+        @media (max-width: 600px) and (max-height: 700px) {
+
+            .header {
+                height: 50px;
+            }
+
+            .main {
+                padding-top: 7px;
+
+                padding-bottom:
+                    calc(84px + env(safe-area-inset-bottom));
+            }
+
+            .learning-top {
+                margin-bottom: 4px;
+            }
+
+            .deck-select {
+                height: 35px;
+            }
+
+            .progress {
+                margin-bottom: 6px;
+            }
+
+            .card-container {
+                height: 255px;
+
+                min-height: 255px;
+            }
+
+            .card-face {
+                padding: 14px 12px;
+            }
+
+            .word {
+                font-size: 34px;
+            }
+
+            .phonetic {
+                margin-top: 6px;
+
+                font-size: 12px;
+            }
+
+            .speak-main {
+                width: 36px;
+                height: 36px;
+
+                margin-top: 8px;
+            }
+
+            .card-hint {
+                bottom: 8px;
+            }
+
+            .navigation {
+                margin-top: 5px;
+            }
+
+            .nav-control {
+                height: 35px;
+            }
+
+            .knowledge {
+                margin-top: 4px;
+            }
+
+            .knowledge-btn {
+                height: 35px;
+            }
+
+            .bottom-nav {
+                height: 48px;
+            }
+
+        }
+
     </style>
 </head>
+
 
 <body>
 
 <div class="app">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
     <header class="header">
 
@@ -1055,24 +1547,48 @@
                 class="theme-btn"
                 aria-label="切换主题"
                 title="切换主题">
+
                 ☾
+
             </button>
 
         </div>
 
     </header>
 
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
     <main class="main">
+
+
+        <!-- =================================================
+             LEARNING PAGE
+        ================================================== -->
 
         <section
             id="learningPage"
             class="page active">
 
+
+            <!-- =========================
+                 Loading
+            ========================== -->
+
             <div
                 id="loadingBox"
                 class="loading">
+
                 正在加载词库...
+
             </div>
+
+
+            <!-- =========================
+                 Error
+            ========================== -->
 
             <div
                 id="errorBox"
@@ -1091,14 +1607,26 @@
                 <button
                     id="retryBtn"
                     class="retry-btn">
+
                     重新加载
+
                 </button>
 
             </div>
 
+
+            <!-- =========================
+                 Learning Content
+            ========================== -->
+
             <div
                 id="learningContent"
                 style="display:none;">
+
+
+                <!-- =====================
+                     词库选择
+                ====================== -->
 
                 <div class="learning-top">
 
@@ -1123,6 +1651,11 @@
 
                 </div>
 
+
+                <!-- =====================
+                     Progress
+                ====================== -->
+
                 <div class="progress">
 
                     <div
@@ -1132,6 +1665,11 @@
 
                 </div>
 
+
+                <!-- =====================
+                     FLASH CARD
+                ====================== -->
+
                 <div
                     id="cardContainer"
                     class="card-container"
@@ -1140,6 +1678,11 @@
                     <div
                         id="flashcard"
                         class="flashcard">
+
+
+                        <!-- =================
+                             FRONT
+                        ================== -->
 
                         <div
                             class="card-face card-front">
@@ -1151,14 +1694,19 @@
                             <div
                                 id="word"
                                 class="word">
+
                                 —
+
                             </div>
 
                             <div
                                 id="phonetic"
                                 class="phonetic">
+
                                 —
+
                             </div>
+
 
                             <button
                                 id="frontSpeakBtn"
@@ -1171,11 +1719,19 @@
 
                             </button>
 
+
                             <div class="card-hint">
+
                                 点击卡片查看中文
+
                             </div>
 
                         </div>
+
+
+                        <!-- =================
+                             BACK
+                        ================== -->
 
                         <div
                             class="card-face card-back">
@@ -1183,19 +1739,24 @@
                             <div
                                 id="meaning"
                                 class="meaning">
+
                                 —
+
                             </div>
 
                             <div
                                 id="example"
                                 class="example">
+
                                 —
+
                             </div>
 
                             <div
                                 id="exampleCn"
                                 class="example example-cn">
                             </div>
+
 
                             <button
                                 id="backSpeakBtn"
@@ -1214,40 +1775,60 @@
 
                 </div>
 
+
+                <!-- =================================================
+                     上一个 / 翻转 / 下一个
+                ================================================== -->
+
                 <div class="navigation">
 
                     <button
                         id="prevBtn"
                         class="nav-control">
+
                         ← 上一个
+
                     </button>
 
                     <button
                         id="flipBtn"
                         class="nav-control primary">
+
                         翻转
+
                     </button>
 
                     <button
                         id="nextBtn"
                         class="nav-control">
+
                         下一个 →
+
                     </button>
 
                 </div>
+
+
+                <!-- =================================================
+                     记住 / 没记住
+                ================================================== -->
 
                 <div class="knowledge">
 
                     <button
                         id="unknownBtn"
                         class="knowledge-btn unknown">
+
                         ✕ 没记住
+
                     </button>
 
                     <button
                         id="knownBtn"
                         class="knowledge-btn known">
+
                         ✓ 记住了
+
                     </button>
 
                 </div>
@@ -1255,6 +1836,11 @@
             </div>
 
         </section>
+
+
+        <!-- =================================================
+             LIBRARY
+        ================================================== -->
 
         <section
             id="libraryPage"
@@ -1271,6 +1857,11 @@
 
         </section>
 
+
+        <!-- =================================================
+             STATS
+        ================================================== -->
+
         <section
             id="statsPage"
             class="page">
@@ -1281,6 +1872,7 @@
 
             <div class="stats-grid">
 
+
                 <div class="stat-card">
 
                     <div class="stat-label">
@@ -1290,10 +1882,13 @@
                     <div
                         id="statTotal"
                         class="stat-value">
+
                         0
+
                     </div>
 
                 </div>
+
 
                 <div class="stat-card">
 
@@ -1304,10 +1899,13 @@
                     <div
                         id="statLearned"
                         class="stat-value">
+
                         0
+
                     </div>
 
                 </div>
+
 
                 <div class="stat-card">
 
@@ -1318,10 +1916,13 @@
                     <div
                         id="statKnown"
                         class="stat-value">
+
                         0
+
                     </div>
 
                 </div>
+
 
                 <div class="stat-card">
 
@@ -1332,10 +1933,13 @@
                     <div
                         id="statUnknown"
                         class="stat-value">
+
                         0
+
                     </div>
 
                 </div>
+
 
                 <div class="stat-card stat-wide">
 
@@ -1346,7 +1950,9 @@
                     <div
                         id="statMastery"
                         class="stat-value">
+
                         0%
+
                     </div>
 
                     <div class="mastery-wrap">
@@ -1372,13 +1978,26 @@
 
 </div>
 
+
+<!-- =====================================================
+     UPDATE TOAST
+====================================================== -->
+
 <div
     id="updateToast"
     class="update-toast">
+
     检测到新版本，正在刷新...
+
 </div>
 
+
+<!-- =====================================================
+     BOTTOM NAV
+====================================================== -->
+
 <nav class="bottom-nav">
+
 
     <button
         class="nav-btn active"
@@ -1394,6 +2013,7 @@
 
     </button>
 
+
     <button
         class="nav-btn"
         data-page="libraryPage">
@@ -1407,6 +2027,7 @@
         </span>
 
     </button>
+
 
     <button
         class="nav-btn"
@@ -1424,14 +2045,27 @@
 
 </nav>
 
+
 <script>
+
 "use strict";
 
-const SITE_ROOT = "/MyFlashCards/";
-const DATA_ROOT = SITE_ROOT + "data/";
 
-const DECK_INDEX = DATA_ROOT + "index.json";
-const VERSION_URL = DATA_ROOT + "version.json";
+/* =========================================================
+   基础配置
+========================================================= */
+
+const SITE_ROOT =
+    "/MyFlashCards/";
+
+const DATA_ROOT =
+    SITE_ROOT + "data/";
+
+const DECK_INDEX =
+    DATA_ROOT + "index.json";
+
+const VERSION_URL =
+    DATA_ROOT + "version.json";
 
 const VERSION_STORAGE_KEY =
     "myflashcards_site_version";
@@ -1445,12 +2079,27 @@ const THEME_STORAGE_KEY =
 const CURRENT_DECK_KEY =
     "myflashcards_current_deck";
 
+
+/* =========================================================
+   全局状态
+========================================================= */
+
 let decks = [];
+
 let currentDeck = null;
+
 let currentWords = [];
+
 let currentIndex = 0;
+
 let isFlipped = false;
+
 let learningState = {};
+
+
+/* =========================================================
+   DOM
+========================================================= */
 
 const loadingBox =
     document.getElementById("loadingBox");
@@ -1549,10 +2198,16 @@ const updateToast =
     document.getElementById("updateToast");
 
 
+/* =========================================================
+   JSON
+========================================================= */
+
 async function getJSON(url) {
 
     const separator =
-        url.includes("?") ? "&" : "?";
+        url.includes("?")
+            ? "&"
+            : "?";
 
     const finalUrl =
         url +
@@ -1580,8 +2235,12 @@ async function getJSON(url) {
                 finalUrl,
                 {
                     method: "GET",
+
                     cache: "no-store",
-                    signal: controller.signal,
+
+                    signal:
+                        controller.signal,
+
                     headers: {
                         "Cache-Control":
                             "no-cache"
@@ -1645,12 +2304,18 @@ async function getJSON(url) {
 }
 
 
+/* =========================================================
+   VERSION
+========================================================= */
+
 async function checkVersion() {
 
     try {
 
         const data =
-            await getJSON(VERSION_URL);
+            await getJSON(
+                VERSION_URL
+            );
 
         if (
             !data ||
@@ -1726,6 +2391,10 @@ async function checkVersion() {
 }
 
 
+/* =========================================================
+   LOADING
+========================================================= */
+
 function showLoading() {
 
     loadingBox.style.display =
@@ -1773,6 +2442,10 @@ function showContent() {
 }
 
 
+/* =========================================================
+   LOAD DECKS
+========================================================= */
+
 async function loadDecks() {
 
     showLoading();
@@ -1780,7 +2453,9 @@ async function loadDecks() {
     try {
 
         const data =
-            await getJSON(DECK_INDEX);
+            await getJSON(
+                DECK_INDEX
+            );
 
         if (!Array.isArray(data)) {
 
@@ -1843,6 +2518,10 @@ async function loadDecks() {
 }
 
 
+/* =========================================================
+   DECK SELECT
+========================================================= */
+
 function renderDeckSelect() {
 
     deckSelect.innerHTML = "";
@@ -1871,6 +2550,10 @@ function renderDeckSelect() {
 
 }
 
+
+/* =========================================================
+   LOAD DECK
+========================================================= */
 
 async function loadDeck(deckId) {
 
@@ -1970,6 +2653,10 @@ async function loadDeck(deckId) {
 }
 
 
+/* =========================================================
+   LEARNING STATE
+========================================================= */
+
 function getStateKey() {
 
     return (
@@ -2065,6 +2752,10 @@ function saveLearningState() {
 }
 
 
+/* =========================================================
+   WORD STATE
+========================================================= */
+
 function getWordKey(index) {
 
     const item =
@@ -2110,6 +2801,10 @@ function setWordStatus(
 
 }
 
+
+/* =========================================================
+   RENDER CARD
+========================================================= */
 
 function renderCurrentCard() {
 
@@ -2170,6 +2865,10 @@ function renderCurrentCard() {
 }
 
 
+/* =========================================================
+   FLIP
+========================================================= */
+
 function flipCard() {
 
     isFlipped =
@@ -2182,6 +2881,10 @@ function flipCard() {
 
 }
 
+
+/* =========================================================
+   PREVIOUS
+========================================================= */
 
 function previousCard() {
 
@@ -2208,6 +2911,10 @@ function previousCard() {
 
 }
 
+
+/* =========================================================
+   NEXT
+========================================================= */
 
 function nextCard() {
 
@@ -2236,6 +2943,10 @@ function nextCard() {
 
 }
 
+
+/* =========================================================
+   RANDOM
+========================================================= */
 
 function randomCard() {
 
@@ -2273,6 +2984,10 @@ function randomCard() {
 
 }
 
+
+/* =========================================================
+   SPEAK
+========================================================= */
 
 function speakWord() {
 
@@ -2336,6 +3051,10 @@ function speakWord() {
 }
 
 
+/* =========================================================
+   KNOWLEDGE
+========================================================= */
+
 function markKnown() {
 
     setWordStatus(
@@ -2363,6 +3082,10 @@ function markUnknown() {
 
 }
 
+
+/* =========================================================
+   STATS
+========================================================= */
 
 function calculateStats() {
 
@@ -2448,6 +3171,10 @@ function updateStats() {
 }
 
 
+/* =========================================================
+   LIBRARY
+========================================================= */
+
 function renderLibrary() {
 
     deckList.innerHTML = "";
@@ -2531,6 +3258,10 @@ function renderLibrary() {
 }
 
 
+/* =========================================================
+   PAGE
+========================================================= */
+
 function showPage(pageId) {
 
     document
@@ -2571,25 +3302,34 @@ function showPage(pageId) {
 }
 
 
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
 function escapeHTML(value) {
 
     return String(value)
+
         .replace(
             /&/g,
             "&amp;"
         )
+
         .replace(
             /</g,
             "&lt;"
         )
+
         .replace(
             />/g,
             "&gt;"
         )
+
         .replace(
             /"/g,
             "&quot;"
         )
+
         .replace(
             /'/g,
             "&#039;"
@@ -2597,6 +3337,10 @@ function escapeHTML(value) {
 
 }
 
+
+/* =========================================================
+   THEME
+========================================================= */
 
 function loadTheme() {
 
@@ -2652,6 +3396,10 @@ function toggleTheme() {
 }
 
 
+/* =========================================================
+   CARD CLICK
+========================================================= */
+
 cardContainer.addEventListener(
     "click",
     event => {
@@ -2671,6 +3419,10 @@ cardContainer.addEventListener(
     }
 );
 
+
+/* =========================================================
+   SPEAK
+========================================================= */
 
 frontSpeakBtn.addEventListener(
     "click",
@@ -2696,35 +3448,39 @@ backSpeakBtn.addEventListener(
 );
 
 
+/* =========================================================
+   BUTTONS
+========================================================= */
+
 flipBtn.addEventListener(
     "click",
     flipCard
 );
-
 
 prevBtn.addEventListener(
     "click",
     previousCard
 );
 
-
 nextBtn.addEventListener(
     "click",
     nextCard
 );
-
 
 unknownBtn.addEventListener(
     "click",
     markUnknown
 );
 
-
 knownBtn.addEventListener(
     "click",
     markKnown
 );
 
+
+/* =========================================================
+   DECK SELECT
+========================================================= */
 
 deckSelect.addEventListener(
     "change",
@@ -2746,6 +3502,10 @@ deckSelect.addEventListener(
 );
 
 
+/* =========================================================
+   RETRY
+========================================================= */
+
 retryBtn.addEventListener(
     "click",
     () => {
@@ -2756,11 +3516,19 @@ retryBtn.addEventListener(
 );
 
 
+/* =========================================================
+   THEME
+========================================================= */
+
 themeBtn.addEventListener(
     "click",
     toggleTheme
 );
 
+
+/* =========================================================
+   BOTTOM NAV
+========================================================= */
 
 document
     .querySelectorAll(".nav-btn")
@@ -2781,6 +3549,10 @@ document
         }
     );
 
+
+/* =========================================================
+   KEYBOARD
+========================================================= */
 
 document.addEventListener(
     "keydown",
@@ -2853,6 +3625,10 @@ document.addEventListener(
 );
 
 
+/* =========================================================
+   TOUCH
+========================================================= */
+
 let lastTouchEnd = 0;
 
 document.addEventListener(
@@ -2880,6 +3656,10 @@ document.addEventListener(
 );
 
 
+/* =========================================================
+   INIT
+========================================================= */
+
 async function init() {
 
     loadTheme();
@@ -2903,6 +3683,7 @@ init().catch(
 
     }
 );
+
 </script>
 
 </body>
